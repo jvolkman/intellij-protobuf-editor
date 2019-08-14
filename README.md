@@ -17,7 +17,7 @@ accepting pull requests.
 * References and linking
 * Quick documentation
 * Editor enhancements (completion, brace matching, etc.)
-* Navigating between Java source and `.proto` definitions
+* Navigating between protobuf files and some other languages (Java, Go, Python)
 * Full support for text format, both standalone and in custom options
 
 # Building
