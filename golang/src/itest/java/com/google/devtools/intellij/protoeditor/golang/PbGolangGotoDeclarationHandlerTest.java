@@ -65,18 +65,12 @@ public class PbGolangGotoDeclarationHandlerTest extends PbCodeInsightFixtureTest
   @Override
   public void setUp() throws Exception {
     super.setUp();
-    TestUtils.addTestFileResolveProvider(getProject());
-  }
-
-  @Override
-  public void tearDown() throws Exception {
-    TestUtils.removeTestFileResolveProvider(getProject());
-    super.tearDown();
+    TestUtils.addTestFileResolveProvider(getProject(), getTestRootDisposable());
   }
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(getClass());
+    String discoveredPath = TestUtils.getTestdataPath(this);
     return discoveredPath == null ? "" : discoveredPath;
   }
 

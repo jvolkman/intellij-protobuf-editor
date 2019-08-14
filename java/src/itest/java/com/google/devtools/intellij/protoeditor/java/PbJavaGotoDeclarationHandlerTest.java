@@ -67,12 +67,12 @@ public class PbJavaGotoDeclarationHandlerTest extends PbCodeInsightFixtureTestCa
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(getClass());
+    String discoveredPath = TestUtils.getTestdataPath(this);
     return discoveredPath == null ? "" : discoveredPath;
   }
 
   public void testProto2() {
-    String root = TestUtils.getTestRootPath(getClass());
+    String root = TestUtils.getTestRootPath(this);
     myFixture.copyFileToProject(new File(root, "Proto2.proto").getPath(), "protos/Proto2.proto");
     JavaTestData.addGenCodeJar(
         myFixture.getModule(), root, "libProto2Lib-speed.jar", testDisposable);
@@ -86,7 +86,7 @@ public class PbJavaGotoDeclarationHandlerTest extends PbCodeInsightFixtureTestCa
   }
 
   public void testProto2MultipleFiles() {
-    String root = TestUtils.getTestRootPath(getClass());
+    String root = TestUtils.getTestRootPath(this);
     myFixture.copyFileToProject(
         new File(root, "Proto2MultipleFiles.proto").getPath(), "protos/Proto2MultipleFiles.proto");
     JavaTestData.addGenCodeJar(
@@ -101,7 +101,7 @@ public class PbJavaGotoDeclarationHandlerTest extends PbCodeInsightFixtureTestCa
   }
 
   public void testProto2OuterClass() {
-    String root = TestUtils.getTestRootPath(getClass());
+    String root = TestUtils.getTestRootPath(this);
     myFixture.copyFileToProject(
         new File(root, "Proto2OuterClass.proto").getPath(), "protos/Proto2OuterClass.proto");
     JavaTestData.addGenCodeJar(
@@ -116,7 +116,7 @@ public class PbJavaGotoDeclarationHandlerTest extends PbCodeInsightFixtureTestCa
   }
 
   public void testProtoSyntax3() {
-    String root = TestUtils.getTestRootPath(getClass());
+    String root = TestUtils.getTestRootPath(this);
     myFixture.copyFileToProject(
         new File(root, "ProtoSyntax3.proto").getPath(), "protos/ProtoSyntax3.proto");
     JavaTestData.addGenCodeJar(
@@ -131,7 +131,7 @@ public class PbJavaGotoDeclarationHandlerTest extends PbCodeInsightFixtureTestCa
   }
 
   public void testProto2Lite() {
-    String root = TestUtils.getTestRootPath(getClass());
+    String root = TestUtils.getTestRootPath(this);
     myFixture.copyFileToProject(
         new File(root, "Proto2Lite.proto").getPath(), "protos/Proto2Lite.proto");
     JavaTestData.addGenCodeJar(
@@ -161,7 +161,7 @@ public class PbJavaGotoDeclarationHandlerTest extends PbCodeInsightFixtureTestCa
   }
 
   public void testClashingEnum() {
-    String root = TestUtils.getTestRootPath(getClass());
+    String root = TestUtils.getTestRootPath(this);
     myFixture.copyFileToProject("proto/clashing_enum.proto");
     JavaTestData.addGenCodeJar(
         myFixture.getModule(), root, "libClashingEnum-speed.jar", testDisposable);
@@ -174,7 +174,7 @@ public class PbJavaGotoDeclarationHandlerTest extends PbCodeInsightFixtureTestCa
   }
 
   public void testClashingMessage() {
-    String root = TestUtils.getTestRootPath(getClass());
+    String root = TestUtils.getTestRootPath(this);
     myFixture.copyFileToProject("proto/clashing_message.proto");
     JavaTestData.addGenCodeJar(
         myFixture.getModule(), root, "libClashingMessage-speed.jar", testDisposable);
@@ -187,7 +187,7 @@ public class PbJavaGotoDeclarationHandlerTest extends PbCodeInsightFixtureTestCa
   }
 
   public void testClashingNestedEnum() {
-    String root = TestUtils.getTestRootPath(getClass());
+    String root = TestUtils.getTestRootPath(this);
     myFixture.copyFileToProject("proto/clashing_nested_enum.proto");
     JavaTestData.addGenCodeJar(
         myFixture.getModule(), root, "libClashingNestedEnum-speed.jar", testDisposable);
@@ -200,7 +200,7 @@ public class PbJavaGotoDeclarationHandlerTest extends PbCodeInsightFixtureTestCa
   }
 
   public void testClashingNestedMessage() {
-    String root = TestUtils.getTestRootPath(getClass());
+    String root = TestUtils.getTestRootPath(this);
     myFixture.copyFileToProject("proto/clashing_nested_message.proto");
     JavaTestData.addGenCodeJar(
         myFixture.getModule(), root, "libClashingNestedMessage-speed.jar", testDisposable);
@@ -214,7 +214,7 @@ public class PbJavaGotoDeclarationHandlerTest extends PbCodeInsightFixtureTestCa
   }
 
   public void testNotClashingField() {
-    String root = TestUtils.getTestRootPath(getClass());
+    String root = TestUtils.getTestRootPath(this);
     myFixture.copyFileToProject("proto/not_clashing_field.proto");
     JavaTestData.addGenCodeJar(
         myFixture.getModule(), root, "libNotClashingField-speed.jar", testDisposable);

@@ -24,7 +24,7 @@ public class PbTextCommenterTest extends PbCodeInsightFixtureTestCase {
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(PbTextCommenterTest.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     String path = discoveredPath == null ? "" : discoveredPath;
     return path + "/ide/editing/";
   }

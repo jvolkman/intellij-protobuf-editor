@@ -35,7 +35,7 @@ public class PbTextParserTest extends ParsingTestCase {
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(PbTextParserTest.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     return discoveredPath == null ? "" : discoveredPath;
   }
 

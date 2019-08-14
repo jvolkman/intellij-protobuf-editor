@@ -31,7 +31,7 @@ public class PbStreamOptionReferenceTest extends ResolveTestCase {
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(PbStreamOptionReferenceTest.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     return discoveredPath == null ? "" : discoveredPath;
   }
 
@@ -40,14 +40,9 @@ public class PbStreamOptionReferenceTest extends ResolveTestCase {
     super.setUp();
     String descriptorText = loadFile("lang/options/stream_descriptor.proto");
     createFile("stream_descriptor.proto", descriptorText);
-    TestUtils.addTestFileResolveProvider(getProject(), "stream_descriptor.proto");
+    TestUtils.addTestFileResolveProvider(
+        getProject(), "stream_descriptor.proto", getTestRootDisposable());
     TestUtils.registerTestdataFileExtension();
-  }
-
-  @Override
-  public void tearDown() throws Exception {
-    TestUtils.removeTestFileResolveProvider(getProject());
-    super.tearDown();
   }
 
   public void testStreamOption() throws Exception {

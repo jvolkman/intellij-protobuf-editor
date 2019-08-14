@@ -28,7 +28,7 @@ public class PbFoldingTest extends PbCodeInsightFixtureTestCase {
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(PbFoldingTest.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     String path = discoveredPath == null ? "" : discoveredPath;
     return path + "/ide/folding/";
   }

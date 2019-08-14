@@ -25,19 +25,13 @@ public class PbTextDirectiveAnnotatorTest extends PbCodeInsightFixtureTestCase {
   @Override
   public void setUp() throws Exception {
     super.setUp();
-    TestUtils.addTestFileResolveProvider(getProject());
+    TestUtils.addTestFileResolveProvider(getProject(), getTestRootDisposable());
     myFixture.configureByFile("lang/resolve/root_message.proto");
   }
 
   @Override
-  public void tearDown() throws Exception {
-    TestUtils.removeTestFileResolveProvider(getProject());
-    super.tearDown();
-  }
-
-  @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(PbTextDirectiveAnnotatorTest.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     return discoveredPath == null ? "" : discoveredPath;
   }
 

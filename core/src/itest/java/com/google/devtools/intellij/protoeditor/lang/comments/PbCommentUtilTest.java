@@ -40,7 +40,7 @@ public class PbCommentUtilTest extends PbCodeInsightFixtureTestCase {
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(PbCommentUtilTest.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     return discoveredPath == null ? "" : discoveredPath;
   }
 

@@ -33,19 +33,13 @@ public class PbImportReferenceTest extends ResolveTestCase {
   @Override
   public void setUp() throws Exception {
     super.setUp();
-    TestUtils.addTestFileResolveProvider(getProject());
+    TestUtils.addTestFileResolveProvider(getProject(), getTestRootDisposable());
     TestUtils.registerTestdataFileExtension();
   }
 
   @Override
-  public void tearDown() throws Exception {
-    TestUtils.removeTestFileResolveProvider(getProject());
-    super.tearDown();
-  }
-
-  @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(PbImportReferenceTest.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     String path = discoveredPath == null ? "" : discoveredPath;
     return path + "lang/resolve/";
   }

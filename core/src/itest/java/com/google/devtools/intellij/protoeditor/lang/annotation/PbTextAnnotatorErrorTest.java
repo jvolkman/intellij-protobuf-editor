@@ -24,7 +24,7 @@ public class PbTextAnnotatorErrorTest extends PbCodeInsightFixtureTestCase {
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(PbTextAnnotatorErrorTest.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     return discoveredPath == null ? "" : discoveredPath;
   }
 

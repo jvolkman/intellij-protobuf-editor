@@ -31,7 +31,7 @@ public class MissingSchemaNotificationProviderTest extends PbCodeInsightFixtureT
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(MissingSchemaNotificationProviderTest.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     return discoveredPath == null ? "" : discoveredPath;
   }
 

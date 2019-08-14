@@ -30,7 +30,7 @@ public class PbFormatterTest extends PbCodeInsightFixtureTestCase {
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(PbFormatterTest.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     String path = discoveredPath == null ? "" : discoveredPath;
     return path + "/ide/formatter/";
   }

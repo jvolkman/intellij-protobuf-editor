@@ -31,14 +31,8 @@ public class PbCompletionAutoPopupTest extends PbCompletionContributorTestCase {
   public void setUp() throws Exception {
     super.setUp();
     this.tester = new CompletionAutoPopupTester(myFixture);
-    TestUtils.addTestFileResolveProvider(getProject());
+    TestUtils.addTestFileResolveProvider(getProject(), getTestRootDisposable());
     myFixture.addFileToProject("foo/baaaz/import_me.proto", "message Abc {}");
-  }
-
-  @Override
-  public void tearDown() throws Exception {
-    TestUtils.removeTestFileResolveProvider(getProject());
-    super.tearDown();
   }
 
   @Override

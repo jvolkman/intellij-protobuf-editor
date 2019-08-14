@@ -27,15 +27,9 @@ public class PbCompleteImportsTest extends PbCompletionContributorTestCase {
   @Override
   public void setUp() throws Exception {
     super.setUp();
-    TestUtils.addTestFileResolveProvider(getProject());
+    TestUtils.addTestFileResolveProvider(getProject(), getTestRootDisposable());
     myFixture.addFileToProject("foo/baaaz/import_me.proto", "message Abc {}");
     myFixture.addFileToProject("foo/benjamin/franklin.proto", "message Xyz {}");
-  }
-
-  @Override
-  public void tearDown() throws Exception {
-    TestUtils.removeTestFileResolveProvider(getProject());
-    super.tearDown();
   }
 
   public void testCompleteNoSlash() {

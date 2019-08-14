@@ -23,13 +23,16 @@ import com.google.devtools.intellij.protoeditor.ide.util.ResourceUtil;
 import com.google.devtools.intellij.protoeditor.lang.PbFileType;
 import com.google.devtools.intellij.protoeditor.lang.resolve.FileResolveProvider;
 import com.google.devtools.intellij.protoeditor.lang.resolve.LocalRootsFileResolveProvider;
+import com.intellij.openapi.Disposable;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.extensions.Extensions;
 import com.intellij.openapi.extensions.LoadingOrder;
 import com.intellij.openapi.fileTypes.FileTypeManager;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.util.Disposer;
 import com.intellij.openapi.util.Key;
 import com.intellij.openapi.vfs.newvfs.impl.VfsRootAccess;
+import com.intellij.testFramework.UsefulTestCase;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -51,7 +54,7 @@ public final class TestUtils {
    *
    * <p>If found, allow VFS root access to the root directory using VfsRootAccess.
    */
-  public static String getTestdataPath(Class<?> cls) {
+  public static String getTestdataPath(Class<?> cls, Disposable disposable) {
     String path = findOverridePath();
     if (path == null) {
       path = findTestdataPath(cls);
@@ -61,6 +64,10 @@ public final class TestUtils {
     }
     VfsRootAccess.allowRootAccess(path);
     return path;
+  }
+
+  public static String getTestdataPath(UsefulTestCase test) {
+    return getTestdataPath(test.getClass(), test.getTestRootDisposable());
   }
 
   private static String findOverridePath() {
@@ -94,29 +101,38 @@ public final class TestUtils {
     return null;
   }
 
-  public static String getTestRootPath(Class<?> cls) {
-    String testdataPath = getTestdataPath(cls);
+  public static String getTestRootPath(Class<?> cls, Disposable disposable) {
+    String testdataPath = getTestdataPath(cls, disposable);
     if (testdataPath == null) {
       return null;
     }
     return new File(testdataPath).getParent();
   }
 
-  public static void addTestFileResolveProvider(Project project) {
-    addTestFileResolveProvider(project, null);
+  public static String getTestRootPath(UsefulTestCase test) {
+    return getTestRootPath(test.getClass(), test.getTestRootDisposable());
   }
 
-  public static void addTestFileResolveProvider(Project project, String descriptorPath) {
-    removeTestFileResolveProvider(project);
+  public static void addTestFileResolveProvider(Project project, Disposable disposable) {
+    addTestFileResolveProvider(project, null, disposable);
+  }
+
+  public static void addTestFileResolveProvider(
+      Project project, String descriptorPath, @NotNull Disposable disposable) {
     FileResolveProvider provider = new LocalRootsFileResolveProvider(descriptorPath);
     // Make sure the test provider comes first, before the "settings" provider.
     Extensions.getArea(project)
         .getExtensionPoint(FileResolveProvider.EP_NAME)
         .registerExtension(provider, LoadingOrder.readOrder("FIRST, BEFORE settings"));
     project.putUserData(TEST_FILE_RESOLVE_PROVIDER, provider);
+    Disposer.register(
+        disposable,
+        () -> {
+          removeTestFileResolveProvider(project);
+        });
   }
 
-  public static void removeTestFileResolveProvider(Project project) {
+  private static void removeTestFileResolveProvider(Project project) {
     FileResolveProvider current = project.getUserData(TEST_FILE_RESOLVE_PROVIDER);
     if (current != null) {
       Extensions.getArea(project)

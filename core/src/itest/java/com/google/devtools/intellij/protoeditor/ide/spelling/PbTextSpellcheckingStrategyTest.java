@@ -31,7 +31,7 @@ public class PbTextSpellcheckingStrategyTest extends PbCodeInsightFixtureTestCas
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(PbTextSpellcheckingStrategyTest.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     return discoveredPath == null ? "" : discoveredPath;
   }
 

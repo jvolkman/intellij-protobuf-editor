@@ -27,19 +27,14 @@ public class PbAnnotatorErrorTest extends PbCodeInsightFixtureTestCase {
     super.setUp();
     myFixture.addFileToProject(
         TestUtils.OPENSOURCE_DESCRIPTOR_PATH, TestUtils.getOpensourceDescriptorText());
-    TestUtils.addTestFileResolveProvider(getProject(), TestUtils.OPENSOURCE_DESCRIPTOR_PATH);
+    TestUtils.addTestFileResolveProvider(
+        getProject(), TestUtils.OPENSOURCE_DESCRIPTOR_PATH, getTestRootDisposable());
     TestUtils.registerTestdataFileExtension();
   }
 
   @Override
-  public void tearDown() throws Exception {
-    TestUtils.removeTestFileResolveProvider(getProject());
-    super.tearDown();
-  }
-
-  @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(PbAnnotatorErrorTest.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     return discoveredPath == null ? "" : discoveredPath;
   }
 

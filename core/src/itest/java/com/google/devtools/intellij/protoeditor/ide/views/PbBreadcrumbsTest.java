@@ -65,7 +65,7 @@ public class PbBreadcrumbsTest extends LightPlatformCodeInsightFixtureTestCase {
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(PbBreadcrumbsTest.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     String path = discoveredPath == null ? "" : discoveredPath;
     return path + "/ide/views/";
   }

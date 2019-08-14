@@ -57,12 +57,12 @@ public class PbJavaFindUsagesHandlerFactoryTest extends PbCodeInsightFixtureTest
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(getClass());
+    String discoveredPath = TestUtils.getTestdataPath(this);
     return discoveredPath == null ? "" : discoveredPath;
   }
 
   public void testProto2() {
-    String root = TestUtils.getTestRootPath(getClass());
+    String root = TestUtils.getTestRootPath(this);
     JavaTestData.addGenCodeJar(
         myFixture.getModule(), root, "libProto2Lib-speed.jar", testDisposable);
     String expectedJavaFile = "Proto2User.java";
@@ -138,7 +138,7 @@ public class PbJavaFindUsagesHandlerFactoryTest extends PbCodeInsightFixtureTest
   }
 
   public void testProtoSyntax3() {
-    String root = TestUtils.getTestRootPath(getClass());
+    String root = TestUtils.getTestRootPath(this);
     JavaTestData.addGenCodeJar(
         myFixture.getModule(), root, "libProtoSyntax3Lib-speed.jar", testDisposable);
     String expectedJavaFile = "ProtoSyntax3User.java";
@@ -184,7 +184,7 @@ public class PbJavaFindUsagesHandlerFactoryTest extends PbCodeInsightFixtureTest
   }
 
   public void testProto2Lite() {
-    String root = TestUtils.getTestRootPath(getClass());
+    String root = TestUtils.getTestRootPath(this);
     JavaTestData.addGenCodeJar(
         myFixture.getModule(), root, "libProto2LiteLib-lite.jar", testDisposable);
     String expectedJavaFile = "Proto2LiteUser.java";
@@ -230,7 +230,7 @@ public class PbJavaFindUsagesHandlerFactoryTest extends PbCodeInsightFixtureTest
   }
 
   public void testClashingEnum() {
-    String root = TestUtils.getTestRootPath(getClass());
+    String root = TestUtils.getTestRootPath(this);
     JavaTestData.addGenCodeJar(
         myFixture.getModule(), root, "libClashingEnum-speed.jar", testDisposable);
     String expectedJavaFile = "ClashingEnumUser.java";

@@ -43,20 +43,14 @@ public class PbCompletionContributorTestCase extends PbCodeInsightFixtureTestCas
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(PbCompletionContributorTestCase.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     return discoveredPath == null ? "" : discoveredPath;
   }
 
   @Override
   public void setUp() throws Exception {
     super.setUp();
-    TestUtils.addTestFileResolveProvider(getProject());
-  }
-
-  @Override
-  public void tearDown() throws Exception {
-    TestUtils.removeTestFileResolveProvider(getProject());
-    super.tearDown();
+    TestUtils.addTestFileResolveProvider(getProject(), getTestRootDisposable());
   }
 
   /** Override the default syntax for the test. */

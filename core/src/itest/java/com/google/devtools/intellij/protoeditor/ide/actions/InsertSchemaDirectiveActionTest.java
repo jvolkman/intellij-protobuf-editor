@@ -32,7 +32,7 @@ public class InsertSchemaDirectiveActionTest extends PbCodeInsightFixtureTestCas
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(InsertSchemaDirectiveActionTest.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     return discoveredPath == null ? "" : discoveredPath;
   }
 

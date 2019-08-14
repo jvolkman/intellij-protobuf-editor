@@ -35,7 +35,7 @@ public class PbTypeReferenceTest extends ResolveTestCase {
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(PbTypeReferenceTest.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     String path = discoveredPath == null ? "" : discoveredPath;
     return path + "lang/resolve/";
   }

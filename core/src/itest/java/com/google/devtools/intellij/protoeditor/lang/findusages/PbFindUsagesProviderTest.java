@@ -38,14 +38,8 @@ public class PbFindUsagesProviderTest extends PbCodeInsightFixtureTestCase {
   @Override
   public void setUp() throws Exception {
     super.setUp();
-    TestUtils.addTestFileResolveProvider(getProject());
+    TestUtils.addTestFileResolveProvider(getProject(), getTestRootDisposable());
     TestUtils.registerTestdataFileExtension();
-  }
-
-  @Override
-  public void tearDown() throws Exception {
-    TestUtils.removeTestFileResolveProvider(getProject());
-    super.tearDown();
   }
 
   private String syntaxForTest = "proto3";

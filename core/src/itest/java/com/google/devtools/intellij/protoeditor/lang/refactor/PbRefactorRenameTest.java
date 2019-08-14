@@ -33,14 +33,8 @@ public class PbRefactorRenameTest extends PbCodeInsightFixtureTestCase {
   @Override
   public void setUp() throws Exception {
     super.setUp();
-    TestUtils.addTestFileResolveProvider(getProject());
+    TestUtils.addTestFileResolveProvider(getProject(), getTestRootDisposable());
     TestUtils.registerTestdataFileExtension();
-  }
-
-  @Override
-  public void tearDown() throws Exception {
-    TestUtils.removeTestFileResolveProvider(getProject());
-    super.tearDown();
   }
 
   public void testRenameMessage() throws IOException {

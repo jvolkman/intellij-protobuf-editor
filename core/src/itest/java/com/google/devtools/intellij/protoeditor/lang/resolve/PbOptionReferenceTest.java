@@ -29,7 +29,7 @@ public class PbOptionReferenceTest extends ResolveTestCase {
 
   @Override
   public String getTestDataPath() {
-    String discoveredPath = TestUtils.getTestdataPath(PbOptionReferenceTest.class);
+    String discoveredPath = TestUtils.getTestdataPath(this);
     return discoveredPath == null ? "" : discoveredPath;
   }
 
@@ -37,14 +37,8 @@ public class PbOptionReferenceTest extends ResolveTestCase {
   public void setUp() throws Exception {
     super.setUp();
     createFile("descriptor.proto", TestUtils.getOpensourceDescriptorText());
-    TestUtils.addTestFileResolveProvider(getProject(), "descriptor.proto");
+    TestUtils.addTestFileResolveProvider(getProject(), "descriptor.proto", getTestRootDisposable());
     TestUtils.registerTestdataFileExtension();
-  }
-
-  @Override
-  public void tearDown() throws Exception {
-    TestUtils.removeTestFileResolveProvider(getProject());
-    super.tearDown();
   }
 
   private PsiElement resolve() throws Exception {

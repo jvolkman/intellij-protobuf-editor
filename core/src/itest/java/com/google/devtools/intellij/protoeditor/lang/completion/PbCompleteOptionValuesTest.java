@@ -27,13 +27,8 @@ public class PbCompleteOptionValuesTest extends PbCompletionContributorTestCase 
   public void setUp() throws Exception {
     super.setUp();
     myFixture.configureByFile("lang/completion/mock_descriptor.proto");
-    TestUtils.addTestFileResolveProvider(getProject(), "lang/completion/mock_descriptor.proto");
-  }
-
-  @Override
-  public void tearDown() throws Exception {
-    TestUtils.removeTestFileResolveProvider(getProject());
-    super.tearDown();
+    TestUtils.addTestFileResolveProvider(
+        getProject(), "lang/completion/mock_descriptor.proto", getTestRootDisposable());
   }
 
   public void testFieldEnumOption() {
