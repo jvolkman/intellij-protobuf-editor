@@ -9,15 +9,33 @@ accepting pull requests.
 
 # Features
 
+![Editor](editor.png)
+
 * Support for proto2 and proto3
 * Syntax highlighting
 * Semantic analysis
-* Refrences and linking
+* References and linking
 * Quick documentation
 * Editor enhancements (completion, brace matching, etc.)
-
-Additionally, this plugin supports protobuf text format files.
+* Navigating between Java source and `.proto` definitions
+* Full support for text format, both standalone and in custom options
 
 # Building
 
-TODO
+To build `plugin.jar`:
+
+```
+bazel build //plugin
+```
+
+# Testing
+
+The core plugin, java, and python support can be tested against IDEA Community.
+Go support must be tested against IDEA Ultimate.
+
+```
+bazel test //core/...
+bazel test //java/...
+bazel test //python/...
+bazel test //golang/... --define=ij_product=intellij-ue-latest
+```

@@ -1,0 +1,8 @@
+<idea-plugin>
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Python -> proto goto -->
+    <gotoDeclarationHandler
+      implementation="com.google.devtools.intellij.protoeditor.python.PbPythonGotoDeclarationHandler"
+      order="first"/>
+  </extensions>
+</idea-plugin>

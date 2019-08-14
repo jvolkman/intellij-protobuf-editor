@@ -1,0 +1,28 @@
+"""Tests usages of py generated from a proto file with a dash in its name
+(replace '-' with '_').
+"""
+
+# EXPECT-NEXT: proto-with-dash.proto / <file>
+from com.google.devtools.intellij.protoeditor.python import <caret>proto_with_dash_pb2
+from com.google.devtools.intellij.protoeditor.python import proto_with_dash_pb2 as Alias
+
+
+class MessageLevelUser(object):
+
+  @staticmethod
+  def constructor():
+    # EXPECT-NEXT: proto-with-dash.proto / M1
+    return proto_with_dash_pb2.<caret>M1()
+
+  @staticmethod
+  def type():
+    # EXPECT-NEXT: proto-with-dash.proto / M1
+    return proto_with_dash_pb2.<caret>M1
+
+
+class AliasOfProto(object):
+
+  @staticmethod
+  def constructor():
+    # EXPECT-NEXT: proto-with-dash.proto / M1
+    return Alias.<caret>M1()

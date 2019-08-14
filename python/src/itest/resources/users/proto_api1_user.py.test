@@ -1,0 +1,74 @@
+"""Tests usages of python code generated from proto2 syntax w/ API v1.
+"""
+
+# EXPECT-NEXT: proto2.proto / <file>
+from com.google.devtools.intellij.protoeditor.python import <caret>proto2_pb
+from com.google.devtools.intellij.protoeditor.python import proto2_pb as Alias
+
+
+class MessageLevelUser(object):
+
+  @staticmethod
+  def constructor():
+    # EXPECT-NEXT: proto2.proto / M1
+    return proto2_pb.<caret>M1()
+
+  @staticmethod
+  def type(x):
+    # EXPECT-NEXT: proto2.proto / M1
+    return isinstance(x, proto2_pb.<caret>M1)
+
+  @staticmethod
+  def variable_not_proto():
+    instance = proto2_pb.M1()
+    # EXPECT-NEXT: proto_api1_user.py / instance
+    return <caret>instance
+
+
+class AliasOfProto(object):
+
+  @staticmethod
+  def constructor():
+    # EXPECT-NEXT: proto2.proto / M1
+    return Alias.<caret>M1()
+
+
+class SingleEnumUser(object):
+
+  @staticmethod
+  def enum_value():
+    # EXPECT-NEXT: proto2.proto / CIRCLE
+    return proto2_pb.<caret>CIRCLE
+
+  @staticmethod
+  def weird_enum_value():
+    # EXPECT-NEXT: proto2.proto / weirdValue_name
+    return proto2_pb.<caret>weirdValue_name
+
+
+# Check weird names that violate the style guide.
+class SecondMessageType(object):
+
+  @staticmethod
+  def weird_message_name():
+    # EXPECT-NEXT: proto2.proto / weirdMessage_name
+    instance = proto2_pb.<caret>weirdMessage_name()
+    return instance.single_primitive
+
+
+class NestedUser(object):
+
+  @staticmethod
+  def nested_one_level():
+    # EXPECT-NEXT: proto2.proto / M1.RED
+    return proto2_pb.M1.<caret>RED
+
+  @staticmethod
+  def nested_two_level():
+    # EXPECT-NEXT: proto2.proto / M1.NestedM1.UNKNOWN_UNKNOWNS
+    return proto2_pb.M1_NestedM1.<caret>UNKNOWN_UNKNOWNS
+
+  @staticmethod
+  def nested_message():
+    # EXPECT-NEXT: proto2.proto / M1.NestedM1
+    return proto2_pb.<caret>M1_NestedM1()

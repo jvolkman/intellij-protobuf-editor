@@ -1,0 +1,12 @@
+<idea-plugin>
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Java -> proto goto -->
+    <gotoDeclarationHandler
+      implementation="com.google.devtools.intellij.protoeditor.java.PbJavaGotoDeclarationHandler"/>
+    <fileBasedIndex
+      implementation="com.google.devtools.intellij.protoeditor.java.PbJavaOuterClassIndex"/>
+    <!-- proto -> java find usages -->
+    <findUsagesHandlerFactory
+      implementation="com.google.devtools.intellij.protoeditor.java.PbJavaFindUsagesHandlerFactory"/>
+  </extensions>
+</idea-plugin>

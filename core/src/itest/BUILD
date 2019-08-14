@@ -16,8 +16,9 @@ intellij_integration_test_suite(
     name = "integration_tests",
     srcs = glob(["java/**/*.java"]),
     data = glob(["resources/**/*"]),
+    jvm_flags = ["-Dtest.resources.location=" + package_name() + "/resources/"],
     required_plugins = "com.google.devtools.intellij.protoeditor",
-    shard_count = 3,
+    shard_count = 1,
     test_package_root = "com.google.devtools.intellij.protoeditor",
     visibility = ["//visibility:public"],
     runtime_deps = [

@@ -14,6 +14,15 @@ http_archive(
     url = "https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/2019.1.2/ideaIC-2019.1.2.zip",
 )
 
+# The plugin api for IntelliJ 2019.2. This is required to build IJwB,
+# and run integration tests.
+http_archive(
+    name = "intellij_ce_2019_2",
+    build_file = "@//intellij_platform_sdk:BUILD.idea192",
+    sha256 = "9567f2a88c9d4c4a0495208914f07bd2dace78dad0fee31fb9f8a4adab3cc437",
+    url = "https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/2019.2/ideaIC-2019.2.zip",
+)
+
 # The plugin api for IntelliJ UE 2019.1. This is required to run UE-specific
 # integration tests.
 http_archive(
@@ -21,6 +30,15 @@ http_archive(
     build_file = "@//build_support/intellij_platform_sdk:BUILD.ue",
     sha256 = "df6a1e6fbf77578b47163b96c83bc90a05bf043847c6e7c0bf285fe2e77d71e4",
     url = "https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIU/2019.1.2/ideaIU-2019.1.2.zip",
+)
+
+# The plugin api for IntelliJ UE 2019.2. This is required to run UE-specific
+# integration tests.
+http_archive(
+    name = "intellij_ue_2019_2",
+    build_file = "@//intellij_platform_sdk:BUILD.ue192",
+    sha256 = "c1a980c6eeb528ee731ed52a5821981466b9205713926748051ff08a4ce8cfaf",
+    url = "https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIU/2019.2/ideaIU-2019.2.zip",
 )
 
 # The plugin api for CLion 2019.1. This is required to build CLwB,
@@ -41,16 +59,29 @@ http_archive(
     url = "https://download.jetbrains.com/cpp/CLion-2019.2.tar.gz",
 )
 
+python_build_file_content = "\n".join([
+    "java_import(",
+    "    name = 'python_internal',",
+    "    jars = ['python-ce/lib/python-ce.jar'],",
+    ")",
+    "java_library(",
+    "    name = 'python',",
+    "    exports = [':python_internal'],",
+    "    neverlink = True,",
+    "    visibility = ['//visibility:public'],",
+    ")",
+    "java_library(",
+    "    name = 'python_for_tests',",
+    "    exports = [':python_internal'],",
+    "    testonly = True,",
+    "    visibility = ['//visibility:public'],",
+    ")",
+])
+
 # Python plugin for Android Studio 3.4. Required at compile-time for python-specific features.
 http_archive(
     name = "python_2018_3",
-    build_file_content = "\n".join([
-        "java_import(",
-        "    name = 'python',",
-        "    jars = ['python-ce/lib/python-ce.jar'],",
-        "    visibility = ['//visibility:public'],",
-        ")",
-    ]),
+    build_file_content = python_build_file_content,
     sha256 = "095a2258f1707a8a1cd3c77f7c249d30f06cca2ca2738edba6c8befd92c0f763",
     url = "https://plugins.jetbrains.com/files/7322/58209/python-ce-2018.3.183.5912.2.zip",
 )
@@ -58,29 +89,44 @@ http_archive(
 # Python plugin for IntelliJ CE 2019.1. Required at compile-time for python-specific features.
 http_archive(
     name = "python_2019_1",
-    build_file_content = "\n".join([
-        "java_import(",
-        "    name = 'python',",
-        "    jars = ['python-ce/lib/python-ce.jar'],",
-        "    visibility = ['//visibility:public'],",
-        ")",
-    ]),
+    build_file_content = python_build_file_content,
     sha256 = "378002fa79623341a31bd3ac003506f04ac950d43313c8d413c6f0763826eadd",
     url = "https://plugins.jetbrains.com/files/7322/60398/python-ce-2019.1.191.6707.7.zip",
 )
 
+golang_build_file_content = "\n".join([
+    "java_import(",
+    "    name = 'go_internal',",
+    "    jars = glob(['intellij-go/lib/*.jar']),",
+    ")",
+    "java_library(",
+    "    name = 'go',",
+    "    exports = [':go_internal'],",
+    "    neverlink = True,",
+    "    visibility = ['//visibility:public'],",
+    ")",
+    "java_library(",
+    "    name = 'go_for_tests',",
+    "    exports = [':go_internal'],",
+    "    testonly = True,",
+    "    visibility = ['//visibility:public'],",
+    ")",
+])
+
 # Go plugin for IntelliJ UE. Required at compile-time for Bazel integration.
 http_archive(
     name = "go_2019_1",
-    build_file_content = "\n".join([
-        "java_import(",
-        "    name = 'go',",
-        "    jars = glob(['intellij-go/lib/*.jar']),",
-        "    visibility = ['//visibility:public'],",
-        ")",
-    ]),
-    sha256 = "6d80ede63ad301121a72b8b4ef93157ec3f546d23146234660587c9699eb0bf4",
-    url = "https://plugins.jetbrains.com/files/9568/59092/intellij-go-191.6014.8.104.zip",
+    build_file_content = golang_build_file_content,
+    sha256 = "815f59dcd5f7db019e224cdb85e67db99c8d5deb99721a73a36f710bda64be49",
+    url = "https://plugins.jetbrains.com/files/9568/62411/intellij-go-191.7141.44.205.zip",
+)
+
+# Go plugin for IntelliJ UE. Required at compile-time for Bazel integration.
+http_archive(
+    name = "go_2019_2",
+    build_file_content = golang_build_file_content,
+    sha256 = "704593665da45a6ad1dcd86f53d3959c6b0803dc0b0773b1b23864e48c9af289",
+    url = "https://plugins.jetbrains.com/files/9568/66084/intellij-go-192.5728.86.268.zip",
 )
 
 # The plugin api for Android Studio 3.4. This is required to build ASwB,
@@ -184,11 +230,43 @@ http_archive(
 # proto_library rules implicitly depend on @com_google_protobuf//:protoc
 http_archive(
     name = "com_google_protobuf",
-    sha256 = "d82eb0141ad18e98de47ed7ed415daabead6d5d1bef1b8cccb6aa4d108a9008f",
-    strip_prefix = "protobuf-b4f193788c9f0f05d7e0879ea96cd738630e5d51",
-    # Commit from 2019-05-15, update to protobuf 3.8 when available.
-    url = "https://github.com/protocolbuffers/protobuf/archive/b4f193788c9f0f05d7e0879ea96cd738630e5d51.tar.gz",
+    sha256 = "98e615d592d237f94db8bf033fba78cd404d979b0b70351a9e5aaff725398357",
+    strip_prefix = "protobuf-3.9.1",
+    url = "https://github.com/protocolbuffers/protobuf/archive/v3.9.1.tar.gz",
 )
+
+http_archive(
+    name = "com_google_protobuf_javalite",
+    sha256 = "b04b08d31208be32aafdf5842d1b6073d527a67ff8d2cf4b17ee8f22a5273758",
+    strip_prefix = "protobuf-fa08222434bc58d743e8c2cc716bc219c3d0f44e",
+    url = "https://github.com/protocolbuffers/protobuf/archive/fa08222434bc58d743e8c2cc716bc219c3d0f44e.tar.gz",
+)
+
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+protobuf_deps()
+
+http_archive(
+    name = "build_stack_rules_proto",
+    urls = ["https://github.com/stackb/rules_proto/archive/d9a123032f8436dbc34069cfc3207f2810a494ee.tar.gz"],
+    sha256 = "85ccc69a964a9fe3859b1190a7c8246af2a4ead037ee82247378464276d4262a",
+    strip_prefix = "rules_proto-d9a123032f8436dbc34069cfc3207f2810a494ee",
+)
+
+load("@build_stack_rules_proto//python:deps.bzl", "python_proto_compile")
+python_proto_compile()
+
+http_archive(
+    name = "io_bazel_rules_go",
+    urls = [
+        "https://storage.googleapis.com/bazel-mirror/github.com/bazelbuild/rules_go/releases/download/0.19.1/rules_go-0.19.1.tar.gz",
+        "https://github.com/bazelbuild/rules_go/releases/download/0.19.1/rules_go-0.19.1.tar.gz",
+    ],
+    sha256 = "8df59f11fb697743cbb3f26cfb8750395f30471e9eabde0d174c3aebc7a1cd39",
+)
+
+load("@io_bazel_rules_go//go:deps.bzl", "go_rules_dependencies", "go_register_toolchains")
+go_rules_dependencies()
+go_register_toolchains()
 
 # jflex for IDEA
 jvm_maven_import_external(

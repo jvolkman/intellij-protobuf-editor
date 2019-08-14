@@ -38,4 +38,7 @@ java_library(
     ],
 )
 
-exports_files(["expose_genfile.bzl"])
+exports_files([
+    "expand_template.bzl",
+    "expose_genfile.bzl",
+])

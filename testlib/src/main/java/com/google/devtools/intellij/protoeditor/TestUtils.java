@@ -40,6 +40,7 @@ import org.jetbrains.annotations.Nullable;
 public final class TestUtils {
 
   public static final String OPENSOURCE_DESCRIPTOR_PATH = "google/protobuf/descriptor.proto";
+  public static final String TESTDATA_ROOT_PROPERTY = "test.resources.location";
 
   private static final Key<FileResolveProvider> TEST_FILE_RESOLVE_PROVIDER =
       Key.create("TEST_FILE_RESOLVE_PROVIDER");
@@ -51,12 +52,27 @@ public final class TestUtils {
    * <p>If found, allow VFS root access to the root directory using VfsRootAccess.
    */
   public static String getTestdataPath(Class<?> cls) {
-    String path = findTestdataPath(cls);
+    String path = findOverridePath();
+    if (path == null) {
+      path = findTestdataPath(cls);
+    }
     if (path == null) {
       return null;
     }
     VfsRootAccess.allowRootAccess(path);
     return path;
+  }
+
+  private static String findOverridePath() {
+    String root = System.getProperties().getProperty(TESTDATA_ROOT_PROPERTY);
+    if (root == null) {
+      return null;
+    }
+    File f = new File(root);
+    if (f.getName().equals(".testdata")) {
+      f = f.getParentFile();
+    }
+    return f.getAbsolutePath() + "/";
   }
 
   private static String findTestdataPath(Class<?> cls) {
