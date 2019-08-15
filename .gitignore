@@ -1,0 +1,5 @@
+bazel-bin
+bazel-genfiles
+bazel-intellij-protocol-buffer-editor
+bazel-out
+bazel-testlogs
