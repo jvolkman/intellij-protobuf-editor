@@ -61,7 +61,7 @@ Alphanumeric = {Alpha} | {Digit}
 // From tokenizer.h:
 //   Any other printable character, like '!' or '+'. Symbols are always a single character, so
 //   "!+$%" is four tokens.
-Symbol = [!#$%&()*+,-./:;<=>?@\[\\\]\^`{|}~]
+Symbol = [!#$%&()*+,-./:;<=>?@\[\\\]\^{|}~]
 
 // Whitespace.
 WhitespaceNoNewline = [\ \t\r\f\x0b] // '\x0b' is '\v' (vertical tab) in C.
@@ -105,10 +105,11 @@ IntegerWithF = {DecInteger} [fF]
 //
 // From tokenizer.h:
 //   A quoted sequence of escaped characters.  Either single or double quotes can be used, but they
-//   must match. A string literal cannot cross a line break.
+//   must match. Only a multiline string literal can cross a line break.
 SingleQuotedString = \' ([^\\\'\n] | \\[^\n])* (\' | \\)?
 DoubleQuotedString = \" ([^\\\"\n] | \\[^\n])* (\" | \\)?
-String = {SingleQuotedString} | {DoubleQuotedString}
+MultilineString = ` ([^\\`] | \\.)* (` | \\)?
+String = {SingleQuotedString} | {DoubleQuotedString} | {MultilineString}
 
 %%
 

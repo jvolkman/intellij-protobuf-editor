@@ -68,8 +68,8 @@ public class ProtoString {
     if (encoded.isEmpty()) {
       throw new IllegalArgumentException("String must not be empty.");
     }
-    if (encoded.charAt(0) != '\'' && encoded.charAt(0) != '"') {
-      throw new IllegalArgumentException("String must start with a single or double quote.");
+    if (encoded.charAt(0) != '\'' && encoded.charAt(0) != '"' && encoded.charAt(0) != '`') {
+      throw new IllegalArgumentException("String must start with a single quote, a double quote, or a backtick.");
     }
     int[] offsets = new int[encoded.length()];
     ImmutableList.Builder<TextRange> invalidEscapeRanges = ImmutableList.builder();

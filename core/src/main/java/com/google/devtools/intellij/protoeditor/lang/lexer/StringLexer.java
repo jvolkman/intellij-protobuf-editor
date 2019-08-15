@@ -69,6 +69,8 @@ public class StringLexer extends FlexAdapter {
             return "'";
           case '"':
             return "\"";
+          case '`':
+            return "`";
           default:
             // Not a valid escape character. This should not happen unless these switch cases don't
             // match the lexer rules.

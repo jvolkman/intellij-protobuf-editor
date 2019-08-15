@@ -61,7 +61,7 @@ import com.intellij.psi.tree.IElementType;
 %type IElementType
 %unicode
 
-Escape = [abfnrtv?\\\'\"]
+Escape = [abfnrtv?\\\'\"`]
 OctDigit = [0-7]
 HexDigit = [0-9a-fA-F]
 

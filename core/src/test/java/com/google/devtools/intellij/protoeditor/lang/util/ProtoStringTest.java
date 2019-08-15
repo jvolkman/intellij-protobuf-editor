@@ -46,7 +46,8 @@ public class ProtoStringTest {
     assertEqualsAfterParse("'\\v'", "\013");
     assertEqualsAfterParse("'\\\\'", "\\");
     assertEqualsAfterParse("'\\''", "'");
-    assertEqualsAfterParse("'\\\"'", "\"");
+    assertEqualsAfterParse("\"\\\"\"", "\"");
+    assertEqualsAfterParse("`\\``", "`");
   }
 
   @Test
@@ -60,6 +61,8 @@ public class ProtoStringTest {
     assertThat(ProtoString.parse("'foo\\'").isUnterminated()).isTrue();
     assertThat(ProtoString.parse("'").isUnterminated()).isTrue();
     assertThat(ProtoString.parse("\"").isUnterminated()).isTrue();
+    assertThat(ProtoString.parse("`").isUnterminated()).isTrue();
+    assertThat(ProtoString.parse("`foo\\`").isUnterminated()).isTrue();
   }
 
   @Test
