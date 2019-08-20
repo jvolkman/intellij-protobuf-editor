@@ -67,11 +67,16 @@ stamped_plugin_xml(
 )
 
 intellij_plugin(
-    name = "plugin",
+    name = "protobuf-editor",
     plugin_xml = ":standalone_plugin_xml",
     deps = [
         ":plugin_library",
     ],
+)
+
+alias(
+    name = "plugin",
+    actual = ":protobuf-editor",
 )
 
 intellij_plugin_debug_target(
