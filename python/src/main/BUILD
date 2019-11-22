@@ -18,7 +18,7 @@ java_library(
         "//build_support/intellij_platform_sdk:plugin_api",
         "//core",
         "//gencode",
-        "@python_2019_1//:python",
+        "@python_2019_2//:python",
     ],
 )
 

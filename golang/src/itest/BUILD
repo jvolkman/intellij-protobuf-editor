@@ -54,7 +54,6 @@ intellij_integration_test_suite(
         "-Dtest.resources.import.prefix=" + resources_import_prefix(),
         "-Dtest.resources.location=" + package_name() + "/resources/",
     ],
-    platform_prefix = "",
     required_plugins = "com.google.devtools.intellij.protoeditor.golang,org.jetbrains.plugins.go",
     test_package_root = "com.google.devtools.intellij.protoeditor",
     visibility = ["//visibility:public"],
@@ -70,7 +69,7 @@ intellij_integration_test_suite(
         "//golang",
         "//testlib:gencodeutils",
         "//testlib:test_utils",
-        "@go_2019_1//:go_for_tests",
+        "@go_2019_2//:go_for_tests",
         "@junit//jar",
     ],
 )

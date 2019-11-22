@@ -53,6 +53,6 @@ intellij_integration_test_suite(
         "//testlib:gencodeutils",
         "//testlib:test_utils",
         "@junit//jar",
-        "@python_2019_1//:python_for_tests",
+        "@python_2019_2//:python_for_tests",
     ],
 )

@@ -17,23 +17,12 @@ package com.google.devtools.intellij.protoeditor.golang;
 
 import com.goide.GoLanguage;
 import com.goide.GoTypes;
-import com.goide.psi.GoConstDefinition;
-import com.goide.psi.GoConstSpec;
-import com.goide.psi.GoFieldDefinition;
-import com.goide.psi.GoFile;
-import com.goide.psi.GoFunctionDeclaration;
-import com.goide.psi.GoMethodDeclaration;
-import com.goide.psi.GoMethodSpec;
-import com.goide.psi.GoNamedSignatureOwner;
-import com.goide.psi.GoPointerType;
-import com.goide.psi.GoReferenceExpressionBase;
-import com.goide.psi.GoTypeSpec;
+import com.goide.psi.*;
 import com.google.common.base.CaseFormat;
 import com.google.common.collect.ImmutableList;
 import com.google.devtools.intellij.protoeditor.gencode.ProtoFromSourceComments;
 import com.google.devtools.intellij.protoeditor.lang.psi.PbFile;
 import com.google.devtools.intellij.protoeditor.lang.psi.PbSymbol;
-import com.google.idea.sdkcompat.golang.GoTypeCompat;
 import com.intellij.codeInsight.navigation.actions.GotoDeclarationHandler;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.editor.Editor;
@@ -183,7 +172,7 @@ public class PbGolangGotoDeclarationHandler implements GotoDeclarationHandler {
             .filter(GoPointerType.class::isInstance)
             .map(GoPointerType.class::cast)
             .map(GoPointerType::getType)
-            .map(GoTypeCompat::contextlessResolve)
+            .map(GoType::contextlessResolve)
             .filter(GoTypeSpec.class::isInstance)
             .map(GoTypeSpec.class::cast)
             .map(PbGolangGotoDeclarationHandler::convertToProtoMessageOrServiceName)
@@ -236,7 +225,7 @@ public class PbGolangGotoDeclarationHandler implements GotoDeclarationHandler {
     QualifiedName enumTypeName =
         Optional.ofNullable(PsiTreeUtil.getParentOfType(definition, GoConstSpec.class))
             .map(GoConstSpec::getType)
-            .map(GoTypeCompat::contextlessResolve)
+            .map(GoType::contextlessResolve)
             .filter(GoTypeSpec.class::isInstance)
             .map(GoTypeSpec.class::cast)
             .map(PbGolangGotoDeclarationHandler::convertToProtoMessageOrServiceName)

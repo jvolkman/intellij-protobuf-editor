@@ -19,7 +19,7 @@ java_library(
         "//build_support/intellij_platform_sdk:plugin_api",
         "//core",
         "//gencode",
-        "@go_2019_1//:go",
+        "@go_2019_3//:go",
     ],
 )
 

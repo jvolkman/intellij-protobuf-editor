@@ -17,8 +17,24 @@ config_setting(
 )
 
 config_setting(
+    name = "intellij-latest-mac",
+    values = {
+        "cpu": "darwin_x86_64",
+        "define": "ij_product=intellij-latest",
+    },
+)
+
+config_setting(
     name = "intellij-ue-latest",
     values = {
+        "define": "ij_product=intellij-ue-latest",
+    },
+)
+
+config_setting(
+    name = "intellij-ue-latest-mac",
+    values = {
+        "cpu": "darwin_x86_64",
         "define": "ij_product=intellij-ue-latest",
     },
 )
@@ -38,9 +54,16 @@ config_setting(
 )
 
 config_setting(
-    name = "intellij-2019.1",
+    name = "intellij-canary",
     values = {
-        "define": "ij_product=intellij-2019.1",
+        "define": "ij_product=intellij-canary",
+    },
+)
+
+config_setting(
+    name = "intellij-ue-canary",
+    values = {
+        "define": "ij_product=intellij-ue-canary",
     },
 )
 
@@ -52,9 +75,25 @@ config_setting(
 )
 
 config_setting(
-    name = "intellij-ue-2019.1",
+    name = "intellij-2019.2-mac",
     values = {
-        "define": "ij_product=intellij-ue-2019.1",
+        "cpu": "darwin_x86_64",
+        "define": "ij_product=intellij-2019.2",
+    },
+)
+
+config_setting(
+    name = "intellij-2019.3",
+    values = {
+        "define": "ij_product=intellij-2019.3",
+    },
+)
+
+config_setting(
+    name = "intellij-2019.3-mac",
+    values = {
+        "cpu": "darwin_x86_64",
+        "define": "ij_product=intellij-2019.3",
     },
 )
 
@@ -62,6 +101,29 @@ config_setting(
     name = "intellij-ue-2019.2",
     values = {
         "define": "ij_product=intellij-ue-2019.2",
+    },
+)
+
+config_setting(
+    name = "intellij-ue-2019.2-mac",
+    values = {
+        "cpu": "darwin_x86_64",
+        "define": "ij_product=intellij-ue-2019.2",
+    },
+)
+
+config_setting(
+    name = "intellij-ue-2019.3",
+    values = {
+        "define": "ij_product=intellij-ue-2019.3",
+    },
+)
+
+config_setting(
+    name = "intellij-ue-2019.3-mac",
+    values = {
+        "cpu": "darwin_x86_64",
+        "define": "ij_product=intellij-ue-2019.3",
     },
 )
 
@@ -109,23 +171,39 @@ config_setting(
 )
 
 config_setting(
-    name = "android-studio-3.4",
+    name = "android-studio-3.5-mac",
     values = {
-        "define": "ij_product=android-studio-3.4",
+        "cpu": "darwin_x86_64",
+        "define": "ij_product=android-studio-3.5",
     },
 )
 
 config_setting(
-    name = "android-studio-3.5-mac",
+    name = "android-studio-3.6-mac",
     values = {
         "cpu": "darwin_x86_64",
-        "define": "ij_product=android-studio-3.4",
+        "define": "ij_product=android-studio-3.6",
+    },
+)
+
+config_setting(
+    name = "android-studio-4.0",
+    values = {
+        "define": "ij_product=android-studio-4.0",
     },
 )
 
 config_setting(
     name = "clion-latest",
     values = {
+        "define": "ij_product=clion-latest",
+    },
+)
+
+config_setting(
+    name = "clion-latest-mac",
+    values = {
+        "cpu": "darwin_x86_64",
         "define": "ij_product=clion-latest",
     },
 )
@@ -138,16 +216,16 @@ config_setting(
 )
 
 config_setting(
-    name = "clion-2019.1",
+    name = "clion-2019.2",
     values = {
-        "define": "ij_product=clion-2019.1",
+        "define": "ij_product=clion-2019.2",
     },
 )
 
 config_setting(
-    name = "clion-2019.2",
+    name = "clion-2019.3",
     values = {
-        "define": "ij_product=clion-2019.2",
+        "define": "ij_product=clion-2019.3",
     },
 )
 
@@ -189,17 +267,32 @@ java_library(
     exports = [":plugin_api_internal"],
 )
 
+package_group(
+    name = "test_libs_visibility",
+    packages = [
+        "//...",
+        "//java/com/google/devtools/intellij/blaze/plugin/...",
+        "//javatests/com/google/assistant/galup/devtools/intellij/...",
+        "//javatests/com/google/dart/intellij/...",
+        "//javatests/com/google/devtools/intellij/blaze/plugin/...",
+        "//javatests/com/google/firebase/rules/plugins/intellij/...",
+        "//third_party/java/jetbrains/dart/...",
+        "//third_party/java_src/intellijprotobufplugin/...",
+        "//third_party/java_src/pytype_pycharm/...",
+    ],
+)
+
 # These libraries should only be used by open-source plugins.
 # Otherwise, prefer using the google3 versions of these libraries. Note that
 # //third_party/java/truth must be repackaged, because it pulls in Guava.
 java_library(
     name = "test_libs",
     testonly = 1,
-    visibility = ["//visibility:public"],
+    visibility = [":test_libs_visibility"],
     exports = [
+        "@truth//jar",
         "@mockito//jar",
         "@objenesis//jar",
-        "@truth//jar",
     ],
 )
 
@@ -224,15 +317,25 @@ java_library(
     ),
 )
 
+java_library(
+    name = "guava_for_external_binaries",
+    visibility = ["//aspect/tools:__pkg__"],
+    exports = select_from_plugin_api_directory(
+        android_studio = [":guava"],
+        clion = [":guava"],
+        intellij = [":guava"],
+    ),
+)
+
 # Some versions of the IDE include jsr305.jar, but others don't. So we need to include the JSR 305
 # classes (@Nullable, etc.) in the plugin jars for IDEs that don't already have it on the classpath.
 java_library(
     name = "jsr305",
     exports = select_for_plugin_api({
-        "clion-2019.1": ["@jsr305_annotations//jar"],
         "clion-2019.2": ["@jsr305_annotations//jar"],
-        "intellij-ue-2019.1": ["@jsr305_annotations//jar"],
+        "clion-2019.3": ["@jsr305_annotations//jar"],
         "intellij-ue-2019.2": ["@jsr305_annotations//jar"],
+        "intellij-ue-2019.3": ["@jsr305_annotations//jar"],
         "default": [":plugin_api"],
     }),
 )

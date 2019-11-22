@@ -57,12 +57,14 @@ public class BlazeTestSystemPropertiesRule extends ExternalResource {
     setSandboxPath("java.util.prefs.userRoot", new File(sandbox, "userRoot"));
     setSandboxPath("java.util.prefs.systemRoot", new File(sandbox, "systemRoot"));
 
-    setIfEmpty(PlatformUtils.PLATFORM_PREFIX_KEY, "Idea");
     setIfEmpty("idea.classpath.index.enabled", "false");
 
     // Some plugins have a since-build and until-build restriction, so we need
     // to update the build number here
     PluginManagerCore.BUILD_NUMBER = readApiVersionNumber();
+
+    setIfEmpty(
+            PlatformUtils.PLATFORM_PREFIX_KEY, determinePlatformPrefix(PluginManagerCore.BUILD_NUMBER));
 
     // Tests fail if they access files outside of the project roots and other system directories.
     // Ensure runfiles and platform api are whitelisted.
@@ -75,7 +77,7 @@ public class BlazeTestSystemPropertiesRule extends ExternalResource {
     List<String> pluginJars = Lists.newArrayList();
     try {
       Enumeration<URL> urls =
-          BlazeTestSystemPropertiesRule.class.getClassLoader().getResources("META-INF/plugin.xml");
+              BlazeTestSystemPropertiesRule.class.getClassLoader().getResources("META-INF/plugin.xml");
       while (urls.hasMoreElements()) {
         URL url = urls.nextElement();
         addArchiveFile(url, pluginJars);
@@ -86,6 +88,21 @@ public class BlazeTestSystemPropertiesRule extends ExternalResource {
     }
 
     setIfEmpty("idea.plugins.path", Joiner.on(File.pathSeparator).join(pluginJars));
+  }
+
+  @Nullable
+  private static String determinePlatformPrefix(String buildNumber) {
+    if (buildNumber.startsWith("AI")) { // Android Studio
+      return "AndroidStudio";
+    } else if (buildNumber.startsWith("IU")) { // IntelliJ Ultimate
+      return null;
+    } else if (buildNumber.startsWith("IC")) { // IntelliJ Community
+      return "Idea";
+    } else if (buildNumber.startsWith("CL")) { // CLion
+      return "CLion";
+    } else {
+      throw new RuntimeException("Unable to determine platform prefix for build: " + buildNumber);
+    }
   }
 
   private static String readApiVersionNumber() {
@@ -159,7 +176,10 @@ public class BlazeTestSystemPropertiesRule extends ExternalResource {
     setIfEmpty(property, path.getPath());
   }
 
-  private static void setIfEmpty(String property, String value) {
+  private static void setIfEmpty(String property, @Nullable String value) {
+    if (value == null) {
+      return;
+    }
     if (System.getProperty(property) == null) {
       System.setProperty(property, value);
     }

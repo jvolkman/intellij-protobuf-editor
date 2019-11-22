@@ -2,28 +2,28 @@
 
 # The current indirect ij_product mapping (eg. "intellij-latest")
 INDIRECT_IJ_PRODUCTS = {
-    "intellij-latest": "intellij-2019.1",
+    "intellij-latest": "intellij-2019.2",
+    "intellij-latest-mac": "intellij-2019.2-mac",
     "intellij-beta": "intellij-2019.2",
-    "intellij-ue-latest": "intellij-ue-2019.1",
+    "intellij-canary": "intellij-2019.3",
+    "intellij-ue-latest": "intellij-ue-2019.2",
+    "intellij-ue-latest-mac": "intellij-ue-2019.2-mac",
     "intellij-ue-beta": "intellij-ue-2019.2",
-    "android-studio-latest": "android-studio-3.4",
-    "android-studio-beta": "android-studio-3.5",
-    "android-studio-beta-mac": "android-studio-3.5-mac",
-    "android-studio-canary": "android-studio-3.6",
-    "clion-latest": "clion-2019.1",
-    "clion-beta": "clion-2019.1",
+    "intellij-ue-canary": "intellij-ue-2019.3",
+    "android-studio-latest": "android-studio-3.5",
+    "android-studio-beta": "android-studio-3.6",
+    "android-studio-beta-mac": "android-studio-3.6-mac",
+    "android-studio-canary": "android-studio-4.0",
+    "clion-latest": "clion-2019.2",
+    "clion-beta": "clion-2019.2",
 }
 
 DIRECT_IJ_PRODUCTS = {
-    "intellij-2019.1": struct(
-        ide = "intellij",
-        directory = "intellij_ce_2019_1",
-    ),
-    "intellij-ue-2019.1": struct(
-        ide = "intellij-ue",
-        directory = "intellij_ue_2019_1",
-    ),
     "intellij-2019.2": struct(
+        ide = "intellij",
+        directory = "intellij_ce_2019_2",
+    ),
+    "intellij-2019.2-mac": struct(
         ide = "intellij",
         directory = "intellij_ce_2019_2",
     ),
@@ -31,9 +31,25 @@ DIRECT_IJ_PRODUCTS = {
         ide = "intellij-ue",
         directory = "intellij_ue_2019_2",
     ),
-    "android-studio-3.4": struct(
-        ide = "android-studio",
-        directory = "android_studio_3_4",
+    "intellij-ue-2019.2-mac": struct(
+        ide = "intellij-ue",
+        directory = "intellij_ue_2019_2",
+    ),
+    "intellij-2019.3": struct(
+        ide = "intellij",
+        directory = "intellij_ce_2019_3",
+    ),
+    "intellij-2019.3-mac": struct(
+        ide = "intellij",
+        directory = "intellij_ce_2019_3",
+    ),
+    "intellij-ue-2019.3": struct(
+        ide = "intellij-ue",
+        directory = "intellij_ue_2019_3",
+    ),
+    "intellij-ue-2019.3-mac": struct(
+        ide = "intellij-ue",
+        directory = "intellij_ue_2019_3",
     ),
     "android-studio-3.5": struct(
         ide = "android-studio",
@@ -47,13 +63,21 @@ DIRECT_IJ_PRODUCTS = {
         ide = "android-studio",
         directory = "android_studio_3_6",
     ),
-    "clion-2019.1": struct(
-        ide = "clion",
-        directory = "clion_2019_1",
+    "android-studio-3.6-mac": struct(
+        ide = "android-studio",
+        directory = "android_studio_3_6",
+    ),
+    "android-studio-4.0": struct(
+        ide = "android-studio",
+        directory = "android_studio_4_0",
     ),
     "clion-2019.2": struct(
         ide = "clion",
         directory = "clion_2019_2",
+    ),
+    "clion-2019.3": struct(
+        ide = "clion",
+        directory = "clion_2019_3",
     ),
 }
 
@@ -77,9 +101,6 @@ def select_for_plugin_api(params):
         }),
       )
     """
-    if not params:
-        fail("Empty select_for_plugin_api")
-
     for indirect_ij_product in INDIRECT_IJ_PRODUCTS:
         if indirect_ij_product in params:
             error_message = "".join([
@@ -87,6 +108,12 @@ def select_for_plugin_api(params):
                 "Instead, select on an exact ij_product.",
             ])
             fail(error_message)
+    return _do_select_for_plugin_api(params)
+
+def _do_select_for_plugin_api(params):
+    """A version of select_for_plugin_api which accepts indirect products."""
+    if not params:
+        fail("Empty select_for_plugin_api")
 
     expanded_params = dict(**params)
 
@@ -101,6 +128,8 @@ def select_for_plugin_api(params):
             expanded_params[indirect_ij_product] = params[resolved_plugin_api]
             if not fallback_value:
                 fallback_value = params[resolved_plugin_api]
+        if indirect_ij_product in params:
+            expanded_params[resolved_plugin_api] = params[indirect_ij_product]
 
     # Map the shorthand ij_products to full config_setting targets.
     # This makes it more convenient so the user doesn't have to
