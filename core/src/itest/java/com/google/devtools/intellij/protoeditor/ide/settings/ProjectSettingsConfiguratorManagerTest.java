@@ -77,7 +77,7 @@ public class ProjectSettingsConfiguratorManagerTest extends PlatformTestCase {
     // No roots currently.
     assertSameElements(
         PbProjectSettings.getInstance(project).getImportPathEntries(),
-        DefaultConfigurator.getBuiltInDescriptorEntry());
+        DefaultConfigurator.getBuiltInIncludeEntry());
 
     ApplicationManager.getApplication()
         .runWriteAction(
@@ -92,7 +92,7 @@ public class ProjectSettingsConfiguratorManagerTest extends PlatformTestCase {
     assertSameElements(
         PbProjectSettings.getInstance(project).getImportPathEntries(),
         new ImportPathEntry(VfsUtil.pathToUrl(module1Root1.getPath()), ""),
-        DefaultConfigurator.getBuiltInDescriptorEntry());
+        DefaultConfigurator.getBuiltInIncludeEntry());
 
     ApplicationManager.getApplication()
         .runWriteAction(
@@ -113,7 +113,7 @@ public class ProjectSettingsConfiguratorManagerTest extends PlatformTestCase {
         new ImportPathEntry(VfsUtil.pathToUrl(module1Root1.getPath()), ""),
         new ImportPathEntry(VfsUtil.pathToUrl(module1Root2.getPath()), ""),
         new ImportPathEntry(VfsUtil.pathToUrl(module2Root1.getPath()), ""),
-        DefaultConfigurator.getBuiltInDescriptorEntry());
+        DefaultConfigurator.getBuiltInIncludeEntry());
 
     ApplicationManager.getApplication()
         .runWriteAction(
@@ -134,7 +134,7 @@ public class ProjectSettingsConfiguratorManagerTest extends PlatformTestCase {
         PbProjectSettings.getInstance(project).getImportPathEntries(),
         new ImportPathEntry(VfsUtil.pathToUrl(module1Root2.getPath()), ""),
         new ImportPathEntry(VfsUtil.pathToUrl(module2Root1.getPath()), ""),
-        DefaultConfigurator.getBuiltInDescriptorEntry());
+        DefaultConfigurator.getBuiltInIncludeEntry());
   }
 
   public void testExtensionConfiguratorsTakePrecedence() throws Exception {
@@ -193,7 +193,7 @@ public class ProjectSettingsConfiguratorManagerTest extends PlatformTestCase {
     assertSameElements(
         PbProjectSettings.getInstance(project).getImportPathEntries(),
         new ImportPathEntry(VfsUtil.pathToUrl(module1Root1.getPath()), ""),
-        DefaultConfigurator.getBuiltInDescriptorEntry());
+        DefaultConfigurator.getBuiltInIncludeEntry());
 
     ApplicationManager.getApplication()
         .runWriteAction(

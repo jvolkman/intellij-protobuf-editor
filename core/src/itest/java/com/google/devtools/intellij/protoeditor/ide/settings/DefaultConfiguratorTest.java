@@ -93,7 +93,7 @@ public class DefaultConfiguratorTest extends PlatformTestCase {
         new ImportPathEntry(VfsUtil.pathToUrl(module1Root1.getPath()), ""),
         new ImportPathEntry(VfsUtil.pathToUrl(module1Root2.getPath()), ""),
         new ImportPathEntry(VfsUtil.pathToUrl(module2Root1.getPath()), ""),
-        DefaultConfigurator.getBuiltInDescriptorEntry());
+        DefaultConfigurator.getBuiltInIncludeEntry());
   }
 
   public void testGetDescriptorPathSuggestions() throws Exception {
@@ -103,13 +103,13 @@ public class DefaultConfiguratorTest extends PlatformTestCase {
   }
 
   public void testBuiltInDescriptor() throws IOException {
-    ImportPathEntry descriptorEntry = DefaultConfigurator.getBuiltInDescriptorEntry();
-    assertNotNull(descriptorEntry);
-    assertEquals("google/protobuf", descriptorEntry.getPrefix());
+    ImportPathEntry includeEntry = DefaultConfigurator.getBuiltInIncludeEntry();
+    assertNotNull(includeEntry);
+    assertEquals("", includeEntry.getPrefix());
     VirtualFile descriptorDir =
-        VirtualFileManager.getInstance().findFileByUrl(descriptorEntry.getLocation());
+        VirtualFileManager.getInstance().findFileByUrl(includeEntry.getLocation());
     assertNotNull(descriptorDir);
-    VirtualFile descriptorFile = descriptorDir.findFileByRelativePath("descriptor.proto");
+    VirtualFile descriptorFile = descriptorDir.findFileByRelativePath("google/protobuf/descriptor.proto");
     assertNotNull(descriptorFile);
     String text = VfsUtil.loadText(descriptorFile);
     // Simple check to make sure it's a descriptor.

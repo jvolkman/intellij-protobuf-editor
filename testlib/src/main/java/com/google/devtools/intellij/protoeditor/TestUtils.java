@@ -143,7 +143,7 @@ public final class TestUtils {
   }
 
   public static String getOpensourceDescriptorText() throws IOException {
-    return ResourceUtil.readPathAsString("/descriptor/descriptor.proto");
+    return ResourceUtil.readPathAsString("/include/google/protobuf/descriptor.proto");
   }
 
   @NotNull
