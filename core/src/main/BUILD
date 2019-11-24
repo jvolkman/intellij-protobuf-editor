@@ -65,7 +65,10 @@ java_library(
     name = "resources",
     resources = glob(
         ["resources/**"],
-        exclude = ["resources/META-INF/**"],
+        exclude = [
+            "resources/META-INF/**",
+            "resources/update_include_files.sh",
+        ],
     ),
     visibility = ["//visibility:private"],
 )

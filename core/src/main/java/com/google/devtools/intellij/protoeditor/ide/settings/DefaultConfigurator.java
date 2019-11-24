@@ -47,9 +47,9 @@ public class DefaultConfigurator implements ProjectSettingsConfigurator {
       settings.getImportPathEntries().add(new ImportPathEntry(root.getUrl(), ""));
     }
 
-    ImportPathEntry descriptorEntry = getBuiltInDescriptorEntry();
-    if (descriptorEntry != null) {
-      settings.getImportPathEntries().add(descriptorEntry);
+    ImportPathEntry includeEntry = getBuiltInIncludeEntry();
+    if (includeEntry != null) {
+      settings.getImportPathEntries().add(includeEntry);
     }
 
     return settings;
@@ -62,8 +62,8 @@ public class DefaultConfigurator implements ProjectSettingsConfigurator {
   }
 
   @Nullable
-  static ImportPathEntry getBuiltInDescriptorEntry() {
-    URL descriptorUrl = DefaultConfigurator.class.getResource("/descriptor/descriptor.proto");
+  static ImportPathEntry getBuiltInIncludeEntry() {
+    URL descriptorUrl = DefaultConfigurator.class.getResource("/include/google/protobuf/descriptor.proto");
     if (descriptorUrl == null) {
       return null;
     }
@@ -71,6 +71,6 @@ public class DefaultConfigurator implements ProjectSettingsConfigurator {
     if (descriptorFile == null) {
       return null;
     }
-    return new ImportPathEntry(descriptorFile.getParent().getUrl(), "google/protobuf");
+    return new ImportPathEntry(descriptorFile.getParent().getParent().getParent().getUrl(), null);
   }
 }
