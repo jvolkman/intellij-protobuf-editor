@@ -3,6 +3,9 @@
 This plugin provides editor support for Protocol Buffer files, including text
 format.
 
+This is a fork of Google's own internal editor that I helped build during my time there. Google released it
+[here](https://github.com/google/intellij-protocol-buffer-editor) but does not plan to support it externally.
+
 # Features
 
 ![Editor](doc/editor.png)
@@ -16,8 +19,6 @@ format.
 * Editor enhancements (completion, brace matching, etc.)
 * Navigating between protobuf files and some other languages (Java, Go, Python)
 * Full support for text format, both standalone and in custom options
-
-
 
 ## Building and Testing
 
