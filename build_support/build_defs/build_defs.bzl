@@ -62,18 +62,12 @@ def stamped_plugin_xml(
     """
     stamp_tool = "//build_support/build_defs:stamp_plugin_xml"
 
-    api_version_txt_name = name + "_api_version"
-    api_version_txt(
-        name = api_version_txt_name,
-    )
-
     args = [
         "./$(location {stamp_tool})",
-        "--api_version_txt=$(location {api_version_txt_name})",
         "{stamp_since_build}",
         "{stamp_until_build}",
     ]
-    srcs = [api_version_txt_name]
+    srcs = []
 
     if plugin_xml:
         args.append("--plugin_xml=$(location {plugin_xml})")
@@ -109,7 +103,6 @@ def stamped_plugin_xml(
 
     cmd = " ".join(args).format(
         plugin_xml = plugin_xml,
-        api_version_txt_name = api_version_txt_name,
         stamp_tool = stamp_tool,
         stamp_since_build = _optstr(
             "stamp_since_build",
@@ -131,66 +124,6 @@ def stamped_plugin_xml(
         outs = [name + ".xml"],
         cmd = cmd,
         tools = [stamp_tool],
-        **kwargs
-    )
-
-def product_build_txt(name, **kwargs):
-    """Produces a product-build.txt file with the build number.
-
-    Args:
-      name: name of this target
-      **kwargs: Any additional arguments to pass to the final target.
-    """
-    application_info_jar = "//build_support/intellij_platform_sdk:application_info_jar"
-    application_info_name = "//build_support/intellij_platform_sdk:application_info_name"
-    product_build_txt_tool = "//build_support/build_defs:product_build_txt"
-
-    args = [
-        "./$(location {product_build_txt_tool})",
-        "--application_info_jar=$(location {application_info_jar})",
-        "--application_info_name=$(location {application_info_name})",
-    ]
-    cmd = " ".join(args).format(
-        application_info_jar = application_info_jar,
-        application_info_name = application_info_name,
-        product_build_txt_tool = product_build_txt_tool,
-    ) + "> $@"
-    native.genrule(
-        name = name,
-        srcs = [application_info_jar, application_info_name],
-        outs = ["product-build.txt"],
-        cmd = cmd,
-        tools = [product_build_txt_tool],
-        **kwargs
-    )
-
-def api_version_txt(name, **kwargs):
-    """Produces an api_version.txt file with the api version, including the product code.
-
-    Args:
-      name: name of this target
-      **kwargs: Any additional arguments to pass to the final target.
-    """
-    application_info_jar = "//build_support/intellij_platform_sdk:application_info_jar"
-    application_info_name = "//build_support/intellij_platform_sdk:application_info_name"
-    api_version_txt_tool = "//build_support/build_defs:api_version_txt"
-
-    args = [
-        "./$(location {api_version_txt_tool})",
-        "--application_info_jar=$(location {application_info_jar})",
-        "--application_info_name=$(location {application_info_name})",
-    ]
-    cmd = " ".join(args).format(
-        application_info_jar = application_info_jar,
-        application_info_name = application_info_name,
-        api_version_txt_tool = api_version_txt_tool,
-    ) + "> $@"
-    native.genrule(
-        name = name,
-        srcs = [application_info_jar, application_info_name],
-        outs = [name + ".txt"],
-        cmd = cmd,
-        tools = [api_version_txt_tool],
         **kwargs
     )
 

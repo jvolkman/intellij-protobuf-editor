@@ -109,49 +109,4 @@ public final class TestUtils {
     }
     return propValue;
   }
-
-  private static class MockApplication extends MockApplicationEx {
-    private final ExecutorService executor = MoreExecutors.newDirectExecutorService();
-
-    MockApplication(Disposable parentDisposable) {
-      super(parentDisposable);
-    }
-
-    @Override
-    public Future<?> executeOnPooledThread(Runnable action) {
-      return executor.submit(action);
-    }
-
-    @Override
-    public <T> Future<T> executeOnPooledThread(Callable<T> action) {
-      return executor.submit(action);
-    }
-  }
-
-  static void createMockApplication(Disposable parentDisposable) {
-    final MockApplication instance = new MockApplication(parentDisposable);
-
-    // If there was no previous application, ApplicationManager leaves the MockApplication in place,
-    // which can break future tests.
-    Application oldApplication = ApplicationManager.getApplication();
-    if (oldApplication == null) {
-      Disposer.register(
-          parentDisposable,
-          () ->
-              new ApplicationManager() {
-                {
-                  ourApplication = null;
-                }
-              });
-    }
-
-    ApplicationManager.setApplication(instance, FileTypeManager::getInstance, parentDisposable);
-    instance.registerService(EncodingManager.class, EncodingManagerImpl.class);
-  }
-
-  static MockProject mockProject(@Nullable PicoContainer container, Disposable parentDisposable) {
-    Extensions.registerAreaClass("IDEA_PROJECT", null);
-    container = container != null ? container : new DefaultPicoContainer();
-    return new MockProject(container, parentDisposable);
-  }
 }

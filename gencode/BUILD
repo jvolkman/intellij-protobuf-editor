@@ -7,7 +7,7 @@ package(default_visibility = ["//visibility:private"])
 java_library(
     name = "gencode",
     srcs = glob(["src/main/java/**/*.java"]),
-    visibility = ["//:plugin_private"],
+    visibility = ["//:plugin"],
     deps = [
         "//build_support/intellij_platform_sdk:plugin_api",
         "//core",

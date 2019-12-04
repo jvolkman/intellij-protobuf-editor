@@ -12,7 +12,7 @@ load(
     "intellij_plugin",
 )
 load(
-    "//build_support/testing:test_defs.bzl",
+    "//testlib:test_defs.bzl",
     "intellij_integration_test_suite",
 )
 load(

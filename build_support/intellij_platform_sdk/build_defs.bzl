@@ -3,19 +3,7 @@
 # The current indirect ij_product mapping (eg. "intellij-latest")
 INDIRECT_IJ_PRODUCTS = {
     "intellij-latest": "intellij-2019.2",
-    "intellij-latest-mac": "intellij-2019.2-mac",
-    "intellij-beta": "intellij-2019.2",
-    "intellij-canary": "intellij-2019.3",
     "intellij-ue-latest": "intellij-ue-2019.2",
-    "intellij-ue-latest-mac": "intellij-ue-2019.2-mac",
-    "intellij-ue-beta": "intellij-ue-2019.2",
-    "intellij-ue-canary": "intellij-ue-2019.3",
-    "android-studio-latest": "android-studio-3.5",
-    "android-studio-beta": "android-studio-3.6",
-    "android-studio-beta-mac": "android-studio-3.6-mac",
-    "android-studio-canary": "android-studio-4.0",
-    "clion-latest": "clion-2019.2",
-    "clion-beta": "clion-2019.2",
 }
 
 DIRECT_IJ_PRODUCTS = {
@@ -23,15 +11,7 @@ DIRECT_IJ_PRODUCTS = {
         ide = "intellij",
         directory = "intellij_ce_2019_2",
     ),
-    "intellij-2019.2-mac": struct(
-        ide = "intellij",
-        directory = "intellij_ce_2019_2",
-    ),
     "intellij-ue-2019.2": struct(
-        ide = "intellij-ue",
-        directory = "intellij_ue_2019_2",
-    ),
-    "intellij-ue-2019.2-mac": struct(
         ide = "intellij-ue",
         directory = "intellij_ue_2019_2",
     ),
@@ -39,45 +19,9 @@ DIRECT_IJ_PRODUCTS = {
         ide = "intellij",
         directory = "intellij_ce_2019_3",
     ),
-    "intellij-2019.3-mac": struct(
-        ide = "intellij",
-        directory = "intellij_ce_2019_3",
-    ),
     "intellij-ue-2019.3": struct(
         ide = "intellij-ue",
         directory = "intellij_ue_2019_3",
-    ),
-    "intellij-ue-2019.3-mac": struct(
-        ide = "intellij-ue",
-        directory = "intellij_ue_2019_3",
-    ),
-    "android-studio-3.5": struct(
-        ide = "android-studio",
-        directory = "android_studio_3_5",
-    ),
-    "android-studio-3.5-mac": struct(
-        ide = "android-studio",
-        directory = "android_studio_3_5",
-    ),
-    "android-studio-3.6": struct(
-        ide = "android-studio",
-        directory = "android_studio_3_6",
-    ),
-    "android-studio-3.6-mac": struct(
-        ide = "android-studio",
-        directory = "android_studio_3_6",
-    ),
-    "android-studio-4.0": struct(
-        ide = "android-studio",
-        directory = "android_studio_4_0",
-    ),
-    "clion-2019.2": struct(
-        ide = "clion",
-        directory = "clion_2019_2",
-    ),
-    "clion-2019.3": struct(
-        ide = "clion",
-        directory = "clion_2019_3",
     ),
 }
 
@@ -169,14 +113,10 @@ def select_for_ide(intellij = None, intellij_ue = None, android_studio = None, c
     """
     intellij = intellij if intellij != None else default
     intellij_ue = intellij_ue if intellij_ue != None else intellij
-    android_studio = android_studio if android_studio != None else default
-    clion = clion if clion != None else default
 
     ide_to_value = {
         "intellij": intellij,
         "intellij-ue": intellij_ue,
-        "android-studio": android_studio,
-        "clion": clion,
     }
 
     # Map (direct ij_product) -> corresponding ide value
@@ -196,8 +136,6 @@ def select_from_plugin_api_directory(intellij, android_studio, clion, intellij_u
     ide_to_value = {
         "intellij": intellij,
         "intellij-ue": intellij_ue if intellij_ue else intellij,
-        "android-studio": android_studio,
-        "clion": clion,
     }
 
     # Map (direct ij_product) -> corresponding product directory

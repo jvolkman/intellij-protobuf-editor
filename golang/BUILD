@@ -20,5 +20,5 @@ alias(
 alias(
     name = "plugin_library",
     actual = "//golang/src/main:plugin_library",
-    visibility = ["//:plugin_private"],
+    visibility = ["//:plugin"],
 )

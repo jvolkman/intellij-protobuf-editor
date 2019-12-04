@@ -159,7 +159,7 @@ def intellij_integration_test_suite(
 
     deps = list(deps)
     deps.extend([
-        "//build_support/testing:lib",
+        "//testlib:test_support",
     ])
     runtime_deps = list(runtime_deps)
     runtime_deps.extend([

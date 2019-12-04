@@ -6,7 +6,7 @@ licenses(["notice"])  # Apache 2.0
 package(default_visibility = ["//visibility:private"])
 
 load(
-    "//build_support/testing:test_defs.bzl",
+    "//testlib:test_defs.bzl",
     "intellij_integration_test_suite",
 )
 

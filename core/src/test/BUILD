@@ -4,7 +4,7 @@
 licenses(["notice"])  # Apache 2.0
 
 load(
-    "//build_support/testing:test_defs.bzl",
+    "//testlib:test_defs.bzl",
     "intellij_unit_test_suite",
 )
 

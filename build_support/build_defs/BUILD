@@ -19,18 +19,6 @@ py_binary(
 )
 
 py_binary(
-    name = "product_build_txt",
-    srcs = ["product_build_txt.py"],
-    python_version = "PY2",
-)
-
-py_binary(
-    name = "api_version_txt",
-    srcs = ["api_version_txt.py"],
-    python_version = "PY2",
-)
-
-py_binary(
     name = "append_optional_xml_elements",
     srcs = ["append_optional_xml_elements.py"],
     python_version = "PY2",
