@@ -21,7 +21,7 @@ genrule(
         set -e
         WORK=`pwd`
         mkdir $(@D)/gen
-        $(location @grammar_kit) $(@D)/gen $(SRCS)
+        $(location //build_support:grammar_kit) $(@D)/gen $(SRCS)
         cd $(@D)/gen
         find * -type f | xargs $$WORK/$(location @bazel_tools//tools/zip:zipper) c $$WORK/$(@D)/generated-parser.srcjar
         cd $$WORK
@@ -29,7 +29,7 @@ genrule(
         """,
     tools = [
         "@bazel_tools//tools/zip:zipper",
-        "@grammar_kit",
+        "//build_support:grammar_kit",
     ],
     visibility = ["//visibility:private"],
 )
@@ -47,7 +47,7 @@ genrule(
         GRAMMARS=`echo $(SRCS) | tr ' ' '\n' | grep '\.flex$$' | tr '\n' ' '`
 
         mkdir $(@D)/gen
-        $(location @idea_jflex) \
+        $(location //build_support:idea_jflex) \
            -skel $$SKEL \
            -d $(@D)/gen $$GRAMMARS
         cd $(@D)/gen
@@ -56,7 +56,7 @@ genrule(
         """,
     tools = [
         "@bazel_tools//tools/zip:zipper",
-        "@idea_jflex",
+        "//build_support:idea_jflex",
     ],
     visibility = ["//visibility:private"],
 )
@@ -83,7 +83,7 @@ java_library(
     ],
     deps = [
         ":resources",
-        "//build_support/intellij_platform_sdk:plugin_api",
+        "//build_support:idea_ue_sdk",
     ],
 )
 

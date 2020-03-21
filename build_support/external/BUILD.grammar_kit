@@ -1,0 +1,5 @@
+java_import(
+    name = 'grammar_kit_lib',
+    jars = glob(['grammar-kit/lib/*.jar']),
+    visibility = ['//visibility:public'],
+)

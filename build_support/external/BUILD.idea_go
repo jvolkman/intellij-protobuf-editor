@@ -1,0 +1,18 @@
+java_import(
+    name = 'go_internal',
+    jars = glob(['intellij-go/lib/*.jar']),
+)
+
+java_library(
+    name = 'go',
+    exports = [':go_internal'],
+    neverlink = True,
+    visibility = ['//visibility:public'],
+)
+
+java_library(
+    name = 'go_for_tests',
+    exports = [':go_internal'],
+    testonly = True,
+    visibility = ['//visibility:public'],
+)

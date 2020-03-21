@@ -1,6 +1,6 @@
 # Description:
 #
-# Plugin source jars for IntelliJ CE, accessed remotely.
+# Plugin source jars for IntelliJ UE, accessed remotely.
 
 package(default_visibility = ["//visibility:public"])
 
@@ -8,12 +8,7 @@ java_import(
     name = "sdk",
     jars = glob(["lib/*.jar"]),
     tags = ["intellij-provided-by-sdk"],
-    deps = ["@error_prone_annotations//jar"],
-)
-
-java_import(
-    name = "devkit",
-    jars = glob(["plugins/devkit/lib/devkit.jar"]),
+#    deps = ["@error_prone_annotations//jar"],
 )
 
 java_import(
@@ -27,8 +22,35 @@ java_import(
 )
 
 java_import(
+    name = "devkit",
+    jars = glob(["plugins/devkit/lib/devkit.jar"]),
+)
+
+java_import(
     name = "hg4idea",
     jars = glob(["plugins/hg4idea/lib/hg4idea.jar"]),
+)
+
+java_import(
+    name = "javascript",
+    data = [":javascript_data"],
+    jars = glob(["plugins/JavaScriptLanguage/lib/*.jar"]),
+)
+
+filegroup(
+    name = "javascript_data",
+    srcs = glob(["plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/*"]),
+    visibility = ["//visibility:private"],
+)
+
+java_import(
+    name = "css",
+    jars = glob(["plugins/CSS/lib/*.jar"]),
+)
+
+java_import(
+    name = "angular",
+    jars = glob(["plugins/AngularJS/lib/*.jar"]),
 )
 
 java_import(

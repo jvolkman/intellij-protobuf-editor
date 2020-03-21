@@ -10,21 +10,6 @@ licenses(["notice"])  # Apache2
 package(default_visibility = ["//visibility:public"])
 
 config_setting(
-    name = "intellij-latest",
-    values = {
-        "define": "ij_product=intellij-latest",
-    },
-)
-
-config_setting(
-    name = "intellij-latest-mac",
-    values = {
-        "cpu": "darwin_x86_64",
-        "define": "ij_product=intellij-latest",
-    },
-)
-
-config_setting(
     name = "intellij-ue-latest",
     values = {
         "define": "ij_product=intellij-ue-latest",
@@ -454,25 +439,5 @@ java_library(
         android_studio = [":bundled_plugins"],
         clion = [":bundled_plugins"],
         intellij = [":bundled_plugins"],
-    ),
-)
-
-filegroup(
-    name = "application_info_jar",
-    srcs = select_from_plugin_api_directory(
-        android_studio = [":application_info_jar"],
-        clion = [":application_info_jar"],
-        intellij = [":application_info_jar"],
-    ),
-)
-
-filegroup(
-    name = "application_info_name",
-    srcs = select_for_ide(
-        android_studio = ["android_studio_application_info_name.txt"],
-        clion = ["clion_application_info_name.txt"],
-        default = ["intellij_application_info_name.txt"],
-        intellij = ["intellij_application_info_name.txt"],
-        intellij_ue = ["intellij_ue_application_info_name.txt"],
     ),
 )

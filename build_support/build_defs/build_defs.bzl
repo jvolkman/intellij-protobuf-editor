@@ -138,9 +138,7 @@ def _repackaged_files_impl(ctx):
         input_files = depset(transitive = [input_files, target.files])
 
     return [
-        # TODO(brendandouglas): Only valid for Bazel 0.5 onwards. Uncomment when
-        # 0.5 used more widely.
-        # DefaultInfo(files = input_files),
+        DefaultInfo(files = input_files),
         repackaged_files_data(
             files = input_files,
             prefix = prefix,
