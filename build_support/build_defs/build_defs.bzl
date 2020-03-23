@@ -138,7 +138,7 @@ def _repackaged_files_impl(ctx):
         input_files = depset(transitive = [input_files, target.files])
 
     return [
-        DefaultInfo(files = input_files),
+        #DefaultInfo(files = input_files),
         repackaged_files_data(
             files = input_files,
             prefix = prefix,

@@ -16,9 +16,7 @@ intellij_unit_test_suite(
     test_package_root = "com.google.devtools.intellij.protoeditor",
     visibility = ["//visibility:public"],
     deps = [
-        "//build_support/intellij_platform_sdk:plugin_api_for_tests",
-        "//build_support/intellij_platform_sdk:test_libs",
+        "//build_support:idea_plugin_api",
         "//core/src/main:core",
-        "@junit//jar",
     ],
 )

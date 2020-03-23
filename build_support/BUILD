@@ -1,8 +1,14 @@
-package(default_visibility = ["//:plugin"])
+package(default_visibility = ["//visibility:public"])
 
 alias(
     name = "idea_ue_sdk",
     actual = "@idea_ue_2019_3//:sdk",
+)
+
+java_library(
+    name = "idea_plugin_api",
+    neverlink = 1,
+    exports = [":idea_ue_sdk"],
 )
 
 java_binary(

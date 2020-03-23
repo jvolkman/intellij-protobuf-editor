@@ -23,26 +23,27 @@ java_library(
     name = "combined_lib",
     exports = [
         "//core",
-        "//python",
-    ] + select_for_ide(
-        android_studio = [
-            "//java",
-        ],
-        clion = [],
-        default = [],
-        intellij = [
-            "//golang",
-            "//java",
-        ],
-    ),
+        ]
+#        "//python",
+#    ] + select_for_ide(
+#        android_studio = [
+#            "//java",
+#        ],
+#        clion = [],
+#        default = [],
+#        intellij = [
+#            "//golang",
+#            "//java",
+#        ],
+#    ),
 )
 
 intellij_plugin_library(
     name = "plugin_library",
     optional_plugin_xmls = [
-        "//golang:optional_plugin_xml",
-        "//java:optional_plugin_xml",
-        "//python:optional_plugin_xml",
+#        "//golang:optional_plugin_xml",
+#        "//java:optional_plugin_xml",
+#        "//python:optional_plugin_xml",
     ],
     plugin_xmls = ["//core:plugin_xml"],
     deps = [":combined_lib"],
