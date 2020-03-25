@@ -115,12 +115,12 @@ public class PbJavaFindUsagesHandlerFactory extends FindUsagesHandlerFactory {
     }
 
     @Override
-    public void visitMessageDefinition(PbMessageDefinition message) {
+    public void visitMessageDefinition(@NotNull PbMessageDefinition message) {
       setResults(messageTypeClasses(message));
     }
 
     @Override
-    public void visitField(PbField field) {
+    public void visitField(@NotNull PbField field) {
       Collection<PsiMember> javaElements = fieldMembers(field);
       PbStatementOwner owner = field.getStatementOwner();
       if (PbPsiUtil.isOneofElement(owner)) {
@@ -131,9 +131,8 @@ public class PbJavaFindUsagesHandlerFactory extends FindUsagesHandlerFactory {
     }
 
     @Override
-    public void visitGroupDefinition(PbGroupDefinition group) {
-      Collection<PsiElement> javaElements = new ArrayList<>();
-      javaElements.addAll(messageTypeClasses(group));
+    public void visitGroupDefinition(@NotNull PbGroupDefinition group) {
+      Collection<PsiElement> javaElements = new ArrayList<>(messageTypeClasses(group));
       // Groups are a message type + a field.  Also check for generated code related to the field.
       for (PbSymbol sibling : group.getAdditionalSiblings()) {
         ProtoToJavaConverter siblingVisitor = new ProtoToJavaConverter(file);
@@ -146,20 +145,19 @@ public class PbJavaFindUsagesHandlerFactory extends FindUsagesHandlerFactory {
     }
 
     @Override
-    public void visitEnumDefinition(PbEnumDefinition enumDefinition) {
+    public void visitEnumDefinition(@NotNull PbEnumDefinition enumDefinition) {
       setResults(enumDefinitionClasses(enumDefinition));
     }
 
     @Override
-    public void visitEnumValue(PbEnumValue enumValue) {
+    public void visitEnumValue(@NotNull PbEnumValue enumValue) {
       setResults(enumValueEnumConstants(enumValue));
     }
 
     @Override
-    public void visitOneofDefinition(PbOneofDefinition oneof) {
+    public void visitOneofDefinition(@NotNull PbOneofDefinition oneof) {
       // Get the message class members
-      Collection<PsiElement> javaElements = new ArrayList<>();
-      javaElements.addAll(oneofMessageMembers(oneof));
+      Collection<PsiElement> javaElements = new ArrayList<>(oneofMessageMembers(oneof));
       // Get the java enum
       Collection<PsiClass> oneofEnums = oneofEnumClasses(oneof);
       javaElements.addAll(oneofEnums);
@@ -276,10 +274,7 @@ public class PbJavaFindUsagesHandlerFactory extends FindUsagesHandlerFactory {
 
     private Collection<PsiField> oneofFieldEnumConstants(
         PbField oneofField, Collection<PsiClass> enumParents) {
-      List<PsiField> javaElements = new ArrayList<>();
-      javaElements.addAll(
-          protoToEnumConstants(oneofField, NameGenerator::oneofEnumValueName, enumParents));
-      return javaElements;
+      return new ArrayList<>(protoToEnumConstants(oneofField, NameGenerator::oneofEnumValueName, enumParents));
     }
 
     private <ProtoT extends PbNamedElement> Collection<PsiField> protoToEnumConstants(

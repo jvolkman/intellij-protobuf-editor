@@ -18,6 +18,7 @@ package idea.plugin.protoeditor.lang.resolve.directive;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiReference;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -41,14 +42,14 @@ public abstract class SchemaComment {
   private final TextRange nameRange;
   private final Type type;
 
-  SchemaComment(PsiComment comment, TextRange keyRange, TextRange nameRange, Type type) {
+  SchemaComment(@NotNull PsiComment comment, TextRange keyRange, TextRange nameRange, Type type) {
     this.comment = comment;
     this.keyRange = keyRange;
     this.nameRange = nameRange;
     this.type = type;
   }
 
-  @Nullable
+  @NotNull
   public PsiComment getComment() {
     return comment;
   }

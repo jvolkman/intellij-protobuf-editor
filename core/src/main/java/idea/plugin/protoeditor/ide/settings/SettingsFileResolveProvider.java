@@ -27,6 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /** {@link FileResolveProvider} implementation that uses settings from {@link PbProjectSettings}. */
@@ -135,7 +136,7 @@ public class SettingsFileResolveProvider implements FileResolveProvider {
             .stream()
             .map(ImportPathEntry::getLocation)
             .map(VirtualFileManager.getInstance()::findFileByUrl)
-            .filter(file -> file != null)
+            .filter(Objects::nonNull)
             .toArray(VirtualFile[]::new);
     return GlobalSearchScopesCore.directoriesScope(project, /* withSubDirectories= */ true, roots);
   }

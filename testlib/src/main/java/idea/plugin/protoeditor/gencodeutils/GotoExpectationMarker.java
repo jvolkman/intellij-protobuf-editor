@@ -64,7 +64,7 @@ public final class GotoExpectationMarker {
 
   public static List<GotoExpectationMarker> parseExpectations(PsiFile file) {
     String text = file.getText();
-    int nextIndex = text.indexOf(EXPECT_MARKER, 0);
+    int nextIndex = text.indexOf(EXPECT_MARKER);
     List<GotoExpectationMarker> expectations = new ArrayList<>();
 
     while (nextIndex != -1) {

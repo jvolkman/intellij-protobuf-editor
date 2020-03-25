@@ -34,6 +34,7 @@ import com.intellij.psi.util.QualifiedName;
 import idea.plugin.protoeditor.gencode.ProtoFromSourceComments;
 import idea.plugin.protoeditor.lang.psi.PbFile;
 import idea.plugin.protoeditor.lang.psi.PbSymbol;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
@@ -44,7 +45,7 @@ import java.util.Optional;
 public class PbGolangGotoDeclarationHandler implements GotoDeclarationHandler {
   @Nullable
   @Override
-  public String getActionText(DataContext dataContext) {
+  public String getActionText(@NotNull DataContext dataContext) {
     return null;
   }
 

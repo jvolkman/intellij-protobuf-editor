@@ -48,7 +48,7 @@ public class SettingsFileResolveProviderTest extends PbCodeInsightFixtureTestCas
     super.tearDown();
   }
 
-  public void testFindFileWithNoSettingsReturnsNull() throws Exception {
+  public void testFindFileWithNoSettingsReturnsNull() {
     assertNull(new SettingsFileResolveProvider().findFile("missing/file", getProject()));
   }
 

@@ -60,10 +60,12 @@ public final class TestUtils {
       } else {
         // Fallback default $TEMP/$USER/tmp/$TESTNAME
         String baseTmpDir = StandardSystemProperty.JAVA_IO_TMPDIR.value();
+        assert baseTmpDir != null;
         tmpDir = new File(baseTmpDir).getAbsoluteFile();
 
         // .. Add username
         String username = StandardSystemProperty.USER_NAME.value();
+        assert username != null;
         username = username.replace('/', '_');
         username = username.replace('\\', '_');
         username = username.replace('\000', '_');

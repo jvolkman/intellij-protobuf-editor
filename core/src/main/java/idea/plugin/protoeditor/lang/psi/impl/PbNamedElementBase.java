@@ -83,7 +83,7 @@ abstract class PbNamedElementBase extends PbStatementBase implements PbNamedElem
   public ItemPresentation getPresentation() {
     PbNamedElement element = this;
     return new ItemPresentation() {
-      @Nullable
+
       @Override
       public String getPresentableText() {
         return element.getPresentableText();

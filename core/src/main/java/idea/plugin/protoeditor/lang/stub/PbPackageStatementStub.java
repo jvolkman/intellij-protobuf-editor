@@ -28,7 +28,7 @@ public class PbPackageStatementStub extends StubBase<PbPackageStatement>
   private final QualifiedName packageName;
 
   public PbPackageStatementStub(
-      @SuppressWarnings("rawtypes") StubElement parent,
+      StubElement parent,
       PbPackageStatementType elementType,
       QualifiedName packageName) {
     super(parent, elementType);

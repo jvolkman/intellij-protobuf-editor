@@ -25,6 +25,7 @@ import com.intellij.openapi.roots.ex.ProjectRootManagerEx;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.serviceContainer.NonInjectable;
 import com.intellij.util.xmlb.XmlSerializer;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -76,7 +77,7 @@ public class PbProjectSettings implements PersistentStateComponent<PbProjectSett
   }
 
   @Override
-  public void loadState(State state) {
+  public void loadState(@NotNull State state) {
     this.state = state;
   }
 

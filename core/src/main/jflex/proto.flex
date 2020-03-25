@@ -174,12 +174,10 @@ String = {SingleQuotedString} | {DoubleQuotedString}
   }
   {FloatWithF} {
     yybegin(AFTER_NUMBER);
-    if (allowFloatCast) {
-      return ProtoTokenTypes.FLOAT_LITERAL;
-    } else {
+    if (!allowFloatCast) {
       yypushback(1); // Push the 'f' back
-      return ProtoTokenTypes.FLOAT_LITERAL;
     }
+    return ProtoTokenTypes.FLOAT_LITERAL;
   }
 
   // C-style comments, allowed when injected into protobuf.

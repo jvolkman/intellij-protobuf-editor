@@ -17,7 +17,6 @@ package idea.plugin.protoeditor.ide.settings;
 
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.extensions.ExtensionPoint;
-import com.intellij.openapi.extensions.Extensions;
 import com.intellij.openapi.module.EmptyModuleType;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
@@ -52,7 +51,7 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
     super.tearDown();
   }
 
-  public void testManagerTracksProjectRootsChanges() throws Exception {
+  public void testManagerTracksProjectRootsChanges() {
     // Create a new project with two modules and a total of 3 roots.
     File projectDir = new File(tempDir, "project");
     assertTrue(projectDir.mkdirs());
@@ -71,9 +70,9 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
 
     // Clear extension point and register only the DefaultConfigurator.
     ExtensionPoint<ProjectSettingsConfigurator> extensionPoint =
-        Extensions.getArea(project).getExtensionPoint(ProjectSettingsConfigurator.EP_NAME);
+        project.getExtensionArea().getExtensionPoint(ProjectSettingsConfigurator.EP_NAME);
     extensionPoint.reset();
-    extensionPoint.registerExtension(new DefaultConfigurator());
+    extensionPoint.registerExtension(new DefaultConfigurator(), getTestRootDisposable());
 
     // No roots currently.
     assertSameElements(
@@ -138,7 +137,7 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
         DefaultConfigurator.getBuiltInIncludeEntry());
   }
 
-  public void testExtensionConfiguratorsTakePrecedence() throws Exception {
+  public void testExtensionConfiguratorsTakePrecedence() {
     File projectDir = new File(tempDir, "project");
     assertTrue(projectDir.mkdirs());
 
@@ -152,15 +151,13 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
     assertTrue(foobarRoot.mkdirs());
 
     ExtensionPoint<ProjectSettingsConfigurator> extensionPoint =
-        Extensions.getArea(project).getExtensionPoint(ProjectSettingsConfigurator.EP_NAME);
+        project.getExtensionArea().getExtensionPoint(ProjectSettingsConfigurator.EP_NAME);
 
     // Remove all but the DefaultConfigurator extension. Do this rather than a reset + add to test
     // that the DefaultConfigurator is registered in plugin.xml with order=last.
-    for (ProjectSettingsConfigurator extension : extensionPoint.getExtensions()) {
-      if (!(extension instanceof DefaultConfigurator)) {
-        extensionPoint.unregisterExtension(extension);
-      }
-    }
+    extensionPoint.unregisterExtensions(
+        (className, adapter) -> DefaultConfigurator.class.getCanonicalName().equals(className), false);
+
 
     // Add a configurator that takes over when the "foobarRoot" root is added.
     extensionPoint.registerExtension(
@@ -179,7 +176,7 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
             }
           }
           return null;
-        });
+        }, getTestRootDisposable());
 
     ApplicationManager.getApplication()
         .runWriteAction(

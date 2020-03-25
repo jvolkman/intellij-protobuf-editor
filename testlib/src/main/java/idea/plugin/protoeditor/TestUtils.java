@@ -19,11 +19,9 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.extensions.Extensions;
 import com.intellij.openapi.extensions.LoadingOrder;
 import com.intellij.openapi.fileTypes.FileTypeManager;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.Disposer;
 import com.intellij.openapi.util.Key;
 import com.intellij.openapi.vfs.newvfs.impl.VfsRootAccess;
 import com.intellij.testFramework.UsefulTestCase;
@@ -63,7 +61,7 @@ public final class TestUtils {
     if (path == null) {
       return null;
     }
-    VfsRootAccess.allowRootAccess(path);
+    VfsRootAccess.allowRootAccess(disposable, path);
     return path;
   }
 
@@ -122,25 +120,10 @@ public final class TestUtils {
       Project project, String descriptorPath, @NotNull Disposable disposable) {
     FileResolveProvider provider = new LocalRootsFileResolveProvider(descriptorPath);
     // Make sure the test provider comes first, before the "settings" provider.
-    Extensions.getArea(project)
+    project.getExtensionArea()
         .getExtensionPoint(FileResolveProvider.EP_NAME)
-        .registerExtension(provider, LoadingOrder.readOrder("FIRST, BEFORE settings"));
+        .registerExtension(provider, LoadingOrder.readOrder("FIRST, BEFORE settings"), disposable);
     project.putUserData(TEST_FILE_RESOLVE_PROVIDER, provider);
-    Disposer.register(
-        disposable,
-        () -> {
-          removeTestFileResolveProvider(project);
-        });
-  }
-
-  private static void removeTestFileResolveProvider(Project project) {
-    FileResolveProvider current = project.getUserData(TEST_FILE_RESOLVE_PROVIDER);
-    if (current != null) {
-      Extensions.getArea(project)
-          .getExtensionPoint(FileResolveProvider.EP_NAME)
-          .unregisterExtension(current);
-    }
-    project.putUserData(TEST_FILE_RESOLVE_PROVIDER, null);
   }
 
   public static String getOpensourceDescriptorText() throws IOException {

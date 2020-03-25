@@ -132,9 +132,7 @@ public class InsertSchemaDirectiveAction extends AnAction {
       return;
     }
     PsiElement element = comment.getComment();
-    if (element != null) {
-      element.delete();
-    }
+    element.delete();
   }
 
   private static Template createFileAnnotationTemplate(

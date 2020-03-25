@@ -39,9 +39,10 @@ public class PbEnumDefinitionType extends IStubElementType<PbEnumDefinitionStub,
     return new PbEnumDefinitionImpl(stub, this);
   }
 
+  @NotNull
   @Override
   public PbEnumDefinitionStub createStub(
-      @NotNull PbEnumDefinition psi, @SuppressWarnings("rawtypes") StubElement parentStub) {
+      @NotNull PbEnumDefinition psi, StubElement parentStub) {
     return new PbEnumDefinitionStub(parentStub, this, psi.getName());
   }
 
@@ -60,7 +61,7 @@ public class PbEnumDefinitionType extends IStubElementType<PbEnumDefinitionStub,
   @NotNull
   @Override
   public PbEnumDefinitionStub deserialize(
-      @NotNull StubInputStream dataStream, @SuppressWarnings("rawtypes") StubElement parentStub)
+      @NotNull StubInputStream dataStream, StubElement parentStub)
       throws IOException {
     String name = null;
     StringRef nameRef = dataStream.readName();

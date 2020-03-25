@@ -32,7 +32,7 @@ public final class StubMethods {
     if (name == null) {
       return null;
     }
-    PbStatementOwnerStub parent = stub.getOwner();
+    PbStatementOwnerStub<?> parent = stub.getOwner();
     if (parent == null) {
       return null;
     }
@@ -47,14 +47,16 @@ public final class StubMethods {
   static PbStatementOwnerStub<?> getOwner(PbStatementStub<?> stub) {
     Stub parent = stub.getParentStub();
     if (parent instanceof PbStatementOwnerStub) {
-      return (PbStatementOwnerStub) parent;
+      return (PbStatementOwnerStub<?>) parent;
     }
     return null;
   }
 
   @NotNull
   static List<PbStatementStub<?>> getStatements(PbStatementOwnerStub<?> stub) {
+    @SuppressWarnings("rawtypes")
     List<StubElement> children = stub.getChildrenStubs();
+
     return children
         .stream()
         .filter(child -> child instanceof PbStatementStub)

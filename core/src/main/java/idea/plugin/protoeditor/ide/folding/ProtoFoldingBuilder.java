@@ -18,7 +18,6 @@ package idea.plugin.protoeditor.ide.folding;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.folding.FoldingBuilderEx;
 import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.lang.folding.NamedFoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.openapi.util.TextRange;
@@ -39,7 +38,6 @@ import java.util.List;
 public class ProtoFoldingBuilder extends FoldingBuilderEx implements DumbAware {
   @NotNull
   @Override
-  @SuppressWarnings("unchecked")
   public FoldingDescriptor[] buildFoldRegions(
       @NotNull PsiElement root, @NotNull Document document, boolean quick) {
 
@@ -89,7 +87,7 @@ public class ProtoFoldingBuilder extends FoldingBuilderEx implements DumbAware {
     PsiElement close = block.getEnd();
     if (close != null) {
       String text = open.getText() + "..." + close.getText();
-      return new NamedFoldingDescriptor(
+      return new FoldingDescriptor(
           block.getNode(),
           new TextRange(
               open.getNode().getStartOffset(),

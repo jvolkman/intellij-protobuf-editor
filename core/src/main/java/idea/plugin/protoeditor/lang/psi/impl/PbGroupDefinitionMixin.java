@@ -39,7 +39,7 @@ abstract class PbGroupDefinitionMixin extends PbStubbedSymbolOwnerBase<PbGroupDe
   }
 
   PbGroupDefinitionMixin(
-      PbGroupDefinitionStub stub, @SuppressWarnings("rawtypes") IStubElementType nodeType) {
+      PbGroupDefinitionStub stub, IStubElementType nodeType) {
     super(stub, nodeType);
   }
 

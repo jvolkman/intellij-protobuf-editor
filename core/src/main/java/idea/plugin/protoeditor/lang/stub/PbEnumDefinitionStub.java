@@ -28,7 +28,7 @@ public class PbEnumDefinitionStub extends StubBase<PbEnumDefinition>
   private String name;
 
   public PbEnumDefinitionStub(
-      @SuppressWarnings("rawtypes") StubElement parent,
+      StubElement parent,
       PbEnumDefinitionType elementType,
       String name) {
     super(parent, elementType);

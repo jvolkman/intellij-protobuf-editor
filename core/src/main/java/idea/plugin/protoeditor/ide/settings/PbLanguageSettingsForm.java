@@ -158,7 +158,7 @@ public class PbLanguageSettingsForm implements ConfigurableUi<PbProjectSettings>
         .addDocumentListener(
             new DocumentAdapter() {
               @Override
-              protected void textChanged(DocumentEvent e) {
+              protected void textChanged(@NotNull DocumentEvent e) {
                 updateDescriptorPathColor();
               }
             });
@@ -176,12 +176,10 @@ public class PbLanguageSettingsForm implements ConfigurableUi<PbProjectSettings>
         IdeBorderFactory.createTitledBorder(
             PbIdeBundle.message("settings.language.import.paths"), false));
 
-    ColumnInfo[] columns = {
-      new LocationColumn(PbIdeBundle.message("location")),
-      new PrefixColumn(PbIdeBundle.message("prefix"))
-    };
-
-    importPathModel = new ListTableModel<>(columns);
+    importPathModel = new ListTableModel<>(
+        new LocationColumn(PbIdeBundle.message("location")),
+        new PrefixColumn(PbIdeBundle.message("prefix"))
+    );
     TableView<ImportPath> importPathTable = new TableView<>(importPathModel);
     importPathTable.setStriped(true);
     manualConfigComponents.add(importPathTable);

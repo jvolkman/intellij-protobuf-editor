@@ -234,8 +234,8 @@ public class PbFindUsagesProviderTest extends PbCodeInsightFixtureTestCase {
   }
 
   private Collection<UsageInfo> findUsagesAtOffset(PsiFile file, int offset) {
-    PbSymbol atCaret =
-        notNull(PsiTreeUtil.getParentOfType(file.findElementAt(offset), PbSymbol.class));
+    PbSymbol atCaret = PsiTreeUtil.getParentOfType(file.findElementAt(offset), PbSymbol.class);
+    assert atCaret != null;
     return myFixture.findUsages(atCaret);
   }
 

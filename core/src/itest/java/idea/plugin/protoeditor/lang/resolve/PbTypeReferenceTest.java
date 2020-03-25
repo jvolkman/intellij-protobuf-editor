@@ -54,67 +54,67 @@ public class PbTypeReferenceTest extends PbCodeInsightFixtureTestCase {
     return ref.resolve();
   }
 
-  public void testNonQualifiedType() throws Exception {
+  public void testNonQualifiedType() {
     assertIsMessageType(resolve(), "foo.bar.Foo");
   }
 
-  public void testFullyQualifiedType() throws Exception {
+  public void testFullyQualifiedType() {
     assertIsMessageType(resolve(), "foo.bar.Foo");
   }
 
-  public void testPartiallyQualifiedType() throws Exception {
+  public void testPartiallyQualifiedType() {
     assertIsMessageType(resolve(), "foo.bar.Baz.Foo.Tom");
   }
 
-  public void testPartialPackageNameType() throws Exception {
+  public void testPartialPackageNameType() {
     assertIsMessageType(resolve(), "foo.bar.Foo.Tom");
   }
 
-  public void testIntermediateFullyQualifiedType() throws Exception {
+  public void testIntermediateFullyQualifiedType() {
     assertIsMessageType(resolve(), "foo.bar.Foo");
   }
 
-  public void testIntermediateFullyQualifiedPackage() throws Exception {
+  public void testIntermediateFullyQualifiedPackage() {
     assertIsPackage(resolve(), "foo.bar");
   }
 
-  public void testIntermediatePartiallyQualifiedType() throws Exception {
+  public void testIntermediatePartiallyQualifiedType() {
     assertIsMessageType(resolve(), "foo.bar.Foo");
   }
 
-  public void testIntermediatePartiallyQualifiedPackage() throws Exception {
+  public void testIntermediatePartiallyQualifiedPackage() {
     assertIsPackage(resolve(), "foo.bar");
   }
 
-  public void testIntermediateTypeOfUnresolvedType() throws Exception {
+  public void testIntermediateTypeOfUnresolvedType() {
     assertIsMessageType(resolve(), "foo.bar.baz.Foo");
   }
 
-  public void testIntermediatePackageOfUnresolvedType() throws Exception {
+  public void testIntermediatePackageOfUnresolvedType() {
     assertIsPackage(resolve(), "foo.bar.baz");
   }
 
-  public void testSameTypeAndFieldName() throws Exception {
+  public void testSameTypeAndFieldName() {
     assertIsMessageType(resolve(), "foo.bar.Foo");
   }
 
-  public void testTypeDeclaredInOneof() throws Exception {
+  public void testTypeDeclaredInOneof() {
     assertIsMessageType(resolve(), "foo.bar.Bar.SomeGroup");
   }
 
-  public void testGeneratedMapEntry() throws Exception {
+  public void testGeneratedMapEntry() {
     assertIsMessageType(resolve(), "foo.bar.Foo.SomeMapEntry");
   }
 
-  public void testInnerMostSymbolWins() throws Exception {
+  public void testInnerMostSymbolWins() {
     assertNull("Reference should be unresolvable", resolve());
   }
 
-  public void testFullyQualifiedBuiltInTypeName() throws Exception {
+  public void testFullyQualifiedBuiltInTypeName() {
     assertIsMessageType(resolve(), "string");
   }
 
-  public void testUnqualifiedBuiltInTypeName() throws Exception {
+  public void testUnqualifiedBuiltInTypeName() {
     assertNull("Built-in type should be unresolvable", resolveRef());
   }
 

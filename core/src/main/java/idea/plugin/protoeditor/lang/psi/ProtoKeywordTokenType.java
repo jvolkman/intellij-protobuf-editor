@@ -15,14 +15,10 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import idea.plugin.protoeditor.lang.parser.PbParserUtil;
-
 /**
  * A marker token type indicating that a token can be repurposed as an identifier.
  *
- * @see
- *     PbParserUtil#parseKeywordIdentifier(PsiBuilder,
- *     int)
+ * @see idea.plugin.protoeditor.lang.parser.PbParserUtil#parseKeywordIdentifier
  */
 public class ProtoKeywordTokenType extends ProtoTokenType {
   ProtoKeywordTokenType(String debugName) {

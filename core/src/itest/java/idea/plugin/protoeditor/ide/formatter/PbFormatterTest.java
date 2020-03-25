@@ -37,12 +37,9 @@ public class PbFormatterTest extends PbCodeInsightFixtureTestCase {
 
   public void testFormatter() {
     myFixture.configureByFiles("FormatterTestBefore.proto.testdata");
-    new WriteCommandAction.Simple(getProject()) {
-      @Override
-      protected void run() throws Throwable {
-        CodeStyleManager.getInstance(getProject()).reformat(myFixture.getFile());
-      }
-    }.execute();
+    WriteCommandAction.runWriteCommandAction(getProject(), () -> {
+      CodeStyleManager.getInstance(getProject()).reformat(myFixture.getFile());
+    });
     myFixture.checkResultByFile("FormatterTestAfter.proto.testdata");
   }
 }

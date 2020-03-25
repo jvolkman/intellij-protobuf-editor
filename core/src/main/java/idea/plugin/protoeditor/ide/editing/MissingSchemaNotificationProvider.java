@@ -77,7 +77,7 @@ public class MissingSchemaNotificationProvider
   @Nullable
   @Override
   public EditorNotificationPanel createNotificationPanel(
-      @NotNull VirtualFile virtualFile, @NotNull FileEditor fileEditor) {
+      @NotNull VirtualFile virtualFile, @NotNull FileEditor fileEditor, @NotNull Project project) {
     if (ignoredFiles.contains(virtualFile)) {
       return null;
     }
@@ -86,10 +86,6 @@ public class MissingSchemaNotificationProvider
     }
     TextEditor textEditor = (TextEditor) fileEditor;
     Editor editor = textEditor.getEditor();
-    Project project = editor.getProject();
-    if (project == null) {
-      return null;
-    }
     PbTextLanguageSettings settings = PbTextLanguageSettings.getInstance(project);
     if (settings == null || !settings.isMissingSchemaWarningEnabled()) {
       return null;

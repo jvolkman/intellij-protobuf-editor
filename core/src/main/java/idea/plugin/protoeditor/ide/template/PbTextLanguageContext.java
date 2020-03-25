@@ -19,6 +19,7 @@ import com.intellij.codeInsight.template.TemplateContextType;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiUtilCore;
 import idea.plugin.protoeditor.lang.PbTextLanguage;
+import org.jetbrains.annotations.NotNull;
 
 /** Defines a Live Template context for prototext files (or text format options in .proto). */
 class PbTextLanguageContext extends TemplateContextType {
@@ -28,7 +29,7 @@ class PbTextLanguageContext extends TemplateContextType {
   }
 
   @Override
-  public boolean isInContext(PsiFile file, int offset) {
+  public boolean isInContext(@NotNull PsiFile file, int offset) {
     return PbTextLanguage.INSTANCE.is(PsiUtilCore.getLanguageAtOffset(file, offset));
   }
 }

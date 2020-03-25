@@ -104,7 +104,6 @@ abstract class PbTextExtensionNameMixin extends PbTextElementBase implements PbT
     };
   }
 
-  @Nullable
   private static Condition<PbSymbol> getExtensionFilter(PbMessageType declaredMessage) {
     // The symbol path of a PbTextExtensionName can refer to:
     // - a package or message that contains an extend definition (serves as a scope).

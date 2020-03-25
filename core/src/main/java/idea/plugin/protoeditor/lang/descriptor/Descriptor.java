@@ -63,7 +63,7 @@ public class Descriptor {
    */
   @Nullable
   private static Descriptor locate(@NotNull Project project, @Nullable Module module) {
-    for (FileResolveProvider provider : project.getExtensions(FileResolveProvider.EP_NAME)) {
+    for (FileResolveProvider provider : FileResolveProvider.EP_NAME.getExtensionList(project)) {
       VirtualFile file =
           module != null ? provider.getDescriptorFile(module) : provider.getDescriptorFile(project);
       if (file != null) {

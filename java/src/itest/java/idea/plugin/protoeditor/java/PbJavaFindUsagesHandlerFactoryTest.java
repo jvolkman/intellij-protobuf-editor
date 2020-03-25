@@ -34,6 +34,7 @@ import idea.plugin.protoeditor.lang.psi.PbSymbol;
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -288,11 +289,16 @@ public class PbJavaFindUsagesHandlerFactoryTest extends LightJavaCodeInsightFixt
     List<UsageInfo> javaUses = javaUsages(allUses);
     // Sort by use position to make sure they are stable.
     javaUses.sort(
-        (u1, u2) ->
-            ComparisonChain.start()
-                .compare(u1.getVirtualFile().getPath(), u2.getVirtualFile().getPath())
-                .compare(u1.getNavigationOffset(), u2.getNavigationOffset())
-                .result());
+        (u1, u2) -> {
+          VirtualFile vfile1 = u1.getVirtualFile();
+          VirtualFile vfile2 = u2.getVirtualFile();
+          String path1 = vfile1 != null ? vfile1.getPath() : null;
+          String path2 = vfile2 != null ? vfile2.getPath() : null;
+          return ComparisonChain.start()
+              .compare(path1, path2)
+              .compare(u1.getNavigationOffset(), u2.getNavigationOffset())
+              .result();
+        });
     return javaUses;
   }
 

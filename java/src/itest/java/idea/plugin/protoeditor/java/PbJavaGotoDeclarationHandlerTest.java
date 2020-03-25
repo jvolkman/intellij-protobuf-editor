@@ -60,7 +60,7 @@ public class PbJavaGotoDeclarationHandlerTest extends LightJavaCodeInsightFixtur
   protected final Disposable testDisposable = new TestDisposable();
 
   // Marker that determines which caret positions to test.
-  private static final String CARET_MARKER = "caretAfterThis";
+  public static final String CARET_MARKER = "caretAfterThis";
   // How much to scoot past the CARET_MARKER. Usually it's a variable with a field,
   // or method, and we want to get to the field/method so scoot past the ".".
   // We might also have a CARET_MARKER in a /* */ comment, so scoot past the " */ "
@@ -277,7 +277,7 @@ public class PbJavaGotoDeclarationHandlerTest extends LightJavaCodeInsightFixtur
 
     for (GotoExpectationMarker expectation : expectations) {
       String substring = text.substring(expectation.startIndex, expectation.endIndex);
-      int caretOffset = substring.indexOf(CARET_MARKER, 0);
+      int caretOffset = substring.indexOf(CARET_MARKER);
       assertWithMessage(
               String.format(
                   "Caret to check is in %s within range %s", substring, expectation.rangeString()))

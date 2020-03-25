@@ -37,6 +37,6 @@ public class PbFileStub extends PsiFileStubImpl<PbFile> implements PbStatementOw
 
   @Nullable
   private PbPackageStatementStub getPackageStatement() {
-    return (PbPackageStatementStub) findChildStubByType(PbStubElementTypes.PACKAGE_STATEMENT);
+    return findChildStubByType(PbStubElementTypes.PACKAGE_STATEMENT);
   }
 }

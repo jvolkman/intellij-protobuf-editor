@@ -41,7 +41,7 @@ public class PbTextDirectiveResolveTest extends PbCodeInsightFixtureTestCase {
     return discoveredPath == null ? "" : discoveredPath;
   }
 
-  private PsiElement resolve() throws Exception {
+  private PsiElement resolve() {
     String filename = "lang/resolve/directive/" + getTestName(false) + ".pb";
     PsiReference ref = myFixture.getReferenceAtCaretPosition(filename);
     assertThat(ref).isNotNull();

@@ -41,9 +41,10 @@ public class PbGroupDefinitionType
     return new PbGroupDefinitionImpl(stub, this);
   }
 
+  @NotNull
   @Override
   public PbGroupDefinitionStub createStub(
-      @NotNull PbGroupDefinition psi, @SuppressWarnings("rawtypes") StubElement parentStub) {
+      @NotNull PbGroupDefinition psi, StubElement parentStub) {
     return new PbGroupDefinitionStub(parentStub, this, psi.getName());
   }
 
@@ -62,7 +63,7 @@ public class PbGroupDefinitionType
   @NotNull
   @Override
   public PbGroupDefinitionStub deserialize(
-      @NotNull StubInputStream dataStream, @SuppressWarnings("rawtypes") StubElement parentStub)
+      @NotNull StubInputStream dataStream, StubElement parentStub)
       throws IOException {
     String name = null;
     StringRef nameRef = dataStream.readName();

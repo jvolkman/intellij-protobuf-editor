@@ -68,17 +68,15 @@ public class PbLanguageCodeStyleSettingsProvider extends LanguageCodeStyleSettin
   }
 
   @Override
-  public CommonCodeStyleSettings getDefaultCommonSettings() {
-    CommonCodeStyleSettings commonSettings = new CommonCodeStyleSettings(PbLanguage.INSTANCE);
+  protected void customizeDefaults(
+      @NotNull CommonCodeStyleSettings commonSettings, @NotNull CommonCodeStyleSettings.IndentOptions indentOptions) {
+
     commonSettings.SPACE_BEFORE_COLON = false;
     commonSettings.SPACE_AFTER_COLON = true;
 
-    CommonCodeStyleSettings.IndentOptions indentOptions = commonSettings.initIndentOptions();
     indentOptions.USE_TAB_CHARACTER = false;
     indentOptions.TAB_SIZE = 2;
     indentOptions.INDENT_SIZE = 2;
     indentOptions.CONTINUATION_INDENT_SIZE = 4;
-
-    return commonSettings;
   }
 }

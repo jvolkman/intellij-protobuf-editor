@@ -30,6 +30,7 @@ import idea.plugin.protoeditor.lang.resolve.PbSymbolLookupElement;
 import idea.plugin.protoeditor.lang.resolve.PbSymbolResolver;
 import idea.plugin.protoeditor.lang.resolve.ProtoSymbolPathReference;
 import idea.plugin.protoeditor.lang.resolve.ResolveFilters;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -38,7 +39,7 @@ class MessageComment extends SchemaComment {
 
   private SchemaComment fileComment;
 
-  MessageComment(PsiComment comment, TextRange keyRange, TextRange nameRange) {
+  MessageComment(@NotNull PsiComment comment, TextRange keyRange, TextRange nameRange) {
     super(comment, keyRange, nameRange, Type.MESSAGE);
   }
 
@@ -59,7 +60,9 @@ class MessageComment extends SchemaComment {
 
   @Override
   public List<PsiReference> getAllReferences() {
-    if (fileComment == null || getNameRange() == null || getComment() == null) {
+    PsiComment comment = getComment();
+    TextRange nameRange = getNameRange();
+    if (fileComment == null || nameRange == null) {
       return ImmutableList.of();
     }
     PsiReference fileReference = fileComment.getReference();
@@ -90,9 +93,9 @@ class MessageComment extends SchemaComment {
             // The factory-created typename should start at position 0. To get the position in the
             // text format comment, we just need to shift the symbol range to the right.
             TextRange symbolRange =
-                path.getSymbol().getTextRange().shiftRight(getNameRange().getStartOffset());
+                path.getSymbol().getTextRange().shiftRight(nameRange.getStartOffset());
             return new ProtoSymbolPathReference(
-                getComment(),
+                comment,
                 symbolRange,
                 path,
                 PbSymbolResolver.forFileExports(pbFile),

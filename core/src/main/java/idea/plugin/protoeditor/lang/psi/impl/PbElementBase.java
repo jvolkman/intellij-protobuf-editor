@@ -23,6 +23,7 @@ import com.intellij.psi.PsiElement;
 import idea.plugin.protoeditor.lang.PbLanguage;
 import idea.plugin.protoeditor.lang.psi.PbElement;
 import idea.plugin.protoeditor.lang.psi.PbFile;
+import org.jetbrains.annotations.NotNull;
 
 abstract class PbElementBase extends ASTWrapperPsiElement
     implements PbElement, PbOverridableElement {
@@ -45,6 +46,7 @@ abstract class PbElementBase extends ASTWrapperPsiElement
     return override != null ? override : super.getParent();
   }
 
+  @NotNull
   @Override
   public PsiElement getNavigationElement() {
     PsiElement override = getNavigationElementOverride();
@@ -57,6 +59,7 @@ abstract class PbElementBase extends ASTWrapperPsiElement
     return override != null ? override : super.getTextRange();
   }
 
+  @NotNull
   @Override
   public Language getLanguage() {
     return PbLanguage.INSTANCE;

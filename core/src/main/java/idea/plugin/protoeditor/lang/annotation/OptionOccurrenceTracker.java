@@ -322,7 +322,7 @@ public class OptionOccurrenceTracker {
    * Each "recurse" instance corresponds to the same declared field, but defines a unique
    * occurrence. Thus, "value" can be set multiple times.
    */
-  public class Occurrence {
+  public static class Occurrence {
     private final Multimap<PbField, Occurrence> registeredFields = ArrayListMultimap.create();
     private final Map<PbOneofDefinition, PbField> registeredOneofFields = new HashMap<>();
     private final PbField field;

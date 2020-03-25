@@ -25,6 +25,7 @@ import com.intellij.openapi.editor.highlighter.HighlighterIterator;
 import com.intellij.psi.PsiFile;
 import idea.plugin.protoeditor.lang.psi.PbFile;
 import idea.plugin.protoeditor.lang.psi.PbTextFile;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A {@link BackspaceHandlerDelegate} that handles deletion of autoinserted '>' characters when the
@@ -33,10 +34,10 @@ import idea.plugin.protoeditor.lang.psi.PbTextFile;
 public class ProtoBackspaceHandler extends BackspaceHandlerDelegate {
 
   @Override
-  public void beforeCharDeleted(char c, PsiFile file, Editor editor) {}
+  public void beforeCharDeleted(char c, @NotNull PsiFile file, @NotNull Editor editor) {}
 
   @Override
-  public boolean charDeleted(char c, PsiFile file, Editor editor) {
+  public boolean charDeleted(char c, @NotNull PsiFile file, @NotNull Editor editor) {
     // This logic is mostly just copied from BackspaceHandler#handleBackspace(...)
     if ((c == '<')
         && CodeInsightSettings.getInstance().AUTOINSERT_PAIR_BRACKET

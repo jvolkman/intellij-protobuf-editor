@@ -22,6 +22,7 @@ import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.PsiUtilCore;
 import idea.plugin.protoeditor.lang.PbLanguage;
 import idea.plugin.protoeditor.lang.psi.*;
+import org.jetbrains.annotations.NotNull;
 
 /** Defines a Live Template context for protobuf files types. */
 class PbLanguageContext extends TemplateContextType {
@@ -31,7 +32,7 @@ class PbLanguageContext extends TemplateContextType {
   }
 
   @Override
-  public boolean isInContext(PsiFile file, int offset) {
+  public boolean isInContext(@NotNull PsiFile file, int offset) {
     return PbLanguage.INSTANCE.is(PsiUtilCore.getLanguageAtOffset(file, offset));
   }
 
@@ -46,7 +47,7 @@ class PbLanguageContext extends TemplateContextType {
     }
 
     @Override
-    public boolean isInContext(PsiFile file, int offset) {
+    public boolean isInContext(@NotNull PsiFile file, int offset) {
       PsiElement element = PsiUtilCore.getElementAtOffset(file, offset);
       return bodyClass.isInstance(
           PsiTreeUtil.getParentOfType(element, PbBlockBody.class, /* strict */ false));

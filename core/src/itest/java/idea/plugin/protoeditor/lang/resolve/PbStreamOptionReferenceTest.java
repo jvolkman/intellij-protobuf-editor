@@ -45,7 +45,7 @@ public class PbStreamOptionReferenceTest extends PbCodeInsightFixtureTestCase {
     TestUtils.registerTestdataFileExtension();
   }
 
-  public void testStreamOption() throws Exception {
+  public void testStreamOption() {
     String filename = "lang/options/" + getTestName(false) + ".proto.testdata";
     PsiReference ref = myFixture.getReferenceAtCaretPosition(filename);
     assertNotNull(ref);

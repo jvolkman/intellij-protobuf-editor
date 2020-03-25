@@ -128,7 +128,7 @@ public class PbSymbolLookupElement extends LookupElement {
   }
 
   @Override
-  public void handleInsert(InsertionContext insertionContext) {
+  public void handleInsert(@NotNull InsertionContext insertionContext) {
     if (symbol instanceof PbPackageName) {
       AutoPopupController.getInstance(insertionContext.getProject())
           .scheduleAutoPopup(insertionContext.getEditor());
