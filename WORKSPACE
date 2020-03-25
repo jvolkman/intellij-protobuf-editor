@@ -3,10 +3,7 @@ workspace(name = "protoeditor")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_file")
 load("@bazel_tools//tools/build_defs/repo:jvm.bzl", "jvm_maven_import_external")
 
-# Long-lived download links available at: https://www.jetbrains.com/intellij-repository/releases
-
-# The plugin api for IntelliJ UE 2019.3. This is required to run UE-specific
-# integration tests.
+# The plugin api for IntelliJ UE.
 http_archive(
     name = "idea_ue_2019_3",
     build_file = "@//build_support/external:BUILD.idea_ue",
@@ -69,6 +66,7 @@ http_archive(
 jvm_maven_import_external(
     name = "truth",
     artifact = "com.google.truth:truth:1.0.1",
+    artifact_sha256 = "1ccf4334e7a94cf00a20a619b5462b53acf3274e00b70498bf5b28a3bc1be9b1",
     licenses = ["notice"],  # Apache 2.0
     server_urls = ["https://repo.maven.apache.org/maven2"],
 )
@@ -76,26 +74,27 @@ jvm_maven_import_external(
 jvm_maven_import_external(
     name = "diffutils",
     artifact = "com.googlecode.java-diff-utils:diffutils:1.3.0",
+    artifact_sha256 = "61ba4dc49adca95243beaa0569adc2a23aedb5292ae78aa01186fa782ebdc5c2",
     licenses = ["notice"],  # Apache 2.0
     server_urls = ["https://repo.maven.apache.org/maven2"],
 )
 
 jvm_maven_import_external(
     name = "mockito",
-    artifact = "org.mockito:mockito-core:1.10.19",
-    artifact_sha256 = "d5831ee4f71055800821a34a3051cf1ed5b3702f295ffebd50f65fb5d81a71b8",
+    artifact = "org.mockito:mockito-core:3.3.3",
+    artifact_sha256 = "4be648c50456fba4686ba825000d628c1d805a3b92272ba9ad5b697dfa43036b",
     licenses = ["notice"],  # Apache 2.0
     server_urls = ["https://repo.maven.apache.org/maven2"],
 )
 
-# LICENSE: The Apache Software License, Version 2.0
-# proto_library rules implicitly depend on @com_google_protobuf//:protoc
 http_archive(
     name = "com_google_protobuf",
-    sha256 = "8e0e89a3670df2fbc2d9cedd76bb71b08027d806b81bf363ff434f5762520ed6",
-    strip_prefix = "protobuf-3.11.0-rc1",
-    url = "https://github.com/protocolbuffers/protobuf/archive/v3.11.0-rc1.tar.gz",
+    sha256 = "a79d19dcdf9139fa4b81206e318e33d245c4c9da1ffed21c87288ed4380426f9",
+    strip_prefix = "protobuf-3.11.4",
+    url = "https://github.com/protocolbuffers/protobuf/archive/v3.11.4.tar.gz",
 )
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+protobuf_deps()
 
 http_archive(
     name = "com_google_protobuf_javalite",
@@ -104,28 +103,26 @@ http_archive(
     url = "https://github.com/protocolbuffers/protobuf/archive/7b64714af67aa967dcf941df61fe5207975966be.tar.gz",
 )
 
-load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
-protobuf_deps()
-
-http_archive(
-    name = "build_stack_rules_proto",
-    urls = ["https://github.com/stackb/rules_proto/archive/d9a123032f8436dbc34069cfc3207f2810a494ee.tar.gz"],
-    sha256 = "85ccc69a964a9fe3859b1190a7c8246af2a4ead037ee82247378464276d4262a",
-    strip_prefix = "rules_proto-d9a123032f8436dbc34069cfc3207f2810a494ee",
-)
-
-load("@build_stack_rules_proto//python:deps.bzl", "python_proto_compile")
-python_proto_compile()
-
 http_archive(
     name = "io_bazel_rules_go",
     urls = [
-        "https://storage.googleapis.com/bazel-mirror/github.com/bazelbuild/rules_go/releases/download/v0.20.2/rules_go-v0.20.2.tar.gz",
-        "https://github.com/bazelbuild/rules_go/releases/download/v0.20.2/rules_go-v0.20.2.tar.gz",
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.22.2/rules_go-v0.22.2.tar.gz",
+        "https://github.com/bazelbuild/rules_go/releases/download/v0.22.2/rules_go-v0.22.2.tar.gz",
     ],
-    sha256 = "b9aa86ec08a292b97ec4591cf578e020b35f98e12173bbd4a921f84f583aebd9",
+    sha256 = "142dd33e38b563605f0d20e89d9ef9eda0fc3cb539a14be1bdb1350de2eda659",
 )
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_rules_dependencies", "go_register_toolchains")
 go_rules_dependencies()
 go_register_toolchains()
+
+
+http_archive(
+    name = "com_github_grpc_grpc",
+    urls = ["https://github.com/grpc/grpc/archive/v1.27.3.tar.gz"],
+    sha256 = "c2ab8a42a0d673c1acb596d276055adcc074c1116e427f118415da3e79e52969",
+    strip_prefix = "grpc-1.27.3",
+)
+
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+grpc_deps()
