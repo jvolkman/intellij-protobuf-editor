@@ -1,6 +1,6 @@
 .ijwb
 bazel-bin
 bazel-genfiles
-bazel-intellij-protobuf-plugin
+bazel-intellij-protobuf-editor
 bazel-out
 bazel-testlogs
