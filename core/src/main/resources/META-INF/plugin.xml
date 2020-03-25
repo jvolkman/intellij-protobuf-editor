@@ -1,4 +1,4 @@
-<idea-plugin version="2">
+<idea-plugin>
   <depends>com.intellij.modules.lang</depends>
 
   <extensionPoints>
@@ -8,8 +8,6 @@
     <extensionPoint qualifiedName="idea.plugin.protoeditor.projectSettingsConfigurator"
         interface="idea.plugin.protoeditor.ide.settings.ProjectSettingsConfigurator"
         area="IDEA_PROJECT"/>
-    <extensionPoint qualifiedName="idea.plugin.protoeditor.configurer"
-        interface="idea.plugin.protoeditor.lang.ProtoEditorConfigurer"/>
     <extensionPoint qualifiedName="idea.plugin.protoeditor.schemaProvider"
         interface="idea.plugin.protoeditor.lang.resolve.SchemaProvider"/>
   </extensionPoints>
@@ -28,7 +26,7 @@
   <!-- Protobuf extensions -->
   <extensions defaultExtensionNs="com.intellij">
     <!-- Language -->
-    <fileTypeFactory implementation="idea.plugin.protoeditor.lang.PbFileTypeFactory"/>
+    <fileType name="protobuf" language="protobuf" implementationClass="idea.plugin.protoeditor.lang.PbFileType" extensions="proto"/>
     <lang.parserDefinition language="protobuf" implementationClass="idea.plugin.protoeditor.lang.PbParserDefinition"/>
 
     <!-- Syntax highlighting -->
@@ -87,10 +85,8 @@
     <projectConfigurable instance="idea.plugin.protoeditor.ide.settings.PbLanguageSettingsConfigurable" groupId="language">
       <configurable instance="idea.plugin.protoeditor.ide.settings.PbTextLanguageSettingsConfigurable"/>
     </projectConfigurable>
-    <projectService serviceInterface="idea.plugin.protoeditor.ide.settings.PbProjectSettings"
-        serviceImplementation="idea.plugin.protoeditor.ide.settings.PbProjectSettings"/>
-    <projectService serviceInterface="idea.plugin.protoeditor.ide.settings.PbTextLanguageSettings"
-        serviceImplementation="idea.plugin.protoeditor.ide.settings.PbTextLanguageSettings"/>
+    <projectService serviceImplementation="idea.plugin.protoeditor.ide.settings.PbProjectSettings"/>
+    <projectService serviceImplementation="idea.plugin.protoeditor.ide.settings.PbTextLanguageSettings"/>
 
     <!-- Enable usage highlights for non-project targets -->
     <useScopeEnlarger implementation="idea.plugin.protoeditor.lang.resolve.PbUseScopeEnlarger"/>
@@ -113,7 +109,8 @@
   <!-- Text format extensions -->
   <extensions defaultExtensionNs="com.intellij">
     <!-- Language -->
-    <fileTypeFactory implementation="idea.plugin.protoeditor.lang.PbTextFileTypeFactory"/>
+    <fileType name="prototext" language="prototext" implementationClass="idea.plugin.protoeditor.lang.PbTextFileType" extensions="textproto;pb"/>
+
     <lang.parserDefinition language="prototext" implementationClass="idea.plugin.protoeditor.lang.PbTextParserDefinition"/>
     <filetype.stubBuilder filetype="prototext" implementationClass="idea.plugin.protoeditor.lang.stub.PbTextFileStubBuilder"/>
 
