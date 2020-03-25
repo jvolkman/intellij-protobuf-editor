@@ -58,7 +58,7 @@ public class PbTextFileType extends LanguageFileType {
   }
 
   public boolean equals(Object other) {
-    return getClass().equals(other.getClass());
+    return other != null && getClass().equals(other.getClass());
   }
 
   public int hashCode() {
