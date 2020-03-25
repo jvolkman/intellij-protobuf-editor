@@ -5,5 +5,5 @@ package foo.bar;
 
 enum TestEnum {
   // Enum option
-  option allow<ref>_alias = true;
+  option allow<caret>_alias = true;
 }

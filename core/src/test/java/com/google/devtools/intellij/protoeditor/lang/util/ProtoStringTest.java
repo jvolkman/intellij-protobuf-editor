@@ -162,7 +162,7 @@ public class ProtoStringTest {
     ProtoString parsed = ProtoString.parse("'\\zzz\\ppp'");
     assertThat(parsed.toString()).isEqualTo("\\zzz\\ppp");
     assertThat(parsed.getInvalidEscapeRanges())
-        .containsAllOf(TextRange.create(1, 3), TextRange.create(5, 7));
+        .containsAtLeast(TextRange.create(1, 3), TextRange.create(5, 7));
   }
 
   @Test

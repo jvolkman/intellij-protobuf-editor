@@ -6,7 +6,7 @@ licenses(["notice"])  # Apache 2.0
 package(default_visibility = ["//visibility:private"])
 
 load(
-    "//testlib:test_defs.bzl",
+    "//build_support/testing:test_defs.bzl",
     "intellij_integration_test_suite",
 )
 load(
@@ -43,16 +43,14 @@ intellij_integration_test_suite(
     visibility = ["//visibility:public"],
     runtime_deps = [
         ":plugin_for_tests",
-        # Needed to work around one-version issue; see cr/219160374
-        "//build_support/intellij_platform_sdk:test_libs",
+        "//build_support:test_plugin_java_support",  # Required for some Python -> Java plugin integration
     ],
     deps = [
-        "//build_support/intellij_platform_sdk:plugin_api_for_tests",
-        "//build_support/intellij_platform_sdk:test_libs",
+        "//build_support:test_plugin_api",
+        "//build_support:test_plugin_python_support",
+        "//build_support:test_libs",
         "//python",
         "//testlib:gencodeutils",
         "//testlib:test_utils",
-        "@junit//jar",
-        "@python_2019_2//:python_for_tests",
     ],
 )

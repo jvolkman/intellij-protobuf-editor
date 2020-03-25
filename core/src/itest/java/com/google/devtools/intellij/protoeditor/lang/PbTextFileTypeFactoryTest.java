@@ -33,7 +33,7 @@ public class PbTextFileTypeFactoryTest extends PbCodeInsightFixtureTestCase {
   public void testRegisteredExtensions() {
     for (String extension : EXTENSIONS) {
       PsiFile file = myFixture.configureByText("test." + extension, "");
-      assertThat(file.getLanguage()).isSameAs(PbTextLanguage.INSTANCE);
+      assertThat(file.getLanguage()).isSameInstanceAs(PbTextLanguage.INSTANCE);
     }
   }
 }

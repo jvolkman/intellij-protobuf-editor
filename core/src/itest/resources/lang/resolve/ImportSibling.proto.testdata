@@ -3,7 +3,7 @@ syntax = "proto3";
 package foo.bar;
 
 // A comment.
-import "Sibl<ref>ing.proto";
+import "lang/resolve/Sibl<caret>ing.proto";
 
 message Baz {
   Foo a_foo;

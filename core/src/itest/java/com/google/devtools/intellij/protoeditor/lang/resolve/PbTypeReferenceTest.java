@@ -16,32 +16,41 @@
 package com.google.devtools.intellij.protoeditor.lang.resolve;
 
 import com.google.devtools.intellij.protoeditor.TestUtils;
+import com.google.devtools.intellij.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import com.google.devtools.intellij.protoeditor.lang.psi.PbMessageType;
 import com.google.devtools.intellij.protoeditor.lang.psi.PbPackageName;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
 import com.intellij.psi.util.QualifiedName;
-import com.intellij.testFramework.ResolveTestCase;
 import org.junit.Assert;
 
 /** Tests for {@link ProtoSymbolPathReference}. */
-public class PbTypeReferenceTest extends ResolveTestCase {
+public class PbTypeReferenceTest extends PbCodeInsightFixtureTestCase {
 
   @Override
   public void setUp() throws Exception {
     super.setUp();
+    myFixture.addFileToProject(
+            TestUtils.OPENSOURCE_DESCRIPTOR_PATH, TestUtils.getOpensourceDescriptorText());
+    TestUtils.addTestFileResolveProvider(
+            getProject(), TestUtils.OPENSOURCE_DESCRIPTOR_PATH, getTestRootDisposable());
     TestUtils.registerTestdataFileExtension();
   }
 
   @Override
   public String getTestDataPath() {
     String discoveredPath = TestUtils.getTestdataPath(this);
-    String path = discoveredPath == null ? "" : discoveredPath;
-    return path + "lang/resolve/";
+    return discoveredPath == null ? "" : discoveredPath;
   }
 
-  private PsiElement resolve() throws Exception {
-    PsiReference ref = configureByFile(getTestName(false) + ".proto.testdata");
+  private PsiReference resolveRef() {
+    String filename = "lang/resolve/" + getTestName(false) + ".proto.testdata";
+    return myFixture.getReferenceAtCaretPosition(filename);
+  }
+
+  private PsiElement resolve() {
+    PsiReference ref = resolveRef();
+    assertNotNull(ref);
     return ref.resolve();
   }
 
@@ -106,22 +115,7 @@ public class PbTypeReferenceTest extends ResolveTestCase {
   }
 
   public void testUnqualifiedBuiltInTypeName() throws Exception {
-
-    // The following would be ideal, but ResolveTestCase raises an AssertionError if the element
-    // at the <ref> marker doesn't return any reference at all, which is the case for built-in
-    // types.
-    //
-    // assertNull("Built-in type should be unresolvable", resolve());
-    //
-    // TODO(volkman): Stop using ReferenceTestCase, and instead switch to
-    // PbCodeInsightFixtureTestCase and use getReferenceAtCaretPosition()
-
-    try {
-      resolve();
-    } catch (AssertionError e) {
-      return;
-    }
-    throw new AssertionError("Expected AssertionError.");
+    assertNull("Built-in type should be unresolvable", resolveRef());
   }
 
   private static void assertIsMessageType(PsiElement target, String name) {

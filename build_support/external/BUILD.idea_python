@@ -1,18 +1,6 @@
+package(default_visibility = ["//visibility:public"])
+
 java_import(
-    name = 'python_internal',
+    name = 'plugin_sdk',
     jars = glob(['python/lib/*.jar']),
-)
-
-java_library(
-    name = 'python',
-    exports = [':python_internal'],
-    neverlink = True,
-    visibility = ['//visibility:public'],
-)
-
-java_library(
-    name = 'python_for_tests',
-    exports = [':python_internal'],
-    testonly = True,
-    visibility = ['//visibility:public'],
 )

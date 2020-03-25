@@ -14,5 +14,5 @@ message Bar {
       }
     }
   }
-  .foo.bar.F<ref>oo x = 1;
+  .foo.bar.F<caret>oo x = 1;
 }

@@ -1,6 +1,5 @@
 # Rules for building and testing the plugin.
 
-load("//build_support/intellij_platform_sdk:build_defs.bzl", "select_for_ide")
 load(
     "//build_support/build_defs:build_defs.bzl",
     "stamped_plugin_xml",
@@ -23,27 +22,18 @@ java_library(
     name = "combined_lib",
     exports = [
         "//core",
-        ]
-#        "//python",
-#    ] + select_for_ide(
-#        android_studio = [
-#            "//java",
-#        ],
-#        clion = [],
-#        default = [],
-#        intellij = [
-#            "//golang",
-#            "//java",
-#        ],
-#    ),
+        "//java",
+        "//python",
+        "//golang",
+    ]
 )
 
 intellij_plugin_library(
     name = "plugin_library",
     optional_plugin_xmls = [
-#        "//golang:optional_plugin_xml",
-#        "//java:optional_plugin_xml",
-#        "//python:optional_plugin_xml",
+        "//golang:optional_plugin_xml",
+        "//java:optional_plugin_xml",
+        "//python:optional_plugin_xml",
     ],
     plugin_xmls = ["//core:plugin_xml"],
     deps = [":combined_lib"],

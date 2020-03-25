@@ -31,12 +31,12 @@ import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.testFramework.PlatformTestCase;
+import com.intellij.testFramework.HeavyPlatformTestCase;
 import java.io.File;
 import java.util.UUID;
 
 /** Unit tests for {@link ProjectSettingsConfiguratorManager}. */
-public class ProjectSettingsConfiguratorManagerTest extends PlatformTestCase {
+public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCase {
   private File tempDir = null;
 
   @Override
@@ -56,7 +56,7 @@ public class ProjectSettingsConfiguratorManagerTest extends PlatformTestCase {
     File projectDir = new File(tempDir, "project");
     assertTrue(projectDir.mkdirs());
 
-    Project project = createProject(projectDir, "project");
+    Project project = createProject(projectDir.toPath());
     disposeOnTearDown(project);
     Module module1 = doCreateRealModuleIn("module1", project, EmptyModuleType.getInstance());
     Module module2 = doCreateRealModuleIn("module2", project, EmptyModuleType.getInstance());
@@ -141,7 +141,7 @@ public class ProjectSettingsConfiguratorManagerTest extends PlatformTestCase {
     File projectDir = new File(tempDir, "project");
     assertTrue(projectDir.mkdirs());
 
-    Project project = createProject(projectDir, "project");
+    Project project = createProject(projectDir.toPath());
     disposeOnTearDown(project);
     Module module = doCreateRealModuleIn("module", project, EmptyModuleType.getInstance());
 
@@ -213,7 +213,7 @@ public class ProjectSettingsConfiguratorManagerTest extends PlatformTestCase {
         "some/custom/descriptor.proto", PbProjectSettings.getInstance(project).getDescriptorPath());
   }
 
-  public void testGetDescriptorPathSuggestions() throws Exception {
+  public void testGetDescriptorPathSuggestions() {
     assertContainsElements(
         ProjectSettingsConfiguratorManager.getInstance(getProject()).getDescriptorPathSuggestions(),
         "google/protobuf/descriptor.proto");

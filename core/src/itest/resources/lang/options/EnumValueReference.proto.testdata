@@ -4,5 +4,5 @@ import "descriptor.proto";
 package foo.bar;
 
 message TestMessage {
-  string xyz = 1 [ctype = STRING<ref>_PIECE];
+  string xyz = 1 [ctype = STRING<caret>_PIECE];
 }

@@ -9,6 +9,6 @@ extend proto2.OneofOptions {
 message TestMessage {
   oneof TestOneof {
     // Custom oneof option
-    option (test_on<ref>eof_option) = 10;
+    option (test_on<caret>eof_option) = 10;
   }
 }

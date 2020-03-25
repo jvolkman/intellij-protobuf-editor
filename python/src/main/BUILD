@@ -15,10 +15,10 @@ java_library(
     name = "python",
     srcs = glob(["java/**/*.java"]),
     deps = [
-        "//build_support/intellij_platform_sdk:plugin_api",
+        "//build_support:plugin_api",
+        "//build_support:plugin_python_support",
         "//core",
         "//gencode",
-        "@python_2019_2//:python",
     ],
 )
 

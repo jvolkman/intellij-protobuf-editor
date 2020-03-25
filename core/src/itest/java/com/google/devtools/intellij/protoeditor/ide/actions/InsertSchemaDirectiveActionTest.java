@@ -54,24 +54,20 @@ public class InsertSchemaDirectiveActionTest extends PbCodeInsightFixtureTestCas
     AnAction action = getAction();
     AnActionEvent event = getTextEvent(action, "");
     action.actionPerformed(event);
-    // For some reason, uninitialized variables default to 'a': https://git.io/v9cdH
-    // But this only happens when running tests locally. When running via TAP, the "a" string
-    // isn't present. As a workaround, these tests allow either "a" or "".
-    // TODO(volkman): figure out what causes the TAP/local discrepancy.
     assertThat(myFixture.getFile().getText())
-        .matches(file("# proto-file: a?", "# proto-message: a?"));
+        .matches(file("# proto-file: ", "# proto-message: ", ""));
   }
 
-  public void testInsertNoBlankLineBeforeEntries() {
+  public void testInsertBeforeNoCommentsEntries() {
     AnAction action = getAction();
-    AnActionEvent event = getTextEvent(action, file("# First", "# Second", "foo: bar"));
+    AnActionEvent event = getTextEvent(action, file("foo: bar"));
     action.actionPerformed(event);
     assertThat(myFixture.getFile().getText())
         .matches(
-            file("# First", "# Second", "# proto-file: a?", "# proto-message: a?", "foo: bar"));
+            file( "# proto-file: ", "# proto-message: ", "", "foo: bar"));
   }
 
-  public void testInsertAfterExistingBlock() {
+  public void testInsertBeforeExistingBlock() {
     AnAction action = getAction();
     AnActionEvent event =
         getTextEvent(action, file("# First", "# Second", "# Third", "", "# New block", "foo: bar"));
@@ -79,11 +75,12 @@ public class InsertSchemaDirectiveActionTest extends PbCodeInsightFixtureTestCas
     assertThat(myFixture.getFile().getText())
         .matches(
             file(
+                "# proto-file: ",
+                "# proto-message: ",
+                "#",
                 "# First",
                 "# Second",
                 "# Third",
-                "# proto-file: a?",
-                "# proto-message: a?",
                 "",
                 "# New block",
                 "foo: bar"));
@@ -106,11 +103,12 @@ public class InsertSchemaDirectiveActionTest extends PbCodeInsightFixtureTestCas
     assertThat(myFixture.getFile().getText())
         .matches(
             file(
+                "# proto-file: foo/bar.proto",
+                "# proto-message: ",
+                "#",
                 "# First",
                 "# Second",
                 "# Third",
-                "# proto-file: foo/bar.proto",
-                "# proto-message: a?",
                 "",
                 "# New block",
                 "foo: bar"));
@@ -133,11 +131,12 @@ public class InsertSchemaDirectiveActionTest extends PbCodeInsightFixtureTestCas
     assertThat(myFixture.getFile().getText())
         .matches(
             file(
+                "# proto-file: ",
+                "# proto-message: Foo",
+                "#",
                 "# First",
                 "# Second",
                 "# Third",
-                "# proto-file: a?",
-                "# proto-message: Foo",
                 "",
                 "# New block",
                 "foo: bar"));
@@ -161,11 +160,12 @@ public class InsertSchemaDirectiveActionTest extends PbCodeInsightFixtureTestCas
     assertThat(myFixture.getFile().getText())
         .isEqualTo(
             file(
+                "# proto-file: foo/bar.proto",
+                "# proto-message: Foo",
+                "#",
                 "# First",
                 "# Second",
                 "# Third",
-                "# proto-file: foo/bar.proto",
-                "# proto-message: Foo",
                 "",
                 "# New block",
                 "foo: bar"));
@@ -192,14 +192,15 @@ public class InsertSchemaDirectiveActionTest extends PbCodeInsightFixtureTestCas
     assertThat(myFixture.getFile().getText())
         .isEqualTo(
             file(
+                "# proto-file: foo/bar.proto",
+                "# proto-message: Foo",
+                "# proto-import: foo/baz.proto",
+                "# proto-import: foo/biz.proto",
+                "#",
                 "# First",
                 "# Second",
                 "# Third",
                 "# Fourth",
-                "# proto-file: foo/bar.proto",
-                "# proto-message: Foo",
-                "# proto-import: foo/biz.proto",
-                "# proto-import: foo/baz.proto",
                 "",
                 "# New block",
                 "foo: bar"));

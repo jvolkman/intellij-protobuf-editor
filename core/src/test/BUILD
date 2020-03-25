@@ -4,7 +4,7 @@
 licenses(["notice"])  # Apache 2.0
 
 load(
-    "//testlib:test_defs.bzl",
+    "//build_support/testing:test_defs.bzl",
     "intellij_unit_test_suite",
 )
 
@@ -16,7 +16,8 @@ intellij_unit_test_suite(
     test_package_root = "com.google.devtools.intellij.protoeditor",
     visibility = ["//visibility:public"],
     deps = [
-        "//build_support:idea_plugin_api",
+        "//build_support:test_libs",
+        "//build_support:test_plugin_api",
         "//core/src/main:core",
     ],
 )

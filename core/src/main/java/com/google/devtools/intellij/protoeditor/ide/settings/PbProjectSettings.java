@@ -23,6 +23,7 @@ import com.intellij.openapi.components.Storage;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ex.ProjectRootManagerEx;
 import com.intellij.openapi.util.text.StringUtil;
+import com.intellij.serviceContainer.NonInjectable;
 import com.intellij.util.xmlb.XmlSerializer;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,7 +32,7 @@ import java.util.Objects;
 import org.jetbrains.annotations.Nullable;
 
 /** A persistent service that stores protobuf settings. */
-@State(name = "ProtobufLanguageSettings", storages = @Storage("google-protobuf.xml"))
+@State(name = "ProtobufLanguageSettings", storages = @Storage("protoeditor.xml"))
 public class PbProjectSettings implements PersistentStateComponent<PbProjectSettings.State> {
 
   private State state;
@@ -40,6 +41,7 @@ public class PbProjectSettings implements PersistentStateComponent<PbProjectSett
     this(new State());
   }
 
+  @NonInjectable
   private PbProjectSettings(State state) {
     this.state = state;
   }

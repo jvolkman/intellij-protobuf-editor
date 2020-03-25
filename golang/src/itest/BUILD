@@ -12,7 +12,7 @@ load(
     "intellij_plugin",
 )
 load(
-    "//testlib:test_defs.bzl",
+    "//build_support/testing:test_defs.bzl",
     "intellij_integration_test_suite",
 )
 load(
@@ -59,17 +59,12 @@ intellij_integration_test_suite(
     visibility = ["//visibility:public"],
     runtime_deps = [
         ":plugin_for_tests",
-        # Needed to work around one-version issue; see cr/219160374
-        "//build_support/intellij_platform_sdk:test_libs",
     ],
     deps = [
-        "//build_support/intellij_platform_sdk:jsr305",
-        "//build_support/intellij_platform_sdk:plugin_api_for_tests",
-        "//build_support/intellij_platform_sdk:test_libs",
-        "//golang",
+        "//build_support:test_plugin_api",
+        "//build_support:test_plugin_go_support",
+        "//build_support:test_libs",
         "//testlib:gencodeutils",
         "//testlib:test_utils",
-        "@go_2019_2//:go_for_tests",
-        "@junit//jar",
     ],
 )

@@ -4,11 +4,15 @@
 
 package(default_visibility = ["//visibility:public"])
 
+load(
+    "@//build_support/build_defs:build_defs.bzl",
+    "intellij_sdk",
+)
+
 java_import(
-    name = "sdk",
+    name = "sdk_lib",
     jars = glob(["lib/*.jar"]),
     tags = ["intellij-provided-by-sdk"],
-#    deps = ["@error_prone_annotations//jar"],
 )
 
 java_import(
@@ -81,7 +85,7 @@ java_import(
     jars = ["lib/forms_rt.jar"],
 )
 
-# The plugins required by IJwB. We need to include them
+# The plugins required by protoeditor. We need to include them
 # when running integration tests.
 java_import(
     name = "bundled_plugins",
@@ -90,6 +94,15 @@ java_import(
         "plugins/java-i18n/lib/*.jar",
         "plugins/junit/lib/*.jar",
         "plugins/properties/lib/*.jar",
+        "plugins/yaml/lib/*.jar",
+    ]),
+    tags = ["intellij-provided-by-sdk"],
+)
+
+java_import(
+    name = "java_support",
+    jars = glob([
+        "plugins/java/lib/*.jar"
     ]),
     tags = ["intellij-provided-by-sdk"],
 )
@@ -97,4 +110,12 @@ java_import(
 filegroup(
     name = "application_info_jar",
     srcs = glob(["lib/resources.jar"]),
+)
+
+intellij_sdk(
+    name = "plugin_sdk",
+    sdk_lib = ":sdk_lib",
+    bundled_plugins = ":bundled_plugins",
+    application_info_jar = ":application_info_jar",
+    application_info_name = "idea/ApplicationInfo.xml",
 )

@@ -21,10 +21,12 @@ import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.openapi.project.Project;
 import java.util.Objects;
+
+import com.intellij.serviceContainer.NonInjectable;
 import org.jetbrains.annotations.Nullable;
 
 /** A persistent service that stores protobuf text format settings. */
-@State(name = "PrototextLanguageSettings", storages = @Storage("google-protobuf.xml"))
+@State(name = "PrototextLanguageSettings", storages = @Storage("protoeditor.xml"))
 public class PbTextLanguageSettings
     implements PersistentStateComponent<PbTextLanguageSettings.State> {
 
@@ -34,6 +36,7 @@ public class PbTextLanguageSettings
     this(new State());
   }
 
+  @NonInjectable
   private PbTextLanguageSettings(State state) {
     this.state = state;
   }

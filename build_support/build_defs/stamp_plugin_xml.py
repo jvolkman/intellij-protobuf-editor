@@ -28,11 +28,11 @@ parser.add_argument(
     "--plugin_xml",
     help="The plugin xml file",
 )
-# parser.add_argument(
-#     "--api_version_txt",
-#     help="The file containing the api version info",
-#     required=True,
-# )
+parser.add_argument(
+    "--api_version_txt",
+    help="The file containing the api version info",
+    required=True,
+)
 parser.add_argument(
     "--stamp_since_build",
     action="store_true",
@@ -149,8 +149,8 @@ def main():
     else:
         dom = minidom.parseString("<idea-plugin/>")
 
-    # with open(args.api_version_txt) as f:
-    #     api_version = f.readline().strip()
+    with open(args.api_version_txt) as f:
+        api_version = f.readline().strip()
 
     new_elements = []
 
@@ -182,18 +182,18 @@ def main():
         # We strip the product code and build number to enable making a single
         # plugin build that would work on multiple IDEs. That is, the 'intellij'
         # plugin zip can be loaded in any JetBrains IDE.
-        # idea_version_build_element = _strip_build_number(
-        #     _strip_product_code(api_version))
+        idea_version_build_element = _strip_build_number(
+            _strip_product_code(api_version))
 
-        # idea_version_element = dom.createElement("idea-version")
-        # new_elements.append(idea_version_element)
+        idea_version_element = dom.createElement("idea-version")
+        new_elements.append(idea_version_element)
 
-        # if args.stamp_since_build:
-        #     idea_version_element.setAttribute("since-build",
-        #                                       idea_version_build_element)
-        # if args.stamp_until_build:
-        #     until_version = _parse_major_version(api_version) + ".*"
-        #     idea_version_element.setAttribute("until-build", until_version)
+        if args.stamp_since_build:
+            idea_version_element.setAttribute("since-build",
+                                              idea_version_build_element)
+        if args.stamp_until_build:
+            until_version = _parse_major_version(api_version) + ".*"
+            idea_version_element.setAttribute("until-build", until_version)
 
     if args.changelog_file:
         if idea_plugin.getElementsByTagName("change-notes"):

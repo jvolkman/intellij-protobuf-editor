@@ -20,13 +20,14 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.google.devtools.intellij.protoeditor.TestUtils.notNull;
 
 import com.google.devtools.intellij.protoeditor.TestUtils;
-import com.google.devtools.intellij.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import com.google.devtools.intellij.protoeditor.gencodeutils.GotoExpectationMarker;
 import com.google.devtools.intellij.protoeditor.gencodeutils.ReferenceGotoExpectation;
 import com.intellij.codeInsight.navigation.actions.GotoDeclarationAction;
+import com.intellij.openapi.Disposable;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.util.Disposer;
 import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiClass;
@@ -35,6 +36,8 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiQualifiedReferenceElement;
 import com.intellij.psi.PsiReference;
 import com.intellij.psi.util.PsiTreeUtil;
+import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase;
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
@@ -56,7 +59,9 @@ import java.util.List;
  * .proto file + element). There must be at least one {@link #CARET_MARKER} after each {@link
  * GotoExpectationMarker}.
  */
-public class PbJavaGotoDeclarationHandlerTest extends PbCodeInsightFixtureTestCase {
+public class PbJavaGotoDeclarationHandlerTest extends LightJavaCodeInsightFixtureTestCase {
+
+  protected final Disposable testDisposable = new TestDisposable();
 
   // Marker that determines which caret positions to test.
   private static final String CARET_MARKER = "caretAfterThis";
@@ -64,6 +69,12 @@ public class PbJavaGotoDeclarationHandlerTest extends PbCodeInsightFixtureTestCa
   // or method, and we want to get to the field/method so scoot past the ".".
   // We might also have a CARET_MARKER in a /* */ comment, so scoot past the " */ "
   private static final int CARET_BUMP = 5;
+
+  @Override
+  protected void tearDown() throws Exception {
+    Disposer.dispose(testDisposable);
+    super.tearDown();
+  }
 
   @Override
   public String getTestDataPath() {

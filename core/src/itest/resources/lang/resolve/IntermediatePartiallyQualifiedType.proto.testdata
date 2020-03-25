@@ -9,5 +9,5 @@ message Foo {
 }
 
 message Bar {
-  F<ref>oo.Baz x = 1;
+  F<caret>oo.Baz x = 1;
 }

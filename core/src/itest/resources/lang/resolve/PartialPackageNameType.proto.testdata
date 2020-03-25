@@ -9,5 +9,5 @@ message Foo {
 }
 
 message Baz {
-  bar.Foo.T<ref>om x = 1;
+  bar.Foo.T<caret>om x = 1;
 }

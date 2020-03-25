@@ -20,4 +20,4 @@ extend SubType {
   optional int32 ext = 20;
 }
 
-option (o<ref>pt).foo.(ext) = 20;
+option (o<caret>pt).foo.(ext) = 20;

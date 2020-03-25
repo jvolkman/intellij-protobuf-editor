@@ -16,24 +16,7 @@
 package com.google.idea.testing;
 
 import com.google.common.base.StandardSystemProperty;
-import com.google.common.util.concurrent.MoreExecutors;
-import com.intellij.mock.MockApplicationEx;
-import com.intellij.mock.MockProject;
-import com.intellij.openapi.Disposable;
-import com.intellij.openapi.application.Application;
-import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.extensions.Extensions;
-import com.intellij.openapi.fileTypes.FileTypeManager;
-import com.intellij.openapi.util.Disposer;
-import com.intellij.openapi.vfs.encoding.EncodingManager;
-import com.intellij.openapi.vfs.encoding.EncodingManagerImpl;
-import com.intellij.util.pico.DefaultPicoContainer;
 import java.io.File;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
-import javax.annotation.Nullable;
-import org.picocontainer.PicoContainer;
 
 /** Test utilities. */
 public final class TestUtils {

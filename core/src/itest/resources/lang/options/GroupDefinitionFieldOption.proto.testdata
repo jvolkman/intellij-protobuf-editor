@@ -11,5 +11,5 @@ extend proto2.MessageOptions {
 
 message TestMessage {
   // Message option
-  option (mygrou<ref>poption).zz = 50;
+  option (mygrou<caret>poption).zz = 50;
 }

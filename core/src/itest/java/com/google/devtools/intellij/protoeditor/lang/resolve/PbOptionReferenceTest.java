@@ -16,16 +16,27 @@
 package com.google.devtools.intellij.protoeditor.lang.resolve;
 
 import com.google.devtools.intellij.protoeditor.TestUtils;
+import com.google.devtools.intellij.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import com.google.devtools.intellij.protoeditor.lang.psi.PbEnumValue;
 import com.google.devtools.intellij.protoeditor.lang.psi.PbField;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
 import com.intellij.psi.util.QualifiedName;
-import com.intellij.testFramework.ResolveTestCase;
+import com.intellij.testFramework.JavaResolveTestCase;
 import org.junit.Assert;
 
 /** Tests for {@link PbOptionNameReference}. */
-public class PbOptionReferenceTest extends ResolveTestCase {
+public class PbOptionReferenceTest extends PbCodeInsightFixtureTestCase {
+
+  @Override
+  public void setUp() throws Exception {
+    super.setUp();
+    myFixture.addFileToProject(
+            TestUtils.OPENSOURCE_DESCRIPTOR_PATH, TestUtils.getOpensourceDescriptorText());
+    TestUtils.addTestFileResolveProvider(
+            getProject(), TestUtils.OPENSOURCE_DESCRIPTOR_PATH, getTestRootDisposable());
+    TestUtils.registerTestdataFileExtension();
+  }
 
   @Override
   public String getTestDataPath() {
@@ -33,16 +44,10 @@ public class PbOptionReferenceTest extends ResolveTestCase {
     return discoveredPath == null ? "" : discoveredPath;
   }
 
-  @Override
-  public void setUp() throws Exception {
-    super.setUp();
-    createFile("descriptor.proto", TestUtils.getOpensourceDescriptorText());
-    TestUtils.addTestFileResolveProvider(getProject(), "descriptor.proto", getTestRootDisposable());
-    TestUtils.registerTestdataFileExtension();
-  }
-
   private PsiElement resolve() throws Exception {
-    PsiReference ref = configureByFile("lang/options/" + getTestName(false) + ".proto.testdata");
+    String filename = "lang/options/" + getTestName(false) + ".proto.testdata";
+    PsiReference ref = myFixture.getReferenceAtCaretPosition(filename);
+    assertNotNull(ref);
     return ref.resolve();
   }
 

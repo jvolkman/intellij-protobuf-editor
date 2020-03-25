@@ -16,76 +16,79 @@
 package com.google.devtools.intellij.protoeditor.lang.resolve;
 
 import com.google.devtools.intellij.protoeditor.TestUtils;
+import com.google.devtools.intellij.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
+import com.google.devtools.intellij.protoeditor.lang.PbFileType;
 import com.google.devtools.intellij.protoeditor.lang.psi.PbFile;
 import com.intellij.openapi.util.text.StringUtil;
-import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VfsUtilCore;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
-import com.intellij.testFramework.ResolveTestCase;
 import com.intellij.testFramework.VfsTestUtil;
 import org.junit.Assert;
 
+import java.io.File;
+
 /** Tests for {@link PbImportReference}. */
-public class PbImportReferenceTest extends ResolveTestCase {
+public class PbImportReferenceTest extends PbCodeInsightFixtureTestCase {
 
   @Override
   public void setUp() throws Exception {
     super.setUp();
-    TestUtils.addTestFileResolveProvider(getProject(), getTestRootDisposable());
+    myFixture.addFileToProject(
+            TestUtils.OPENSOURCE_DESCRIPTOR_PATH, TestUtils.getOpensourceDescriptorText());
+    TestUtils.addTestFileResolveProvider(
+            getProject(), TestUtils.OPENSOURCE_DESCRIPTOR_PATH, getTestRootDisposable());
     TestUtils.registerTestdataFileExtension();
   }
 
   @Override
   public String getTestDataPath() {
     String discoveredPath = TestUtils.getTestdataPath(this);
-    String path = discoveredPath == null ? "" : discoveredPath;
-    return path + "lang/resolve/";
+    return discoveredPath == null ? "" : discoveredPath;
   }
 
   public void testImportSibling() throws Exception {
-    String siblingProto = "Sibling.proto";
+    String siblingProto = "lang/resolve/Sibling.proto";
 
     final VirtualFile vFile =
         VfsTestUtil.findFileByCaseSensitivePath(getTestDataPath() + siblingProto);
     assertNotNull(vFile);
-    createFile(myModule, siblingProto, VfsUtil.loadText(vFile));
+    myFixture.copyFileToProject(vFile.getPath(), siblingProto);
 
     assertIsFileType(resolve(), siblingProto);
   }
 
   public void testImportIncompleteQuotes() throws Exception {
     // Just test that there's no exception while attempting to resolve.
-    loadIncompleteReference();
-  }
+    String filePath = "lang/resolve/" + getTestName(false) + ".proto.testdata";
 
-  private PsiElement resolve() throws Exception {
-    PsiReference ref = configureByFile(getTestName(false) + ".proto.testdata");
-    return ref.resolve();
-  }
-
-  /**
-   * Like {@link ResolveTestCase#configureByFile(String)}, but assumes the reference at the ref
-   * marker will be null.
-   */
-  private void loadIncompleteReference() throws Exception {
-    String filePath = getTestName(false) + ".proto.testdata";
-    VirtualFile vFile = VfsTestUtil.findFileByCaseSensitivePath(this.getTestDataPath() + filePath);
+    VirtualFile vFile = VfsTestUtil.findFileByCaseSensitivePath(getTestDataPath() + filePath);
     assertNotNull("file " + filePath + " not found", vFile);
+
     String fileText = StringUtil.convertLineSeparators(VfsUtilCore.loadText(vFile));
-    int offset = fileText.indexOf("<ref>");
+    int offset = fileText.indexOf("<caret>");
     assertTrue(offset >= 0);
-    fileText = fileText.substring(0, offset) + fileText.substring(offset + "<ref>".length());
-    this.myFile = this.createFile(this.myModule, vFile.getName(), fileText);
-    PsiReference ref = this.myFile.findReferenceAt(offset);
+
+    myFixture.copyFileToProject(vFile.getPath(), filePath);
+    fileText = fileText.substring(0, offset) + fileText.substring(offset + "<caret>".length());
+
+    myFixture.configureByText(PbFileType.INSTANCE, fileText);
+    PsiReference ref = getFile().findReferenceAt(offset);
     assertNull(ref);
   }
 
-  private static void assertIsFileType(PsiElement target, String name) {
+  private PsiElement resolve() throws Exception {
+    String filename = "lang/resolve/" + getTestName(false) + ".proto.testdata";
+    PsiReference ref = myFixture.getReferenceAtCaretPosition(filename);
+    assertNotNull(ref);
+    return ref.resolve();
+  }
+
+  private static void assertIsFileType(PsiElement target, String expectedPath) {
     Assert.assertTrue(target instanceof PbFile);
     String fileName = ((PbFile) target).getName();
     Assert.assertNotNull(fileName);
-    Assert.assertEquals(name, fileName);
+    Assert.assertEquals(new File(expectedPath).getName(), fileName);
   }
 }

@@ -19,8 +19,10 @@ import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.google.common.io.Files;
 import com.intellij.ide.plugins.PluginManagerCore;
+import com.intellij.openapi.Disposable;
 import com.intellij.openapi.application.Application;
 import com.intellij.openapi.application.PathManager;
+import com.intellij.openapi.util.Disposer;
 import com.intellij.openapi.vfs.newvfs.impl.VfsRootAccess;
 import com.intellij.util.PlatformUtils;
 import java.io.File;
@@ -29,7 +31,8 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
 import java.util.List;
-import javax.annotation.Nullable;
+
+import org.jetbrains.annotations.Nullable;
 import org.junit.rules.ExternalResource;
 
 /**
@@ -38,16 +41,23 @@ import org.junit.rules.ExternalResource;
  */
 public class BlazeTestSystemPropertiesRule extends ExternalResource {
 
-  @Override
-  protected void before() throws Throwable {
-    configureSystemProperties();
-  }
-
   /** The absolute path to the runfiles directory. */
   private static final String RUNFILES_PATH = TestUtils.getUserValue("TEST_SRCDIR");
 
+  protected final Disposable testDisposable = () -> {};
+
+  @Override
+  protected void before() {
+    configureSystemProperties(testDisposable);
+  }
+
+  @Override
+  protected void after() {
+    Disposer.dispose(testDisposable);
+  }
+
   /** Sets up the necessary system properties for running IntelliJ tests via blaze/bazel. */
-  private static void configureSystemProperties() throws IOException {
+  private static void configureSystemProperties(Disposable testDisposable) {
     File sandbox = new File(TestUtils.getTmpDirFile(), "_intellij_test_sandbox");
 
     setSandboxPath("idea.home.path", new File(sandbox, "home"));
@@ -62,16 +72,17 @@ public class BlazeTestSystemPropertiesRule extends ExternalResource {
     // Some plugins have a since-build and until-build restriction, so we need
     // to update the build number here
     PluginManagerCore.BUILD_NUMBER = readApiVersionNumber();
+    assert PluginManagerCore.BUILD_NUMBER != null;
 
     setIfEmpty(
             PlatformUtils.PLATFORM_PREFIX_KEY, determinePlatformPrefix(PluginManagerCore.BUILD_NUMBER));
 
     // Tests fail if they access files outside of the project roots and other system directories.
     // Ensure runfiles and platform api are whitelisted.
-    VfsRootAccess.allowRootAccess(RUNFILES_PATH);
+    VfsRootAccess.allowRootAccess(testDisposable, RUNFILES_PATH);
     String platformApi = getPlatformApiPath();
     if (platformApi != null) {
-      VfsRootAccess.allowRootAccess(platformApi);
+      VfsRootAccess.allowRootAccess(testDisposable, platformApi);
     }
 
     List<String> pluginJars = Lists.newArrayList();

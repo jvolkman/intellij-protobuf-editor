@@ -124,7 +124,7 @@ public class PbImportReference extends PsiPolyVariantReferenceBase<PsiElement> {
   }
 
   @Override
-  public PsiElement handleElementRename(String newElementName) {
+  public PsiElement handleElementRename(@NotNull String newElementName) {
     PsiElement element = getElement();
     if (!(element instanceof PbImportName)) {
       return super.handleElementRename(newElementName);

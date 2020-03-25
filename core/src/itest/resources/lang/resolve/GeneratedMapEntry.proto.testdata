@@ -7,5 +7,5 @@ message Foo {
 
   // This doesn't actually compile since proto source files aren't allowed to reference generated
   // map entry elements directly. But it tests our resolve logic.
-  SomeMap<ref>Entry bar = 2;
+  SomeMap<caret>Entry bar = 2;
 }

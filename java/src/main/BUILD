@@ -15,7 +15,8 @@ java_library(
     name = "java",
     srcs = glob(["java/**/*.java"]),
     deps = [
-        "//build_support/intellij_platform_sdk:plugin_api",
+        "//build_support:plugin_api",
+        "//build_support:plugin_java_support",
         "//core",
         "//gencode",
     ],

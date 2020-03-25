@@ -42,17 +42,17 @@ public class PbTextDirectiveCompletionTest extends PbCodeInsightFixtureTestCase 
 
   public void testCommentPrefixCompletions() {
     List<String> completions = completeStrings("# <caret>");
-    assertThat(completions).containsAllOf("proto-file: ", "proto-message: ", "proto-import: ");
+    assertThat(completions).containsAtLeast("proto-file: ", "proto-message: ", "proto-import: ");
   }
 
   public void testCommentPrefixCompletionsAfterExistingTokenPrefix() {
     List<String> completions = completeStrings("# pro<caret>");
-    assertThat(completions).containsAllOf("proto-file: ", "proto-message: ", "proto-import: ");
+    assertThat(completions).containsAtLeast("proto-file: ", "proto-message: ", "proto-import: ");
   }
 
   public void testCommentPrefixCompletionsBeforeExistingToken() {
     List<String> completions = completeStrings("# <caret> foo");
-    assertThat(completions).containsAllOf("proto-file: ", "proto-message: ", "proto-import: ");
+    assertThat(completions).containsAtLeast("proto-file: ", "proto-message: ", "proto-import: ");
   }
 
   public void testNoCompletionsAfterExistingToken() {
@@ -62,11 +62,11 @@ public class PbTextDirectiveCompletionTest extends PbCodeInsightFixtureTestCase 
 
   public void testAlreadySpecifiedCommentsAreNotSuggested() {
     List<String> completions = completeStrings("# proto-file: foo\n# <caret>");
-    assertThat(completions).containsAllOf("proto-message: ", "proto-import: ");
+    assertThat(completions).containsAtLeast("proto-message: ", "proto-import: ");
     assertThat(completions).doesNotContain("proto-file: ");
 
     completions = completeStrings("# proto-message: foo\n# <caret>");
-    assertThat(completions).containsAllOf("proto-file: ", "proto-import: ");
+    assertThat(completions).containsAtLeast("proto-file: ", "proto-import: ");
     assertThat(completions).doesNotContain("proto-message: ");
   }
 
@@ -79,14 +79,14 @@ public class PbTextDirectiveCompletionTest extends PbCodeInsightFixtureTestCase 
   public void testFileCompletion() {
     List<String> completions = completeStrings("# proto-file: lang/resolve/<caret>");
     assertThat(completions)
-        .containsAllOf("lang/resolve/root_message.proto", "lang/resolve/other_message.proto");
+        .containsAtLeast("lang/resolve/root_message.proto", "lang/resolve/other_message.proto");
   }
 
   public void testMessageCompletion() {
     List<String> completions =
         completeStrings(
             "# proto-file: lang/resolve/root_message.proto\n" + "# proto-message: <caret>");
-    assertThat(completions).containsAllOf("foo.", "bar.", "Message");
+    assertThat(completions).containsAtLeast("foo.", "bar.", "Message");
   }
 
   private List<String> completeStrings(String text) {

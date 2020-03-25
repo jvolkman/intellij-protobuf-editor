@@ -28,13 +28,13 @@ import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.VirtualFileManager;
-import com.intellij.testFramework.PlatformTestCase;
+import com.intellij.testFramework.HeavyPlatformTestCase;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
 /** Unit tests for {@link DefaultConfigurator}. */
-public class DefaultConfiguratorTest extends PlatformTestCase {
+public class DefaultConfiguratorTest extends HeavyPlatformTestCase {
 
   private File tempDir = null;
 
@@ -50,12 +50,12 @@ public class DefaultConfiguratorTest extends PlatformTestCase {
     super.tearDown();
   }
 
-  public void testConfigure() throws Exception {
+  public void testConfigure() {
     // Create a new project with two modules and a total of 3 roots.
     File projectDir = new File(tempDir, "project");
     assertTrue(projectDir.mkdirs());
 
-    Project project = createProject(projectDir, "project");
+    Project project = createProject(projectDir.toPath());
     disposeOnTearDown(project);
     Module module1 = doCreateRealModuleIn("module1", project, EmptyModuleType.getInstance());
     Module module2 = doCreateRealModuleIn("module2", project, EmptyModuleType.getInstance());
@@ -96,7 +96,7 @@ public class DefaultConfiguratorTest extends PlatformTestCase {
         DefaultConfigurator.getBuiltInIncludeEntry());
   }
 
-  public void testGetDescriptorPathSuggestions() throws Exception {
+  public void testGetDescriptorPathSuggestions() {
     assertContainsElements(
         new DefaultConfigurator().getDescriptorPathSuggestions(getProject()),
         "google/protobuf/descriptor.proto");

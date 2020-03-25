@@ -13,5 +13,5 @@ extend proto2.FieldOptions {
 
 message TestMessage {
   // Field with extension option
-  int32 test_field = 1 [(test_field_option).crazy_opt<ref>ion_field = 1];
+  int32 test_field = 1 [(test_field_option).crazy_opt<caret>ion_field = 1];
 }

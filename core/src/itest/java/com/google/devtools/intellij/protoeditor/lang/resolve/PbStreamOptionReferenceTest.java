@@ -16,18 +16,18 @@
 package com.google.devtools.intellij.protoeditor.lang.resolve;
 
 import com.google.devtools.intellij.protoeditor.TestUtils;
+import com.google.devtools.intellij.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import com.google.devtools.intellij.protoeditor.lang.psi.PbField;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
 import com.intellij.psi.util.QualifiedName;
-import com.intellij.testFramework.ResolveTestCase;
 import org.junit.Assert;
 
 /**
  * Tests for stream options. Streams aren't part of the open source release, so unlike the other
  * tests in {@link PbOptionReferenceTest}, this test does not use the open source descriptor.proto.
  */
-public class PbStreamOptionReferenceTest extends ResolveTestCase {
+public class PbStreamOptionReferenceTest extends PbCodeInsightFixtureTestCase {
 
   @Override
   public String getTestDataPath() {
@@ -38,15 +38,17 @@ public class PbStreamOptionReferenceTest extends ResolveTestCase {
   @Override
   public void setUp() throws Exception {
     super.setUp();
-    String descriptorText = loadFile("lang/options/stream_descriptor.proto");
-    createFile("stream_descriptor.proto", descriptorText);
+    String descriptorPath = "lang/options/stream_descriptor.proto";
+    myFixture.copyFileToProject(descriptorPath, descriptorPath);
     TestUtils.addTestFileResolveProvider(
-        getProject(), "stream_descriptor.proto", getTestRootDisposable());
+        getProject(), descriptorPath, getTestRootDisposable());
     TestUtils.registerTestdataFileExtension();
   }
 
   public void testStreamOption() throws Exception {
-    PsiReference ref = configureByFile("lang/options/" + getTestName(false) + ".proto.testdata");
+    String filename = "lang/options/" + getTestName(false) + ".proto.testdata";
+    PsiReference ref = myFixture.getReferenceAtCaretPosition(filename);
+    assertNotNull(ref);
     PsiElement element = ref.resolve();
     Assert.assertTrue(element instanceof PbField);
     QualifiedName qualifiedName = ((PbField) element).getQualifiedName();

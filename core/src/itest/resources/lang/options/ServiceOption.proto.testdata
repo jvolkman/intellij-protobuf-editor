@@ -5,5 +5,5 @@ package foo.bar;
 
 service TestService {
   // Service option
-  option deprec<ref>ated = true;
+  option deprec<caret>ated = true;
 }

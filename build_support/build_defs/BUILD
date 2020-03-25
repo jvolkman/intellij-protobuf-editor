@@ -7,6 +7,12 @@ package(default_visibility = ["//visibility:public"])
 licenses(["notice"])  # Apache 2.0
 
 py_binary(
+    name = "api_version_txt",
+    srcs = ["api_version_txt.py"],
+    python_version = "PY3",
+)
+
+py_binary(
     name = "merge_xml",
     srcs = ["merge_xml.py"],
     python_version = "PY3",

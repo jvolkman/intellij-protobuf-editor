@@ -61,7 +61,7 @@ def _intellij_plugin_debug_target_aspect_impl(target, ctx):
 
         # TODO(brendandouglas): Remove when migrating to Bazel 0.5, when DefaultInfo
         # provider can be populated by '_repackaged_files' directly
-        files = depset(transitive = [files, data.files])
+        # files = depset(transitive = [files, data.files])
     else:
         aspect_intellij_plugin_deploy_info = struct(
             deploy_files = [_flat_deploy_file(f) for f in target.files.to_list()],

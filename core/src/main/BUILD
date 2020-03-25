@@ -83,7 +83,7 @@ java_library(
     ],
     deps = [
         ":resources",
-        "//build_support:idea_plugin_api",
+        "//build_support:plugin_api",
     ],
 )
 

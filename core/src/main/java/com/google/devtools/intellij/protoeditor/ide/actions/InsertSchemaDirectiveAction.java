@@ -31,15 +31,14 @@ import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.*;
 
 /**
  * An {@link AnAction action} that inserts <code>proto-file</code> and <code>proto-message</code>
  * comments into a text format file using a live template to guide the user.
  *
- * <p>Comments are inserted at the end of the first block of line comments within the file, or at
- * the start of the file if no comments exist at the top. If either of the comments already exist,
+ * <p>Comments are inserted at the start of the file. If either of the comments already exist,
  * existing values will be used and the comments will be moved to the end of the first comment
  * block.
  */
@@ -100,7 +99,7 @@ public class InsertSchemaDirectiveAction extends AnAction {
     SchemaDirective directive = SchemaDirective.find(file);
     String existingFilename = null;
     String existingMessageName = null;
-    List<String> existingImportNames = new ArrayList<>();
+    Set<String> existingImportNames = new TreeSet<>();
     if (directive != null) {
       existingFilename = directive.getFilename();
       existingMessageName = directive.getMessageName();
@@ -116,11 +115,13 @@ public class InsertSchemaDirectiveAction extends AnAction {
       PsiDocumentManager.getInstance(file.getProject())
           .doPostponedOperationsAndUnblockDocument(editor.getDocument());
     }
+    PsiElement firstChild = file.getFirstChild();
+    boolean existingCommentAtTop = firstChild instanceof PsiComment && firstChild.getTextOffset() == 0;
     Template template =
         createFileAnnotationTemplate(
-            file.getProject(), existingFilename, existingMessageName, existingImportNames);
-    int targetPos = findEndOfFirstCommentBlock(file);
-    editor.getCaretModel().moveToOffset(targetPos);
+            file.getProject(), existingFilename, existingMessageName, existingImportNames, existingCommentAtTop);
+
+    editor.getCaretModel().moveToOffset(0);
     TemplateManager.getInstance(file.getProject()).startTemplate(editor, template);
   }
 
@@ -134,58 +135,41 @@ public class InsertSchemaDirectiveAction extends AnAction {
     }
   }
 
-  /**
-   * Finds the offset immediately following the first contiguous block of line comments.
-   *
-   * <pre>
-   *   # One comment.
-   *   # Another
-   *   # And another.
-   *   <-- findEndOfFirstCommentBlock() returns this.
-   *
-   *   # And another, starting a
-   *   # new block.
-   * </pre>
-   */
-  private static int findEndOfFirstCommentBlock(PsiFile file) {
-    PsiElement child = file.getFirstChild();
-    int resultPos = 0;
-    while (child instanceof PsiComment) {
-      resultPos = child.getTextRange().getEndOffset() + 1;
-      child = child.getNextSibling();
-      if (child != null && "\n".equals(child.getText())) {
-        // Also consume the trailing newline.
-        child = child.getNextSibling();
-      }
-    }
-    return resultPos;
-  }
-
   private static Template createFileAnnotationTemplate(
-      Project project, String filename, String messageName, List<String> importNames) {
+      Project project, String filename, String messageName, Collection<String> importNames,
+      boolean existingCommentAtTop) {
     StringBuilder templateBuilder = new StringBuilder();
     templateBuilder
         .append("# proto-file: ")
-        .append(StringUtil.isEmptyOrSpaces(filename) ? "$FILE$" : filename)
+        .append("$FILE$")
         .append('\n');
     templateBuilder
         .append("# proto-message: ")
-        .append(StringUtil.isEmptyOrSpaces(messageName) ? "$MESSAGE$" : messageName)
+        .append("$MESSAGE$")
         .append('\n');
     for (String importName : importNames) {
       templateBuilder.append("# proto-import: ").append(importName).append('\n');
     }
+    if (existingCommentAtTop) {
+      templateBuilder.append("#\n");
+    } else {
+      templateBuilder.append('\n');
+    }
     Template template =
         TemplateManager.getInstance(project)
             .createTemplate(/* key= */ "", /* group= */ "", templateBuilder.toString());
-    if (StringUtil.isEmptyOrSpaces(filename)) {
-      template.addVariable(
-          "FILE", "complete()", /* defaultValueExpression= */ null, /* isAlwaysStopAt= */ true);
-    }
-    if (StringUtil.isEmptyOrSpaces(messageName)) {
-      template.addVariable(
-          "MESSAGE", "complete()", /* defaultValueExpression= */ null, /* isAlwaysStopAt= */ true);
-    }
+    template.addVariable(
+            "FILE",
+            "complete()",
+            '"' + StringUtil.notNullize(filename) + '"',
+            /* isAlwaysStopAt= */ StringUtil.isEmptyOrSpaces(filename)
+    );
+    template.addVariable(
+            "MESSAGE",
+            "complete()",
+            '"' + StringUtil.notNullize(messageName) + '"',
+            /* isAlwaysStopAt= */ StringUtil.isEmptyOrSpaces(messageName)
+    );
     return template;
   }
 }

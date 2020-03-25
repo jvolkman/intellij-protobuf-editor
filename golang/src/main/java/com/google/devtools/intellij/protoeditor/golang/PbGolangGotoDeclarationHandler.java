@@ -34,10 +34,11 @@ import com.intellij.psi.PsiReference;
 import com.intellij.psi.impl.source.tree.LeafPsiElement;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.QualifiedName;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import javax.annotation.Nullable;
 
 /** Handles goto declaration from golang generated code to .proto files. */
 public class PbGolangGotoDeclarationHandler implements GotoDeclarationHandler {

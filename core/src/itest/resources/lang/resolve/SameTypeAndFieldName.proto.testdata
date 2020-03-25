@@ -9,5 +9,5 @@ message Foo {
 message Baz {
   int32 Foo = 1;
   // This type should refer to the message above, not the int32 field in the same scope.
-  F<ref>oo x = 2;
+  F<caret>oo x = 2;
 }

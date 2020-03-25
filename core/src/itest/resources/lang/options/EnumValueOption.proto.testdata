@@ -5,5 +5,5 @@ package foo.bar;
 
 enum TestEnum {
   // Enum value with option
-  VALUE1 = 1 [depre<ref>cated = true];
+  VALUE1 = 1 [depre<caret>cated = true];
 }

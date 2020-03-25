@@ -10,8 +10,8 @@ java_library(
         "src/main/java/com/google/idea/testing/TestUtils.java",
     ],
     deps = [
-        "//build_support:idea_plugin_api",
-#        "//build_support/intellij_platform_sdk:test_libs",
+        "//build_support:test_libs",
+        "//build_support:test_plugin_api",
 #        "@jsr305_annotations//jar",
     ],
 )

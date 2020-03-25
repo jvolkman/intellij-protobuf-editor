@@ -26,9 +26,13 @@ import com.google.devtools.intellij.protoeditor.TestUtils;
 import com.google.devtools.intellij.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import com.google.devtools.intellij.protoeditor.lang.psi.PbFile;
 import com.google.devtools.intellij.protoeditor.lang.psi.PbSymbol;
+import com.intellij.openapi.Disposable;
+import com.intellij.openapi.util.Disposer;
+import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiJavaFile;
 import com.intellij.psi.util.QualifiedName;
+import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase;
 import com.intellij.usageView.UsageInfo;
 import java.io.File;
 import java.util.Collection;
@@ -53,12 +57,28 @@ import java.util.stream.Collectors;
  * we share implementation code between the two, so this is not as exhaustive (namely, shares {@link
  * com.google.devtools.intellij.protoeditor.java.names.NameGenerator}).
  */
-public class PbJavaFindUsagesHandlerFactoryTest extends PbCodeInsightFixtureTestCase {
+public class PbJavaFindUsagesHandlerFactoryTest extends LightJavaCodeInsightFixtureTestCase {
+
+  protected final Disposable testDisposable = new TestDisposable();
+
+  @Override
+  protected void tearDown() throws Exception {
+    Disposer.dispose(testDisposable);
+    super.tearDown();
+  }
 
   @Override
   public String getTestDataPath() {
     String discoveredPath = TestUtils.getTestdataPath(this);
     return discoveredPath == null ? "" : discoveredPath;
+  }
+
+  private PsiFile configureRootFile(String filename) {
+    String root = TestUtils.getTestRootPath(this);
+    String path = new File(root, filename).getPath();
+    VirtualFile vFile = myFixture.copyFileToProject(path, filename);
+    myFixture.configureFromExistingVirtualFile(vFile);
+    return myFixture.getFile();
   }
 
   public void testProto2() {
@@ -67,7 +87,7 @@ public class PbJavaFindUsagesHandlerFactoryTest extends PbCodeInsightFixtureTest
         myFixture.getModule(), root, "libProto2Lib-speed.jar", testDisposable);
     String expectedJavaFile = "Proto2User.java";
     JavaTestData.copyJavaProtoUser(myFixture, new File("java", expectedJavaFile));
-    PsiFile protoFile = myFixture.configureByFile(new File(root, "Proto2.proto").getPath());
+    PsiFile protoFile = configureRootFile("Proto2.proto");
 
     // Message
     checkJavaUsages(
@@ -143,7 +163,7 @@ public class PbJavaFindUsagesHandlerFactoryTest extends PbCodeInsightFixtureTest
         myFixture.getModule(), root, "libProtoSyntax3Lib-speed.jar", testDisposable);
     String expectedJavaFile = "ProtoSyntax3User.java";
     JavaTestData.copyJavaProtoUser(myFixture, new File("java", expectedJavaFile));
-    PsiFile protoFile = myFixture.configureByFile(new File(root, "ProtoSyntax3.proto").getPath());
+    PsiFile protoFile = configureRootFile("ProtoSyntax3.proto");
 
     // Message
     checkJavaUsages(
@@ -189,7 +209,7 @@ public class PbJavaFindUsagesHandlerFactoryTest extends PbCodeInsightFixtureTest
         myFixture.getModule(), root, "libProto2LiteLib-lite.jar", testDisposable);
     String expectedJavaFile = "Proto2LiteUser.java";
     JavaTestData.copyJavaProtoUser(myFixture, new File("java", expectedJavaFile));
-    PsiFile protoFile = myFixture.configureByFile(new File(root, "Proto2Lite.proto").getPath());
+    PsiFile protoFile = configureRootFile("Proto2Lite.proto");
 
     // Message
     checkJavaUsages(
