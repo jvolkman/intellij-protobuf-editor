@@ -15,12 +15,12 @@
  */
 package idea.plugin.protoeditor.lang.resolve;
 
-import idea.plugin.protoeditor.TestUtils;
-import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
-import idea.plugin.protoeditor.lang.psi.PbField;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
 import com.intellij.psi.util.QualifiedName;
+import idea.plugin.protoeditor.TestUtils;
+import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
+import idea.plugin.protoeditor.lang.psi.PbField;
 import org.junit.Assert;
 
 /**

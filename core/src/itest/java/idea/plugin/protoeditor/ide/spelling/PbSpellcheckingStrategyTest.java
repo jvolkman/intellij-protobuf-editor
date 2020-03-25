@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.ide.spelling;
 
-import idea.plugin.protoeditor.TestUtils;
-import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import com.intellij.psi.PsiFile;
 import com.intellij.spellchecker.inspections.SpellCheckingInspection;
+import idea.plugin.protoeditor.TestUtils;
+import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 
 /** Tests for {@link PbSpellcheckingStrategy}. */
 public class PbSpellcheckingStrategyTest extends PbCodeInsightFixtureTestCase {

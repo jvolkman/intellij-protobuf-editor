@@ -15,16 +15,12 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbNamedTypeElement;
-import idea.plugin.protoeditor.lang.psi.PbTextExtensionName;
-import idea.plugin.protoeditor.lang.psi.PbTextFieldName;
-import idea.plugin.protoeditor.lang.psi.PbTypeName;
-import idea.plugin.protoeditor.lang.resolve.PbTextFieldNameReference;
-import idea.plugin.protoeditor.lang.util.BuiltInType;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.resolve.PbTextFieldNameReference;
+import idea.plugin.protoeditor.lang.util.BuiltInType;
 import org.jetbrains.annotations.Nullable;
 
 abstract class PbTextFieldNameMixin extends PbTextElementBase implements PbTextFieldName {

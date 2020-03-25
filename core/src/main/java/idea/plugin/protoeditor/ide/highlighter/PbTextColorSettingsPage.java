@@ -15,18 +15,19 @@
  */
 package idea.plugin.protoeditor.ide.highlighter;
 
-import idea.plugin.protoeditor.ide.util.PbIcons;
-import idea.plugin.protoeditor.ide.util.ResourceUtil;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.options.colors.AttributesDescriptor;
 import com.intellij.openapi.options.colors.ColorDescriptor;
 import com.intellij.openapi.options.colors.ColorSettingsPage;
-import java.io.IOException;
-import java.util.Map;
-import javax.swing.Icon;
+import idea.plugin.protoeditor.ide.util.PbIcons;
+import idea.plugin.protoeditor.ide.util.ResourceUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.swing.*;
+import java.io.IOException;
+import java.util.Map;
 
 /** A {@link ColorSettingsPage} for standalone prototext files. */
 public class PbTextColorSettingsPage implements ColorSettingsPage {

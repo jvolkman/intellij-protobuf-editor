@@ -15,11 +15,11 @@
  */
 package idea.plugin.protoeditor.lang.stub;
 
-import idea.plugin.protoeditor.lang.psi.PbPackageStatement;
-import idea.plugin.protoeditor.lang.stub.type.PbPackageStatementType;
 import com.intellij.psi.stubs.StubBase;
 import com.intellij.psi.stubs.StubElement;
 import com.intellij.psi.util.QualifiedName;
+import idea.plugin.protoeditor.lang.psi.PbPackageStatement;
+import idea.plugin.protoeditor.lang.stub.type.PbPackageStatementType;
 
 /** Stub for {@link PbPackageStatement}. */
 public class PbPackageStatementStub extends StubBase<PbPackageStatement>

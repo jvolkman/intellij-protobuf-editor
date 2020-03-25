@@ -15,19 +15,15 @@
  */
 package idea.plugin.protoeditor.lang.stub.type;
 
+import com.intellij.lang.Language;
+import com.intellij.psi.stubs.*;
 import idea.plugin.protoeditor.lang.psi.PbExtendDefinition;
 import idea.plugin.protoeditor.lang.psi.PbTypeName;
 import idea.plugin.protoeditor.lang.psi.impl.PbExtendDefinitionImpl;
 import idea.plugin.protoeditor.lang.stub.PbExtendDefinitionStub;
-import com.intellij.lang.Language;
-import com.intellij.psi.stubs.IStubElementType;
-import com.intellij.psi.stubs.IndexSink;
-import com.intellij.psi.stubs.StubElement;
-import com.intellij.psi.stubs.StubInputStream;
-import com.intellij.psi.stubs.StubOutputStream;
-import java.io.IOException;
-
 import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 
 public class PbExtendDefinitionType
     extends IStubElementType<PbExtendDefinitionStub, PbExtendDefinition> {

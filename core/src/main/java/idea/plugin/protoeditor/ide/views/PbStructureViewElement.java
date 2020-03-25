@@ -15,19 +15,15 @@
  */
 package idea.plugin.protoeditor.ide.views;
 
-import idea.plugin.protoeditor.lang.psi.PbDefinition;
-import idea.plugin.protoeditor.lang.psi.PbElement;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbNamedElement;
-import idea.plugin.protoeditor.lang.psi.PbStatement;
-import idea.plugin.protoeditor.lang.psi.PbStatementOwner;
 import com.intellij.ide.structureView.StructureViewTreeElement;
 import com.intellij.ide.structureView.impl.common.PsiTreeElementBase;
+import idea.plugin.protoeditor.lang.psi.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.stream.Collectors;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /** Represents a protobuf element in structure view. */
 public class PbStructureViewElement extends PsiTreeElementBase<PbElement> {

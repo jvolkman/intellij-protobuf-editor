@@ -18,6 +18,7 @@
 """
 
 import argparse
+
 import sys
 from xml.dom.minidom import parse  # pylint: disable=g-importing-member
 

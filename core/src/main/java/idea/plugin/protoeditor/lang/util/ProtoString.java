@@ -16,8 +16,8 @@
 package idea.plugin.protoeditor.lang.util;
 
 import com.google.common.collect.ImmutableList;
-import idea.plugin.protoeditor.lang.lexer.StringLexer;
 import com.intellij.openapi.util.TextRange;
+import idea.plugin.protoeditor.lang.lexer.StringLexer;
 
 import java.util.Arrays;
 

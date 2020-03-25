@@ -15,11 +15,11 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.PbTextLanguage;
-import idea.plugin.protoeditor.lang.psi.PbTextElement;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.Language;
+import idea.plugin.protoeditor.lang.PbTextLanguage;
+import idea.plugin.protoeditor.lang.psi.PbTextElement;
 
 abstract class PbTextElementBase extends ASTWrapperPsiElement implements PbTextElement {
 

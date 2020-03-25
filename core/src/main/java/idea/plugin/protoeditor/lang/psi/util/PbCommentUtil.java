@@ -15,12 +15,12 @@
  */
 package idea.plugin.protoeditor.lang.psi.util;
 
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiTreeUtil;
+import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 
 import java.util.ArrayList;
 import java.util.Collections;

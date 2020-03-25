@@ -15,17 +15,14 @@
  */
 package idea.plugin.protoeditor.lang.comments;
 
+import com.intellij.psi.PsiComment;
+import com.intellij.psi.util.QualifiedName;
 import idea.plugin.protoeditor.TestUtils;
 import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import idea.plugin.protoeditor.lang.PbFileType;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbOptionStatement;
-import idea.plugin.protoeditor.lang.psi.PbStatement;
-import idea.plugin.protoeditor.lang.psi.PbSyntaxStatement;
+import idea.plugin.protoeditor.lang.psi.*;
 import idea.plugin.protoeditor.lang.psi.util.PbCommentUtil;
-import com.intellij.psi.PsiComment;
-import com.intellij.psi.util.QualifiedName;
+
 import java.util.Arrays;
 import java.util.List;
 

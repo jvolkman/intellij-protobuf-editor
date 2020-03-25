@@ -16,10 +16,9 @@
 package idea.plugin.protoeditor.lang.psi;
 
 import com.google.common.collect.Multimap;
-import java.util.Collection;
-
-import idea.plugin.protoeditor.lang.psi.PbEnumValue;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Collection;
 
 interface PbEnumDefinitionBase extends PbElement {
 

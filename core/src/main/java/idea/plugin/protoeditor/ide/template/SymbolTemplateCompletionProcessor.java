@@ -15,11 +15,11 @@
  */
 package idea.plugin.protoeditor.ide.template;
 
-import idea.plugin.protoeditor.lang.psi.PbSymbolOwner;
-import idea.plugin.protoeditor.lang.resolve.ResolveFilters;
 import com.intellij.codeInsight.lookup.LookupElement;
 import com.intellij.codeInsight.template.ExpressionContext;
 import com.intellij.codeInsight.template.macro.TemplateCompletionProcessor;
+import idea.plugin.protoeditor.lang.psi.PbSymbolOwner;
+import idea.plugin.protoeditor.lang.resolve.ResolveFilters;
 
 /**
  * A TemplateCompletionProcessor that prevents moving to the next template tab if the accepted

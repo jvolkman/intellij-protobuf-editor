@@ -15,11 +15,12 @@
  */
 package idea.plugin.protoeditor.gencodeutils;
 
-import static com.google.common.truth.Truth.assertWithMessage;
-
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNamedElement;
+
 import java.util.Arrays;
+
+import static com.google.common.truth.Truth.assertWithMessage;
 
 /**
  * Expectation for going from source code -> other location in source code (e.g., java parameter

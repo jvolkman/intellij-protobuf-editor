@@ -18,9 +18,10 @@ package idea.plugin.protoeditor.lang.resolve.directive;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiReference;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
 import java.util.Objects;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * SchemaComment objects hold information about one of the PsiComment elements comprising a {@link

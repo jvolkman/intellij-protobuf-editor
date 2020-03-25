@@ -15,7 +15,6 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import idea.plugin.protoeditor.lang.psi.PbTextDomain;
 import org.jetbrains.annotations.Nullable;
 
 interface PbTextExtensionNameBase extends PbTextElement {

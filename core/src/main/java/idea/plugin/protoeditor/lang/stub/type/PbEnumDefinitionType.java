@@ -15,22 +15,18 @@
  */
 package idea.plugin.protoeditor.lang.stub.type;
 
+import com.intellij.lang.Language;
+import com.intellij.psi.stubs.*;
+import com.intellij.psi.util.QualifiedName;
+import com.intellij.util.io.StringRef;
 import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
 import idea.plugin.protoeditor.lang.psi.impl.PbEnumDefinitionImpl;
 import idea.plugin.protoeditor.lang.stub.PbEnumDefinitionStub;
 import idea.plugin.protoeditor.lang.stub.index.QualifiedNameIndex;
 import idea.plugin.protoeditor.lang.stub.index.ShortNameIndex;
-import com.intellij.lang.Language;
-import com.intellij.psi.stubs.IStubElementType;
-import com.intellij.psi.stubs.IndexSink;
-import com.intellij.psi.stubs.StubElement;
-import com.intellij.psi.stubs.StubInputStream;
-import com.intellij.psi.stubs.StubOutputStream;
-import com.intellij.psi.util.QualifiedName;
-import com.intellij.util.io.StringRef;
-import java.io.IOException;
-
 import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 
 public class PbEnumDefinitionType extends IStubElementType<PbEnumDefinitionStub, PbEnumDefinition> {
 

@@ -15,16 +15,17 @@
  */
 package idea.plugin.protoeditor.ide.settings;
 
-import idea.plugin.protoeditor.ide.settings.PbProjectSettings.ImportPathEntry;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
+import idea.plugin.protoeditor.ide.settings.PbProjectSettings.ImportPathEntry;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.net.URL;
 import java.util.Collection;
 import java.util.Collections;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * A {@link ProjectSettingsConfigurator} that generates configuration based on project roots.

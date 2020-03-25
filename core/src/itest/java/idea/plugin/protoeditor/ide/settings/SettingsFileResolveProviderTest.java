@@ -15,18 +15,19 @@
  */
 package idea.plugin.protoeditor.ide.settings;
 
-import static idea.plugin.protoeditor.TestUtils.notNull;
-
+import com.intellij.openapi.util.io.FileUtil;
+import com.intellij.openapi.vfs.VfsUtil;
+import com.intellij.openapi.vfs.VirtualFile;
 import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import idea.plugin.protoeditor.ide.settings.PbProjectSettings.ImportPathEntry;
 import idea.plugin.protoeditor.lang.resolve.FileResolveProvider;
 import idea.plugin.protoeditor.lang.resolve.FileResolveProvider.ChildEntry;
-import com.intellij.openapi.util.io.FileUtil;
-import com.intellij.openapi.vfs.VfsUtil;
-import com.intellij.openapi.vfs.VirtualFile;
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.UUID;
+
+import static idea.plugin.protoeditor.TestUtils.notNull;
 
 /** Unit tests for {@link SettingsFileResolveProvider}. */
 public class SettingsFileResolveProviderTest extends PbCodeInsightFixtureTestCase {

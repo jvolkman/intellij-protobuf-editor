@@ -15,8 +15,8 @@
  */
 package idea.plugin.protoeditor.lang.psi.type;
 
-import idea.plugin.protoeditor.lang.PbLanguage;
 import com.intellij.psi.tree.IElementType;
+import idea.plugin.protoeditor.lang.PbLanguage;
 
 /** Custom element types used in proto.bnf. */
 public interface PbCustomTypes {

@@ -15,13 +15,11 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import idea.plugin.protoeditor.lang.psi.PbOptionExpression;
-import idea.plugin.protoeditor.lang.psi.PbOptionStatement;
-import org.jetbrains.annotations.NotNull;
 
 /** A {@link PbOptionOwner} whose options are represented as {@link PbOptionStatement}s. */
 public interface PbOptionStatementOwner extends PbOptionOwner {

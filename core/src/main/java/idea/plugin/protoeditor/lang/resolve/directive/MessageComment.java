@@ -16,6 +16,11 @@
 package idea.plugin.protoeditor.lang.resolve.directive;
 
 import com.google.common.collect.ImmutableList;
+import com.intellij.openapi.util.TextRange;
+import com.intellij.openapi.util.text.StringUtil;
+import com.intellij.psi.PsiComment;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiReference;
 import idea.plugin.protoeditor.lang.psi.PbFile;
 import idea.plugin.protoeditor.lang.psi.PbTypeName;
 import idea.plugin.protoeditor.lang.psi.ProtoSymbolPath;
@@ -25,14 +30,9 @@ import idea.plugin.protoeditor.lang.resolve.PbSymbolLookupElement;
 import idea.plugin.protoeditor.lang.resolve.PbSymbolResolver;
 import idea.plugin.protoeditor.lang.resolve.ProtoSymbolPathReference;
 import idea.plugin.protoeditor.lang.resolve.ResolveFilters;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.openapi.util.text.StringUtil;
-import com.intellij.psi.PsiComment;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiReference;
-import java.util.List;
-
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 class MessageComment extends SchemaComment {
 

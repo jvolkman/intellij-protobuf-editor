@@ -15,7 +15,6 @@
  */
 package idea.plugin.protoeditor.lang.lexer;
 
-import idea.plugin.protoeditor.lang.lexer._ProtoLexer;
 import com.intellij.lexer.FlexAdapter;
 
 /** A lexer shared between protobuf and prototext languages. */

@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.lang.completion;
 
-import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
-
 import java.util.Collection;
 import java.util.List;
+
+import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
 
 /** Tests for various keywords (message, enum) completion (see {@link PbCompletionContributor}). */
 public class PbCompleteKeywordsTest extends PbCompletionContributorTestCase {

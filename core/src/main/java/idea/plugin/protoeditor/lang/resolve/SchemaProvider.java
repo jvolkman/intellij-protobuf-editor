@@ -15,8 +15,8 @@
  */
 package idea.plugin.protoeditor.lang.resolve;
 
-import idea.plugin.protoeditor.lang.psi.PbTextFile;
 import com.intellij.openapi.extensions.ExtensionPointName;
+import idea.plugin.protoeditor.lang.psi.PbTextFile;
 import org.jetbrains.annotations.Nullable;
 
 /**

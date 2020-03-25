@@ -15,11 +15,11 @@
  */
 package idea.plugin.protoeditor.lang.stub;
 
-import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
-import idea.plugin.protoeditor.lang.stub.type.PbEnumDefinitionType;
 import com.intellij.psi.stubs.StubBase;
 import com.intellij.psi.stubs.StubElement;
 import com.intellij.psi.util.QualifiedName;
+import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
+import idea.plugin.protoeditor.lang.stub.type.PbEnumDefinitionType;
 import org.jetbrains.annotations.Nullable;
 
 public class PbEnumDefinitionStub extends StubBase<PbEnumDefinition>

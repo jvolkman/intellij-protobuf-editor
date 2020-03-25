@@ -15,17 +15,11 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
-import idea.plugin.protoeditor.lang.psi.PbNamedTypeElement;
-import idea.plugin.protoeditor.lang.psi.PbTextField;
-import idea.plugin.protoeditor.lang.psi.PbTextIdentifierValue;
-import idea.plugin.protoeditor.lang.psi.PbTextNumberValue;
-import idea.plugin.protoeditor.lang.psi.ProtoNumberValue;
-import idea.plugin.protoeditor.lang.psi.impl.PbTextNumberValueImpl;
-import idea.plugin.protoeditor.lang.resolve.PbEnumValueReference;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiReference;
 import com.intellij.psi.util.PsiTreeUtil;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.resolve.PbEnumValueReference;
 import org.jetbrains.annotations.Nullable;
 
 abstract class PbTextIdentifierValueMixin extends PbTextElementBase

@@ -16,25 +16,21 @@
 package idea.plugin.protoeditor.lang.resolve.directive;
 
 import com.google.common.collect.ImmutableList;
+import com.intellij.openapi.util.TextRange;
+import com.intellij.psi.*;
+import com.intellij.psi.util.CachedValueProvider.Result;
+import com.intellij.psi.util.CachedValuesManager;
+import com.intellij.psi.util.PsiModificationTracker;
 import idea.plugin.protoeditor.lang.PbTextLanguage;
 import idea.plugin.protoeditor.lang.psi.PbFile;
 import idea.plugin.protoeditor.lang.psi.PbMessageType;
 import idea.plugin.protoeditor.lang.resolve.PbSymbolResolver;
 import idea.plugin.protoeditor.lang.resolve.directive.SchemaComment.Type;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiComment;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiReference;
-import com.intellij.psi.SyntaxTraverser;
-import com.intellij.psi.util.CachedValueProvider.Result;
-import com.intellij.psi.util.CachedValuesManager;
-import com.intellij.psi.util.PsiModificationTracker;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Encapsulates information held in optional text format schema directive comments.

@@ -15,8 +15,9 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import java.util.List;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 interface PbTextFieldBase extends PbTextElement {
   /** Return a list of all literals and message values for this field. */

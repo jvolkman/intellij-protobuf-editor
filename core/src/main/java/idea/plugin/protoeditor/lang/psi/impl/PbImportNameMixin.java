@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.PbImportName;
-import idea.plugin.protoeditor.lang.resolve.PbImportReference;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiReference;
+import idea.plugin.protoeditor.lang.psi.PbImportName;
+import idea.plugin.protoeditor.lang.resolve.PbImportReference;
 import org.jetbrains.annotations.Nullable;
 
 abstract class PbImportNameMixin extends PbElementBase implements PbImportName {

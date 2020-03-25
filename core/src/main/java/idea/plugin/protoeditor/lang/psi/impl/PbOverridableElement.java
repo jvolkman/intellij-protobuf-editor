@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.PbElement;
 import com.intellij.openapi.util.Key;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
+import idea.plugin.protoeditor.lang.psi.PbElement;
 import org.jetbrains.annotations.NotNull;
 
 interface PbOverridableElement extends PbElement {

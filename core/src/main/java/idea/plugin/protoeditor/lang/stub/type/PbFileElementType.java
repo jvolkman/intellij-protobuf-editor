@@ -15,22 +15,17 @@
  */
 package idea.plugin.protoeditor.lang.stub.type;
 
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.stub.PbFileStub;
 import com.intellij.lang.Language;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.StubBuilder;
-import com.intellij.psi.stubs.DefaultStubBuilder;
-import com.intellij.psi.stubs.IndexSink;
-import com.intellij.psi.stubs.PsiFileStub;
-import com.intellij.psi.stubs.StubElement;
-import com.intellij.psi.stubs.StubInputStream;
-import com.intellij.psi.stubs.StubOutputStream;
+import com.intellij.psi.stubs.*;
 import com.intellij.psi.tree.IStubFileElementType;
-import java.io.IOException;
-
+import idea.plugin.protoeditor.lang.psi.PbFile;
+import idea.plugin.protoeditor.lang.stub.PbFileStub;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 
 public class PbFileElementType extends IStubFileElementType<PbFileStub> {
   public PbFileElementType(final Language language) {

@@ -16,8 +16,6 @@
 package idea.plugin.protoeditor.ide.editing;
 
 import com.google.common.collect.ImmutableList;
-import idea.plugin.protoeditor.TestUtils;
-import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import com.intellij.codeInsight.generation.actions.CommentByLineCommentAction;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.LogicalPosition;
@@ -28,6 +26,8 @@ import com.intellij.testFramework.EditorTestUtil;
 import com.intellij.testFramework.EditorTestUtil.CaretAndSelectionState;
 import com.intellij.testFramework.EditorTestUtil.CaretInfo;
 import com.intellij.testFramework.EdtTestUtil;
+import idea.plugin.protoeditor.TestUtils;
+import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 
 /** Tests for {@link PbCommenter} */
 public class PbCommenterTest extends PbCodeInsightFixtureTestCase {

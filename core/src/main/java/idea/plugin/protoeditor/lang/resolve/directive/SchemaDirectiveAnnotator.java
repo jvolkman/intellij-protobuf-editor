@@ -15,18 +15,18 @@
  */
 package idea.plugin.protoeditor.lang.resolve.directive;
 
-import idea.plugin.protoeditor.ide.highlighter.PbTextSyntaxHighlighter;
-import idea.plugin.protoeditor.lang.PbLangBundle;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbTextFile;
-import idea.plugin.protoeditor.lang.resolve.PbImportReference;
-import idea.plugin.protoeditor.lang.resolve.directive.SchemaComment.Type;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.Annotator;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
+import idea.plugin.protoeditor.ide.highlighter.PbTextSyntaxHighlighter;
+import idea.plugin.protoeditor.lang.PbLangBundle;
+import idea.plugin.protoeditor.lang.psi.PbMessageType;
+import idea.plugin.protoeditor.lang.psi.PbTextFile;
+import idea.plugin.protoeditor.lang.resolve.PbImportReference;
+import idea.plugin.protoeditor.lang.resolve.directive.SchemaComment.Type;
 import org.jetbrains.annotations.NotNull;
 
 /** An annotator that highlights directive comments and marks unresolved symbols with warnings. */

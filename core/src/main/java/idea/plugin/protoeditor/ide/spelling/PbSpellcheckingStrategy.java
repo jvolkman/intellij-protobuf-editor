@@ -15,12 +15,12 @@
  */
 package idea.plugin.protoeditor.ide.spelling;
 
-import idea.plugin.protoeditor.lang.psi.PbOptionExpression;
-import idea.plugin.protoeditor.lang.psi.PbTextStringPart;
-import idea.plugin.protoeditor.lang.psi.ProtoStringPart;
 import com.intellij.psi.PsiElement;
 import com.intellij.spellchecker.tokenizer.SpellcheckingStrategy;
 import com.intellij.spellchecker.tokenizer.Tokenizer;
+import idea.plugin.protoeditor.lang.psi.PbOptionExpression;
+import idea.plugin.protoeditor.lang.psi.PbTextStringPart;
+import idea.plugin.protoeditor.lang.psi.ProtoStringPart;
 import org.jetbrains.annotations.NotNull;
 
 /** A {@link SpellcheckingStrategy} for protobuf files */

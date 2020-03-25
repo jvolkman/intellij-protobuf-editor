@@ -15,9 +15,9 @@
  */
 package idea.plugin.protoeditor.ide.editing;
 
+import com.intellij.codeInsight.generation.actions.CommentByLineCommentAction;
 import idea.plugin.protoeditor.TestUtils;
 import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
-import com.intellij.codeInsight.generation.actions.CommentByLineCommentAction;
 
 /** Tests for {@link PbTextCommenter} */
 public class PbTextCommenterTest extends PbCodeInsightFixtureTestCase {

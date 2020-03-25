@@ -15,15 +15,11 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbNamedTypeElement;
-import idea.plugin.protoeditor.lang.psi.PbTextField;
-import idea.plugin.protoeditor.lang.psi.PbTextMessageValue;
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.TokenSet;
 import com.intellij.psi.util.PsiTreeUtil;
+import idea.plugin.protoeditor.lang.psi.*;
 import org.jetbrains.annotations.Nullable;
 
 abstract class PbTextMessageValueMixin extends PbTextElementBase implements PbTextMessageValue {

@@ -15,13 +15,13 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
+import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.util.QualifiedName;
 import idea.plugin.protoeditor.lang.descriptor.Descriptor;
 import idea.plugin.protoeditor.lang.descriptor.DescriptorOptionType;
 import idea.plugin.protoeditor.lang.psi.PbOneofBody;
 import idea.plugin.protoeditor.lang.psi.PbOneofDefinition;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.util.QualifiedName;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

@@ -15,13 +15,10 @@
  */
 package idea.plugin.protoeditor.lang.annotation;
 
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbNamedTypeElement;
-import idea.plugin.protoeditor.lang.psi.PbNumberValue;
-import idea.plugin.protoeditor.lang.psi.PbTypeName;
-import idea.plugin.protoeditor.lang.util.BuiltInType;
 import com.intellij.psi.util.QualifiedName;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.util.BuiltInType;
+
 import java.util.Objects;
 
 /** A class that represents the google.protobuf.Any type. */

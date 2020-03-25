@@ -15,11 +15,6 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.PbTextFileType;
-import idea.plugin.protoeditor.lang.psi.PbTextFile;
-import idea.plugin.protoeditor.lang.psi.PbTextRootMessage;
-import idea.plugin.protoeditor.lang.resolve.SchemaInfo;
-import idea.plugin.protoeditor.lang.resolve.SchemaProvider;
 import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.lang.Language;
 import com.intellij.openapi.fileTypes.FileType;
@@ -27,6 +22,11 @@ import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.util.CachedValueProvider;
 import com.intellij.psi.util.CachedValuesManager;
 import com.intellij.psi.util.PsiModificationTracker;
+import idea.plugin.protoeditor.lang.PbTextFileType;
+import idea.plugin.protoeditor.lang.psi.PbTextFile;
+import idea.plugin.protoeditor.lang.psi.PbTextRootMessage;
+import idea.plugin.protoeditor.lang.resolve.SchemaInfo;
+import idea.plugin.protoeditor.lang.resolve.SchemaProvider;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

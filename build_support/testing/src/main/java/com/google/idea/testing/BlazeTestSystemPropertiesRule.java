@@ -25,15 +25,15 @@ import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.util.Disposer;
 import com.intellij.openapi.vfs.newvfs.impl.VfsRootAccess;
 import com.intellij.util.PlatformUtils;
+import org.jetbrains.annotations.Nullable;
+import org.junit.rules.ExternalResource;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
 import java.util.List;
-
-import org.jetbrains.annotations.Nullable;
-import org.junit.rules.ExternalResource;
 
 /**
  * Test utilities specific to running IntelliJ integration tests in a blaze/bazel environment.

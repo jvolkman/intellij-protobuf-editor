@@ -15,11 +15,12 @@
  */
 package idea.plugin.protoeditor.ide.documentation;
 
+import com.intellij.psi.util.QualifiedName;
 import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import idea.plugin.protoeditor.lang.PbFileType;
 import idea.plugin.protoeditor.lang.psi.PbFile;
 import idea.plugin.protoeditor.lang.psi.PbStatement;
-import com.intellij.psi.util.QualifiedName;
+
 import java.util.Arrays;
 
 /** Tests for {@link PbDocumentationProvider}. */

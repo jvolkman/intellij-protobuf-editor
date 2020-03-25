@@ -15,11 +15,11 @@
  */
 package idea.plugin.protoeditor.java.names;
 
-import static com.google.common.truth.Truth.assertThat;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+
+import static com.google.common.truth.Truth.assertThat;
 
 /**
  * Tests for {@link NameUtils}. This is mostly a smoke test. Ultimately, we care about how protoc

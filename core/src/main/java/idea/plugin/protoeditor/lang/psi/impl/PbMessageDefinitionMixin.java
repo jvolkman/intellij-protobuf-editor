@@ -15,14 +15,14 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
+import com.intellij.lang.ASTNode;
+import com.intellij.psi.stubs.IStubElementType;
 import idea.plugin.protoeditor.ide.util.PbIcons;
 import idea.plugin.protoeditor.lang.psi.PbMessageDefinition;
 import idea.plugin.protoeditor.lang.stub.PbMessageDefinitionStub;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.stubs.IStubElementType;
-import javax.swing.Icon;
-
 import org.jetbrains.annotations.Nullable;
+
+import javax.swing.*;
 
 abstract class PbMessageDefinitionMixin extends PbStubbedSymbolOwnerBase<PbMessageDefinitionStub>
     implements PbMessageDefinition {

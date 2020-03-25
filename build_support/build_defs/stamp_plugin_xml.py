@@ -17,8 +17,9 @@
 """Stamps a plugin xml with build information."""
 
 import argparse
-import io
 import re
+
+import io
 import sys
 from xml.dom import minidom
 

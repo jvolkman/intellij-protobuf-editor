@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.ide.highlighter;
 
+import com.intellij.lexer.LayeredLexer;
 import idea.plugin.protoeditor.lang.lexer.ProtoLexer;
 import idea.plugin.protoeditor.lang.lexer.StringLexer;
 import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
-import com.intellij.lexer.LayeredLexer;
 
 /**
  * This lexer can be used to highlight keywords in addition to other token types (strings, numbers,

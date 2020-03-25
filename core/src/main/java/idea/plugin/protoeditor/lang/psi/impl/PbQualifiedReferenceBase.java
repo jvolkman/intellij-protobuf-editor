@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
+import com.intellij.lang.ASTNode;
 import idea.plugin.protoeditor.lang.psi.PbQualifiedReference;
 import idea.plugin.protoeditor.lang.psi.ProtoSymbolPath;
 import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
-import com.intellij.lang.ASTNode;
 import org.jetbrains.annotations.NotNull;
 
 abstract class PbQualifiedReferenceBase extends PbElementBase implements PbQualifiedReference {

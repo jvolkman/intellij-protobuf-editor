@@ -15,13 +15,14 @@
  */
 package idea.plugin.protoeditor.lang.resolve.directive;
 
-import static com.google.common.truth.Truth.assertThat;
-
+import com.intellij.codeInsight.completion.CompletionType;
 import idea.plugin.protoeditor.TestUtils;
 import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import idea.plugin.protoeditor.lang.PbTextFileType;
-import com.intellij.codeInsight.completion.CompletionType;
+
 import java.util.List;
+
+import static com.google.common.truth.Truth.assertThat;
 
 /** Tests completion scenarios for text format schema comments. */
 public class PbTextDirectiveCompletionTest extends PbCodeInsightFixtureTestCase {

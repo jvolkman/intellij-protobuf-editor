@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.ide.settings;
 
-import idea.plugin.protoeditor.ide.PbIdeBundle;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurableBase;
 import com.intellij.openapi.project.Project;
+import idea.plugin.protoeditor.ide.PbIdeBundle;
 import org.jetbrains.annotations.NotNull;
 
 /** A {@link Configurable} that provides a protobuf text format language settings panel. */

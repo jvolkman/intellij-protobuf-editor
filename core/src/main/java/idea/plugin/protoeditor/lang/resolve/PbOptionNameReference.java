@@ -15,24 +15,24 @@
  */
 package idea.plugin.protoeditor.lang.resolve;
 
-import idea.plugin.protoeditor.lang.annotation.OptionOccurrenceTracker;
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbOptionName;
-import idea.plugin.protoeditor.lang.psi.PbOptionOwner;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
 import com.intellij.codeInsight.lookup.LookupElement;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
 import com.intellij.psi.PsiReferenceBase;
 import com.intellij.psi.impl.source.resolve.ResolveCache;
+import idea.plugin.protoeditor.lang.annotation.OptionOccurrenceTracker;
+import idea.plugin.protoeditor.lang.psi.PbField;
+import idea.plugin.protoeditor.lang.psi.PbMessageType;
+import idea.plugin.protoeditor.lang.psi.PbOptionName;
+import idea.plugin.protoeditor.lang.psi.PbOptionOwner;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /** A {@link PsiReference} implementation for {@link PbOptionName}. */
 public class PbOptionNameReference extends PsiReferenceBase<PbOptionName> {

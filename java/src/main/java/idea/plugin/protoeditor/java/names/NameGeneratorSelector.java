@@ -15,12 +15,9 @@
  */
 package idea.plugin.protoeditor.java.names;
 
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbIdentifierValue;
-import idea.plugin.protoeditor.lang.psi.PbNumberValue;
-import idea.plugin.protoeditor.lang.psi.PbOptionExpression;
-import idea.plugin.protoeditor.lang.psi.PbStringValue;
 import com.intellij.openapi.util.Ref;
+import idea.plugin.protoeditor.lang.psi.*;
+
 import java.util.ArrayList;
 import java.util.List;
 

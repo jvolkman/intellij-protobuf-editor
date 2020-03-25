@@ -15,20 +15,14 @@
  */
 package idea.plugin.protoeditor.lang.resolve;
 
-import static idea.plugin.protoeditor.lang.psi.util.PbPsiUtil.isMessageElement;
-import static idea.plugin.protoeditor.lang.psi.util.PbPsiUtil.isPackageElement;
-import static idea.plugin.protoeditor.lang.psi.util.PbPsiUtil.isTypeElement;
-
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbNamedTypeElement;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
-import idea.plugin.protoeditor.lang.psi.PbSymbolOwner;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
 import com.intellij.openapi.util.Condition;
 import com.intellij.openapi.util.Conditions;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import static idea.plugin.protoeditor.lang.psi.util.PbPsiUtil.*;
 
 /** Conditions to restrict resolve results. */
 public class ResolveFilters {

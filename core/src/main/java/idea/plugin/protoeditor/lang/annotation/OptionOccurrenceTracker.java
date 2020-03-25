@@ -17,38 +17,24 @@ package idea.plugin.protoeditor.lang.annotation;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import idea.plugin.protoeditor.lang.PbLangBundle;
-import idea.plugin.protoeditor.lang.psi.PbAggregateValue;
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbNamedTypeElement;
-import idea.plugin.protoeditor.lang.psi.PbOneofDefinition;
-import idea.plugin.protoeditor.lang.psi.PbOptionExpression;
-import idea.plugin.protoeditor.lang.psi.PbOptionName;
-import idea.plugin.protoeditor.lang.psi.PbOptionOwner;
-import idea.plugin.protoeditor.lang.psi.PbTextElement;
-import idea.plugin.protoeditor.lang.psi.PbTextExtensionName;
-import idea.plugin.protoeditor.lang.psi.PbTextField;
-import idea.plugin.protoeditor.lang.psi.PbTextFieldName;
-import idea.plugin.protoeditor.lang.psi.PbTextMessage;
-import idea.plugin.protoeditor.lang.psi.PbTextRootMessage;
-import idea.plugin.protoeditor.lang.psi.PbTypeName;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.CachedValueProvider.Result;
 import com.intellij.psi.util.CachedValuesManager;
 import com.intellij.psi.util.PsiModificationTracker;
 import com.intellij.psi.util.PsiTreeUtil;
+import idea.plugin.protoeditor.lang.PbLangBundle;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * A helper class to track option occurrences within some scope and annotate the following problems:

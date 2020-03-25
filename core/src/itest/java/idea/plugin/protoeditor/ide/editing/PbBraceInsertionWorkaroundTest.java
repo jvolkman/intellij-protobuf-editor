@@ -15,12 +15,12 @@
  */
 package idea.plugin.protoeditor.ide.editing;
 
-import static com.google.common.truth.Truth.assertThat;
-
-import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import com.intellij.injected.editor.EditorWindow;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.PsiDocumentManager;
+import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
+
+import static com.google.common.truth.Truth.assertThat;
 
 /**
  * These tests exercised workarounds required to make language injection work for prototext within

@@ -15,15 +15,16 @@
  */
 package idea.plugin.protoeditor.ide.documentation;
 
-import idea.plugin.protoeditor.lang.psi.PbCommentOwner;
-import idea.plugin.protoeditor.lang.psi.util.PbCommentUtil;
 import com.intellij.lang.documentation.AbstractDocumentationProvider;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiManager;
-import java.util.List;
+import idea.plugin.protoeditor.lang.psi.PbCommentOwner;
+import idea.plugin.protoeditor.lang.psi.util.PbCommentUtil;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /** A {@link com.intellij.lang.documentation.DocumentationProvider} for proto elements. */
 public class PbDocumentationProvider extends AbstractDocumentationProvider {

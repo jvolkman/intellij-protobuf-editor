@@ -15,12 +15,13 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import idea.plugin.protoeditor.lang.psi.util.PbCommentUtil;
 import com.intellij.psi.PsiComment;
-import java.util.Collections;
-import java.util.List;
+import idea.plugin.protoeditor.lang.psi.util.PbCommentUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Collections;
+import java.util.List;
 
 /** A definition is a container element, such as a message, enum, or service. */
 public interface PbDefinition extends PbElement, PbStatement, PbStatementOwner {

@@ -15,15 +15,10 @@
  */
 package idea.plugin.protoeditor.lang.resolve.directive;
 
-import idea.plugin.protoeditor.lang.PbTextLanguage;
 import com.intellij.patterns.PlatformPatterns;
-import com.intellij.psi.PsiComment;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiReference;
-import com.intellij.psi.PsiReferenceContributor;
-import com.intellij.psi.PsiReferenceProvider;
-import com.intellij.psi.PsiReferenceRegistrar;
+import com.intellij.psi.*;
 import com.intellij.util.ProcessingContext;
+import idea.plugin.protoeditor.lang.PbTextLanguage;
 import org.jetbrains.annotations.NotNull;
 
 /** A reference contributor that provides references for directive comments. */

@@ -15,13 +15,13 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.ProtoSymbolPath;
-import idea.plugin.protoeditor.lang.psi.ProtoSymbolPathContainer;
-import idea.plugin.protoeditor.lang.psi.ProtoSymbolPathDelegate;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
 import com.intellij.util.IncorrectOperationException;
+import idea.plugin.protoeditor.lang.psi.ProtoSymbolPath;
+import idea.plugin.protoeditor.lang.psi.ProtoSymbolPathContainer;
+import idea.plugin.protoeditor.lang.psi.ProtoSymbolPathDelegate;
 import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;

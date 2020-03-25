@@ -15,13 +15,10 @@
  */
 package idea.plugin.protoeditor.java.names;
 
-import idea.plugin.protoeditor.java.PbJavaGotoDeclarationContext;
-import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
-import idea.plugin.protoeditor.lang.psi.PbEnumValue;
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbOneofDefinition;
 import com.intellij.psi.PsiClass;
+import idea.plugin.protoeditor.java.PbJavaGotoDeclarationContext;
+import idea.plugin.protoeditor.lang.psi.*;
+
 import java.util.Objects;
 
 /**

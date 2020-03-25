@@ -15,22 +15,23 @@
  */
 package idea.plugin.protoeditor.lang.completion;
 
-import idea.plugin.protoeditor.TestUtils;
-import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
-import idea.plugin.protoeditor.lang.PbFileType;
 import com.intellij.codeInsight.lookup.Lookup;
 import com.intellij.codeInsight.lookup.LookupElement;
 import com.intellij.codeInsight.lookup.LookupElementPresentation;
 import com.intellij.psi.PsiFile;
-import java.awt.Color;
+import idea.plugin.protoeditor.TestUtils;
+import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
+import idea.plugin.protoeditor.lang.PbFileType;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Base class for {@link PbCompletionContributor} tests. Provides useful utilities for setup,

@@ -15,16 +15,16 @@
  */
 package idea.plugin.protoeditor.lang.resolve;
 
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiReference;
+import com.intellij.psi.PsiReferenceWrapper;
+import com.intellij.psi.util.PsiTreeUtil;
 import idea.plugin.protoeditor.lang.psi.PbField;
 import idea.plugin.protoeditor.lang.psi.PbField.CanonicalFieldLabel;
 import idea.plugin.protoeditor.lang.psi.PbMessageType;
 import idea.plugin.protoeditor.lang.psi.PbTextMessage;
 import idea.plugin.protoeditor.lang.psi.PbTypeName;
 import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiReference;
-import com.intellij.psi.PsiReferenceWrapper;
-import com.intellij.psi.util.PsiTreeUtil;
 
 /**
  * A {@link PsiReference} that resolves valid message set references to their equivalent extension

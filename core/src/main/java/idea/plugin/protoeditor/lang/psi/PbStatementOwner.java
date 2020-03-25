@@ -15,8 +15,9 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import java.util.List;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 /** Something that has child statements. */
 public interface PbStatementOwner extends PbElement {

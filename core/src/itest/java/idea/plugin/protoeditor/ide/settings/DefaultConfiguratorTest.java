@@ -15,9 +15,6 @@
  */
 package idea.plugin.protoeditor.ide.settings;
 
-import static idea.plugin.protoeditor.TestUtils.notNull;
-
-import idea.plugin.protoeditor.ide.settings.PbProjectSettings.ImportPathEntry;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.module.EmptyModuleType;
 import com.intellij.openapi.module.Module;
@@ -29,9 +26,13 @@ import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.VirtualFileManager;
 import com.intellij.testFramework.HeavyPlatformTestCase;
+import idea.plugin.protoeditor.ide.settings.PbProjectSettings.ImportPathEntry;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+
+import static idea.plugin.protoeditor.TestUtils.notNull;
 
 /** Unit tests for {@link DefaultConfigurator}. */
 public class DefaultConfiguratorTest extends HeavyPlatformTestCase {

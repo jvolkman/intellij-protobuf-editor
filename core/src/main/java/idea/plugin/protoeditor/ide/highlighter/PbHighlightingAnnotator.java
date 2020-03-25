@@ -15,15 +15,6 @@
  */
 package idea.plugin.protoeditor.ide.highlighter;
 
-import idea.plugin.protoeditor.lang.psi.PbEnumValue;
-import idea.plugin.protoeditor.lang.psi.PbIdentifierValue;
-import idea.plugin.protoeditor.lang.psi.PbNumberValue;
-import idea.plugin.protoeditor.lang.psi.PbOptionName;
-import idea.plugin.protoeditor.lang.psi.PbTypeName;
-import idea.plugin.protoeditor.lang.psi.PbVisitor;
-import idea.plugin.protoeditor.lang.psi.ProtoNumberValue;
-import idea.plugin.protoeditor.lang.psi.ProtoNumberValue.SourceType;
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 import com.intellij.codeInsight.daemon.impl.HighlightInfoType;
 import com.intellij.lang.annotation.Annotation;
 import com.intellij.lang.annotation.AnnotationHolder;
@@ -33,8 +24,11 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNameIdentifierOwner;
 import com.intellij.psi.PsiReference;
 import com.intellij.psi.tree.IElementType;
-import java.util.Objects;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.psi.ProtoNumberValue.SourceType;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 /**
  * An annotator that syntax-highlights keywords.

@@ -15,11 +15,11 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.PbImportStatement;
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.TokenSet;
+import idea.plugin.protoeditor.lang.psi.PbImportStatement;
+import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 import org.jetbrains.annotations.Nullable;
 
 abstract class PbImportStatementMixin extends PbStatementBase implements PbImportStatement {

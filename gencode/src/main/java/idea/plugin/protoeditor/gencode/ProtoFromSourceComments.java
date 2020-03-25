@@ -16,16 +16,17 @@
 package idea.plugin.protoeditor.gencode;
 
 import com.google.common.collect.ImmutableList;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.resolve.PbFileResolver;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiWhiteSpace;
+import idea.plugin.protoeditor.lang.psi.PbFile;
+import idea.plugin.protoeditor.lang.resolve.PbFileResolver;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.jetbrains.annotations.Nullable;
 
 /** Locates a .proto file based on generated source comments */
 public final class ProtoFromSourceComments {

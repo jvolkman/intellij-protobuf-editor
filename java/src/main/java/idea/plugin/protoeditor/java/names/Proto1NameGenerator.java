@@ -16,21 +16,14 @@
 package idea.plugin.protoeditor.java.names;
 
 import com.google.common.collect.ImmutableSet;
+import com.intellij.psi.util.QualifiedName;
 import idea.plugin.protoeditor.java.PbJavaGotoDeclarationContext;
-import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
-import idea.plugin.protoeditor.lang.psi.PbEnumValue;
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbMapField;
-import idea.plugin.protoeditor.lang.psi.PbMessageDefinition;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbOneofDefinition;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
+import idea.plugin.protoeditor.lang.psi.*;
 import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
 import idea.plugin.protoeditor.lang.util.BuiltInType;
-import com.intellij.psi.util.QualifiedName;
-import java.util.Set;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Set;
 
 /** Enumerates the Java element names for java_api_version = 1. */
 public class Proto1NameGenerator implements NameGenerator {

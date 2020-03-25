@@ -15,9 +15,6 @@
  */
 package idea.plugin.protoeditor.ide.actions;
 
-import idea.plugin.protoeditor.lang.psi.PbTextFile;
-import idea.plugin.protoeditor.lang.resolve.directive.SchemaComment;
-import idea.plugin.protoeditor.lang.resolve.directive.SchemaDirective;
 import com.intellij.codeInsight.template.Template;
 import com.intellij.codeInsight.template.TemplateManager;
 import com.intellij.openapi.actionSystem.AnAction;
@@ -31,8 +28,13 @@ import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
+import idea.plugin.protoeditor.lang.psi.PbTextFile;
+import idea.plugin.protoeditor.lang.resolve.directive.SchemaComment;
+import idea.plugin.protoeditor.lang.resolve.directive.SchemaDirective;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * An {@link AnAction action} that inserts <code>proto-file</code> and <code>proto-message</code>

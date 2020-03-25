@@ -17,12 +17,6 @@ package idea.plugin.protoeditor.lang.resolve;
 
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
-import idea.plugin.protoeditor.lang.psi.PbElement;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
-import idea.plugin.protoeditor.lang.psi.PbSymbolOwner;
-import idea.plugin.protoeditor.lang.psi.ProtoSymbolPath;
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
 import com.intellij.codeInsight.lookup.LookupElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.util.Condition;
@@ -35,13 +29,16 @@ import com.intellij.psi.impl.source.resolve.ResolveCache;
 import com.intellij.psi.impl.source.tree.LeafElement;
 import com.intellij.psi.util.QualifiedName;
 import com.intellij.util.IncorrectOperationException;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * A reference to a type or symbol elsewhere in the file or in another imported file.

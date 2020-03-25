@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
+import com.intellij.lang.ASTNode;
 import idea.plugin.protoeditor.lang.psi.PbNumberValue;
 import idea.plugin.protoeditor.lang.psi.PbReservedRange;
 import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
-import com.intellij.lang.ASTNode;
 import org.jetbrains.annotations.Nullable;
 
 abstract class PbEnumReservedRangeMixin extends PbElementBase implements PbReservedRange {

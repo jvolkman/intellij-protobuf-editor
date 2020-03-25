@@ -15,20 +15,20 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.PbNamedElement;
-import idea.plugin.protoeditor.lang.psi.PbSymbolOwner;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
 import com.intellij.lang.ASTNode;
 import com.intellij.navigation.ItemPresentation;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.impl.source.tree.LeafElement;
 import com.intellij.psi.util.QualifiedName;
 import com.intellij.util.IncorrectOperationException;
-import javax.swing.Icon;
-
+import idea.plugin.protoeditor.lang.psi.PbNamedElement;
+import idea.plugin.protoeditor.lang.psi.PbSymbolOwner;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.swing.*;
 
 abstract class PbNamedElementBase extends PbStatementBase implements PbNamedElement {
 

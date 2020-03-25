@@ -16,6 +16,7 @@
 package com.google.idea.testing;
 
 import com.google.common.base.StandardSystemProperty;
+
 import java.io.File;
 
 /** Test utilities. */

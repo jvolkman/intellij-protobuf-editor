@@ -15,15 +15,7 @@
  */
 package idea.plugin.protoeditor.python;
 
-import static com.google.common.truth.Truth.assertThat;
-import static com.google.common.truth.Truth.assertWithMessage;
-import static idea.plugin.protoeditor.TestUtils.notNull;
-
 import com.google.common.collect.Iterables;
-import idea.plugin.protoeditor.TestUtils;
-import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
-import idea.plugin.protoeditor.gencodeutils.GotoExpectationMarker;
-import idea.plugin.protoeditor.gencodeutils.ReferenceGotoExpectation;
 import com.intellij.codeInsight.navigation.actions.GotoDeclarationAction;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.editor.Caret;
@@ -35,9 +27,18 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.jetbrains.python.psi.PyReferenceExpression;
+import idea.plugin.protoeditor.TestUtils;
+import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
+import idea.plugin.protoeditor.gencodeutils.GotoExpectationMarker;
+import idea.plugin.protoeditor.gencodeutils.ReferenceGotoExpectation;
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+
+import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth.assertWithMessage;
+import static idea.plugin.protoeditor.TestUtils.notNull;
 
 /**
  * Tests for {@link PbPythonGotoDeclarationHandler}.

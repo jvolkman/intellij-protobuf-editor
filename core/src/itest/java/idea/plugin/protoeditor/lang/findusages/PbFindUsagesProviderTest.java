@@ -15,20 +15,21 @@
  */
 package idea.plugin.protoeditor.lang.findusages;
 
-import static idea.plugin.protoeditor.TestUtils.notNull;
-import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
-
-import idea.plugin.protoeditor.TestUtils;
-import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.usageView.UsageInfo;
 import com.intellij.usages.impl.rules.UsageType;
 import com.intellij.usages.impl.rules.UsageTypeProvider;
 import com.intellij.util.containers.ContainerUtil;
+import idea.plugin.protoeditor.TestUtils;
+import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
+import idea.plugin.protoeditor.lang.psi.PbSymbol;
+
 import java.util.Collection;
 import java.util.stream.Collectors;
+
+import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
+import static idea.plugin.protoeditor.TestUtils.notNull;
 
 /** Tests for {@link PbFindUsagesProvider}. */
 public class PbFindUsagesProviderTest extends PbCodeInsightFixtureTestCase {

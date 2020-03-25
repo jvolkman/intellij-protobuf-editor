@@ -15,7 +15,6 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import idea.plugin.protoeditor.lang.psi.PbPackageName;
 import com.intellij.psi.util.QualifiedName;
 import org.jetbrains.annotations.Nullable;
 

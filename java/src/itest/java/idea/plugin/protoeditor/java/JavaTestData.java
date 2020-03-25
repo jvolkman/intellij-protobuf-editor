@@ -15,8 +15,6 @@
  */
 package idea.plugin.protoeditor.java;
 
-import static idea.plugin.protoeditor.TestUtils.notNull;
-
 import com.google.common.collect.ImmutableList;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.application.ApplicationManager;
@@ -32,7 +30,10 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.newvfs.impl.VfsRootAccess;
 import com.intellij.testFramework.PsiTestUtil;
 import com.intellij.testFramework.fixtures.CodeInsightTestFixture;
+
 import java.io.File;
+
+import static idea.plugin.protoeditor.TestUtils.notNull;
 
 /** Utilities to load some testdata for the java integration tests. */
 public class JavaTestData {

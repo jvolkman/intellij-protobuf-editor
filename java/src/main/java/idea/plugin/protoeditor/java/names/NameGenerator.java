@@ -16,16 +16,11 @@
 package idea.plugin.protoeditor.java.names;
 
 import idea.plugin.protoeditor.java.PbJavaGotoDeclarationContext;
-import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
-import idea.plugin.protoeditor.lang.psi.PbEnumValue;
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbOneofDefinition;
-import idea.plugin.protoeditor.lang.psi.PbTypeName;
+import idea.plugin.protoeditor.lang.psi.*;
 import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
-import java.util.Set;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Set;
 
 /**
  * Represents names for a particular {@link PbFile}. Given an element of the file, returns the set

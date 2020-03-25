@@ -15,21 +15,12 @@
  */
 package idea.plugin.protoeditor.ide.views;
 
-import idea.plugin.protoeditor.lang.PbLanguage;
-import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
-import idea.plugin.protoeditor.lang.psi.PbEnumValue;
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbGroupDefinition;
-import idea.plugin.protoeditor.lang.psi.PbMapField;
-import idea.plugin.protoeditor.lang.psi.PbMessageDefinition;
-import idea.plugin.protoeditor.lang.psi.PbNamedElement;
-import idea.plugin.protoeditor.lang.psi.PbOneofDefinition;
-import idea.plugin.protoeditor.lang.psi.PbServiceDefinition;
-import idea.plugin.protoeditor.lang.psi.PbServiceMethod;
 import com.intellij.lang.Language;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.QualifiedName;
 import com.intellij.ui.breadcrumbs.BreadcrumbsProvider;
+import idea.plugin.protoeditor.lang.PbLanguage;
+import idea.plugin.protoeditor.lang.psi.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

@@ -15,13 +15,13 @@
  */
 package idea.plugin.protoeditor.lang.resolve;
 
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiReference;
+import com.intellij.psi.util.QualifiedName;
 import idea.plugin.protoeditor.TestUtils;
 import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import idea.plugin.protoeditor.lang.psi.PbMessageType;
 import idea.plugin.protoeditor.lang.psi.PbPackageName;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiReference;
-import com.intellij.psi.util.QualifiedName;
 import org.junit.Assert;
 
 /** Tests for {@link ProtoSymbolPathReference}. */

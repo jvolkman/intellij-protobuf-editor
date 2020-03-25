@@ -15,11 +15,11 @@
  */
 package idea.plugin.protoeditor.ide.highlighter;
 
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
-import idea.plugin.protoeditor.lang.util.BuiltInType;
 import com.intellij.lexer.DelegateLexer;
 import com.intellij.lexer.Lexer;
 import com.intellij.psi.tree.IElementType;
+import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
+import idea.plugin.protoeditor.lang.util.BuiltInType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

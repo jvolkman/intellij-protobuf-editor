@@ -15,11 +15,11 @@
  */
 package idea.plugin.protoeditor.lang.completion;
 
-import idea.plugin.protoeditor.lang.psi.PbNumberValue;
 import com.intellij.codeInsight.completion.CompletionConfidence;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.util.ThreeState;
+import idea.plugin.protoeditor.lang.psi.PbNumberValue;
 import org.jetbrains.annotations.NotNull;
 
 /** Allow skipping auto popup. */

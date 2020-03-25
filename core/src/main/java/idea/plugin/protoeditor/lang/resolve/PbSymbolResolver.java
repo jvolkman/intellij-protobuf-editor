@@ -19,11 +19,12 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSetMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
+import com.intellij.openapi.util.Condition;
+import com.intellij.psi.util.QualifiedName;
 import idea.plugin.protoeditor.lang.psi.PbFile;
 import idea.plugin.protoeditor.lang.psi.PbSymbol;
 import idea.plugin.protoeditor.lang.psi.PbSymbolOwner;
-import com.intellij.openapi.util.Condition;
-import com.intellij.psi.util.QualifiedName;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;

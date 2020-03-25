@@ -15,14 +15,15 @@
  */
 package idea.plugin.protoeditor.gencodeutils;
 
-import static com.google.common.truth.Truth.assertThat;
-import static com.google.common.truth.Truth.assertWithMessage;
-
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbNamedElement;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.QualifiedName;
+import idea.plugin.protoeditor.lang.psi.PbFile;
+import idea.plugin.protoeditor.lang.psi.PbNamedElement;
+
 import java.util.Arrays;
+
+import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 /** Expectation for going from source code -> proto. */
 final class ProtoTargetExpectation extends ReferenceGotoExpectation {

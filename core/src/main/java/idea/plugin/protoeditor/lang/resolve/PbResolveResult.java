@@ -15,14 +15,15 @@
  */
 package idea.plugin.protoeditor.lang.resolve;
 
-import static idea.plugin.protoeditor.lang.psi.util.PbPsiUtil.isPackageElement;
-
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
 import com.intellij.psi.ResolveResult;
 import com.intellij.psi.util.QualifiedName;
-import java.util.Objects;
+import idea.plugin.protoeditor.lang.psi.PbSymbol;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Objects;
+
+import static idea.plugin.protoeditor.lang.psi.util.PbPsiUtil.isPackageElement;
 
 public final class PbResolveResult implements ResolveResult {
 

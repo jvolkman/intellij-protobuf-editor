@@ -17,7 +17,8 @@ package idea.plugin.protoeditor.ide.util;
 
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.util.PlatformIcons;
-import javax.swing.Icon;
+
+import javax.swing.*;
 
 public interface PbIcons {
 

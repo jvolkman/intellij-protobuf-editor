@@ -15,13 +15,14 @@
  */
 package idea.plugin.protoeditor.lang.refactor;
 
-import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
-
-import idea.plugin.protoeditor.TestUtils;
-import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
+import idea.plugin.protoeditor.TestUtils;
+import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
+
 import java.io.IOException;
+
+import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
 
 /**
  * Tests for the refactor rename action (handled by {@link

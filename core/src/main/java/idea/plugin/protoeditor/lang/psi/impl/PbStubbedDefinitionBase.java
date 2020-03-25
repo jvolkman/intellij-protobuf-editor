@@ -15,17 +15,17 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
+import com.intellij.lang.ASTNode;
+import com.intellij.psi.stubs.IStubElementType;
 import idea.plugin.protoeditor.lang.psi.PbDefinition;
 import idea.plugin.protoeditor.lang.psi.PbStatement;
 import idea.plugin.protoeditor.lang.psi.PbStatementOwner;
 import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
 import idea.plugin.protoeditor.lang.stub.PbElementStub;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.stubs.IStubElementType;
-import java.util.List;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 abstract class PbStubbedDefinitionBase<T extends PbElementStub<?>> extends PbStubbedElementBase<T>
     implements PbDefinition {

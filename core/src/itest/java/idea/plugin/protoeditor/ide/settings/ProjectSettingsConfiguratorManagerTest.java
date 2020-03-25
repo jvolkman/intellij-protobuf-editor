@@ -15,9 +15,6 @@
  */
 package idea.plugin.protoeditor.ide.settings;
 
-import static idea.plugin.protoeditor.TestUtils.notNull;
-
-import idea.plugin.protoeditor.ide.settings.PbProjectSettings.ImportPathEntry;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.extensions.ExtensionPoint;
 import com.intellij.openapi.extensions.Extensions;
@@ -32,8 +29,12 @@ import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.testFramework.HeavyPlatformTestCase;
+import idea.plugin.protoeditor.ide.settings.PbProjectSettings.ImportPathEntry;
+
 import java.io.File;
 import java.util.UUID;
+
+import static idea.plugin.protoeditor.TestUtils.notNull;
 
 /** Unit tests for {@link ProjectSettingsConfiguratorManager}. */
 public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCase {

@@ -15,9 +15,9 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
+import com.intellij.lang.ASTNode;
 import idea.plugin.protoeditor.lang.psi.PbServiceMethodType;
 import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
-import com.intellij.lang.ASTNode;
 
 abstract class PbServiceMethodTypeMixin extends PbElementBase implements PbServiceMethodType {
 

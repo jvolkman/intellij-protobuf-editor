@@ -15,18 +15,14 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.PbTextElement;
-import idea.plugin.protoeditor.lang.psi.PbTextField;
-import idea.plugin.protoeditor.lang.psi.PbTextLiteral;
-import idea.plugin.protoeditor.lang.psi.PbTextMessage;
-import idea.plugin.protoeditor.lang.psi.PbTextValueList;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
+import idea.plugin.protoeditor.lang.psi.*;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import org.jetbrains.annotations.NotNull;
 
 abstract class PbTextFieldMixin extends PbTextElementBase implements PbTextField {
 

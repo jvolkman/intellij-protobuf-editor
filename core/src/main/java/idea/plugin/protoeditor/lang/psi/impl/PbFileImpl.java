@@ -19,23 +19,6 @@ import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSetMultimap;
 import com.google.common.collect.Multimap;
-import idea.plugin.protoeditor.lang.PbFileType;
-import idea.plugin.protoeditor.lang.PbLanguage;
-import idea.plugin.protoeditor.lang.descriptor.Descriptor;
-import idea.plugin.protoeditor.lang.descriptor.DescriptorOptionType;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbImportName;
-import idea.plugin.protoeditor.lang.psi.PbImportStatement;
-import idea.plugin.protoeditor.lang.psi.PbOptionStatement;
-import idea.plugin.protoeditor.lang.psi.PbPackageName;
-import idea.plugin.protoeditor.lang.psi.PbPackageStatement;
-import idea.plugin.protoeditor.lang.psi.PbStatement;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
-import idea.plugin.protoeditor.lang.psi.PbSymbolOwner;
-import idea.plugin.protoeditor.lang.psi.PbSyntaxStatement;
-import idea.plugin.protoeditor.lang.psi.SyntaxLevel;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
 import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.fileTypes.FileType;
@@ -49,14 +32,17 @@ import com.intellij.psi.util.CachedValuesManager;
 import com.intellij.psi.util.PsiModificationTracker;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.QualifiedName;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
+import idea.plugin.protoeditor.lang.PbFileType;
+import idea.plugin.protoeditor.lang.PbLanguage;
+import idea.plugin.protoeditor.lang.descriptor.Descriptor;
+import idea.plugin.protoeditor.lang.descriptor.DescriptorOptionType;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.*;
 
 public class PbFileImpl extends PsiFileBase implements PbFile {
 

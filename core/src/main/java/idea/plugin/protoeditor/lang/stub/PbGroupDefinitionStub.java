@@ -15,11 +15,11 @@
  */
 package idea.plugin.protoeditor.lang.stub;
 
-import idea.plugin.protoeditor.lang.psi.PbGroupDefinition;
-import idea.plugin.protoeditor.lang.stub.type.PbGroupDefinitionType;
 import com.intellij.psi.stubs.StubBase;
 import com.intellij.psi.stubs.StubElement;
 import com.intellij.psi.util.QualifiedName;
+import idea.plugin.protoeditor.lang.psi.PbGroupDefinition;
+import idea.plugin.protoeditor.lang.stub.type.PbGroupDefinitionType;
 import org.jetbrains.annotations.Nullable;
 
 /** Stub element for {@link PbGroupDefinition}. */

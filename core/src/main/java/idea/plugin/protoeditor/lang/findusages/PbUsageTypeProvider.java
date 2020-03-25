@@ -15,17 +15,12 @@
  */
 package idea.plugin.protoeditor.lang.findusages;
 
-import idea.plugin.protoeditor.lang.PbLangBundle;
-import idea.plugin.protoeditor.lang.psi.PbDefinition;
-import idea.plugin.protoeditor.lang.psi.PbExtendDefinition;
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbOptionExpression;
-import idea.plugin.protoeditor.lang.psi.PbServiceDefinition;
-import idea.plugin.protoeditor.lang.psi.PbTypeName;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.usages.impl.rules.UsageType;
 import com.intellij.usages.impl.rules.UsageTypeProvider;
+import idea.plugin.protoeditor.lang.PbLangBundle;
+import idea.plugin.protoeditor.lang.psi.*;
 import org.jetbrains.annotations.Nullable;
 
 /**

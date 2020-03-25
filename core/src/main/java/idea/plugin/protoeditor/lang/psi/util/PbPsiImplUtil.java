@@ -17,14 +17,6 @@ package idea.plugin.protoeditor.lang.psi.util;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSetMultimap;
-import idea.plugin.protoeditor.lang.psi.PbElement;
-import idea.plugin.protoeditor.lang.psi.PbEnumValue;
-import idea.plugin.protoeditor.lang.psi.PbOptionOwner;
-import idea.plugin.protoeditor.lang.psi.PbStatement;
-import idea.plugin.protoeditor.lang.psi.PbStatementOwner;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
-import idea.plugin.protoeditor.lang.psi.PbSymbolContributor;
-import idea.plugin.protoeditor.lang.psi.PbSymbolOwner;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.CachedValueProvider.Result;
@@ -32,10 +24,11 @@ import com.intellij.psi.util.CachedValuesManager;
 import com.intellij.psi.util.PsiModificationTracker;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.QualifiedName;
-import java.util.List;
-
+import idea.plugin.protoeditor.lang.psi.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * This class contains static utility methods that are used by various PSI implementations.

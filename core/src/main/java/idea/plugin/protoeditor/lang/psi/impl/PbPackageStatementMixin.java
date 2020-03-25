@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.PbPackageStatement;
-import idea.plugin.protoeditor.lang.stub.PbPackageStatementStub;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.stubs.IStubElementType;
+import idea.plugin.protoeditor.lang.psi.PbPackageStatement;
+import idea.plugin.protoeditor.lang.stub.PbPackageStatementStub;
 
 abstract class PbPackageStatementMixin extends PbStubbedElementBase<PbPackageStatementStub>
     implements PbPackageStatement {

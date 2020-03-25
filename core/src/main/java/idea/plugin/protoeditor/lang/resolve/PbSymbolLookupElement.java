@@ -15,22 +15,17 @@
  */
 package idea.plugin.protoeditor.lang.resolve;
 
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbGroupDefinition;
-import idea.plugin.protoeditor.lang.psi.PbMapField;
-import idea.plugin.protoeditor.lang.psi.PbPackageName;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
-import idea.plugin.protoeditor.lang.psi.PbTypeName;
 import com.intellij.codeInsight.AutoPopupController;
 import com.intellij.codeInsight.completion.InsertionContext;
 import com.intellij.codeInsight.lookup.LookupElement;
 import com.intellij.codeInsight.lookup.LookupElementPresentation;
 import com.intellij.ui.JBColor;
-import java.util.Objects;
-import javax.swing.Icon;
-
 import idea.plugin.protoeditor.lang.annotation.OptionOccurrenceTracker;
+import idea.plugin.protoeditor.lang.psi.*;
 import org.jetbrains.annotations.NotNull;
+
+import javax.swing.*;
+import java.util.Objects;
 
 /**
  * LookupElement that wraps {@link PbSymbol} and deduplicates completion variants by name. We really

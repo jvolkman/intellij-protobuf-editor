@@ -16,17 +16,11 @@
 package idea.plugin.protoeditor.lang.annotation;
 
 import com.google.common.base.Ascii;
-import idea.plugin.protoeditor.lang.PbLangBundle;
-import idea.plugin.protoeditor.lang.psi.PbElement;
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbGroupDefinition;
-import idea.plugin.protoeditor.lang.psi.PbMapField;
-import idea.plugin.protoeditor.lang.psi.PbOneofDefinition;
-import idea.plugin.protoeditor.lang.psi.PbVisitor;
-import idea.plugin.protoeditor.lang.psi.SyntaxLevel;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.Annotator;
 import com.intellij.psi.PsiElement;
+import idea.plugin.protoeditor.lang.PbLangBundle;
+import idea.plugin.protoeditor.lang.psi.*;
 import org.jetbrains.annotations.NotNull;
 
 /** Annotations specific to proto2 syntax level. */

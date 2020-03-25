@@ -15,14 +15,14 @@
  */
 package idea.plugin.protoeditor.ide.editing;
 
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbTextFile;
 import com.intellij.lang.Commenter;
 import com.intellij.lang.Language;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.templateLanguages.MultipleLangCommentProvider;
+import idea.plugin.protoeditor.lang.psi.PbFile;
+import idea.plugin.protoeditor.lang.psi.PbTextFile;
 import org.jetbrains.annotations.Nullable;
 
 /**

@@ -17,20 +17,16 @@ package idea.plugin.protoeditor.java.names;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
-import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbNamedTypeElement;
-import idea.plugin.protoeditor.lang.psi.PbOneofDefinition;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
 import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.psi.util.QualifiedName;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.jetbrains.annotations.Nullable;
 
 /** Class name generation schemes common to various java_api_version = 2 variants. */
 class Proto2DefinitionClassNames {

@@ -16,10 +16,6 @@
 package idea.plugin.protoeditor.lang.psi;
 
 import com.google.common.collect.Range;
-import idea.plugin.protoeditor.lang.psi.PbFieldLabel;
-import idea.plugin.protoeditor.lang.psi.PbNumberValue;
-import idea.plugin.protoeditor.lang.psi.PbOneofDefinition;
-import idea.plugin.protoeditor.lang.psi.PbTypeName;
 import org.jetbrains.annotations.Nullable;
 
 /** Common interface implemented by simple fields, map fields, and group fields. */

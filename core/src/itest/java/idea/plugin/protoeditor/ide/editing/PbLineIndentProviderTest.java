@@ -15,9 +15,6 @@
  */
 package idea.plugin.protoeditor.ide.editing;
 
-import idea.plugin.protoeditor.TestUtils;
-import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
-import idea.plugin.protoeditor.lang.PbLanguage;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
@@ -27,6 +24,9 @@ import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.codeStyle.lineIndent.LineIndentProvider;
 import com.intellij.psi.impl.source.codeStyle.lineIndent.FormatterBasedLineIndentProvider;
 import com.intellij.util.text.CharArrayUtil;
+import idea.plugin.protoeditor.TestUtils;
+import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
+import idea.plugin.protoeditor.lang.PbLanguage;
 
 /** Tests for {@link PbLineIndentProvider} */
 public class PbLineIndentProviderTest extends PbCodeInsightFixtureTestCase {

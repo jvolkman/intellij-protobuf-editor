@@ -15,6 +15,9 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
+import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiComment;
+import com.intellij.psi.util.QualifiedName;
 import idea.plugin.protoeditor.ide.util.PbIcons;
 import idea.plugin.protoeditor.lang.descriptor.Descriptor;
 import idea.plugin.protoeditor.lang.descriptor.DescriptorOptionType;
@@ -23,15 +26,12 @@ import idea.plugin.protoeditor.lang.psi.PbMethodOptions;
 import idea.plugin.protoeditor.lang.psi.PbOptionStatement;
 import idea.plugin.protoeditor.lang.psi.PbServiceMethod;
 import idea.plugin.protoeditor.lang.psi.util.PbCommentUtil;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.PsiComment;
-import com.intellij.psi.util.QualifiedName;
-import java.util.Collections;
-import java.util.List;
-import javax.swing.Icon;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.swing.*;
+import java.util.Collections;
+import java.util.List;
 
 abstract class PbServiceMethodMixin extends PbNamedElementBase implements PbServiceMethod {
 

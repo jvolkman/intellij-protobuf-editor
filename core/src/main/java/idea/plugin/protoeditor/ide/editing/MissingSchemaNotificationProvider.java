@@ -15,12 +15,6 @@
  */
 package idea.plugin.protoeditor.ide.editing;
 
-import idea.plugin.protoeditor.ide.PbIdeBundle;
-import idea.plugin.protoeditor.ide.actions.InsertSchemaDirectiveAction;
-import idea.plugin.protoeditor.ide.settings.PbTextLanguageSettings;
-import idea.plugin.protoeditor.ide.settings.PbTextLanguageSettingsConfigurable;
-import idea.plugin.protoeditor.lang.psi.PbTextFile;
-import idea.plugin.protoeditor.lang.resolve.directive.SchemaDirective;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileEditor;
@@ -34,10 +28,17 @@ import com.intellij.psi.PsiFile;
 import com.intellij.ui.EditorNotificationPanel;
 import com.intellij.ui.EditorNotifications;
 import com.intellij.util.containers.WeakList;
-import java.util.Collection;
-import javax.swing.event.HyperlinkListener;
+import idea.plugin.protoeditor.ide.PbIdeBundle;
+import idea.plugin.protoeditor.ide.actions.InsertSchemaDirectiveAction;
+import idea.plugin.protoeditor.ide.settings.PbTextLanguageSettings;
+import idea.plugin.protoeditor.ide.settings.PbTextLanguageSettingsConfigurable;
+import idea.plugin.protoeditor.lang.psi.PbTextFile;
+import idea.plugin.protoeditor.lang.resolve.directive.SchemaDirective;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.swing.event.HyperlinkListener;
+import java.util.Collection;
 
 /**
  * Provides an editor notification (a bar at the top of the editor) when a text format file is

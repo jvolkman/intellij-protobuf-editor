@@ -15,15 +15,11 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.PbAggregateValue;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbNamedTypeElement;
-import idea.plugin.protoeditor.lang.psi.PbOptionExpression;
-import idea.plugin.protoeditor.lang.resolve.PbSymbolResolver;
-import idea.plugin.protoeditor.lang.resolve.SchemaInfo;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.util.PsiTreeUtil;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.resolve.PbSymbolResolver;
+import idea.plugin.protoeditor.lang.resolve.SchemaInfo;
 import org.jetbrains.annotations.Nullable;
 
 abstract class PbAggregateValueMixin extends PbElementBase implements PbAggregateValue {

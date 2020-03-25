@@ -15,8 +15,8 @@
  */
 package idea.plugin.protoeditor.lang.stub;
 
-import idea.plugin.protoeditor.lang.psi.PbElement;
 import com.intellij.psi.stubs.StubElement;
+import idea.plugin.protoeditor.lang.psi.PbElement;
 import idea.plugin.protoeditor.lang.psi.PbStatement;
 import org.jetbrains.annotations.Nullable;
 

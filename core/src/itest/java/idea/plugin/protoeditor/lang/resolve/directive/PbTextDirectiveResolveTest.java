@@ -15,16 +15,16 @@
  */
 package idea.plugin.protoeditor.lang.resolve.directive;
 
-import static com.google.common.truth.Truth.assertThat;
-
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiReference;
+import com.intellij.psi.util.QualifiedName;
 import idea.plugin.protoeditor.TestUtils;
 import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import idea.plugin.protoeditor.lang.psi.PbField;
 import idea.plugin.protoeditor.lang.psi.PbFile;
 import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiReference;
-import com.intellij.psi.util.QualifiedName;
+
+import static com.google.common.truth.Truth.assertThat;
 
 /** Tests for references when using comment-based format directives in text format files. */
 public class PbTextDirectiveResolveTest extends PbCodeInsightFixtureTestCase {

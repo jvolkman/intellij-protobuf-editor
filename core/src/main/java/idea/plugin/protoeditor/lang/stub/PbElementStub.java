@@ -15,8 +15,8 @@
  */
 package idea.plugin.protoeditor.lang.stub;
 
-import idea.plugin.protoeditor.lang.psi.PbElement;
 import com.intellij.psi.stubs.StubElement;
+import idea.plugin.protoeditor.lang.psi.PbElement;
 
 /** A base {@link StubElement} for {@link PbElement} elements. */
 public interface PbElementStub<T extends PbElement> extends StubElement<T> {}

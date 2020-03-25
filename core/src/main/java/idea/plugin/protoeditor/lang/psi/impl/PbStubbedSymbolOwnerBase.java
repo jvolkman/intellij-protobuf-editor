@@ -16,16 +16,16 @@
 package idea.plugin.protoeditor.lang.psi.impl;
 
 import com.google.common.collect.Multimap;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
-import idea.plugin.protoeditor.lang.psi.PbSymbolOwner;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
-import idea.plugin.protoeditor.lang.stub.PbNamedElementStub;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.ResolveState;
 import com.intellij.psi.scope.PsiScopeProcessor;
 import com.intellij.psi.stubs.IStubElementType;
 import com.intellij.psi.util.QualifiedName;
+import idea.plugin.protoeditor.lang.psi.PbSymbol;
+import idea.plugin.protoeditor.lang.psi.PbSymbolOwner;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
+import idea.plugin.protoeditor.lang.stub.PbNamedElementStub;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

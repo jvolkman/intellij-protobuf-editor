@@ -15,21 +15,6 @@
  */
 package idea.plugin.protoeditor.lang.findusages;
 
-import idea.plugin.protoeditor.ide.PbIdeBundle;
-import idea.plugin.protoeditor.lang.PbParserDefinition;
-import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
-import idea.plugin.protoeditor.lang.psi.PbEnumValue;
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbGroupDefinition;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbOneofDefinition;
-import idea.plugin.protoeditor.lang.psi.PbPackageName;
-import idea.plugin.protoeditor.lang.psi.PbServiceDefinition;
-import idea.plugin.protoeditor.lang.psi.PbServiceMethod;
-import idea.plugin.protoeditor.lang.psi.PbServiceStream;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 import com.intellij.lang.cacheBuilder.DefaultWordsScanner;
 import com.intellij.lang.cacheBuilder.WordsScanner;
 import com.intellij.lang.findUsages.FindUsagesProvider;
@@ -37,6 +22,9 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.TokenSet;
 import com.intellij.psi.util.QualifiedName;
 import com.intellij.util.ObjectUtils;
+import idea.plugin.protoeditor.ide.PbIdeBundle;
+import idea.plugin.protoeditor.lang.PbParserDefinition;
+import idea.plugin.protoeditor.lang.psi.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

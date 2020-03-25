@@ -15,12 +15,11 @@
  */
 package idea.plugin.protoeditor.lang.parser;
 
-import idea.plugin.protoeditor.lang.parser.PbTextParser;
-import idea.plugin.protoeditor.lang.psi.ProtoKeywordTokenType;
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.parser.GeneratedParserUtilBase;
 import com.intellij.psi.tree.IElementType;
+import idea.plugin.protoeditor.lang.psi.ProtoKeywordTokenType;
+import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 import org.jetbrains.annotations.Nullable;
 
 /** Static parsing utility functions for parsing proto files. */

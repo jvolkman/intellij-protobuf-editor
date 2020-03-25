@@ -15,13 +15,14 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.util.CachedValueProvider.Result;
 import com.intellij.psi.util.CachedValuesManager;
 import com.intellij.psi.util.PsiModificationTracker;
-import java.util.List;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 /** A shared interface implemented by elements that represent a proto-formatted string. */
 public interface ProtoStringValue extends ProtoLiteral {

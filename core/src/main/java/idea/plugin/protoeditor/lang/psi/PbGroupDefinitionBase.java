@@ -15,7 +15,6 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import idea.plugin.protoeditor.lang.psi.PbSimpleField;
 import org.jetbrains.annotations.Nullable;
 
 interface PbGroupDefinitionBase extends PbElement {

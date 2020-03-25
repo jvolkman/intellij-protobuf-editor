@@ -15,9 +15,9 @@
  */
 package idea.plugin.protoeditor.lang.stub;
 
-import idea.plugin.protoeditor.lang.psi.PbElement;
 import com.intellij.psi.stubs.StubElement;
 import com.intellij.psi.util.QualifiedName;
+import idea.plugin.protoeditor.lang.psi.PbElement;
 import idea.plugin.protoeditor.lang.psi.PbNamedElement;
 import org.jetbrains.annotations.Nullable;
 

@@ -15,15 +15,11 @@
  */
 package idea.plugin.protoeditor.lang.resolve;
 
-import idea.plugin.protoeditor.TestUtils;
-import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbTextField;
-import idea.plugin.protoeditor.lang.psi.PbTextFile;
-import idea.plugin.protoeditor.lang.psi.PbTextMessage;
 import com.intellij.openapi.extensions.Extensions;
 import com.intellij.psi.util.QualifiedName;
+import idea.plugin.protoeditor.TestUtils;
+import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
+import idea.plugin.protoeditor.lang.psi.*;
 
 /** Test cases for {@link SchemaProvider}. */
 public class SchemaProviderTest extends PbCodeInsightFixtureTestCase {

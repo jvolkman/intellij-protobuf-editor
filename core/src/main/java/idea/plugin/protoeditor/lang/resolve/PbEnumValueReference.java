@@ -15,15 +15,15 @@
  */
 package idea.plugin.protoeditor.lang.resolve;
 
-import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
-import idea.plugin.protoeditor.lang.psi.PbEnumValue;
-import idea.plugin.protoeditor.lang.psi.ProtoIdentifierValue;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReferenceBase;
 import com.intellij.psi.impl.source.tree.LeafElement;
 import com.intellij.util.IncorrectOperationException;
+import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
+import idea.plugin.protoeditor.lang.psi.PbEnumValue;
+import idea.plugin.protoeditor.lang.psi.ProtoIdentifierValue;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

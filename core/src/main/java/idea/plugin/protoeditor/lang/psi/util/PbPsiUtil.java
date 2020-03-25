@@ -15,40 +15,18 @@
  */
 package idea.plugin.protoeditor.lang.psi.util;
 
-import idea.plugin.protoeditor.lang.descriptor.Descriptor;
-import idea.plugin.protoeditor.lang.psi.PbDefinition;
-import idea.plugin.protoeditor.lang.psi.PbElement;
-import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
-import idea.plugin.protoeditor.lang.psi.PbExtendDefinition;
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbGroupDefinition;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbNamedTypeElement;
-import idea.plugin.protoeditor.lang.psi.PbOneofDefinition;
-import idea.plugin.protoeditor.lang.psi.PbOptionExpression;
-import idea.plugin.protoeditor.lang.psi.PbOptionName;
-import idea.plugin.protoeditor.lang.psi.PbOptionOwner;
-import idea.plugin.protoeditor.lang.psi.PbPackageName;
-import idea.plugin.protoeditor.lang.psi.PbStatement;
-import idea.plugin.protoeditor.lang.psi.PbSymbolOwner;
-import idea.plugin.protoeditor.lang.psi.PbTypeName;
-import idea.plugin.protoeditor.lang.psi.ProtoBooleanValue;
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiPolyVariantReference;
-import com.intellij.psi.PsiReference;
-import com.intellij.psi.ResolveResult;
-import com.intellij.psi.TokenType;
+import com.intellij.psi.*;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.QualifiedName;
+import idea.plugin.protoeditor.lang.descriptor.Descriptor;
+import idea.plugin.protoeditor.lang.psi.*;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import org.jetbrains.annotations.Nullable;
 
 /** Static utility functions for working with proto PSI elements. */
 public final class PbPsiUtil {

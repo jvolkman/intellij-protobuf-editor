@@ -15,8 +15,8 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import idea.plugin.protoeditor.lang.PbTextLanguage;
 import com.intellij.psi.tree.IElementType;
+import idea.plugin.protoeditor.lang.PbTextLanguage;
 
 /** The {@link IElementType type} implemented by all prototext composite types. */
 public class PbTextElementType extends IElementType {

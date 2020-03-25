@@ -16,38 +16,25 @@
 package idea.plugin.protoeditor.java;
 
 import com.google.common.collect.ImmutableList;
-import idea.plugin.protoeditor.gencode.ProtoFromSourceComments;
-import idea.plugin.protoeditor.java.names.NameGeneratorSelector;
-import idea.plugin.protoeditor.java.names.NameMatcher;
-import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
-import idea.plugin.protoeditor.lang.psi.PbEnumValue;
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbOneofDefinition;
-import idea.plugin.protoeditor.lang.psi.PbStatement;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
 import com.intellij.codeInsight.navigation.actions.GotoDeclarationHandler;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiCompiledFile;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiEnumConstant;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiIdentifier;
-import com.intellij.psi.PsiJavaCodeReferenceElement;
-import com.intellij.psi.PsiMember;
+import com.intellij.psi.*;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTreeUtil;
+import idea.plugin.protoeditor.gencode.ProtoFromSourceComments;
+import idea.plugin.protoeditor.java.names.NameGeneratorSelector;
+import idea.plugin.protoeditor.java.names.NameMatcher;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.jetbrains.annotations.Nullable;
 
 /** Handles goto declaration from java generated code -> .proto files. */
 public class PbJavaGotoDeclarationHandler implements GotoDeclarationHandler {

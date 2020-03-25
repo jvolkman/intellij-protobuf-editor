@@ -17,10 +17,11 @@ package idea.plugin.protoeditor.ide.settings;
 
 import com.intellij.openapi.extensions.ExtensionPointName;
 import com.intellij.openapi.project.Project;
-import java.util.Collection;
-import java.util.Collections;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Collection;
+import java.util.Collections;
 
 /** An extension point interface for automatically configuring {@link PbProjectSettings}. */
 public interface ProjectSettingsConfigurator {

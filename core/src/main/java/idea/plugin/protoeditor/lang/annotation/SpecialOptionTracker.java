@@ -16,16 +16,13 @@
 package idea.plugin.protoeditor.lang.annotation;
 
 import com.google.common.collect.ImmutableMap;
-import idea.plugin.protoeditor.lang.PbLangBundle;
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbOptionExpression;
-import idea.plugin.protoeditor.lang.psi.PbOptionName;
-import idea.plugin.protoeditor.lang.psi.PbOptionOwner;
-import idea.plugin.protoeditor.lang.psi.SpecialOptionType;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.psi.util.CachedValueProvider.Result;
 import com.intellij.psi.util.CachedValuesManager;
 import com.intellij.psi.util.PsiModificationTracker;
+import idea.plugin.protoeditor.lang.PbLangBundle;
+import idea.plugin.protoeditor.lang.psi.*;
+
 import java.util.EnumMap;
 import java.util.Map;
 

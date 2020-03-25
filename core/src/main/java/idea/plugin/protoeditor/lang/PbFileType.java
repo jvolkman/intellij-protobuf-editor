@@ -15,11 +15,12 @@
  */
 package idea.plugin.protoeditor.lang;
 
-import idea.plugin.protoeditor.ide.util.PbIcons;
 import com.intellij.openapi.fileTypes.LanguageFileType;
-import javax.swing.Icon;
+import idea.plugin.protoeditor.ide.util.PbIcons;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.swing.*;
 
 public class PbFileType extends LanguageFileType {
 

@@ -15,12 +15,12 @@
  */
 package idea.plugin.protoeditor.ide.spelling;
 
-import idea.plugin.protoeditor.lang.psi.ProtoStringPart;
-import idea.plugin.protoeditor.lang.resolve.directive.SchemaDirective;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiElement;
 import com.intellij.spellchecker.tokenizer.SpellcheckingStrategy;
 import com.intellij.spellchecker.tokenizer.Tokenizer;
+import idea.plugin.protoeditor.lang.psi.ProtoStringPart;
+import idea.plugin.protoeditor.lang.resolve.directive.SchemaDirective;
 import org.jetbrains.annotations.NotNull;
 
 /** A {@link SpellcheckingStrategy} for proto text format files */

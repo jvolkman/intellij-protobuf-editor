@@ -15,8 +15,6 @@
  */
 package idea.plugin.protoeditor.lang.resolve;
 
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.resolve.FileResolveProvider.ChildEntry;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtilCore;
 import com.intellij.openapi.project.Project;
@@ -25,13 +23,12 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.search.GlobalSearchScope;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.function.Function;
+import idea.plugin.protoeditor.lang.psi.PbFile;
+import idea.plugin.protoeditor.lang.resolve.FileResolveProvider.ChildEntry;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.*;
+import java.util.function.Function;
 
 /** A helper class for finding files given path names. */
 public class PbFileResolver {

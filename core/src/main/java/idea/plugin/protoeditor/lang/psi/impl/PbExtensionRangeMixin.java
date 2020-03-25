@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
+import com.intellij.lang.ASTNode;
 import idea.plugin.protoeditor.lang.psi.PbExtensionRange;
 import idea.plugin.protoeditor.lang.psi.PbNumberValue;
 import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
-import com.intellij.lang.ASTNode;
 import org.jetbrains.annotations.Nullable;
 
 abstract class PbExtensionRangeMixin extends PbElementBase implements PbExtensionRange {

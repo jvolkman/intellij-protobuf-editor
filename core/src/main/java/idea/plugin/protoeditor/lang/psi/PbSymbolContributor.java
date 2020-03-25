@@ -15,8 +15,9 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import java.util.List;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 /**
  * A symbol that contributes additional synthetic symbols into the tree.

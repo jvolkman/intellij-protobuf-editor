@@ -15,12 +15,6 @@
  */
 package idea.plugin.protoeditor.ide.highlighter;
 
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbTextIdentifierValue;
-import idea.plugin.protoeditor.lang.psi.PbTextNumberValue;
-import idea.plugin.protoeditor.lang.psi.PbTextVisitor;
-import idea.plugin.protoeditor.lang.psi.ProtoNumberValue;
-import idea.plugin.protoeditor.lang.psi.ProtoNumberValue.SourceType;
 import com.intellij.codeInsight.daemon.impl.HighlightInfoType;
 import com.intellij.lang.annotation.Annotation;
 import com.intellij.lang.annotation.AnnotationHolder;
@@ -28,6 +22,8 @@ import com.intellij.lang.annotation.Annotator;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.psi.ProtoNumberValue.SourceType;
 import org.jetbrains.annotations.NotNull;
 
 /** A small highlighting annotator for text format elements. */

@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.ide.views;
 
-import static com.intellij.testFramework.PlatformTestUtil.assertTreeEqual;
-
 import idea.plugin.protoeditor.TestUtils;
 import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
+
+import static com.intellij.testFramework.PlatformTestUtil.assertTreeEqual;
 
 /** Test structure view. */
 public class PbStructureViewTest extends PbCodeInsightFixtureTestCase {

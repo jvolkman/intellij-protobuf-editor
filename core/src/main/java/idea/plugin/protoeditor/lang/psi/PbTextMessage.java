@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import idea.plugin.protoeditor.lang.psi.PbTextField;
 import com.intellij.psi.util.PsiTreeUtil;
-import java.util.List;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /** A message element that contains fields. */
 public interface PbTextMessage extends PbTextElement {

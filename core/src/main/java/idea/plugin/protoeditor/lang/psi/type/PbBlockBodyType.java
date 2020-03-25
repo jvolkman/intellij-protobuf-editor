@@ -15,16 +15,7 @@
  */
 package idea.plugin.protoeditor.lang.psi.type;
 
-import idea.plugin.protoeditor.lang.PbParserDefinition;
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
-import com.intellij.lang.ASTNode;
-import com.intellij.lang.Language;
-import com.intellij.lang.LightPsiParser;
-import com.intellij.lang.LighterASTNode;
-import com.intellij.lang.LighterLazyParseableNode;
-import com.intellij.lang.ParserDefinition;
-import com.intellij.lang.PsiBuilder;
-import com.intellij.lang.PsiBuilderFactory;
+import com.intellij.lang.*;
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
@@ -33,6 +24,8 @@ import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.IErrorCounterReparseableElementType;
 import com.intellij.psi.tree.ILightLazyParseableElementType;
 import com.intellij.util.diff.FlyweightCapableTreeStructure;
+import idea.plugin.protoeditor.lang.PbParserDefinition;
+import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 

@@ -15,9 +15,9 @@
  */
 package idea.plugin.protoeditor.lang.resolve.directive;
 
+import com.intellij.psi.PsiFile;
 import idea.plugin.protoeditor.TestUtils;
 import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
-import com.intellij.psi.PsiFile;
 
 /** Tests for comment-based format directives in text format files. */
 public class PbTextDirectiveAnnotatorTest extends PbCodeInsightFixtureTestCase {

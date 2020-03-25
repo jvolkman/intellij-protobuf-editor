@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.ide.template;
 
-import idea.plugin.protoeditor.lang.PbTextLanguage;
 import com.intellij.codeInsight.template.TemplateContextType;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiUtilCore;
+import idea.plugin.protoeditor.lang.PbTextLanguage;
 
 /** Defines a Live Template context for prototext files (or text format options in .proto). */
 class PbTextLanguageContext extends TemplateContextType {

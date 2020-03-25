@@ -15,9 +15,6 @@
  */
 package idea.plugin.protoeditor.ide.highlighter;
 
-import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
-
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
 import com.intellij.openapi.editor.HighlighterColors;
@@ -26,10 +23,14 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.StringEscapesTokenTypes;
 import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.IElementType;
+import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
+
+import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
 
 /** Protobuf syntax highlighter */
 public class PbSyntaxHighlighter extends SyntaxHighlighterBase {

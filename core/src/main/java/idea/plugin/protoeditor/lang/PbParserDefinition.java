@@ -15,14 +15,6 @@
  */
 package idea.plugin.protoeditor.lang;
 
-import idea.plugin.protoeditor.lang.lexer.ProtoLexer;
-import idea.plugin.protoeditor.lang.parser.PbParser;
-import idea.plugin.protoeditor.lang.psi.PbTextElementType;
-import idea.plugin.protoeditor.lang.psi.PbTextTypes;
-import idea.plugin.protoeditor.lang.psi.PbTypes;
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
-import idea.plugin.protoeditor.lang.psi.impl.PbFileImpl;
-import idea.plugin.protoeditor.lang.stub.type.PbFileElementType;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.ParserDefinition;
 import com.intellij.lang.PsiParser;
@@ -34,6 +26,14 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
+import idea.plugin.protoeditor.lang.lexer.ProtoLexer;
+import idea.plugin.protoeditor.lang.parser.PbParser;
+import idea.plugin.protoeditor.lang.psi.PbTextElementType;
+import idea.plugin.protoeditor.lang.psi.PbTextTypes;
+import idea.plugin.protoeditor.lang.psi.PbTypes;
+import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
+import idea.plugin.protoeditor.lang.psi.impl.PbFileImpl;
+import idea.plugin.protoeditor.lang.stub.type.PbFileElementType;
 import org.jetbrains.annotations.NotNull;
 
 public class PbParserDefinition implements ParserDefinition {

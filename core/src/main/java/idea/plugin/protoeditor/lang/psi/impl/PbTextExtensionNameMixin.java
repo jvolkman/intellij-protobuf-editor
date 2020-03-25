@@ -15,29 +15,15 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.annotation.OptionOccurrenceTracker;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
-import idea.plugin.protoeditor.lang.psi.PbSymbolOwner;
-import idea.plugin.protoeditor.lang.psi.PbTextExtensionName;
-import idea.plugin.protoeditor.lang.psi.PbTextMessage;
-import idea.plugin.protoeditor.lang.psi.PbTextRootMessage;
-import idea.plugin.protoeditor.lang.psi.PbTextSymbolPath;
-import idea.plugin.protoeditor.lang.psi.ProtoSymbolPath;
-import idea.plugin.protoeditor.lang.psi.ProtoSymbolPathDelegate;
-import idea.plugin.protoeditor.lang.resolve.PbSymbolLookupElement;
-import idea.plugin.protoeditor.lang.resolve.PbSymbolResolver;
-import idea.plugin.protoeditor.lang.resolve.PbTextMessageSetSupportingExtensionNameReference;
-import idea.plugin.protoeditor.lang.resolve.ProtoSymbolPathReference;
-import idea.plugin.protoeditor.lang.resolve.ResolveFilters;
-import idea.plugin.protoeditor.lang.resolve.SchemaInfo;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.util.Condition;
 import com.intellij.openapi.util.Conditions;
 import com.intellij.psi.PsiReference;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.QualifiedName;
+import idea.plugin.protoeditor.lang.annotation.OptionOccurrenceTracker;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.resolve.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

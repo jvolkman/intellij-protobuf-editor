@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.lang.stub;
 
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.stub.type.PbStubElementTypes;
 import com.intellij.psi.stubs.PsiFileStubImpl;
 import com.intellij.psi.util.QualifiedName;
+import idea.plugin.protoeditor.lang.psi.PbFile;
+import idea.plugin.protoeditor.lang.stub.type.PbStubElementTypes;
 import org.jetbrains.annotations.Nullable;
 
 /** Protobuf file stub. */

@@ -15,9 +15,6 @@
  */
 package idea.plugin.protoeditor.ide.folding;
 
-import idea.plugin.protoeditor.ide.folding.ProtoFoldingUtils.ConsecutiveElementGrouper;
-import idea.plugin.protoeditor.lang.psi.ProtoBlockBody;
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.folding.FoldingBuilderEx;
 import com.intellij.lang.folding.FoldingDescriptor;
@@ -28,11 +25,15 @@ import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.PsiTreeUtil;
+import idea.plugin.protoeditor.ide.folding.ProtoFoldingUtils.ConsecutiveElementGrouper;
+import idea.plugin.protoeditor.lang.psi.ProtoBlockBody;
+import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /** A {@link FoldingBuilderEx} implementation for protobuf and prototext files. */
 public class ProtoFoldingBuilder extends FoldingBuilderEx implements DumbAware {

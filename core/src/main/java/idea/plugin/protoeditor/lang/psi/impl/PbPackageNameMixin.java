@@ -16,23 +16,23 @@
 package idea.plugin.protoeditor.lang.psi.impl;
 
 import com.google.common.collect.Multimap;
-import idea.plugin.protoeditor.ide.util.PbIcons;
-import idea.plugin.protoeditor.lang.psi.PbPackageName;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
-import idea.plugin.protoeditor.lang.psi.PbSymbolOwner;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.impl.source.tree.LeafElement;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.QualifiedName;
 import com.intellij.util.IncorrectOperationException;
-import javax.swing.Icon;
-
+import idea.plugin.protoeditor.ide.util.PbIcons;
+import idea.plugin.protoeditor.lang.psi.PbPackageName;
+import idea.plugin.protoeditor.lang.psi.PbSymbol;
+import idea.plugin.protoeditor.lang.psi.PbSymbolOwner;
 import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.swing.*;
 
 abstract class PbPackageNameMixin extends PbElementBase implements PbPackageName {
 

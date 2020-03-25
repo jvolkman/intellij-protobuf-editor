@@ -15,23 +15,6 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.descriptor.Descriptor;
-import idea.plugin.protoeditor.lang.psi.PbExtensionName;
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbNamedTypeElement;
-import idea.plugin.protoeditor.lang.psi.PbOptionName;
-import idea.plugin.protoeditor.lang.psi.PbOptionOwner;
-import idea.plugin.protoeditor.lang.psi.PbTypeName;
-import idea.plugin.protoeditor.lang.psi.SpecialOptionType;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
-import idea.plugin.protoeditor.lang.resolve.PbOptionNameReference;
-import idea.plugin.protoeditor.lang.resolve.PbResolveResult;
-import idea.plugin.protoeditor.lang.resolve.PbSymbolResolver;
-import idea.plugin.protoeditor.lang.resolve.ResolveFilters;
-import idea.plugin.protoeditor.lang.util.BuiltInType;
-import idea.plugin.protoeditor.lang.util.ValueTester;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiElement;
@@ -40,7 +23,16 @@ import com.intellij.psi.util.CachedValueProvider.Result;
 import com.intellij.psi.util.CachedValuesManager;
 import com.intellij.psi.util.PsiModificationTracker;
 import com.intellij.psi.util.PsiTreeUtil;
+import idea.plugin.protoeditor.lang.descriptor.Descriptor;
 import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
+import idea.plugin.protoeditor.lang.resolve.PbOptionNameReference;
+import idea.plugin.protoeditor.lang.resolve.PbResolveResult;
+import idea.plugin.protoeditor.lang.resolve.PbSymbolResolver;
+import idea.plugin.protoeditor.lang.resolve.ResolveFilters;
+import idea.plugin.protoeditor.lang.util.BuiltInType;
+import idea.plugin.protoeditor.lang.util.ValueTester;
 import org.jetbrains.annotations.Nullable;
 
 abstract class PbOptionNameMixin extends PbElementBase implements PbOptionName {

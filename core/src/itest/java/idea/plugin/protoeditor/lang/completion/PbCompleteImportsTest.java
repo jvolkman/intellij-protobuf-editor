@@ -15,11 +15,12 @@
  */
 package idea.plugin.protoeditor.lang.completion;
 
-import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
-
 import idea.plugin.protoeditor.TestUtils;
 import idea.plugin.protoeditor.lang.resolve.PbImportReference;
+
 import java.util.Collection;
+
+import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
 
 /** Test for import file path completions (see {@link PbImportReference#getVariants()}). */
 public class PbCompleteImportsTest extends PbCompletionContributorTestCase {

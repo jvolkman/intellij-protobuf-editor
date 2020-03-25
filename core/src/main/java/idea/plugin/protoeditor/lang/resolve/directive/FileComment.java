@@ -16,13 +16,13 @@
 package idea.plugin.protoeditor.lang.resolve.directive;
 
 import com.google.common.collect.ImmutableList;
-import idea.plugin.protoeditor.lang.resolve.PbImportReference;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiReference;
-import java.util.List;
-
+import idea.plugin.protoeditor.lang.resolve.PbImportReference;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 class FileComment extends SchemaComment {
 

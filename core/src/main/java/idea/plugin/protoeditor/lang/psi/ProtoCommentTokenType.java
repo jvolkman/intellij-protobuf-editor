@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import idea.plugin.protoeditor.lang.ProtoBaseLanguage;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.ILeafElementType;
+import idea.plugin.protoeditor.lang.ProtoBaseLanguage;
 import org.jetbrains.annotations.NotNull;
 
 /** An {@link ILeafElementType} that returns {@link ProtoComment} instances. */

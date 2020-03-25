@@ -25,11 +25,12 @@ import com.intellij.openapi.roots.ex.ProjectRootManagerEx;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.serviceContainer.NonInjectable;
 import com.intellij.util.xmlb.XmlSerializer;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import org.jetbrains.annotations.Nullable;
 
 /** A persistent service that stores protobuf settings. */
 @State(name = "ProtobufLanguageSettings", storages = @Storage("protoeditor.xml"))

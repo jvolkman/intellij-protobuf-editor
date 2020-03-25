@@ -15,12 +15,13 @@
  */
 package idea.plugin.protoeditor.lang.completion;
 
-import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
-
+import com.intellij.codeInsight.lookup.LookupElement;
 import idea.plugin.protoeditor.TestUtils;
 import idea.plugin.protoeditor.lang.resolve.PbOptionNameReference;
-import com.intellij.codeInsight.lookup.LookupElement;
+
 import java.util.List;
+
+import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
 
 /** Tests for option completions (see {@link PbOptionNameReference#getVariants()}). */
 public class PbCompleteOptionsTest extends PbCompletionContributorTestCase {

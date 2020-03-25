@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.ide.highlighter;
 
+import com.intellij.lexer.LayeredLexer;
 import idea.plugin.protoeditor.lang.lexer.ProtoLexer;
 import idea.plugin.protoeditor.lang.lexer.StringLexer;
 import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
-import com.intellij.lexer.LayeredLexer;
 
 /**
  * This lexer returns all non-keyword tokens, and should be used in conjunction with {@link

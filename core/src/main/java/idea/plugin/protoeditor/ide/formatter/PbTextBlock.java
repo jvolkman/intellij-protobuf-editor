@@ -15,25 +15,21 @@
  */
 package idea.plugin.protoeditor.ide.formatter;
 
-import idea.plugin.protoeditor.lang.psi.PbTextFile;
-import idea.plugin.protoeditor.lang.psi.ProtoBlockBody;
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
-import com.intellij.formatting.Alignment;
-import com.intellij.formatting.Block;
-import com.intellij.formatting.Indent;
-import com.intellij.formatting.Spacing;
-import com.intellij.formatting.SpacingBuilder;
-import com.intellij.formatting.Wrap;
+import com.intellij.formatting.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.TokenType;
 import com.intellij.psi.formatter.common.AbstractBlock;
 import com.intellij.psi.tree.TokenSet;
+import idea.plugin.protoeditor.lang.psi.PbTextFile;
+import idea.plugin.protoeditor.lang.psi.ProtoBlockBody;
+import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /** A formatter block for prototext elements. */
 public class PbTextBlock extends AbstractBlock {

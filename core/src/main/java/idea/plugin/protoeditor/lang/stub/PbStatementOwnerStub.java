@@ -15,14 +15,14 @@
  */
 package idea.plugin.protoeditor.lang.stub;
 
-import idea.plugin.protoeditor.lang.psi.PbElement;
 import com.intellij.psi.stubs.StubElement;
 import com.intellij.psi.util.QualifiedName;
-import java.util.List;
-
+import idea.plugin.protoeditor.lang.psi.PbElement;
 import idea.plugin.protoeditor.lang.psi.PbStatementOwner;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * A base {@link StubElement} interface for elements that implement {@link

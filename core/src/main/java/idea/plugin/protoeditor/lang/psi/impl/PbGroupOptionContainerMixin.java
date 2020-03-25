@@ -15,10 +15,9 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.PbGroupOptionContainer;
-import idea.plugin.protoeditor.lang.psi.impl.PbGroupDefinitionImpl;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
+import idea.plugin.protoeditor.lang.psi.PbGroupOptionContainer;
 import org.jetbrains.annotations.Nullable;
 
 abstract class PbGroupOptionContainerMixin extends PbElementBase implements PbGroupOptionContainer {

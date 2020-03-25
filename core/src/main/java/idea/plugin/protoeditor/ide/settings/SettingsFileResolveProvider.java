@@ -15,18 +15,19 @@
  */
 package idea.plugin.protoeditor.ide.settings;
 
-import idea.plugin.protoeditor.ide.settings.PbProjectSettings.ImportPathEntry;
-import idea.plugin.protoeditor.lang.resolve.FileResolveProvider;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.VirtualFileManager;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.search.GlobalSearchScopesCore;
+import idea.plugin.protoeditor.ide.settings.PbProjectSettings.ImportPathEntry;
+import idea.plugin.protoeditor.lang.resolve.FileResolveProvider;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /** {@link FileResolveProvider} implementation that uses settings from {@link PbProjectSettings}. */
 public class SettingsFileResolveProvider implements FileResolveProvider {

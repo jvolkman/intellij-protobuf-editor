@@ -15,12 +15,12 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
+import com.intellij.lang.ASTNode;
 import idea.plugin.protoeditor.lang.psi.PbStatementOwner;
 import idea.plugin.protoeditor.lang.psi.PbStringValue;
 import idea.plugin.protoeditor.lang.psi.PbSyntaxStatement;
 import idea.plugin.protoeditor.lang.psi.SyntaxLevel;
 import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
-import com.intellij.lang.ASTNode;
 import org.jetbrains.annotations.Nullable;
 
 abstract class PbSyntaxStatementMixin extends PbStatementBase implements PbSyntaxStatement {

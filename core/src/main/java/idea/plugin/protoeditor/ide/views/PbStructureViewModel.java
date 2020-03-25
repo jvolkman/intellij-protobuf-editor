@@ -15,14 +15,14 @@
  */
 package idea.plugin.protoeditor.ide.views;
 
-import idea.plugin.protoeditor.lang.psi.PbDefinition;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbStatement;
 import com.intellij.ide.structureView.StructureViewModel;
 import com.intellij.ide.structureView.StructureViewModelBase;
 import com.intellij.ide.structureView.StructureViewTreeElement;
 import com.intellij.ide.util.treeView.smartTree.Sorter;
 import com.intellij.openapi.editor.Editor;
+import idea.plugin.protoeditor.lang.psi.PbDefinition;
+import idea.plugin.protoeditor.lang.psi.PbFile;
+import idea.plugin.protoeditor.lang.psi.PbStatement;
 import org.jetbrains.annotations.NotNull;
 
 /** StructureViewModel for protobufs */

@@ -15,16 +15,17 @@
  */
 package idea.plugin.protoeditor.ide.style;
 
-import idea.plugin.protoeditor.ide.util.ResourceUtil;
-import idea.plugin.protoeditor.lang.PbTextLanguage;
 import com.intellij.application.options.IndentOptionsEditor;
 import com.intellij.application.options.SmartIndentOptionsEditor;
 import com.intellij.lang.Language;
 import com.intellij.psi.codeStyle.CodeStyleSettingsCustomizable;
 import com.intellij.psi.codeStyle.CommonCodeStyleSettings;
 import com.intellij.psi.codeStyle.LanguageCodeStyleSettingsProvider;
-import java.io.IOException;
+import idea.plugin.protoeditor.ide.util.ResourceUtil;
+import idea.plugin.protoeditor.lang.PbTextLanguage;
 import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 
 /** {@link LanguageCodeStyleSettingsProvider} for use with prototext files. */
 public class PbTextLanguageCodeStyleSettingsProvider extends LanguageCodeStyleSettingsProvider {

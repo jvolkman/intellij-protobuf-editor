@@ -15,19 +15,15 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.PbMapField;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
-import idea.plugin.protoeditor.lang.psi.PbTypeName;
-import idea.plugin.protoeditor.lang.psi.SyntaxLevel;
+import com.intellij.lang.ASTNode;
+import idea.plugin.protoeditor.lang.psi.*;
 import idea.plugin.protoeditor.lang.psi.impl.PbElementFactory.FieldBuilder;
 import idea.plugin.protoeditor.lang.psi.impl.PbElementFactory.MessageBuilder;
-import com.intellij.lang.ASTNode;
-import java.util.Collections;
-import java.util.List;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Collections;
+import java.util.List;
 
 abstract class PbMapFieldMixin extends PbFieldBase implements PbMapField {
 

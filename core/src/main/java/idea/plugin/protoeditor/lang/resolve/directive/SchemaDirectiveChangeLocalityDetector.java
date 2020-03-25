@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.lang.resolve.directive;
 
-import idea.plugin.protoeditor.lang.PbTextLanguage;
 import com.intellij.codeInsight.daemon.ChangeLocalityDetector;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiElement;
+import idea.plugin.protoeditor.lang.PbTextLanguage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

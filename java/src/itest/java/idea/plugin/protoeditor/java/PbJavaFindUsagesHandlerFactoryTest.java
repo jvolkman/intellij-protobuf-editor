@@ -15,17 +15,9 @@
  */
 package idea.plugin.protoeditor.java;
 
-import static com.google.common.truth.Truth.assertThat;
-import static com.google.common.truth.Truth.assertWithMessage;
-import static idea.plugin.protoeditor.TestUtils.notNull;
-
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.ImmutableList;
 import com.google.common.truth.StandardSubjectBuilder;
-import idea.plugin.protoeditor.TestUtils;
-import idea.plugin.protoeditor.java.names.NameGenerator;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.util.Disposer;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -34,10 +26,19 @@ import com.intellij.psi.PsiJavaFile;
 import com.intellij.psi.util.QualifiedName;
 import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase;
 import com.intellij.usageView.UsageInfo;
+import idea.plugin.protoeditor.TestUtils;
+import idea.plugin.protoeditor.java.names.NameGenerator;
+import idea.plugin.protoeditor.lang.psi.PbFile;
+import idea.plugin.protoeditor.lang.psi.PbSymbol;
+
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth.assertWithMessage;
+import static idea.plugin.protoeditor.TestUtils.notNull;
 
 /**
  * Test for {@link PbJavaFindUsagesHandlerFactory}.

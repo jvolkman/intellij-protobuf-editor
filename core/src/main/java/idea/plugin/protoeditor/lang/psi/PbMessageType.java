@@ -15,9 +15,6 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import idea.plugin.protoeditor.lang.psi.PbMessageBody;
-import idea.plugin.protoeditor.lang.psi.PbReservedStatement;
-import idea.plugin.protoeditor.lang.psi.PbStringValue;
 import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
 
 /** A message type: either a MessageDefinition or a GroupField. */

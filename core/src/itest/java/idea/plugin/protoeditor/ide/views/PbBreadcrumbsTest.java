@@ -15,7 +15,6 @@
  */
 package idea.plugin.protoeditor.ide.views;
 
-import idea.plugin.protoeditor.TestUtils;
 import com.intellij.lang.Language;
 import com.intellij.openapi.editor.Caret;
 import com.intellij.openapi.editor.CaretModel;
@@ -25,13 +24,15 @@ import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixtureTestCa
 import com.intellij.ui.breadcrumbs.BreadcrumbsProvider;
 import com.intellij.util.containers.ContainerUtil;
 import com.intellij.xml.breadcrumbs.BreadcrumbsItem;
+import idea.plugin.protoeditor.TestUtils;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /** Tests for {@link PbBreadcrumbsInfoProvider}. */
 public class PbBreadcrumbsTest extends LightPlatformCodeInsightFixtureTestCase {

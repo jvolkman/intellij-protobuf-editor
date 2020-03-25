@@ -20,10 +20,10 @@ import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.openapi.project.Project;
-import java.util.Objects;
-
 import com.intellij.serviceContainer.NonInjectable;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Objects;
 
 /** A persistent service that stores protobuf text format settings. */
 @State(name = "PrototextLanguageSettings", storages = @Storage("protoeditor.xml"))

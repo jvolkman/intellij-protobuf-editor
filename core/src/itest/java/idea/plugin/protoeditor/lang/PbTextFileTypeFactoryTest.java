@@ -15,12 +15,13 @@
  */
 package idea.plugin.protoeditor.lang;
 
-import static com.google.common.truth.Truth.assertThat;
-
-import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import com.intellij.psi.PsiFile;
+import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
+
 import java.util.Arrays;
 import java.util.List;
+
+import static com.google.common.truth.Truth.assertThat;
 
 /** Test cases for {@link PbTextFileTypeFactory}. */
 public class PbTextFileTypeFactoryTest extends PbCodeInsightFixtureTestCase {

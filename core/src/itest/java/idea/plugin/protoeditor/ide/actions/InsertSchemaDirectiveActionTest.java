@@ -15,17 +15,17 @@
  */
 package idea.plugin.protoeditor.ide.actions;
 
-import static com.google.common.truth.Truth.assertThat;
-
-import idea.plugin.protoeditor.TestUtils;
-import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
-import idea.plugin.protoeditor.lang.PbFileType;
-import idea.plugin.protoeditor.lang.PbTextFileType;
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.fileTypes.FileType;
+import idea.plugin.protoeditor.TestUtils;
+import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
+import idea.plugin.protoeditor.lang.PbFileType;
+import idea.plugin.protoeditor.lang.PbTextFileType;
+
+import static com.google.common.truth.Truth.assertThat;
 
 /** Tests for {@link InsertSchemaDirectiveAction}. */
 public class InsertSchemaDirectiveActionTest extends PbCodeInsightFixtureTestCase {

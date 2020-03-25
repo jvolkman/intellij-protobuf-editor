@@ -15,9 +15,6 @@
  */
 package idea.plugin.protoeditor.ide.editing;
 
-import idea.plugin.protoeditor.lang.psi.PbAggregateValue;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbTextFile;
 import com.intellij.codeInsight.CodeInsightSettings;
 import com.intellij.codeInsight.editorActions.TypedHandler;
 import com.intellij.codeInsight.editorActions.TypedHandlerDelegate;
@@ -42,6 +39,9 @@ import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.util.IncorrectOperationException;
 import com.intellij.util.text.CharArrayUtil;
+import idea.plugin.protoeditor.lang.psi.PbAggregateValue;
+import idea.plugin.protoeditor.lang.psi.PbFile;
+import idea.plugin.protoeditor.lang.psi.PbTextFile;
 import org.jetbrains.annotations.NotNull;
 
 /**

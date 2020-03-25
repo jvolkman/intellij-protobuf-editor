@@ -16,16 +16,13 @@
 package idea.plugin.protoeditor.lang.psi;
 
 import com.google.common.collect.ImmutableMultimap;
-import idea.plugin.protoeditor.lang.psi.PbImportStatement;
-import idea.plugin.protoeditor.lang.psi.PbPackageName;
-import idea.plugin.protoeditor.lang.psi.PbPackageStatement;
-import idea.plugin.protoeditor.lang.psi.PbSyntaxStatement;
 import com.intellij.psi.impl.PsiFileEx;
 import com.intellij.psi.impl.source.PsiFileWithStubSupport;
 import com.intellij.psi.util.QualifiedName;
-import java.util.List;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /** A protobuf file. */
 public interface PbFile

@@ -15,11 +15,9 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import idea.plugin.protoeditor.lang.psi.PbExtensionName;
-import idea.plugin.protoeditor.lang.psi.PbOptionName;
+import com.intellij.psi.PsiElement;
 import idea.plugin.protoeditor.lang.util.BuiltInType;
 import idea.plugin.protoeditor.lang.util.ValueTester;
-import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.Nullable;
 
 interface PbOptionNameBase extends PbElement {

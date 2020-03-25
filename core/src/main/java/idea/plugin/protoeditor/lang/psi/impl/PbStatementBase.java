@@ -15,8 +15,8 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.PbStatement;
 import com.intellij.lang.ASTNode;
+import idea.plugin.protoeditor.lang.psi.PbStatement;
 import org.jetbrains.annotations.NotNull;
 
 abstract class PbStatementBase extends PbElementBase implements PbStatement {

@@ -15,11 +15,12 @@
  */
 package idea.plugin.protoeditor.lang.gotobyname;
 
+import com.intellij.navigation.ItemPresentation;
+import com.intellij.navigation.NavigationItem;
 import idea.plugin.protoeditor.TestUtils;
 import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import idea.plugin.protoeditor.lang.PbFileType;
-import com.intellij.navigation.ItemPresentation;
-import com.intellij.navigation.NavigationItem;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

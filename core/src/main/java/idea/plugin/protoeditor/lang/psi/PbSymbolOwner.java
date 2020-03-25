@@ -16,13 +16,13 @@
 package idea.plugin.protoeditor.lang.psi;
 
 import com.google.common.collect.Multimap;
-import idea.plugin.protoeditor.lang.psi.PbOneofDefinition;
 import com.intellij.psi.util.QualifiedName;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.stream.Collectors;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * A PbSymbolOwner is an element that can enumerate {@link PbSymbol} children. Many symbol owners

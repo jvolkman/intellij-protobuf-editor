@@ -15,16 +15,16 @@
  */
 package idea.plugin.protoeditor.ide.editing;
 
-import static com.google.common.truth.Truth.assertThat;
-
-import idea.plugin.protoeditor.TestUtils;
-import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
-import idea.plugin.protoeditor.lang.PbFileType;
-import idea.plugin.protoeditor.lang.PbTextFileType;
 import com.intellij.openapi.fileEditor.TextEditor;
 import com.intellij.openapi.fileEditor.impl.text.TextEditorProvider;
 import com.intellij.psi.PsiFile;
 import com.intellij.ui.EditorNotificationPanel;
+import idea.plugin.protoeditor.TestUtils;
+import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
+import idea.plugin.protoeditor.lang.PbFileType;
+import idea.plugin.protoeditor.lang.PbTextFileType;
+
+import static com.google.common.truth.Truth.assertThat;
 
 /** Tests for {@link MissingSchemaNotificationProvider}. */
 public class MissingSchemaNotificationProviderTest extends PbCodeInsightFixtureTestCase {

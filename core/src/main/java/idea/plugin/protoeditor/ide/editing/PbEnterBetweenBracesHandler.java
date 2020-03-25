@@ -15,13 +15,13 @@
  */
 package idea.plugin.protoeditor.ide.editing;
 
-import idea.plugin.protoeditor.lang.PbLanguage;
 import com.intellij.codeInsight.editorActions.enter.EnterBetweenBracesHandler;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.actionSystem.EditorActionHandler;
 import com.intellij.openapi.util.Ref;
 import com.intellij.psi.PsiFile;
+import idea.plugin.protoeditor.lang.PbLanguage;
 import org.jetbrains.annotations.NotNull;
 
 /** {@link EnterBetweenBracesHandler} implementation for proto files. */

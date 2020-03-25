@@ -15,8 +15,6 @@
  */
 package idea.plugin.protoeditor.ide.style;
 
-import idea.plugin.protoeditor.ide.highlighter.PbSyntaxHighlighter;
-import idea.plugin.protoeditor.lang.PbLanguage;
 import com.intellij.application.options.CodeStyleAbstractConfigurable;
 import com.intellij.application.options.CodeStyleAbstractPanel;
 import com.intellij.application.options.TabbedLanguageCodeStylePanel;
@@ -27,6 +25,8 @@ import com.intellij.openapi.options.Configurable;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
 import com.intellij.psi.codeStyle.CodeStyleSettingsProvider;
 import com.intellij.psi.codeStyle.CustomCodeStyleSettings;
+import idea.plugin.protoeditor.ide.highlighter.PbSyntaxHighlighter;
+import idea.plugin.protoeditor.lang.PbLanguage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

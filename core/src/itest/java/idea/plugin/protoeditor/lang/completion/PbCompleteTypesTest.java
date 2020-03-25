@@ -17,9 +17,9 @@ package idea.plugin.protoeditor.lang.completion;
 
 import idea.plugin.protoeditor.lang.resolve.ProtoSymbolPathReference;
 
-import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
-
 import java.util.List;
+
+import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
 
 /**
  * Tests for completing types. See {@link PbCompletionContributor} for builtin types, and see {@link

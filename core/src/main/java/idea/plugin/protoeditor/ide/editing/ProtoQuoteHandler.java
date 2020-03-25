@@ -15,8 +15,8 @@
  */
 package idea.plugin.protoeditor.ide.editing;
 
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 import com.intellij.codeInsight.editorActions.SimpleTokenSetQuoteHandler;
+import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 
 /** Quote handler for protobuf and prototext files. */
 public class ProtoQuoteHandler extends SimpleTokenSetQuoteHandler {

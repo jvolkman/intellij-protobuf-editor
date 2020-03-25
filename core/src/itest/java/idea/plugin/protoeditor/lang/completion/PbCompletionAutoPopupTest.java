@@ -15,12 +15,12 @@
  */
 package idea.plugin.protoeditor.lang.completion;
 
-import static com.google.common.truth.Truth.assertThat;
-import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
-
-import idea.plugin.protoeditor.TestUtils;
 import com.intellij.codeInsight.lookup.Lookup;
 import com.intellij.testFramework.fixtures.CompletionAutoPopupTester;
+import idea.plugin.protoeditor.TestUtils;
+
+import static com.google.common.truth.Truth.assertThat;
+import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
 
 /** Tests for autopop of completion suggestions */
 public class PbCompletionAutoPopupTest extends PbCompletionContributorTestCase {

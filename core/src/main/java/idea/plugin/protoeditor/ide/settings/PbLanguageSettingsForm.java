@@ -15,9 +15,6 @@
  */
 package idea.plugin.protoeditor.ide.settings;
 
-import idea.plugin.protoeditor.ide.PbIdeBundle;
-import idea.plugin.protoeditor.ide.settings.PbProjectSettings.ImportPathEntry;
-import idea.plugin.protoeditor.lang.resolve.FileResolveProvider;
 import com.intellij.icons.AllIcons.General;
 import com.intellij.openapi.fileChooser.FileChooser;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
@@ -29,24 +26,25 @@ import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.VirtualFileManager;
-import com.intellij.ui.CollectionComboBoxModel;
-import com.intellij.ui.DocumentAdapter;
-import com.intellij.ui.IdeBorderFactory;
-import com.intellij.ui.JBColor;
-import com.intellij.ui.ToolbarDecorator;
+import com.intellij.ui.*;
 import com.intellij.ui.components.JBCheckBox;
 import com.intellij.ui.components.JBTextField;
 import com.intellij.ui.table.TableView;
 import com.intellij.util.PlatformIcons;
-import com.intellij.util.ui.AbstractTableCellEditor;
-import com.intellij.util.ui.CellEditorComponentWithBrowseButton;
-import com.intellij.util.ui.ColumnInfo;
-import com.intellij.util.ui.ListTableModel;
-import com.intellij.util.ui.UIUtil;
+import com.intellij.util.ui.*;
 import com.intellij.util.ui.components.BorderLayoutPanel;
 import com.intellij.util.ui.table.IconTableCellRenderer;
-import java.awt.BorderLayout;
-import java.awt.Component;
+import idea.plugin.protoeditor.ide.PbIdeBundle;
+import idea.plugin.protoeditor.ide.settings.PbProjectSettings.ImportPathEntry;
+import idea.plugin.protoeditor.lang.resolve.FileResolveProvider;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -54,18 +52,6 @@ import java.util.EventObject;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import javax.swing.DefaultCellEditor;
-import javax.swing.Icon;
-import javax.swing.JCheckBox;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableCellRenderer;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /** The protobuf language settings panel. */
 public class PbLanguageSettingsForm implements ConfigurableUi<PbProjectSettings> {

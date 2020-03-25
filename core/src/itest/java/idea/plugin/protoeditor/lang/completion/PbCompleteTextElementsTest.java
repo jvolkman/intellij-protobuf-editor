@@ -15,11 +15,12 @@
  */
 package idea.plugin.protoeditor.lang.completion;
 
-import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
-
-import idea.plugin.protoeditor.TestUtils;
 import com.intellij.codeInsight.lookup.LookupElement;
+import idea.plugin.protoeditor.TestUtils;
+
 import java.util.List;
+
+import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
 
 /** Tests for injected text format completions. */
 public class PbCompleteTextElementsTest extends PbCompletionContributorTestCase {

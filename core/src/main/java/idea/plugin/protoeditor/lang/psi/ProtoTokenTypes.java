@@ -16,6 +16,7 @@
 package idea.plugin.protoeditor.lang.psi;
 
 import com.intellij.psi.tree.IElementType;
+
 import java.util.HashMap;
 import java.util.Map;
 

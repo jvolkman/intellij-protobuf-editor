@@ -15,17 +15,6 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.PbParserDefinition;
-import idea.plugin.protoeditor.lang.psi.PbElement;
-import idea.plugin.protoeditor.lang.psi.PbFieldLabel;
-import idea.plugin.protoeditor.lang.psi.PbMessageBody;
-import idea.plugin.protoeditor.lang.psi.PbMessageDefinition;
-import idea.plugin.protoeditor.lang.psi.PbOptionExpression;
-import idea.plugin.protoeditor.lang.psi.PbOptionStatement;
-import idea.plugin.protoeditor.lang.psi.PbSimpleField;
-import idea.plugin.protoeditor.lang.psi.PbStatement;
-import idea.plugin.protoeditor.lang.psi.PbTypeName;
-import idea.plugin.protoeditor.lang.psi.PbTypes;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.LightPsiParser;
 import com.intellij.lang.PsiBuilder;
@@ -40,6 +29,8 @@ import com.intellij.psi.impl.source.DummyHolderFactory;
 import com.intellij.psi.impl.source.tree.TreeElement;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.util.QualifiedName;
+import idea.plugin.protoeditor.lang.PbParserDefinition;
+import idea.plugin.protoeditor.lang.psi.*;
 
 import java.util.ArrayList;
 import java.util.Collections;

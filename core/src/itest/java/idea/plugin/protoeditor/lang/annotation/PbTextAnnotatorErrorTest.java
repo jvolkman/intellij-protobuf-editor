@@ -15,9 +15,9 @@
  */
 package idea.plugin.protoeditor.lang.annotation;
 
+import com.intellij.psi.PsiFile;
 import idea.plugin.protoeditor.TestUtils;
 import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
-import com.intellij.psi.PsiFile;
 
 /** Tests for {@link PbTextAnnotator} error annotations. */
 public class PbTextAnnotatorErrorTest extends PbCodeInsightFixtureTestCase {

@@ -15,15 +15,16 @@
  */
 package idea.plugin.protoeditor.lang.gotobyname;
 
-import idea.plugin.protoeditor.lang.psi.PbNamedElement;
-import idea.plugin.protoeditor.lang.stub.index.QualifiedNameIndex;
 import com.intellij.navigation.ChooseByNameContributor;
 import com.intellij.navigation.NavigationItem;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.stubs.StubIndex;
-import java.util.Collection;
+import idea.plugin.protoeditor.lang.psi.PbNamedElement;
+import idea.plugin.protoeditor.lang.stub.index.QualifiedNameIndex;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Collection;
 
 /** {@link ChooseByNameContributor#SYMBOL_EP_NAME} extension for protobuf elements. */
 public class PbGotoSymbolContributor implements ChooseByNameContributor {

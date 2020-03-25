@@ -15,14 +15,8 @@
  */
 package idea.plugin.protoeditor;
 
-import static org.junit.Assert.assertNotNull;
-
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
-import idea.plugin.protoeditor.ide.util.ResourceUtil;
-import idea.plugin.protoeditor.lang.PbFileType;
-import idea.plugin.protoeditor.lang.resolve.FileResolveProvider;
-import idea.plugin.protoeditor.lang.resolve.LocalRootsFileResolveProvider;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.extensions.Extensions;
@@ -33,11 +27,18 @@ import com.intellij.openapi.util.Disposer;
 import com.intellij.openapi.util.Key;
 import com.intellij.openapi.vfs.newvfs.impl.VfsRootAccess;
 import com.intellij.testFramework.UsefulTestCase;
+import idea.plugin.protoeditor.ide.util.ResourceUtil;
+import idea.plugin.protoeditor.lang.PbFileType;
+import idea.plugin.protoeditor.lang.resolve.FileResolveProvider;
+import idea.plugin.protoeditor.lang.resolve.LocalRootsFileResolveProvider;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+
+import static org.junit.Assert.assertNotNull;
 
 /** Various testing utility methods. */
 public final class TestUtils {

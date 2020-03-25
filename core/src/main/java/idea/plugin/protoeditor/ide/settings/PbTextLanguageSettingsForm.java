@@ -15,16 +15,15 @@
  */
 package idea.plugin.protoeditor.ide.settings;
 
-import idea.plugin.protoeditor.ide.PbIdeBundle;
 import com.intellij.openapi.options.ConfigurableUi;
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.components.JBCheckBox;
 import com.intellij.util.ui.components.BorderLayoutPanel;
-import java.awt.BorderLayout;
-import javax.swing.JCheckBox;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
+import idea.plugin.protoeditor.ide.PbIdeBundle;
 import org.jetbrains.annotations.NotNull;
+
+import javax.swing.*;
+import java.awt.*;
 
 /** The protobuf text format language settings panel. */
 public class PbTextLanguageSettingsForm implements ConfigurableUi<PbTextLanguageSettings> {

@@ -15,13 +15,8 @@
  */
 package idea.plugin.protoeditor.java.names;
 
-import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
-import idea.plugin.protoeditor.lang.psi.PbEnumValue;
 import idea.plugin.protoeditor.java.PbJavaGotoDeclarationContext;
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbOneofDefinition;
+import idea.plugin.protoeditor.lang.psi.*;
 
 /**
  * Matches java elements specified by a context ({@link

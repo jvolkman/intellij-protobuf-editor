@@ -15,16 +15,16 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.PbNumberValue;
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.TokenSet;
-import java.util.Objects;
-
+import idea.plugin.protoeditor.lang.psi.PbNumberValue;
 import idea.plugin.protoeditor.lang.psi.ProtoNumberValue;
+import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Objects;
 
 abstract class PbNumberValueMixin extends PbElementBase implements PbNumberValue {
 

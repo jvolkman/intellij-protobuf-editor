@@ -16,13 +16,13 @@
 package idea.plugin.protoeditor.lang.psi;
 
 import com.google.common.collect.ImmutableList;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
-import idea.plugin.protoeditor.lang.util.ProtoString;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.CachedValueProvider.Result;
 import com.intellij.psi.util.CachedValuesManager;
 import com.intellij.psi.util.PsiModificationTracker;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
+import idea.plugin.protoeditor.lang.util.ProtoString;
 import org.jetbrains.annotations.NotNull;
 
 /** A shared interface implemented by elements that represent a proto-formatted string part. */

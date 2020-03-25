@@ -15,8 +15,6 @@
  */
 package idea.plugin.protoeditor.ide.editing;
 
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbTextFile;
 import com.intellij.codeInsight.CodeInsightSettings;
 import com.intellij.codeInsight.editorActions.BackspaceHandlerDelegate;
 import com.intellij.codeInsight.highlighting.BraceMatcher;
@@ -25,6 +23,8 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.ex.EditorEx;
 import com.intellij.openapi.editor.highlighter.HighlighterIterator;
 import com.intellij.psi.PsiFile;
+import idea.plugin.protoeditor.lang.psi.PbFile;
+import idea.plugin.protoeditor.lang.psi.PbTextFile;
 
 /**
  * A {@link BackspaceHandlerDelegate} that handles deletion of autoinserted '>' characters when the

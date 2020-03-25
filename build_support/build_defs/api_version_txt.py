@@ -19,8 +19,9 @@
 
 import argparse
 import re
-from xml.dom import minidom
 import zipfile
+
+from xml.dom import minidom
 
 parser = argparse.ArgumentParser()
 

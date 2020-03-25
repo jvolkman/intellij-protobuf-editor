@@ -15,17 +15,18 @@
  */
 package idea.plugin.protoeditor.lang.resolve;
 
-import idea.plugin.protoeditor.lang.PbFileType;
 import com.intellij.openapi.extensions.ExtensionPointName;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.VirtualFileFilter;
 import com.intellij.psi.search.GlobalSearchScope;
-import java.util.Collection;
-import java.util.Objects;
+import idea.plugin.protoeditor.lang.PbFileType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Collection;
+import java.util.Objects;
 
 /** An extension interface that resolves import protobuf files and descriptors. */
 public interface FileResolveProvider {

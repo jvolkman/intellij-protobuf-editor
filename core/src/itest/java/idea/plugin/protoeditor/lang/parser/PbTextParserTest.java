@@ -15,11 +15,11 @@
  */
 package idea.plugin.protoeditor.lang.parser;
 
+import com.intellij.lang.LanguageBraceMatching;
+import com.intellij.testFramework.ParsingTestCase;
 import idea.plugin.protoeditor.TestUtils;
 import idea.plugin.protoeditor.ide.editing.ProtoBraceMatcher;
 import idea.plugin.protoeditor.lang.PbTextParserDefinition;
-import com.intellij.lang.LanguageBraceMatching;
-import com.intellij.testFramework.ParsingTestCase;
 
 public class PbTextParserTest extends ParsingTestCase {
 

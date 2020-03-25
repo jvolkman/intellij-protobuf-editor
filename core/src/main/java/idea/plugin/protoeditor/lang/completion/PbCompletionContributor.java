@@ -15,42 +15,23 @@
  */
 package idea.plugin.protoeditor.lang.completion;
 
-import static com.intellij.patterns.PlatformPatterns.psiElement;
-
-import idea.plugin.protoeditor.lang.psi.PbElement;
-import idea.plugin.protoeditor.lang.psi.PbExtendDefinition;
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbFieldLabel;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbIdentifierValue;
-import idea.plugin.protoeditor.lang.psi.PbImportName;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbOptionExpression;
-import idea.plugin.protoeditor.lang.psi.PbServiceMethodType;
-import idea.plugin.protoeditor.lang.psi.PbSimpleField;
-import idea.plugin.protoeditor.lang.psi.PbStatementOwner;
-import idea.plugin.protoeditor.lang.psi.PbStringPart;
-import idea.plugin.protoeditor.lang.psi.PbTypeName;
-import idea.plugin.protoeditor.lang.psi.ProtoSymbolPath;
-import idea.plugin.protoeditor.lang.psi.SyntaxLevel;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiTreeUtil;
-import idea.plugin.protoeditor.lang.util.BuiltInType;
-import com.intellij.codeInsight.completion.AddSpaceInsertHandler;
-import com.intellij.codeInsight.completion.CompletionContributor;
-import com.intellij.codeInsight.completion.CompletionParameters;
-import com.intellij.codeInsight.completion.CompletionProvider;
-import com.intellij.codeInsight.completion.CompletionResultSet;
-import com.intellij.codeInsight.completion.CompletionType;
+import com.intellij.codeInsight.completion.*;
 import com.intellij.codeInsight.lookup.LookupElement;
 import com.intellij.codeInsight.lookup.LookupElementBuilder;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiErrorElement;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.util.ProcessingContext;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiTreeUtil;
+import idea.plugin.protoeditor.lang.util.BuiltInType;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.jetbrains.annotations.NotNull;
+
+import static com.intellij.patterns.PlatformPatterns.psiElement;
 
 /** Provides editor completions for protobuf files. */
 public class PbCompletionContributor extends CompletionContributor {

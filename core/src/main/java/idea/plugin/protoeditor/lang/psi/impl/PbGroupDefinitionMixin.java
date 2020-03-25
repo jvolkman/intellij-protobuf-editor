@@ -15,28 +15,21 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.impl.PbSimpleFieldImpl;
-import idea.plugin.protoeditor.ide.util.PbIcons;
-import idea.plugin.protoeditor.lang.psi.PbFieldLabel;
-import idea.plugin.protoeditor.lang.psi.PbGroupDefinition;
-import idea.plugin.protoeditor.lang.psi.PbGroupOptionContainer;
-import idea.plugin.protoeditor.lang.psi.PbNumberValue;
-import idea.plugin.protoeditor.lang.psi.PbOptionExpression;
-import idea.plugin.protoeditor.lang.psi.PbSimpleField;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
-import idea.plugin.protoeditor.lang.psi.impl.PbElementFactory.FieldBuilder;
-import idea.plugin.protoeditor.lang.stub.PbGroupDefinitionStub;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.stubs.IStubElementType;
 import com.intellij.psi.util.CachedValueProvider.Result;
 import com.intellij.psi.util.CachedValuesManager;
 import com.intellij.psi.util.PsiModificationTracker;
-import java.util.Collections;
-import java.util.List;
-import javax.swing.Icon;
-
+import idea.plugin.protoeditor.ide.util.PbIcons;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.psi.impl.PbElementFactory.FieldBuilder;
+import idea.plugin.protoeditor.lang.stub.PbGroupDefinitionStub;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.swing.*;
+import java.util.Collections;
+import java.util.List;
 
 abstract class PbGroupDefinitionMixin extends PbStubbedSymbolOwnerBase<PbGroupDefinitionStub>
     implements PbGroupDefinition {

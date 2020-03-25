@@ -15,14 +15,14 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.PbLanguage;
-import idea.plugin.protoeditor.lang.psi.PbElement;
-import idea.plugin.protoeditor.lang.psi.PbFile;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.Language;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
+import idea.plugin.protoeditor.lang.PbLanguage;
+import idea.plugin.protoeditor.lang.psi.PbElement;
+import idea.plugin.protoeditor.lang.psi.PbFile;
 
 abstract class PbElementBase extends ASTWrapperPsiElement
     implements PbElement, PbOverridableElement {

@@ -15,20 +15,20 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
+import com.intellij.lang.ASTNode;
+import com.intellij.psi.util.PsiTreeUtil;
+import com.intellij.psi.util.QualifiedName;
 import idea.plugin.protoeditor.lang.descriptor.Descriptor;
 import idea.plugin.protoeditor.lang.descriptor.DescriptorOptionType;
 import idea.plugin.protoeditor.lang.psi.PbExtensionsStatement;
 import idea.plugin.protoeditor.lang.psi.PbMessageType;
 import idea.plugin.protoeditor.lang.psi.PbOptionExpression;
 import idea.plugin.protoeditor.lang.psi.PbOptionList;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.util.PsiTreeUtil;
-import com.intellij.psi.util.QualifiedName;
-import java.util.Collections;
-import java.util.List;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Collections;
+import java.util.List;
 
 abstract class PbExtensionsStatementMixin extends PbStatementBase implements PbExtensionsStatement {
 

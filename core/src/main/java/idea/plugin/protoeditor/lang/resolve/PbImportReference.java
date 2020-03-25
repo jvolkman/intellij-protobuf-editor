@@ -15,11 +15,6 @@
  */
 package idea.plugin.protoeditor.lang.resolve;
 
-import idea.plugin.protoeditor.ide.util.PbIcons;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbImportName;
-import idea.plugin.protoeditor.lang.psi.PbStringPart;
-import idea.plugin.protoeditor.lang.resolve.FileResolveProvider.ChildEntry;
 import com.intellij.codeInsight.AutoPopupController;
 import com.intellij.codeInsight.lookup.LookupElement;
 import com.intellij.codeInsight.lookup.LookupElementBuilder;
@@ -31,10 +26,16 @@ import com.intellij.psi.PsiPolyVariantReferenceBase;
 import com.intellij.psi.ResolveResult;
 import com.intellij.psi.impl.source.resolve.ResolveCache;
 import com.intellij.psi.impl.source.tree.LeafPsiElement;
+import idea.plugin.protoeditor.ide.util.PbIcons;
+import idea.plugin.protoeditor.lang.psi.PbFile;
+import idea.plugin.protoeditor.lang.psi.PbImportName;
+import idea.plugin.protoeditor.lang.psi.PbStringPart;
+import idea.plugin.protoeditor.lang.resolve.FileResolveProvider.ChildEntry;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 
 /** The reference to an imported .proto file. */
 public class PbImportReference extends PsiPolyVariantReferenceBase<PsiElement> {

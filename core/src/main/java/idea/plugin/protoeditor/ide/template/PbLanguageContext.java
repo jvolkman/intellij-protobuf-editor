@@ -15,18 +15,13 @@
  */
 package idea.plugin.protoeditor.ide.template;
 
-import idea.plugin.protoeditor.lang.PbLanguage;
-import idea.plugin.protoeditor.lang.psi.PbBlockBody;
-import idea.plugin.protoeditor.lang.psi.PbEnumBody;
-import idea.plugin.protoeditor.lang.psi.PbExtendBody;
-import idea.plugin.protoeditor.lang.psi.PbMessageBody;
-import idea.plugin.protoeditor.lang.psi.PbOneofBody;
-import idea.plugin.protoeditor.lang.psi.PbServiceBody;
 import com.intellij.codeInsight.template.TemplateContextType;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.PsiUtilCore;
+import idea.plugin.protoeditor.lang.PbLanguage;
+import idea.plugin.protoeditor.lang.psi.*;
 
 /** Defines a Live Template context for protobuf files types. */
 class PbLanguageContext extends TemplateContextType {

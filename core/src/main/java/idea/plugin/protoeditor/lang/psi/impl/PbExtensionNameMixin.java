@@ -15,25 +15,19 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.annotation.OptionOccurrenceTracker;
-import idea.plugin.protoeditor.lang.psi.PbExtensionName;
-import idea.plugin.protoeditor.lang.psi.PbNamedTypeElement;
-import idea.plugin.protoeditor.lang.psi.PbOptionName;
-import idea.plugin.protoeditor.lang.psi.PbOptionOwner;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
-import idea.plugin.protoeditor.lang.psi.ProtoSymbolPath;
-import idea.plugin.protoeditor.lang.psi.ProtoSymbolPathDelegate;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
-import idea.plugin.protoeditor.lang.resolve.PbSymbolLookupElement;
-import idea.plugin.protoeditor.lang.resolve.PbSymbolResolver;
-import idea.plugin.protoeditor.lang.resolve.ProtoSymbolPathReference;
-import idea.plugin.protoeditor.lang.resolve.ResolveFilters;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.util.Condition;
 import com.intellij.openapi.util.Conditions;
 import com.intellij.psi.PsiReference;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.QualifiedName;
+import idea.plugin.protoeditor.lang.annotation.OptionOccurrenceTracker;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
+import idea.plugin.protoeditor.lang.resolve.PbSymbolLookupElement;
+import idea.plugin.protoeditor.lang.resolve.PbSymbolResolver;
+import idea.plugin.protoeditor.lang.resolve.ProtoSymbolPathReference;
+import idea.plugin.protoeditor.lang.resolve.ResolveFilters;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

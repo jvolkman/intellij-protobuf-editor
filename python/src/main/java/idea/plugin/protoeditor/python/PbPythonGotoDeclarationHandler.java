@@ -15,15 +15,9 @@
  */
 package idea.plugin.protoeditor.python;
 
-import static java.util.stream.Collectors.toList;
-
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
-import idea.plugin.protoeditor.gencode.ProtoFromSourceComments;
-import idea.plugin.protoeditor.lang.psi.PbElement;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
 import com.intellij.codeInsight.navigation.actions.GotoDeclarationHandler;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.editor.Editor;
@@ -31,10 +25,17 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.QualifiedName;
 import com.jetbrains.python.PythonLanguage;
 import com.jetbrains.python.psi.PyFile;
+import idea.plugin.protoeditor.gencode.ProtoFromSourceComments;
+import idea.plugin.protoeditor.lang.psi.PbElement;
+import idea.plugin.protoeditor.lang.psi.PbFile;
+import idea.plugin.protoeditor.lang.psi.PbSymbol;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.Nullable;
+
+import static java.util.stream.Collectors.toList;
 
 /** Handles goto declaration from python generated code -> .proto files. */
 public final class PbPythonGotoDeclarationHandler implements GotoDeclarationHandler {

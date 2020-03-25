@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.ide.highlighter;
 
+import com.intellij.lexer.LayeredLexer;
 import idea.plugin.protoeditor.lang.lexer.ProtoLexer;
 import idea.plugin.protoeditor.lang.lexer.StringLexer;
 import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
-import com.intellij.lexer.LayeredLexer;
 
 /** Lexer used for prototext syntax highlighting. */
 public class PbTextHighlightingLexer extends LayeredLexer {

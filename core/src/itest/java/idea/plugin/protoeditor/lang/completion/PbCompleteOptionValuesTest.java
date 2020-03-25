@@ -15,10 +15,11 @@
  */
 package idea.plugin.protoeditor.lang.completion;
 
-import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
-
 import idea.plugin.protoeditor.TestUtils;
+
 import java.util.List;
+
+import static com.intellij.testFramework.EditorTestUtil.CARET_TAG;
 
 /** Tests for option value completions. */
 public class PbCompleteOptionValuesTest extends PbCompletionContributorTestCase {

@@ -16,6 +16,7 @@
 package idea.plugin.protoeditor.gencodeutils;
 
 import com.intellij.psi.PsiFile;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;

@@ -16,17 +16,17 @@
 package idea.plugin.protoeditor.lang.psi.impl;
 
 import com.google.common.collect.Multimap;
+import com.intellij.lang.ASTNode;
+import com.intellij.psi.stubs.IStubElementType;
 import idea.plugin.protoeditor.ide.util.PbIcons;
 import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
 import idea.plugin.protoeditor.lang.psi.PbEnumValue;
 import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
 import idea.plugin.protoeditor.lang.stub.PbEnumDefinitionStub;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.stubs.IStubElementType;
-import javax.swing.Icon;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.swing.*;
 
 abstract class PbEnumDefinitionMixin extends PbStubbedNamedDefinitionBase<PbEnumDefinitionStub>
     implements PbEnumDefinition {

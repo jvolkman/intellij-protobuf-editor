@@ -15,8 +15,8 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import idea.plugin.protoeditor.lang.PbLanguage;
 import com.intellij.psi.tree.IElementType;
+import idea.plugin.protoeditor.lang.PbLanguage;
 
 public class PbElementType extends IElementType {
 

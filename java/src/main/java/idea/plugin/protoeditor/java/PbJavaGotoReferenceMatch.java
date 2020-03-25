@@ -21,14 +21,14 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNamedElement;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.util.ObjectUtils;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 import idea.plugin.protoeditor.lang.psi.PbDefinition;
 import idea.plugin.protoeditor.lang.psi.PbFile;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Check if a resolved java reference refers to elements generated from protos, and gathers

@@ -15,8 +15,8 @@
  */
 package idea.plugin.protoeditor.lang.stub.type;
 
-import idea.plugin.protoeditor.lang.PbLanguage;
 import com.intellij.psi.tree.IElementType;
+import idea.plugin.protoeditor.lang.PbLanguage;
 
 /** Stub element type constants and factory. */
 public interface PbStubElementTypes {

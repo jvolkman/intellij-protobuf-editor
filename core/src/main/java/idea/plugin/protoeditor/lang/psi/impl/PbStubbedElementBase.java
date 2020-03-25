@@ -15,15 +15,15 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
-import idea.plugin.protoeditor.lang.psi.PbElement;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.stub.PbElementStub;
 import com.intellij.extapi.psi.StubBasedPsiElementBase;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.StubBasedPsiElement;
 import com.intellij.psi.stubs.IStubElementType;
+import idea.plugin.protoeditor.lang.psi.PbElement;
+import idea.plugin.protoeditor.lang.psi.PbFile;
+import idea.plugin.protoeditor.lang.stub.PbElementStub;
 
 abstract class PbStubbedElementBase<T extends PbElementStub<?>> extends StubBasedPsiElementBase<T>
     implements PbElement, PbOverridableElement, StubBasedPsiElement<T> {

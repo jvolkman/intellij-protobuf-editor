@@ -15,33 +15,6 @@
  */
 package idea.plugin.protoeditor.lang.annotation;
 
-import idea.plugin.protoeditor.ide.highlighter.PbSyntaxHighlighter;
-import idea.plugin.protoeditor.ide.highlighter.PbTextSyntaxHighlighter;
-import idea.plugin.protoeditor.lang.PbLangBundle;
-import idea.plugin.protoeditor.lang.annotation.OptionOccurrenceTracker.Occurrence;
-import idea.plugin.protoeditor.lang.psi.PbEnumDefinition;
-import idea.plugin.protoeditor.lang.psi.PbField;
-import idea.plugin.protoeditor.lang.psi.PbFile;
-import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import idea.plugin.protoeditor.lang.psi.PbNamedTypeElement;
-import idea.plugin.protoeditor.lang.psi.PbTextDomain;
-import idea.plugin.protoeditor.lang.psi.PbTextElement;
-import idea.plugin.protoeditor.lang.psi.PbTextExtensionName;
-import idea.plugin.protoeditor.lang.psi.PbTextField;
-import idea.plugin.protoeditor.lang.psi.PbTextFieldName;
-import idea.plugin.protoeditor.lang.psi.PbTextFile;
-import idea.plugin.protoeditor.lang.psi.PbTextIdentifierValue;
-import idea.plugin.protoeditor.lang.psi.PbTextLiteral;
-import idea.plugin.protoeditor.lang.psi.PbTextMessage;
-import idea.plugin.protoeditor.lang.psi.PbTextNumberValue;
-import idea.plugin.protoeditor.lang.psi.PbTextStringPart;
-import idea.plugin.protoeditor.lang.psi.PbTextSymbolPath;
-import idea.plugin.protoeditor.lang.psi.PbTextValueList;
-import idea.plugin.protoeditor.lang.psi.PbTextVisitor;
-import idea.plugin.protoeditor.lang.psi.ProtoSymbolPath;
-import idea.plugin.protoeditor.lang.util.BuiltInType;
-import idea.plugin.protoeditor.lang.util.ValueTester;
-import idea.plugin.protoeditor.lang.util.ValueTester.ValueTesterType;
 import com.intellij.codeInspection.ProblemHighlightType;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.AnnotationSession;
@@ -53,9 +26,18 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiReference;
 import com.intellij.psi.util.PsiTreeUtil;
+import idea.plugin.protoeditor.ide.highlighter.PbSyntaxHighlighter;
+import idea.plugin.protoeditor.ide.highlighter.PbTextSyntaxHighlighter;
+import idea.plugin.protoeditor.lang.PbLangBundle;
+import idea.plugin.protoeditor.lang.annotation.OptionOccurrenceTracker.Occurrence;
+import idea.plugin.protoeditor.lang.psi.*;
+import idea.plugin.protoeditor.lang.util.BuiltInType;
+import idea.plugin.protoeditor.lang.util.ValueTester;
+import idea.plugin.protoeditor.lang.util.ValueTester.ValueTesterType;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.HashMap;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 
 /** An error {@link Annotator} for text format elements. */
 public class PbTextAnnotator implements Annotator {

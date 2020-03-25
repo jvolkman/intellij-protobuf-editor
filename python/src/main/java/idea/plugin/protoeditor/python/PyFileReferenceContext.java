@@ -23,9 +23,10 @@ import com.intellij.psi.util.QualifiedName;
 import com.jetbrains.python.psi.PyExpression;
 import com.jetbrains.python.psi.PyFile;
 import com.jetbrains.python.psi.PyReferenceExpression;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Determines the python file and qualified name that is referenced from a python qualified

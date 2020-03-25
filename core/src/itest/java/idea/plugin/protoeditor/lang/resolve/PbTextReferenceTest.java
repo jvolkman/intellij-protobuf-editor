@@ -15,14 +15,14 @@
  */
 package idea.plugin.protoeditor.lang.resolve;
 
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiReference;
+import com.intellij.psi.util.QualifiedName;
 import idea.plugin.protoeditor.TestUtils;
 import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import idea.plugin.protoeditor.lang.psi.PbEnumValue;
 import idea.plugin.protoeditor.lang.psi.PbField;
 import idea.plugin.protoeditor.lang.psi.PbMessageType;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiReference;
-import com.intellij.psi.util.QualifiedName;
 import org.junit.Assert;
 
 /** Tests for injected text format references. */

@@ -15,11 +15,11 @@
  */
 package idea.plugin.protoeditor.lang.stub;
 
-import idea.plugin.protoeditor.lang.psi.PbServiceDefinition;
-import idea.plugin.protoeditor.lang.stub.type.PbServiceDefinitionType;
 import com.intellij.psi.stubs.StubBase;
 import com.intellij.psi.stubs.StubElement;
 import com.intellij.psi.util.QualifiedName;
+import idea.plugin.protoeditor.lang.psi.PbServiceDefinition;
+import idea.plugin.protoeditor.lang.stub.type.PbServiceDefinitionType;
 import org.jetbrains.annotations.Nullable;
 
 public class PbServiceDefinitionStub extends StubBase<PbServiceDefinition>

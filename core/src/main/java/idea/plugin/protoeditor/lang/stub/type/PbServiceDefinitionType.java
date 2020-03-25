@@ -15,22 +15,18 @@
  */
 package idea.plugin.protoeditor.lang.stub.type;
 
+import com.intellij.lang.Language;
+import com.intellij.psi.stubs.*;
+import com.intellij.psi.util.QualifiedName;
+import com.intellij.util.io.StringRef;
 import idea.plugin.protoeditor.lang.psi.PbServiceDefinition;
 import idea.plugin.protoeditor.lang.psi.impl.PbServiceDefinitionImpl;
 import idea.plugin.protoeditor.lang.stub.PbServiceDefinitionStub;
 import idea.plugin.protoeditor.lang.stub.index.QualifiedNameIndex;
 import idea.plugin.protoeditor.lang.stub.index.ShortNameIndex;
-import com.intellij.lang.Language;
-import com.intellij.psi.stubs.IStubElementType;
-import com.intellij.psi.stubs.IndexSink;
-import com.intellij.psi.stubs.StubElement;
-import com.intellij.psi.stubs.StubInputStream;
-import com.intellij.psi.stubs.StubOutputStream;
-import com.intellij.psi.util.QualifiedName;
-import com.intellij.util.io.StringRef;
-import java.io.IOException;
-
 import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 
 public class PbServiceDefinitionType
     extends IStubElementType<PbServiceDefinitionStub, PbServiceDefinition> {

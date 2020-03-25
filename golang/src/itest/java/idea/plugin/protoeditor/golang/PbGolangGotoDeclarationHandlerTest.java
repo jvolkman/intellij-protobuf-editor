@@ -15,15 +15,7 @@
  */
 package idea.plugin.protoeditor.golang;
 
-import static com.google.common.truth.Truth.assertThat;
-import static com.google.common.truth.Truth.assertWithMessage;
-import static idea.plugin.protoeditor.TestUtils.notNull;
-
 import com.goide.psi.GoFile;
-import idea.plugin.protoeditor.TestUtils;
-import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
-import idea.plugin.protoeditor.gencodeutils.GotoExpectationMarker;
-import idea.plugin.protoeditor.gencodeutils.ReferenceGotoExpectation;
 import com.intellij.codeInsight.navigation.actions.GotoDeclarationAction;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.editor.Editor;
@@ -31,10 +23,18 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
+import idea.plugin.protoeditor.TestUtils;
+import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
+import idea.plugin.protoeditor.gencodeutils.GotoExpectationMarker;
+import idea.plugin.protoeditor.gencodeutils.ReferenceGotoExpectation;
 
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.List;
+
+import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth.assertWithMessage;
+import static idea.plugin.protoeditor.TestUtils.notNull;
 
 /**
  * Tests for {@link PbGolangGotoDeclarationHandler}.

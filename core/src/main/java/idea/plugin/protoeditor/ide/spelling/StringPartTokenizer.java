@@ -15,13 +15,13 @@
  */
 package idea.plugin.protoeditor.ide.spelling;
 
-import idea.plugin.protoeditor.lang.psi.ProtoStringPart;
-import idea.plugin.protoeditor.lang.util.ProtoString;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.spellchecker.inspections.PlainTextSplitter;
 import com.intellij.spellchecker.tokenizer.TokenConsumer;
 import com.intellij.spellchecker.tokenizer.Tokenizer;
+import idea.plugin.protoeditor.lang.psi.ProtoStringPart;
+import idea.plugin.protoeditor.lang.util.ProtoString;
 import org.jetbrains.annotations.NotNull;
 
 /** A spellchecking {@link Tokenizer} for {@link ProtoStringPart} elements. */

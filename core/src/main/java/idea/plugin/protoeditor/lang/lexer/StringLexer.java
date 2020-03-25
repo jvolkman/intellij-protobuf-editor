@@ -15,14 +15,13 @@
  */
 package idea.plugin.protoeditor.lang.lexer;
 
-import idea.plugin.protoeditor.lang.lexer._StringLexer;
-import idea.plugin.protoeditor.lang.lexer._StringLexer.TokenType;
-import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 import com.intellij.lexer.FlexAdapter;
 import com.intellij.lexer.Lexer;
 import com.intellij.lexer.MergingLexerAdapter;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.TokenSet;
+import idea.plugin.protoeditor.lang.lexer._StringLexer.TokenType;
+import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 
 public class StringLexer extends FlexAdapter {
 

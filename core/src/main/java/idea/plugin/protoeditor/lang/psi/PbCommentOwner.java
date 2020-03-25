@@ -15,11 +15,12 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import idea.plugin.protoeditor.lang.psi.util.PbCommentUtil;
 import com.intellij.psi.PsiComment;
+import idea.plugin.protoeditor.lang.psi.util.PbCommentUtil;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 
 /** An element that can return leading and trailing comments. */
 public interface PbCommentOwner extends PbElement {

@@ -15,13 +15,12 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import idea.plugin.protoeditor.lang.descriptor.Descriptor;
-import idea.plugin.protoeditor.lang.psi.PbOptionExpression;
 import com.intellij.psi.util.QualifiedName;
-import java.util.List;
-
+import idea.plugin.protoeditor.lang.descriptor.Descriptor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /** Implemented by elements that support options (fields, messages, files, etc.) */
 public interface PbOptionOwner extends PbElement {

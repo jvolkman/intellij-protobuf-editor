@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.ide.template;
 
-import idea.plugin.protoeditor.lang.resolve.FileResolveProvider.ChildEntry;
 import com.intellij.codeInsight.lookup.LookupElement;
 import com.intellij.codeInsight.template.ExpressionContext;
 import com.intellij.codeInsight.template.macro.TemplateCompletionProcessor;
+import idea.plugin.protoeditor.lang.resolve.FileResolveProvider.ChildEntry;
 
 /**
  * A TemplateCompletionProcessor that prevents moving to the next template tab if the accepted

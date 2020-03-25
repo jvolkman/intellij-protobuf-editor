@@ -15,12 +15,12 @@
  */
 package idea.plugin.protoeditor.lang.findusages;
 
-import idea.plugin.protoeditor.lang.psi.PbSymbol;
 import com.intellij.psi.ElementDescriptionLocation;
 import com.intellij.psi.ElementDescriptionProvider;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.QualifiedName;
 import com.intellij.usageView.UsageViewLongNameLocation;
+import idea.plugin.protoeditor.lang.psi.PbSymbol;
 import org.jetbrains.annotations.Nullable;
 
 /** Provides the title for the find usages tool window. */

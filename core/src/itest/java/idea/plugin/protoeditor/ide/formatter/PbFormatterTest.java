@@ -15,10 +15,10 @@
  */
 package idea.plugin.protoeditor.ide.formatter;
 
-import idea.plugin.protoeditor.TestUtils;
-import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.psi.codeStyle.CodeStyleManager;
+import idea.plugin.protoeditor.TestUtils;
+import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
 
 public class PbFormatterTest extends PbCodeInsightFixtureTestCase {
 

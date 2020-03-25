@@ -15,8 +15,6 @@
  */
 package idea.plugin.protoeditor.lang.psi;
 
-import idea.plugin.protoeditor.lang.psi.PbOptionName;
-
 import java.util.function.BiPredicate;
 
 /**

@@ -15,20 +15,20 @@
  */
 package idea.plugin.protoeditor.lang.psi.impl;
 
+import com.intellij.lang.ASTNode;
+import com.intellij.psi.util.QualifiedName;
 import idea.plugin.protoeditor.ide.util.PbIcons;
 import idea.plugin.protoeditor.lang.descriptor.Descriptor;
 import idea.plugin.protoeditor.lang.descriptor.DescriptorOptionType;
 import idea.plugin.protoeditor.lang.psi.PbEnumValue;
 import idea.plugin.protoeditor.lang.psi.PbOptionExpression;
 import idea.plugin.protoeditor.lang.psi.PbOptionList;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.util.QualifiedName;
-import java.util.Collections;
-import java.util.List;
-import javax.swing.Icon;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.swing.*;
+import java.util.Collections;
+import java.util.List;
 
 abstract class PbEnumValueMixin extends PbNamedElementBase implements PbEnumValue {
 
