@@ -3,8 +3,8 @@
 """
 
 # EXPECT-NEXT: proto-with-dash.proto / <file>
-from com.google.devtools.intellij.protoeditor.python import <caret>proto_with_dash_pb2
-from com.google.devtools.intellij.protoeditor.python import proto_with_dash_pb2 as Alias
+from idea.plugin.protoeditor.python import <caret>proto_with_dash_pb2
+from idea.plugin.protoeditor.python import proto_with_dash_pb2 as Alias
 
 
 class MessageLevelUser(object):

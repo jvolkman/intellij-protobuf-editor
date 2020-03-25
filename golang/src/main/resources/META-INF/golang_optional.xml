@@ -2,7 +2,7 @@
   <extensions defaultExtensionNs="com.intellij">
     <!-- golang -> proto goto -->
     <gotoDeclarationHandler
-        implementation="com.google.devtools.intellij.protoeditor.golang.PbGolangGotoDeclarationHandler"
+        implementation="idea.plugin.protoeditor.golang.PbGolangGotoDeclarationHandler"
         order="first"/>
   </extensions>
 </idea-plugin>

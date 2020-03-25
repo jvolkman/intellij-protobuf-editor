@@ -14,7 +14,7 @@ message Baz {
       // This should be the resolved message.
     }
     message Bar {
-      Foo.T<ref>om x = 1;
+      Foo.T<caret>om x = 1;
     }
   }
 }

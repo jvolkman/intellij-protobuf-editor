@@ -8,10 +8,22 @@ load(
     _optional_plugin_xml = "optional_plugin_xml",
 )
 
+load(
+    ":intellij_sdk.bzl",
+    _IntellijSdkInfo = "IntellijSdkInfo",
+    _intellij_sdk = "intellij_sdk",
+    _bundled_plugins = "bundled_plugins",
+)
+
 # Re-export these symbols
 intellij_plugin = _intellij_plugin
 intellij_plugin_library = _intellij_plugin_library
 optional_plugin_xml = _optional_plugin_xml
+
+intellij_sdk = _intellij_sdk
+IntellijSdkInfo = _IntellijSdkInfo
+bundled_plugins = _bundled_plugins
+
 
 def merged_plugin_xml(name, srcs, **kwargs):
     """Merges N plugin.xml files together."""
@@ -32,6 +44,7 @@ def _optstr(name, value):
 
 def stamped_plugin_xml(
         name,
+        sdk = None,
         plugin_xml = None,
         plugin_id = None,
         plugin_name = None,
@@ -62,9 +75,13 @@ def stamped_plugin_xml(
     """
     stamp_tool = "//build_support/build_defs:stamp_plugin_xml"
 
+    if not sdk:
+        sdk = "//build_support:intellij_sdk"
+
     api_version_txt_name = name + "_api_version"
     api_version_txt(
         name = api_version_txt_name,
+        sdk = sdk,
     )
 
     args = [
@@ -134,65 +151,47 @@ def stamped_plugin_xml(
         **kwargs
     )
 
-def product_build_txt(name, **kwargs):
-    """Produces a product-build.txt file with the build number.
 
-    Args:
-      name: name of this target
-      **kwargs: Any additional arguments to pass to the final target.
-    """
-    application_info_jar = "//build_support/intellij_platform_sdk:application_info_jar"
-    application_info_name = "//build_support/intellij_platform_sdk:application_info_name"
-    product_build_txt_tool = "//build_support/build_defs:product_build_txt"
+def _api_version_txt_impl(ctx):
 
+    sdk_info = ctx.attr.sdk[IntellijSdkInfo]
+
+    out_file = ctx.actions.declare_file(ctx.attr.name + ".txt")
     args = [
-        "./$(location {product_build_txt_tool})",
-        "--application_info_jar=$(location {application_info_jar})",
-        "--application_info_name=$(location {application_info_name})",
+        "--application_info_jar=" + sdk_info.application_info_jar.files.to_list()[0].path,
+        "--application_info_name=" + sdk_info.application_info_name,
+        "--output_file=" + out_file.path,
     ]
-    cmd = " ".join(args).format(
-        application_info_jar = application_info_jar,
-        application_info_name = application_info_name,
-        product_build_txt_tool = product_build_txt_tool,
-    ) + "> $@"
-    native.genrule(
-        name = name,
-        srcs = [application_info_jar, application_info_name],
-        outs = ["product-build.txt"],
-        cmd = cmd,
-        tools = [product_build_txt_tool],
-        **kwargs
+
+    ctx.actions.run(
+        inputs = sdk_info.application_info_jar.files,
+        outputs = [out_file],
+        tools = ctx.files.tool,
+        arguments = args,
+        executable = ctx.executable.tool,
     )
 
-def api_version_txt(name, **kwargs):
-    """Produces an api_version.txt file with the api version, including the product code.
-
-    Args:
-      name: name of this target
-      **kwargs: Any additional arguments to pass to the final target.
-    """
-    application_info_jar = "//build_support/intellij_platform_sdk:application_info_jar"
-    application_info_name = "//build_support/intellij_platform_sdk:application_info_name"
-    api_version_txt_tool = "//build_support/build_defs:api_version_txt"
-
-    args = [
-        "./$(location {api_version_txt_tool})",
-        "--application_info_jar=$(location {application_info_jar})",
-        "--application_info_name=$(location {application_info_name})",
+    return [
+        DefaultInfo(
+            files = depset([out_file]),
+            runfiles = ctx.runfiles([out_file]),
+        ),
     ]
-    cmd = " ".join(args).format(
-        application_info_jar = application_info_jar,
-        application_info_name = application_info_name,
-        api_version_txt_tool = api_version_txt_tool,
-    ) + "> $@"
-    native.genrule(
-        name = name,
-        srcs = [application_info_jar, application_info_name],
-        outs = [name + ".txt"],
-        cmd = cmd,
-        tools = [api_version_txt_tool],
-        **kwargs
-    )
+
+
+api_version_txt = rule(
+    _api_version_txt_impl,
+    attrs = {
+        "sdk": attr.label(providers = [IntellijSdkInfo]),
+        "tool": attr.label(
+            default = Label("//build_support/build_defs:api_version_txt"),
+            executable = True,
+            allow_files = True,
+            cfg = "host",
+        )
+    }
+)
+
 
 repackaged_files_data = provider()
 
@@ -205,9 +204,7 @@ def _repackaged_files_impl(ctx):
         input_files = depset(transitive = [input_files, target.files])
 
     return [
-        # TODO(brendandouglas): Only valid for Bazel 0.5 onwards. Uncomment when
-        # 0.5 used more widely.
-        # DefaultInfo(files = input_files),
+        DefaultInfo(files = input_files),
         repackaged_files_data(
             files = input_files,
             prefix = prefix,
@@ -322,22 +319,3 @@ def plugin_deploy_zip(name, srcs, zip_filename, **kwargs):
       **kwargs: Any further arguments to be passed to the target
     """
     _plugin_deploy_zip(name = name, zip_filename = zip_filename, srcs = srcs, **kwargs)
-
-def unescape_filenames(name, srcs):
-    """Macro to generate files with spaces in their names instead of underscores.
-
-    For each file in the srcs, a file will be generated with the same name but with all underscores
-    replaced with spaces.
-
-    Args:
-      name: The name of the generator rule
-      srcs: A list of source files to process
-    """
-    outs = [s.replace("_", " ") for s in srcs]
-    cmd = "&&".join(["cp \"{}\" $(@D)/\"{}\"".format(s, d) for (s, d) in zip(srcs, outs)])
-    native.genrule(
-        name = name,
-        srcs = srcs,
-        outs = outs,
-        cmd = cmd,
-    )

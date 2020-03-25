@@ -1,6 +1,5 @@
 # Rules for building and testing the plugin.
 
-load("//build_support/intellij_platform_sdk:build_defs.bzl", "select_for_ide")
 load(
     "//build_support/build_defs:build_defs.bzl",
     "stamped_plugin_xml",
@@ -23,18 +22,10 @@ java_library(
     name = "combined_lib",
     exports = [
         "//core",
+        "//java",
         "//python",
-    ] + select_for_ide(
-        android_studio = [
-            "//java",
-        ],
-        clion = [],
-        default = [],
-        intellij = [
-            "//golang",
-            "//java",
-        ],
-    ),
+        "//golang",
+    ]
 )
 
 intellij_plugin_library(
@@ -59,7 +50,7 @@ stamped_plugin_xml(
     name = "standalone_plugin_xml",
     changelog_file = "CHANGELOG",
     description_file = "plugin_description",
-    plugin_id = "com.google.devtools.intellij.protoeditor",
+    plugin_id = "idea.plugin.protoeditor",
     plugin_name = "Protocol Buffer Editor",
     stamp_since_build = False,
     vendor_file = "vendor.xml",

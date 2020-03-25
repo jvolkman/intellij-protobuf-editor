@@ -15,5 +15,5 @@ extend proto2.FieldOptions {
 }
 
 message TestMessage {
-  int32 xyz = 1 [(test_field_option).a<ref>bc = 10];
+  int32 xyz = 1 [(test_field_option).a<caret>bc = 10];
 }

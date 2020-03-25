@@ -15,11 +15,10 @@ java_library(
     name = "golang",
     srcs = glob(["java/**/*.java"]),
     deps = [
-        "//build_support/intellij_platform_sdk:jsr305",
-        "//build_support/intellij_platform_sdk:plugin_api",
+        "//build_support:plugin_api",
+        "//build_support:plugin_go_support",
         "//core",
         "//gencode",
-        "@go_2019_3//:go",
     ],
 )
 

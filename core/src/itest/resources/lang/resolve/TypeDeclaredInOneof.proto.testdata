@@ -10,5 +10,5 @@ message Bar {
     }
   }
 
-  optional Some<ref>Group zz = 2;
+  optional Some<caret>Group zz = 2;
 }

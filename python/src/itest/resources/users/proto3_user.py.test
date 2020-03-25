@@ -4,8 +4,8 @@ This is pretty much like the proto2 syntax (except no optional, etc.).
 """
 
 # EXPECT-NEXT: proto3.proto / <file>
-from com.google.devtools.intellij.protoeditor.python import <caret>proto3_pb2
-from com.google.devtools.intellij.protoeditor.python import proto3_pb2 as Alias
+from idea.plugin.protoeditor.python import <caret>proto3_pb2
+from idea.plugin.protoeditor.python import proto3_pb2 as Alias
 
 
 class MessageLevelUser(object):

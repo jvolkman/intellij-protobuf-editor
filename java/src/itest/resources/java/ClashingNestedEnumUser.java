@@ -15,9 +15,9 @@
  */
 package resources.java;
 
-import static com.google.devtools.intellij.protoeditor.java.test.ClashingNestedEnumOuterClass.Foo.Bar.ClashingNestedEnum.ZERO;
+import static idea.plugin.protoeditor.java.test.ClashingNestedEnumOuterClass.Foo.Bar.ClashingNestedEnum.ZERO;
 
-import com.google.devtools.intellij.protoeditor.java.test.ClashingNestedEnumOuterClass.Foo;
+import idea.plugin.protoeditor.java.test.ClashingNestedEnumOuterClass.Foo;
 
 /** Exercises a proto file with the same name as a nested enum (after normalization). */
 @SuppressWarnings("unused") // Loaded by IntelliJ test.

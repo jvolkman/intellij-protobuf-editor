@@ -8,5 +8,5 @@ message Foo {
 }
 
 message Bar {
-  bar.ba<ref>z.Bogus x = 1;
+  bar.ba<caret>z.Bogus x = 1;
 }

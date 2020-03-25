@@ -16,5 +16,5 @@ message Bar {
       }
     }
   }
-  .foo.bar.F<ref>oo.Baz x = 1;
+  .foo.bar.F<caret>oo.Baz x = 1;
 }

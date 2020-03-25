@@ -15,7 +15,7 @@
  */
 package resources.java;
 
-import com.google.devtools.intellij.protoeditor.java.test.ClashingMessageOuterClass.ClashingMessage;
+import idea.plugin.protoeditor.java.test.ClashingMessageOuterClass.ClashingMessage;
 
 /** Exercises a proto file with the same name as a message (after normalization). */
 @SuppressWarnings("unused") // Loaded by IntelliJ test.

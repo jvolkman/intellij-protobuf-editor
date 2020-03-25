@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.google.devtools.intellij.protoeditor.lang.lexer;
+package idea.plugin.protoeditor.lang.lexer;
 
-import com.google.devtools.intellij.protoeditor.lang.lexer.ProtoLexer.CommentStyle;
-import com.google.devtools.intellij.protoeditor.lang.psi.ProtoTokenTypes;
+import idea.plugin.protoeditor.lang.lexer.ProtoLexer.CommentStyle;
+import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;

@@ -23,7 +23,7 @@ load(
 
 stamped_plugin_xml(
     name = "stamped_plugin_xml",
-    plugin_id = "com.google.devtools.intellij.protoeditor.golang",
+    plugin_id = "idea.plugin.protoeditor.golang",
     plugin_name = "Protocol Buffer Editor w/ Go Support",
 )
 
@@ -54,22 +54,17 @@ intellij_integration_test_suite(
         "-Dtest.resources.import.prefix=" + resources_import_prefix(),
         "-Dtest.resources.location=" + package_name() + "/resources/",
     ],
-    required_plugins = "com.google.devtools.intellij.protoeditor.golang,org.jetbrains.plugins.go",
-    test_package_root = "com.google.devtools.intellij.protoeditor",
+    required_plugins = "idea.plugin.protoeditor.golang,org.jetbrains.plugins.go",
+    test_package_root = "idea.plugin.protoeditor",
     visibility = ["//visibility:public"],
     runtime_deps = [
         ":plugin_for_tests",
-        # Needed to work around one-version issue; see cr/219160374
-        "//build_support/intellij_platform_sdk:test_libs",
     ],
     deps = [
-        "//build_support/intellij_platform_sdk:jsr305",
-        "//build_support/intellij_platform_sdk:plugin_api_for_tests",
-        "//build_support/intellij_platform_sdk:test_libs",
-        "//golang",
+        "//build_support:test_plugin_api",
+        "//build_support:test_plugin_go_support",
+        "//build_support:test_libs",
         "//testlib:gencodeutils",
         "//testlib:test_utils",
-        "@go_2019_2//:go_for_tests",
-        "@junit//jar",
     ],
 )

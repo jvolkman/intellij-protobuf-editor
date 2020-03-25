@@ -5,5 +5,5 @@ message Foo {
   message Bar {}
   // This reference should fail to resolve, because the unqualified "A" resolves to the
   // message directly above, which has no XYZ child.
-  optional Bar.B<ref>az baz = 1;
+  optional Bar.B<caret>az baz = 1;
 }

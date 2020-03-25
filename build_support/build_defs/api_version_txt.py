@@ -19,72 +19,78 @@
 
 import argparse
 import re
-from xml.dom.minidom import parseString  # pylint: disable=g-importing-member
 import zipfile
+
+from xml.dom import minidom
 
 parser = argparse.ArgumentParser()
 
 parser.add_argument(
     "--application_info_jar",
     help="The jar file containing the application info xml",
-    required=True,)
+    required=True,
+)
 parser.add_argument(
     "--application_info_name",
-    help="A .txt file containing the application info xml name",
-    required=True,)
+    help="The application info xml name",
+    required=True,
+)
+parser.add_argument(
+    "--output_file",
+    help="The file to write",
+    required=True,
+)
 
 
 def _parse_build_number(build_number):
-  """Parses the build number.
+    """Parses the build number.
 
-  Args:
-    build_number: The build number as text.
-  Returns:
-    build_number, build_number_without_product_code.
-  Raises:
-    ValueError: if the build number is invalid.
-  """
-  match = re.match(r"^([A-Z]+-)?([0-9]+)((\.[0-9]+)*)", build_number)
-  if match is None:
-    raise ValueError("Invalid build number: " + build_number)
+    Args:
+      build_number: The build number as text.
+    Returns:
+      build_number, build_number_without_product_code.
+    Raises:
+      ValueError: if the build number is invalid.
+    """
+    match = re.match(r"^([A-Z]+-)?([0-9]+)((\.[0-9]+)*)", build_number)
+    if match is None:
+        raise ValueError("Invalid build number: " + build_number)
 
-  return match.group(1) + match.group(2) + match.group(3)
+    return match.group(1) + match.group(2) + match.group(3)
 
 
 def main():
+    args = parser.parse_args()
 
-  args = parser.parse_args()
+    with zipfile.ZipFile(args.application_info_jar, "r") as zf:
+        try:
+            data = zf.read(args.application_info_name)
+        except:
+            raise ValueError("Could not read application info file: " +
+                             args.application_info_name)
+        component = minidom.parseString(data)
 
-  with open(args.application_info_name) as f:
-    application_info_name = f.read().strip()
+        build_elements = component.getElementsByTagName("build")
+        if not build_elements:
+            raise ValueError("Could not find <build> element.")
+        if len(build_elements) > 1:
+            raise ValueError("Ambiguous <build> element.")
+        build_element = build_elements[0]
 
-  with zipfile.ZipFile(args.application_info_jar, "r") as zf:
-    try:
-      data = zf.read(application_info_name)
-    except:
-      raise ValueError("Could not read application info file: " +
-                       application_info_name)
-    component = parseString(data)
+        attrs = build_element.attributes
+        try:
+            api_version_attr = attrs["apiVersion"]
+        except KeyError:
+            api_version_attr = attrs["number"]
 
-    build_elements = component.getElementsByTagName("build")
-    if not build_elements:
-      raise ValueError("Could not find <build> element.")
-    if len(build_elements) > 1:
-      raise ValueError("Ambiguous <build> element.")
-    build_element = build_elements[0]
+    if not api_version_attr:
+        raise ValueError("Could not find api version in application info")
 
-    attrs = build_element.attributes
-    try:
-      api_version_attr = attrs["apiVersion"]
-    except KeyError:
-      api_version_attr = attrs["number"]
+    api_version = _parse_build_number(api_version_attr.value)
 
-  if not api_version_attr:
-    raise ValueError("Could not find api version in application info")
-
-  api_version = _parse_build_number(api_version_attr.value)
-  print(api_version)  # pylint: disable=superfluous-parens
+    with open(args.output_file, 'w') as f:
+        f.writelines([api_version])
 
 
 if __name__ == "__main__":
-  main()
+    main()

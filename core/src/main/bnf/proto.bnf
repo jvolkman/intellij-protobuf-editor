@@ -15,25 +15,25 @@
 {
   generate=[names="long" psi="yes" tokens="no"]
 
-  parserClass="com.google.devtools.intellij.protoeditor.lang.parser.PbParser"
-  parserUtilClass="com.google.devtools.intellij.protoeditor.lang.parser.PbParserUtil"
+  parserClass="idea.plugin.protoeditor.lang.parser.PbParser"
+  parserUtilClass="idea.plugin.protoeditor.lang.parser.PbParserUtil"
   parserImports=[
     "com.intellij.lang.parser.GeneratedParserUtilBase.Parser"
-    "static com.google.devtools.intellij.protoeditor.lang.psi.ProtoTokenTypes.*"
+    "static idea.plugin.protoeditor.lang.psi.ProtoTokenTypes.*"
   ]
 
-  implements="com.google.devtools.intellij.protoeditor.lang.psi.PbElement"
-  extends="com.google.devtools.intellij.protoeditor.lang.psi.impl.PbElementBase"
+  implements="idea.plugin.protoeditor.lang.psi.PbElement"
+  extends="idea.plugin.protoeditor.lang.psi.impl.PbElementBase"
 
   psiClassPrefix="Pb"
   psiImplClassSuffix="Impl"
-  psiPackage="com.google.devtools.intellij.protoeditor.lang.psi"
-  psiImplPackage="com.google.devtools.intellij.protoeditor.lang.psi.impl"
-  psiImplUtilClass="com.google.devtools.intellij.protoeditor.lang.psi.util.PbPsiImplUtil"
-  psiTreeUtilClass="com.google.devtools.intellij.protoeditor.lang.psi.util.PbPsiTreeUtil"
+  psiPackage="idea.plugin.protoeditor.lang.psi"
+  psiImplPackage="idea.plugin.protoeditor.lang.psi.impl"
+  psiImplUtilClass="idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil"
+  psiTreeUtilClass="idea.plugin.protoeditor.lang.psi.util.PbPsiTreeUtil"
 
-  elementTypeHolderClass="com.google.devtools.intellij.protoeditor.lang.psi.PbTypes"
-  elementTypeClass="com.google.devtools.intellij.protoeditor.lang.psi.PbElementType"
+  elementTypeHolderClass="idea.plugin.protoeditor.lang.psi.PbTypes"
+  elementTypeClass="idea.plugin.protoeditor.lang.psi.PbElementType"
 
   // Allow parsing from any rule, maintaining compatibility with older GK versions.
   extraRoot("*")=true
@@ -120,8 +120,8 @@ private Identifier ::= IDENTIFIER_LITERAL | <<parseKeywordIdentifier>>
  */
 SymbolPath ::= SymbolPathTuple | SymbolPathUnit
 {
-  implements = 'com.google.devtools.intellij.protoeditor.lang.psi.ProtoSymbolPath'
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbSymbolPathMixin'
+  implements = 'idea.plugin.protoeditor.lang.psi.ProtoSymbolPath'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbSymbolPathMixin'
 }
 SymbolPathTuple ::= SymbolPath '.' SymbolPathAtom { elementType = SymbolPath }
 SymbolPathUnit ::= SymbolPathAtom { elementType = SymbolPath }
@@ -137,12 +137,12 @@ private QualifiedName ::= '.'? SymbolPath
 TypeName ::= QualifiedName
 {
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbTypeNameBase'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbQualifiedReference'
-    'com.google.devtools.intellij.protoeditor.lang.psi.EffectiveReferenceOwner'
-    'com.google.devtools.intellij.protoeditor.lang.psi.ProtoSymbolPathContainer'
+    'idea.plugin.protoeditor.lang.psi.PbTypeNameBase'
+    'idea.plugin.protoeditor.lang.psi.PbQualifiedReference'
+    'idea.plugin.protoeditor.lang.psi.EffectiveReferenceOwner'
+    'idea.plugin.protoeditor.lang.psi.ProtoSymbolPathContainer'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbTypeNameMixin'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbTypeNameMixin'
 }
 
 /* A TypeName that must be a message type. */
@@ -151,11 +151,11 @@ MessageTypeName ::= QualifiedName { extends = TypeName }
 ExtensionName ::= QualifiedName
 {
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbQualifiedReference'
-    'com.google.devtools.intellij.protoeditor.lang.psi.EffectiveReferenceOwner'
-    'com.google.devtools.intellij.protoeditor.lang.psi.ProtoSymbolPathContainer'
+    'idea.plugin.protoeditor.lang.psi.PbQualifiedReference'
+    'idea.plugin.protoeditor.lang.psi.EffectiveReferenceOwner'
+    'idea.plugin.protoeditor.lang.psi.ProtoSymbolPathContainer'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbExtensionNameMixin'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbExtensionNameMixin'
 }
 
 /*
@@ -165,11 +165,11 @@ ExtensionName ::= QualifiedName
 PackageName ::= PackageNameTuple | PackageNameUnit
 {
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbPackageNameBase'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbSymbol'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbSymbolOwner'
+    'idea.plugin.protoeditor.lang.psi.PbPackageNameBase'
+    'idea.plugin.protoeditor.lang.psi.PbSymbol'
+    'idea.plugin.protoeditor.lang.psi.PbSymbolOwner'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbPackageNameMixin'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbPackageNameMixin'
 }
 PackageNameTuple ::= PackageName '.' PackageNameAtom { elementType = PackageName }
 PackageNameUnit ::= PackageNameAtom { elementType = PackageName }
@@ -181,10 +181,10 @@ private PackageNameAtom ::= Identifier
 OptionName ::= OptionNameTuple | OptionNameUnit
 {
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbOptionNameBase'
-    'com.google.devtools.intellij.protoeditor.lang.psi.EffectiveReferenceOwner'
+    'idea.plugin.protoeditor.lang.psi.PbOptionNameBase'
+    'idea.plugin.protoeditor.lang.psi.EffectiveReferenceOwner'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbOptionNameMixin'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbOptionNameMixin'
 }
 OptionNameTuple ::= OptionName '.' OptionNameAtom { elementType = OptionName }
 OptionNameUnit ::= OptionNameAtom { elementType = OptionName }
@@ -199,9 +199,9 @@ private OptionExtensionName ::= '(' ExtensionName ')' { pin = 2 }
 StringValue ::= StringPart+
 {
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbLiteral'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbElement'
-    'com.google.devtools.intellij.protoeditor.lang.psi.ProtoStringValue'
+    'idea.plugin.protoeditor.lang.psi.PbLiteral'
+    'idea.plugin.protoeditor.lang.psi.PbElement'
+    'idea.plugin.protoeditor.lang.psi.ProtoStringValue'
   ]
   methods = [
     stringParts = 'StringPart'
@@ -210,8 +210,8 @@ StringValue ::= StringPart+
 StringPart ::= STRING_LITERAL
 {
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbElement'
-    'com.google.devtools.intellij.protoeditor.lang.psi.ProtoStringPart'
+    'idea.plugin.protoeditor.lang.psi.PbElement'
+    'idea.plugin.protoeditor.lang.psi.ProtoStringPart'
   ]
 }
 
@@ -221,11 +221,11 @@ StringPart ::= STRING_LITERAL
 NumberValue ::= '-'? (INTEGER_LITERAL | FLOAT_LITERAL | "inf" | "nan")
 {
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbLiteral'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbElement'
-    'com.google.devtools.intellij.protoeditor.lang.psi.ProtoNumberValue'
+    'idea.plugin.protoeditor.lang.psi.PbLiteral'
+    'idea.plugin.protoeditor.lang.psi.PbElement'
+    'idea.plugin.protoeditor.lang.psi.ProtoNumberValue'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbNumberValueMixin'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbNumberValueMixin'
 }
 IntegerValue ::= '-'? INTEGER_LITERAL { elementType = NumberValue }
 
@@ -234,21 +234,21 @@ IntegerValue ::= '-'? INTEGER_LITERAL { elementType = NumberValue }
  */
 IdentifierValue ::= Identifier {
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbLiteral'
-    'com.google.devtools.intellij.protoeditor.lang.psi.ProtoIdentifierValue'
+    'idea.plugin.protoeditor.lang.psi.PbLiteral'
+    'idea.plugin.protoeditor.lang.psi.ProtoIdentifierValue'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbIdentifierValueMixin'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbIdentifierValueMixin'
 }
 
 // An aggregate value used to initialize message field options. Aggregate values are expressed using
 // the proto text format: an AggregateValue is itself a PbTextMessage.
 AggregateValue ::= <<Block <<BlockBodyOptional AggregateValueEntry>>>> {
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbLiteral'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbBlockBody'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbTextRootMessage'
+    'idea.plugin.protoeditor.lang.psi.PbLiteral'
+    'idea.plugin.protoeditor.lang.psi.PbBlockBody'
+    'idea.plugin.protoeditor.lang.psi.PbTextRootMessage'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbAggregateValueMixin'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbAggregateValueMixin'
   methods = [
     start = 'LBRACE'
     end = 'RBRACE'
@@ -279,10 +279,10 @@ SyntaxStatement ::= syntax '=' StringValue ';'
 {
   pin = 1
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbSyntaxStatementBase'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbStatement'
+    'idea.plugin.protoeditor.lang.psi.PbSyntaxStatementBase'
+    'idea.plugin.protoeditor.lang.psi.PbStatement'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbSyntaxStatementMixin'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbSyntaxStatementMixin'
 }
 
 /*
@@ -307,10 +307,10 @@ private TopLevelRecovery ::= !(message | enum | service | extend | import | pack
 PackageStatement ::= package PackageName ';'
 {
   pin = 1
-  implements = 'com.google.devtools.intellij.protoeditor.lang.psi.PbStatement'
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbPackageStatementMixin'
-  stubClass = 'com.google.devtools.intellij.protoeditor.lang.stub.PbPackageStatementStub'
-  elementTypeFactory = 'com.google.devtools.intellij.protoeditor.lang.stub.type.PbStubElementTypes.get'
+  implements = 'idea.plugin.protoeditor.lang.psi.PbStatement'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbPackageStatementMixin'
+  stubClass = 'idea.plugin.protoeditor.lang.stub.PbPackageStatementStub'
+  elementTypeFactory = 'idea.plugin.protoeditor.lang.stub.type.PbStubElementTypes.get'
 }
 
 /*
@@ -319,14 +319,14 @@ PackageStatement ::= package PackageName ';'
 ImportStatement ::= import (public | weak)? ImportName ';' {
   pin = 1
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbImportStatementBase'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbStatement'
+    'idea.plugin.protoeditor.lang.psi.PbImportStatementBase'
+    'idea.plugin.protoeditor.lang.psi.PbStatement'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbImportStatementMixin'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbImportStatementMixin'
 }
 ImportName ::= StringValue
 {
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbImportNameMixin'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbImportNameMixin'
 }
 
 /*
@@ -335,12 +335,12 @@ ImportName ::= StringValue
 MessageDefinition ::= message Identifier MessageBody {
   pin = 1
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbDefinition'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbMessageType'
+    'idea.plugin.protoeditor.lang.psi.PbDefinition'
+    'idea.plugin.protoeditor.lang.psi.PbMessageType'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbMessageDefinitionMixin'
-  stubClass = 'com.google.devtools.intellij.protoeditor.lang.stub.PbMessageDefinitionStub'
-  elementTypeFactory = 'com.google.devtools.intellij.protoeditor.lang.stub.type.PbStubElementTypes.get'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbMessageDefinitionMixin'
+  stubClass = 'idea.plugin.protoeditor.lang.stub.PbMessageDefinitionStub'
+  elementTypeFactory = 'idea.plugin.protoeditor.lang.stub.type.PbStubElementTypes.get'
   methods = [
     nameIdentifier = 'IDENTIFIER_LITERAL'
     body = 'MessageBody'
@@ -348,11 +348,11 @@ MessageDefinition ::= message Identifier MessageBody {
 }
 MessageBody ::= <<Block <<BlockBodyOptional MessageEntry>> >> {
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbBlockBody'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbOptionStatementOwner'
+    'idea.plugin.protoeditor.lang.psi.PbBlockBody'
+    'idea.plugin.protoeditor.lang.psi.PbOptionStatementOwner'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbMessageBodyMixin'
-  elementTypeFactory = 'com.google.devtools.intellij.protoeditor.lang.psi.type.PbCustomTypes.get'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbMessageBodyMixin'
+  elementTypeFactory = 'idea.plugin.protoeditor.lang.psi.type.PbCustomTypes.get'
   methods = [
     optionStatements = 'OptionStatement'
     start = 'LBRACE'
@@ -381,17 +381,17 @@ private MessageRecovery ::=
  */
 OptionExpression ::= OptionName '=' (IdentifierValue | NumberValue | StringValue | AggregateValue) {
   pin = 1
-  implements = "com.google.devtools.intellij.protoeditor.lang.psi.PbOptionExpressionBase"
+  implements = "idea.plugin.protoeditor.lang.psi.PbOptionExpressionBase"
 }
 OptionStatement ::= option OptionExpression ';' {
   pin = 1
-  implements = 'com.google.devtools.intellij.protoeditor.lang.psi.PbStatement'
+  implements = 'idea.plugin.protoeditor.lang.psi.PbStatement'
 }
 /*
  * Field options.
  */
 OptionList ::= '[' <<CommaSeparatedList ']' OptionListEntry>> ']' {
-  implements = 'com.google.devtools.intellij.protoeditor.lang.psi.PbBlockBody'
+  implements = 'idea.plugin.protoeditor.lang.psi.PbBlockBody'
   methods = [
     options = 'OptionExpression'
     start = 'LBRACK'
@@ -417,8 +417,8 @@ FieldLabel ::= optional | required | repeated
  */
 SimpleField ::= FieldLabel? TypeName Identifier '=' IntegerValue OptionList? ';' {
   pin = 2
-  implements = 'com.google.devtools.intellij.protoeditor.lang.psi.PbField'
-  extends = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbFieldBase'
+  implements = 'idea.plugin.protoeditor.lang.psi.PbField'
+  extends = 'idea.plugin.protoeditor.lang.psi.impl.PbFieldBase'
   methods = [
     nameIdentifier = 'IDENTIFIER_LITERAL'
     fieldNumber = 'NumberValue'
@@ -434,10 +434,10 @@ SimpleField ::= FieldLabel? TypeName Identifier '=' IntegerValue OptionList? ';'
 MapField ::= FieldLabel? map '<' TypeName ',' TypeName '>' Identifier '=' IntegerValue OptionList? ';' {
   pin = 3 // We pin the '<' to allow SimpleFields to use 'map' as a type name.
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbField'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbSymbolContributor'
+    'idea.plugin.protoeditor.lang.psi.PbField'
+    'idea.plugin.protoeditor.lang.psi.PbSymbolContributor'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbMapFieldMixin'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbMapFieldMixin'
   methods = [
     nameIdentifier = 'IDENTIFIER_LITERAL'
     fieldNumber = 'NumberValue'
@@ -454,14 +454,14 @@ MapField ::= FieldLabel? map '<' TypeName ',' TypeName '>' Identifier '=' Intege
 GroupDefinition ::= FieldLabel? group Identifier '=' IntegerValue GroupOptionContainer? MessageBody {
   pin = 2
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbDefinition'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbMessageType'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbSymbolContributor'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbGroupDefinitionBase'
+    'idea.plugin.protoeditor.lang.psi.PbDefinition'
+    'idea.plugin.protoeditor.lang.psi.PbMessageType'
+    'idea.plugin.protoeditor.lang.psi.PbSymbolContributor'
+    'idea.plugin.protoeditor.lang.psi.PbGroupDefinitionBase'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbGroupDefinitionMixin'
-  stubClass = 'com.google.devtools.intellij.protoeditor.lang.stub.PbGroupDefinitionStub'
-  elementTypeFactory = 'com.google.devtools.intellij.protoeditor.lang.stub.type.PbStubElementTypes.get'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbGroupDefinitionMixin'
+  stubClass = 'idea.plugin.protoeditor.lang.stub.PbGroupDefinitionStub'
+  elementTypeFactory = 'idea.plugin.protoeditor.lang.stub.type.PbStubElementTypes.get'
   methods = [
     nameIdentifier = 'IDENTIFIER_LITERAL'
     body = 'MessageBody'
@@ -470,7 +470,7 @@ GroupDefinition ::= FieldLabel? group Identifier '=' IntegerValue GroupOptionCon
   ]
 }
 GroupOptionContainer ::= OptionList {
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbGroupOptionContainerMixin'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbGroupOptionContainerMixin'
   methods = [
     options = 'OptionList/OptionExpression'
   ]
@@ -482,12 +482,12 @@ GroupOptionContainer ::= OptionList {
 OneofDefinition ::= oneof Identifier OneofBody {
   pin = 1
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbDefinition'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbNamedElement'
+    'idea.plugin.protoeditor.lang.psi.PbDefinition'
+    'idea.plugin.protoeditor.lang.psi.PbNamedElement'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbOneofDefinitionMixin'
-  stubClass = 'com.google.devtools.intellij.protoeditor.lang.stub.PbOneofDefinitionStub'
-  elementTypeFactory = 'com.google.devtools.intellij.protoeditor.lang.stub.type.PbStubElementTypes.get'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbOneofDefinitionMixin'
+  stubClass = 'idea.plugin.protoeditor.lang.stub.PbOneofDefinitionStub'
+  elementTypeFactory = 'idea.plugin.protoeditor.lang.stub.type.PbStubElementTypes.get'
   methods = [
     nameIdentifier = 'IDENTIFIER_LITERAL'
     body = 'OneofBody'
@@ -495,11 +495,11 @@ OneofDefinition ::= oneof Identifier OneofBody {
 }
 OneofBody ::= <<Block <<BlockBodyOptional OneofEntry>> >> {
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbBlockBody'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbOptionStatementOwner'
+    'idea.plugin.protoeditor.lang.psi.PbBlockBody'
+    'idea.plugin.protoeditor.lang.psi.PbOptionStatementOwner'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbOneofBodyMixin'
-  elementTypeFactory = 'com.google.devtools.intellij.protoeditor.lang.psi.type.PbCustomTypes.get'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbOneofBodyMixin'
+  elementTypeFactory = 'idea.plugin.protoeditor.lang.psi.type.PbCustomTypes.get'
   methods = [
     optionStatements = 'OptionStatement'
     start = 'LBRACE'
@@ -514,18 +514,18 @@ private OneofRecovery ::= !(FieldLabel | option | group | TypeName | ';' | '}')
  */
 ExtendDefinition ::= extend MessageTypeName ExtendBody {
   pin = 1
-  implements = 'com.google.devtools.intellij.protoeditor.lang.psi.PbDefinition'
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbExtendDefinitionMixin'
-  stubClass = 'com.google.devtools.intellij.protoeditor.lang.stub.PbExtendDefinitionStub'
-  elementTypeFactory = 'com.google.devtools.intellij.protoeditor.lang.stub.type.PbStubElementTypes.get'
+  implements = 'idea.plugin.protoeditor.lang.psi.PbDefinition'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbExtendDefinitionMixin'
+  stubClass = 'idea.plugin.protoeditor.lang.stub.PbExtendDefinitionStub'
+  elementTypeFactory = 'idea.plugin.protoeditor.lang.stub.type.PbStubElementTypes.get'
   methods = [
     body = 'ExtendBody'
     typeName = 'MessageTypeName'
   ]
 }
 ExtendBody ::= <<Block <<BlockBodyOptional ExtendEntry>> >> {
-  implements = 'com.google.devtools.intellij.protoeditor.lang.psi.PbBlockBody'
-  elementTypeFactory = 'com.google.devtools.intellij.protoeditor.lang.psi.type.PbCustomTypes.get'
+  implements = 'idea.plugin.protoeditor.lang.psi.PbBlockBody'
+  elementTypeFactory = 'idea.plugin.protoeditor.lang.psi.type.PbCustomTypes.get'
   methods = [
     start = 'LBRACE'
     end = 'RBRACE'
@@ -540,17 +540,17 @@ private ExtendRecovery ::= !(FieldLabel | group | TypeName | ';' | '}')
 ExtensionsStatement ::= extensions <<CommaSeparatedList ('[' | ';') ExtensionRange>> OptionList? ';' {
   pin = 1
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbStatement'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbOptionOwner'
+    'idea.plugin.protoeditor.lang.psi.PbStatement'
+    'idea.plugin.protoeditor.lang.psi.PbOptionOwner'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbExtensionsStatementMixin'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbExtensionsStatementMixin'
 }
 ExtensionRange ::= IntegerValue (to (IntegerValue | max))?
 {
   pin(".*") = 1
   recoverWhile = ExtensionRangeRecovery
-  implements = 'com.google.devtools.intellij.protoeditor.lang.psi.PbExtensionRangeBase'
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbExtensionRangeMixin'
+  implements = 'idea.plugin.protoeditor.lang.psi.PbExtensionRangeBase'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbExtensionRangeMixin'
   methods = [
     fromValue = 'NumberValue[0]'
     toValue = 'NumberValue[1]'
@@ -564,15 +564,15 @@ private ExtensionRangeRecovery ::= !(IntegerValue | ',' | '[' | ';') MessageReco
 ReservedStatement ::= reserved (ReservedNames | ReservedNumbers) ';'
 {
   pin = 1
-  implements = 'com.google.devtools.intellij.protoeditor.lang.psi.PbStatement'
-  extends = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbStatementBase'
+  implements = 'idea.plugin.protoeditor.lang.psi.PbStatement'
+  extends = 'idea.plugin.protoeditor.lang.psi.impl.PbStatementBase'
 }
 ReservedRange ::= IntegerValue (to (IntegerValue | max))?
 {
   pin(".*") = 1
   recoverWhile = ReservedRangeRecovery
-  implements = 'com.google.devtools.intellij.protoeditor.lang.psi.PbReservedRangeBase'
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbReservedRangeMixin'
+  implements = 'idea.plugin.protoeditor.lang.psi.PbReservedRangeBase'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbReservedRangeMixin'
   methods = [
     fromValue = 'NumberValue[0]'
     toValue = 'NumberValue[1]'
@@ -591,13 +591,13 @@ EnumDefinition ::= enum Identifier EnumBody
 {
   pin = 1
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbDefinition'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbNamedTypeElement'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbEnumDefinitionBase'
+    'idea.plugin.protoeditor.lang.psi.PbDefinition'
+    'idea.plugin.protoeditor.lang.psi.PbNamedTypeElement'
+    'idea.plugin.protoeditor.lang.psi.PbEnumDefinitionBase'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbEnumDefinitionMixin'
-  stubClass = 'com.google.devtools.intellij.protoeditor.lang.stub.PbEnumDefinitionStub'
-  elementTypeFactory = 'com.google.devtools.intellij.protoeditor.lang.stub.type.PbStubElementTypes.get'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbEnumDefinitionMixin'
+  stubClass = 'idea.plugin.protoeditor.lang.stub.PbEnumDefinitionStub'
+  elementTypeFactory = 'idea.plugin.protoeditor.lang.stub.type.PbStubElementTypes.get'
   methods = [
     nameIdentifier = 'IDENTIFIER_LITERAL'
     body = 'EnumBody'
@@ -607,21 +607,21 @@ EnumValue ::= Identifier '=' IntegerValue OptionList? ';'
 {
   pin = 1
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbNamedElement'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbOptionOwner'
+    'idea.plugin.protoeditor.lang.psi.PbNamedElement'
+    'idea.plugin.protoeditor.lang.psi.PbOptionOwner'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbEnumValueMixin'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbEnumValueMixin'
   methods = [
     nameIdentifier = 'IDENTIFIER_LITERAL'
   ]
 }
 EnumBody ::= <<Block <<BlockBodyOptional EnumEntry>> >> {
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbBlockBody'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbOptionStatementOwner'
+    'idea.plugin.protoeditor.lang.psi.PbBlockBody'
+    'idea.plugin.protoeditor.lang.psi.PbOptionStatementOwner'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbEnumBodyMixin'
-  elementTypeFactory = 'com.google.devtools.intellij.protoeditor.lang.psi.type.PbCustomTypes.get'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbEnumBodyMixin'
+  elementTypeFactory = 'idea.plugin.protoeditor.lang.psi.type.PbCustomTypes.get'
   methods = [
     optionStatements = 'OptionStatement'
     start = 'LBRACE'
@@ -637,15 +637,15 @@ private EnumRecovery ::= !(option | reserved | EnumValue | ';' | '}')
 EnumReservedStatement ::= reserved (EnumReservedNames | EnumReservedNumbers) ';'
 {
   pin = 1
-  implements = 'com.google.devtools.intellij.protoeditor.lang.psi.PbStatement'
-  extends = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbStatementBase'
+  implements = 'idea.plugin.protoeditor.lang.psi.PbStatement'
+  extends = 'idea.plugin.protoeditor.lang.psi.impl.PbStatementBase'
 }
 EnumReservedRange ::= IntegerValue (to (IntegerValue | max))?
 {
   pin(".*") = 1
   recoverWhile = EnumReservedRangeRecovery
-  implements = 'com.google.devtools.intellij.protoeditor.lang.psi.PbReservedRangeBase'
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbEnumReservedRangeMixin'
+  implements = 'idea.plugin.protoeditor.lang.psi.PbReservedRangeBase'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbEnumReservedRangeMixin'
   methods = [
     fromValue = 'NumberValue[0]'
     toValue = 'NumberValue[1]'
@@ -663,13 +663,13 @@ private EnumReservedNumbers ::= &IntegerValue <<CommaSeparatedList ';' EnumReser
 ServiceDefinition ::= service Identifier ServiceBody {
   pin = 1
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbDefinition'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbNamedElement'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbSymbolOwner'
+    'idea.plugin.protoeditor.lang.psi.PbDefinition'
+    'idea.plugin.protoeditor.lang.psi.PbNamedElement'
+    'idea.plugin.protoeditor.lang.psi.PbSymbolOwner'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbServiceDefinitionMixin'
-  stubClass = 'com.google.devtools.intellij.protoeditor.lang.stub.PbServiceDefinitionStub'
-  elementTypeFactory = 'com.google.devtools.intellij.protoeditor.lang.stub.type.PbStubElementTypes.get'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbServiceDefinitionMixin'
+  stubClass = 'idea.plugin.protoeditor.lang.stub.PbServiceDefinitionStub'
+  elementTypeFactory = 'idea.plugin.protoeditor.lang.stub.type.PbStubElementTypes.get'
   methods = [
     nameIdentifier = 'IDENTIFIER_LITERAL'
     body = 'ServiceBody'
@@ -677,11 +677,11 @@ ServiceDefinition ::= service Identifier ServiceBody {
 }
 ServiceBody ::= <<Block <<BlockBodyOptional ServiceEntry>> >> {
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbBlockBody'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbOptionStatementOwner'
+    'idea.plugin.protoeditor.lang.psi.PbBlockBody'
+    'idea.plugin.protoeditor.lang.psi.PbOptionStatementOwner'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbServiceBodyMixin'
-  elementTypeFactory = 'com.google.devtools.intellij.protoeditor.lang.psi.type.PbCustomTypes.get'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbServiceBodyMixin'
+  elementTypeFactory = 'idea.plugin.protoeditor.lang.psi.type.PbCustomTypes.get'
   methods = [
     optionStatements = 'OptionStatement'
     start = 'LBRACE'
@@ -698,10 +698,10 @@ ServiceStream ::= stream Identifier '(' MessageTypeName ',' MessageTypeName ')' 
 {
   pin = 1
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbNamedElement'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbOptionStatementOwner'
+    'idea.plugin.protoeditor.lang.psi.PbNamedElement'
+    'idea.plugin.protoeditor.lang.psi.PbOptionStatementOwner'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbServiceStreamMixin'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbServiceStreamMixin'
   methods = [
     nameIdentifier = 'IDENTIFIER_LITERAL'
   ]
@@ -713,21 +713,21 @@ ServiceMethod ::= rpc Identifier '(' ServiceMethodType ')' returns '(' ServiceMe
 {
   pin = 1
   implements = [
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbNamedElement'
-    'com.google.devtools.intellij.protoeditor.lang.psi.PbOptionStatementOwner'
+    'idea.plugin.protoeditor.lang.psi.PbNamedElement'
+    'idea.plugin.protoeditor.lang.psi.PbOptionStatementOwner'
   ]
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbServiceMethodMixin'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbServiceMethodMixin'
   methods = [
     nameIdentifier = 'IDENTIFIER_LITERAL'
   ]
 }
 ServiceMethodType ::= stream? MessageTypeName
 {
-  implements = 'com.google.devtools.intellij.protoeditor.lang.psi.PbServiceMethodTypeBase'
-  mixin = 'com.google.devtools.intellij.protoeditor.lang.psi.impl.PbServiceMethodTypeMixin'
+  implements = 'idea.plugin.protoeditor.lang.psi.PbServiceMethodTypeBase'
+  mixin = 'idea.plugin.protoeditor.lang.psi.impl.PbServiceMethodTypeMixin'
 }
 MethodOptions ::= <<Block <<BlockBodyOptional MethodOptionsEntry>> >> {
-  implements = 'com.google.devtools.intellij.protoeditor.lang.psi.PbBlockBody'
+  implements = 'idea.plugin.protoeditor.lang.psi.PbBlockBody'
   methods = [
     optionStatements = 'OptionStatement'
     start = 'LBRACE'

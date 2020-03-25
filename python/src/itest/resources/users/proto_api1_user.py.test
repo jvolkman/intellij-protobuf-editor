@@ -2,8 +2,8 @@
 """
 
 # EXPECT-NEXT: proto2.proto / <file>
-from com.google.devtools.intellij.protoeditor.python import <caret>proto2_pb
-from com.google.devtools.intellij.protoeditor.python import proto2_pb as Alias
+from idea.plugin.protoeditor.python import <caret>proto2_pb
+from idea.plugin.protoeditor.python import proto2_pb as Alias
 
 
 class MessageLevelUser(object):

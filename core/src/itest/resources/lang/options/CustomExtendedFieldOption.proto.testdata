@@ -18,5 +18,5 @@ extend MyType {
 
 message TestMessage {
   // Field with extended extension option
-  int32 test_field = 1 [(test_field_option).(crazy_exten<ref>ded_option_field) = 1];
+  int32 test_field = 1 [(test_field_option).(crazy_exten<caret>ded_option_field) = 1];
 }

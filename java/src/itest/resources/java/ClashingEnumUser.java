@@ -15,9 +15,9 @@
  */
 package resources.java;
 
-import static com.google.devtools.intellij.protoeditor.java.test.ClashingEnumOuterClass.ClashingEnum.ZERO;
+import static idea.plugin.protoeditor.java.test.ClashingEnumOuterClass.ClashingEnum.ZERO;
 
-import com.google.devtools.intellij.protoeditor.java.test.ClashingEnumOuterClass.ClashingEnum;
+import idea.plugin.protoeditor.java.test.ClashingEnumOuterClass.ClashingEnum;
 
 /** Exercises a proto file with the same name as an enum (after normalization). */
 @SuppressWarnings("unused") // Loaded by IntelliJ test.

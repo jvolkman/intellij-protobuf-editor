@@ -11,5 +11,5 @@ extend proto2.MessageOptions {
 
 message TestMessage {
   // Message option
-  option (mygroupoption).z<ref>z = 50;
+  option (mygroupoption).z<caret>z = 50;
 }

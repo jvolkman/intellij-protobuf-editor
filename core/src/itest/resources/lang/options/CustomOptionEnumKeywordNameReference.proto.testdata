@@ -17,5 +17,5 @@ extend proto2.FieldOptions {
 }
 
 message TestMessage {
-  int32 xyz = 1 [(test_field_option).enum_option = in<ref>f];
+  int32 xyz = 1 [(test_field_option).enum_option = in<caret>f];
 }

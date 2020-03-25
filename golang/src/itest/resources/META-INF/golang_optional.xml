@@ -1,5 +1,5 @@
 <idea-plugin>
   <extensions defaultExtensionNs="com.goide">
-    <rootsProvider implementation="com.google.devtools.intellij.protoeditor.golang.GoProtoTestRootsProvider"/>
+    <rootsProvider implementation="idea.plugin.protoeditor.golang.GoProtoTestRootsProvider"/>
   </extensions>
 </idea-plugin>

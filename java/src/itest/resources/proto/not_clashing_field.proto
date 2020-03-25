@@ -4,8 +4,8 @@
 // Disable lint to test this weird corner case.
 // LINT: LEGACY_NAMES
 syntax = "proto3";
-package com.google.devtools.intellij.protoeditor.java.test;
-option java_package = "com.google.devtools.intellij.protoeditor.java.test";
+package idea.plugin.protoeditor.java.test;
+option java_package = "idea.plugin.protoeditor.java.test";
 
 message NothingHere {
 }

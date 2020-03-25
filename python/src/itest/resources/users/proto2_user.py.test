@@ -4,9 +4,9 @@
 # We give these files an extra extension to trick lint.
 
 # EXPECT-NEXT: proto2.proto / <file>
-from com.google.devtools.intellij.protoeditor.python import <caret>proto2_pb2
-from com.google.devtools.intellij.protoeditor.python import proto2_pb2 as Alias
-from com.google.devtools.intellij.protoeditor.python.proto2_pb2 import M1
+from idea.plugin.protoeditor.python import <caret>proto2_pb2
+from idea.plugin.protoeditor.python import proto2_pb2 as Alias
+from idea.plugin.protoeditor.python.proto2_pb2 import M1
 
 
 class MessageLevelUser(object):

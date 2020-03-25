@@ -1,0 +1,6 @@
+package(default_visibility = ["//visibility:public"])
+
+java_import(
+    name = 'plugin_sdk',
+    jars = glob(['intellij-go/lib/*.jar']),
+)

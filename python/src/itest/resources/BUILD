@@ -7,15 +7,16 @@ package(default_visibility = ["//visibility:private"])
 
 load("//testlib:expand_template.bzl", "expand_template")
 load("//testlib:expose_genfile.bzl", "expose_genfile")
-load("@build_stack_rules_proto//python:python_proto_compile.bzl", py_proto_library = "python_proto_compile")
+load("@com_github_grpc_grpc//bazel:python_rules.bzl", "py_proto_library")
+load(":defs.bzl", "strip_virtual_import")
 
 filegroup(
     name = "resources",
     srcs = glob(["**/*"]) + [
         ":proto2.proto",
-        ":proto2_py_pb2",
+        ":proto2_py_pb2_stripped",
         ":proto3.proto",
-        ":proto3_py_pb2",
+        ":proto3_py_pb2_stripped",
     ],
     visibility = ["//python/src/itest:__pkg__"],
 )
@@ -49,6 +50,11 @@ py_proto_library(
     deps = [":proto2_lib"],
 )
 
+strip_virtual_import(
+    name="proto2_py_pb2_stripped",
+    file=":proto2_py_pb2",
+)
+
 expand_template(
     name = "proto3_proto",
     out = "proto3.proto",
@@ -70,4 +76,9 @@ proto_library(
 py_proto_library(
     name = "proto3_py_pb2",
     deps = [":proto3_lib"],
+)
+
+strip_virtual_import(
+    name="proto3_py_pb2_stripped",
+    file=":proto3_py_pb2",
 )

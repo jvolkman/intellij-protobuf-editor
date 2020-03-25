@@ -4,6 +4,8 @@
 load(
     "//build_support/build_defs:build_defs.bzl",
     "api_version_txt",
+    "IntellijSdkInfo",
+    "bundled_plugins",
 )
 
 def _generate_test_suite_impl(ctx):
@@ -68,6 +70,7 @@ def intellij_unit_test_suite(
         test_package_root,
         class_rules = [],
         size = "medium",
+        sdk = "//build_support:intellij_sdk",
         **kwargs):
     """Creates a java_test rule comprising all valid test classes in the specified srcs.
 
@@ -85,7 +88,7 @@ def intellij_unit_test_suite(
     suite_class = test_package_root + "." + suite_class_name
 
     api_version_txt_name = name + "_api_version"
-    api_version_txt(name = api_version_txt_name)
+    api_version_txt(name = api_version_txt_name, sdk = sdk)
     data = kwargs.pop("data", [])
     data.append(api_version_txt_name)
 
@@ -120,6 +123,7 @@ def intellij_integration_test_suite(
         deps,
         additional_class_rules = [],
         size = "medium",
+        sdk = "//build_support:intellij_sdk",
         jvm_flags = [],
         runtime_deps = [],
         required_plugins = None,
@@ -153,17 +157,21 @@ def intellij_integration_test_suite(
     )
 
     api_version_txt_name = name + "_api_version"
-    api_version_txt(name = api_version_txt_name)
+    api_version_txt(name = api_version_txt_name, sdk = sdk)
+
+    bundled_plugins_name = name + "_bundled_plugins"
+    bundled_plugins(name = bundled_plugins_name, sdk = sdk)
+
     data = kwargs.pop("data", [])
-    data.append(api_version_txt_name)
+    data.append(":" + api_version_txt_name)
 
     deps = list(deps)
     deps.extend([
-        "//build_support/testing:lib",
+        "//build_support/testing:test_support",
     ])
     runtime_deps = list(runtime_deps)
     runtime_deps.extend([
-        "//build_support/intellij_platform_sdk:bundled_plugins",
+        ":" + bundled_plugins_name,
         "@local_jdk//:lib/tools.jar",
     ])
 
@@ -171,7 +179,7 @@ def intellij_integration_test_suite(
     jvm_flags.extend([
         "-Didea.classpath.index.enabled=false",
         "-Djava.awt.headless=true",
-        "-Dblaze.idea.api.version.file=$(location %s)" % api_version_txt_name,
+        "-Dblaze.idea.api.version.file=$(location :%s)" % api_version_txt_name,
         "-Didea.register.ep.in.pico.container=true",  #api192: needed for constructor injection
     ])
 

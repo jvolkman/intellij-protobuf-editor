@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.google.devtools.intellij.protoeditor.lang.lexer;
+package idea.plugin.protoeditor.lang.lexer;
 
 import com.intellij.psi.tree.IElementType;
 

@@ -6,6 +6,6 @@ package foo.bar;
 service TestService {
   rpc TestMethod (TestMessage) returns (TestMessage) {
     // Method option
-    option depr<ref>ecated = true;
+    option depr<caret>ecated = true;
   }
 }
