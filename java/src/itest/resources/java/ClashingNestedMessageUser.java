@@ -15,7 +15,7 @@
  */
 package resources.java;
 
-import com.google.devtools.intellij.protoeditor.java.test.ClashingNestedMessageOuterClass.Foo;
+import idea.plugin.protoeditor.java.test.ClashingNestedMessageOuterClass.Foo;
 
 /** Exercises a proto file with the same name as a nested message (after normalization). */
 @SuppressWarnings("unused") // Loaded by IntelliJ test.

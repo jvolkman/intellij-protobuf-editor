@@ -23,7 +23,7 @@ load(
 
 stamped_plugin_xml(
     name = "stamped_plugin_xml",
-    plugin_id = "com.google.devtools.intellij.protoeditor.golang",
+    plugin_id = "idea.plugin.protoeditor.golang",
     plugin_name = "Protocol Buffer Editor w/ Go Support",
 )
 
@@ -54,8 +54,8 @@ intellij_integration_test_suite(
         "-Dtest.resources.import.prefix=" + resources_import_prefix(),
         "-Dtest.resources.location=" + package_name() + "/resources/",
     ],
-    required_plugins = "com.google.devtools.intellij.protoeditor.golang,org.jetbrains.plugins.go",
-    test_package_root = "com.google.devtools.intellij.protoeditor",
+    required_plugins = "idea.plugin.protoeditor.golang,org.jetbrains.plugins.go",
+    test_package_root = "idea.plugin.protoeditor",
     visibility = ["//visibility:public"],
     runtime_deps = [
         ":plugin_for_tests",

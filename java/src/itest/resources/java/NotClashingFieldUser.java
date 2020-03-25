@@ -15,7 +15,7 @@
  */
 package resources.java;
 
-import com.google.devtools.intellij.protoeditor.java.test.NotClashingField.Foo;
+import idea.plugin.protoeditor.java.test.NotClashingField.Foo;
 
 /** Exercises a proto file with the same name as a field (after normalization). */
 @SuppressWarnings("unused") // Loaded by IntelliJ test.

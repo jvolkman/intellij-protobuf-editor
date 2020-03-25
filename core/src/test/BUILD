@@ -13,7 +13,7 @@ package(default_visibility = ["//visibility:private"])
 intellij_unit_test_suite(
     name = "unit_tests",
     srcs = glob(["java/**/*.java"]),
-    test_package_root = "com.google.devtools.intellij.protoeditor",
+    test_package_root = "idea.plugin.protoeditor",
     visibility = ["//visibility:public"],
     deps = [
         "//build_support:test_libs",

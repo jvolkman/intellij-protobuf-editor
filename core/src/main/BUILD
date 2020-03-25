@@ -100,7 +100,7 @@ intellij_plugin_library(
 
 stamped_plugin_xml(
     name = "stamped_plugin_xml",
-    plugin_id = "com.google.devtools.intellij.protoeditor",
+    plugin_id = "idea.plugin.protoeditor",
     plugin_name = "Protocol Buffer Editor (base)",
     stamp_since_build = True,
     visibility = ["//visibility:private"],

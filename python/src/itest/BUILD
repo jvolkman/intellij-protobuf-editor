@@ -17,7 +17,7 @@ load(
 
 stamped_plugin_xml(
     name = "stamped_plugin_xml",
-    plugin_id = "com.google.devtools.intellij.protoeditor.python",
+    plugin_id = "idea.plugin.protoeditor.python",
     plugin_name = "Protocol Buffer Editor w/ Python Support",
 )
 
@@ -38,8 +38,8 @@ intellij_integration_test_suite(
         "-Dtest.resources.package.name=" + package_name() + "/resources",
         "-Dtest.resources.location=" + package_name() + "/resources/",
     ],
-    required_plugins = "com.google.devtools.intellij.protoeditor.python",
-    test_package_root = "com.google.devtools.intellij.protoeditor",
+    required_plugins = "idea.plugin.protoeditor.python",
+    test_package_root = "idea.plugin.protoeditor",
     visibility = ["//visibility:public"],
     runtime_deps = [
         ":plugin_for_tests",

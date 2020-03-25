@@ -1,8 +1,8 @@
 // Tests when the proto file name clashes with a nested enum's name
 // (after converting foo_bar -> FooBar)
 syntax = "proto3";
-package com.google.devtools.intellij.protoeditor.java.test;
-option java_package = "com.google.devtools.intellij.protoeditor.java.test";
+package idea.plugin.protoeditor.java.test;
+option java_package = "idea.plugin.protoeditor.java.test";
 
 message NothingHere {
 }

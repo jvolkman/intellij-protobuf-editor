@@ -50,7 +50,7 @@ stamped_plugin_xml(
     name = "standalone_plugin_xml",
     changelog_file = "CHANGELOG",
     description_file = "plugin_description",
-    plugin_id = "com.google.devtools.intellij.protoeditor",
+    plugin_id = "idea.plugin.protoeditor",
     plugin_name = "Protocol Buffer Editor",
     stamp_since_build = False,
     vendor_file = "vendor.xml",

@@ -20,14 +20,6 @@ http_archive(
     url = "https://plugins.jetbrains.com/files/631/81167/python.zip",
 )
 
-# Python plugin for IntelliJ CE 2019.3. Required at compile-time for python-specific features.
-http_archive(
-    name = "python_ce_2019_3",
-    build_file = "@//build_support/external:BUILD.idea_python_ce",
-    sha256 = "53edd3c8d05151e9cb735cbbfd9c9a294426d1701be40147682529f1acd3962c",
-    url = "https://plugins.jetbrains.com/files/7322/81171/python-ce.zip",
-)
-
 # Go plugin for IntelliJ UE. Required at compile-time for Bazel integration.
 http_archive(
     name = "go_2019_3",

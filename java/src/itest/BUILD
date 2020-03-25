@@ -17,7 +17,7 @@ load(
 
 stamped_plugin_xml(
     name = "stamped_plugin_xml",
-    plugin_id = "com.google.devtools.intellij.protoeditor.java",
+    plugin_id = "idea.plugin.protoeditor.java",
     plugin_name = "Protocol Buffer Editor w/ Java Support",
     stamp_since_build = True,
 )
@@ -52,8 +52,8 @@ intellij_integration_test_suite(
         ":NotClashingFieldUser",
     ],
     jvm_flags = ["-Dtest.resources.location=" + package_name() + "/resources/"],
-    required_plugins = "com.google.devtools.intellij.protoeditor.java",
-    test_package_root = "com.google.devtools.intellij.protoeditor",
+    required_plugins = "idea.plugin.protoeditor.java",
+    test_package_root = "idea.plugin.protoeditor",
     visibility = ["//visibility:public"],
     runtime_deps = [
         ":plugin_for_tests",

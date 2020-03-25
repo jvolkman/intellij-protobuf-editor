@@ -15,7 +15,7 @@
  */
 package resources.java;
 
-import com.google.devtools.intellij.protoeditor.java.test.MutableClashingMessageMutableOuterClass.ClashingMessageMutable;
+import idea.plugin.protoeditor.java.test.MutableClashingMessageMutableOuterClass.ClashingMessageMutable;
 
 /**
  * Exercises a proto file with the same name as a message (after normalization). Tests the mutable
