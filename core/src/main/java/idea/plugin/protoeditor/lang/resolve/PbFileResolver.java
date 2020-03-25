@@ -79,7 +79,7 @@ public class PbFileResolver {
 
   @NotNull
   static FileResolveProvider[] getProviders(@NotNull Project project) {
-    return project.getExtensions(FileResolveProvider.EP_NAME);
+    return FileResolveProvider.EP_NAME.getExtensions(project);
   }
 
   static GlobalSearchScope getUnionScope(@NotNull Project project) {

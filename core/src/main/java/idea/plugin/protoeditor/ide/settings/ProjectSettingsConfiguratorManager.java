@@ -111,7 +111,7 @@ public class ProjectSettingsConfiguratorManager implements ProjectComponent {
   }
 
   private ProjectSettingsConfigurator[] getConfigurators() {
-    return project.getExtensions(ProjectSettingsConfigurator.EP_NAME);
+    return ProjectSettingsConfigurator.EP_NAME.getExtensions(project);
   }
 
   private void configureSettingsIfNecessary() {

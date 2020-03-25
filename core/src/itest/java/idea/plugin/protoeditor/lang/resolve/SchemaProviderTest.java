@@ -15,7 +15,9 @@
  */
 package idea.plugin.protoeditor.lang.resolve;
 
+import com.intellij.openapi.Disposable;
 import com.intellij.openapi.extensions.Extensions;
+import com.intellij.openapi.util.Disposer;
 import com.intellij.psi.util.QualifiedName;
 import idea.plugin.protoeditor.TestUtils;
 import idea.plugin.protoeditor.fixtures.PbCodeInsightFixtureTestCase;
@@ -54,7 +56,9 @@ public class SchemaProviderTest extends PbCodeInsightFixtureTestCase {
           assertEquals("root_data.pb", textFile.getVirtualFile().getName());
           return SchemaInfo.create(message);
         };
-    Extensions.getRootArea().getExtensionPoint(SchemaProvider.EP_NAME).registerExtension(extension);
+
+    Disposable disposable = new TestDisposable();
+    Extensions.getRootArea().getExtensionPoint(SchemaProvider.EP_NAME).registerExtension(extension, disposable);
     try {
       PbTextFile textFile = (PbTextFile) myFixture.configureByFile("lang/resolve/root_data.pb");
       PbTextMessage rootMessage = textFile.getRootMessage();
@@ -66,9 +70,7 @@ public class SchemaProviderTest extends PbCodeInsightFixtureTestCase {
       PbTextField field = rootMessage.getFields().get(0);
       assertNotNull(field.getFieldName().getDeclaredField());
     } finally {
-      Extensions.getRootArea()
-          .getExtensionPoint(SchemaProvider.EP_NAME)
-          .unregisterExtension(extension);
+      Disposer.dispose(disposable);
     }
   }
 }

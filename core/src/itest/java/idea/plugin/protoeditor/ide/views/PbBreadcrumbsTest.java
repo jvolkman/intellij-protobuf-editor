@@ -19,8 +19,8 @@ import com.intellij.lang.Language;
 import com.intellij.openapi.editor.Caret;
 import com.intellij.openapi.editor.CaretModel;
 import com.intellij.psi.PsiElement;
+import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 import com.intellij.testFramework.fixtures.CodeInsightTestFixture;
-import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixtureTestCase;
 import com.intellij.ui.breadcrumbs.BreadcrumbsProvider;
 import com.intellij.util.containers.ContainerUtil;
 import com.intellij.xml.breadcrumbs.BreadcrumbsItem;
@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /** Tests for {@link PbBreadcrumbsInfoProvider}. */
-public class PbBreadcrumbsTest extends LightPlatformCodeInsightFixtureTestCase {
+public class PbBreadcrumbsTest extends BasePlatformTestCase {
 
   private static final String EXPECTED =
       String.join(

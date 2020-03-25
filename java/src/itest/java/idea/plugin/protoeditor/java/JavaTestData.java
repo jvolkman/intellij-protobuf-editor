@@ -22,6 +22,7 @@ import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.impl.libraries.ProjectLibraryTable;
 import com.intellij.openapi.roots.libraries.Library;
+import com.intellij.openapi.roots.libraries.LibraryTablesRegistrar;
 import com.intellij.openapi.util.Disposer;
 import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.vfs.JarFileSystem;
@@ -49,7 +50,7 @@ public class JavaTestData {
   }
 
   static void addGenCodeJar(Module module, String root, String jarName, Disposable testDisposable) {
-    VfsRootAccess.allowRootAccess(root);
+    VfsRootAccess.allowRootAccess(testDisposable, root);
     VirtualFile libFile = notNull(VfsUtil.findFileByIoFile(new File(root, jarName), false));
     VirtualFile jarRoot = notNull(JarFileSystem.getInstance().getRootByLocal(libFile));
     Library library =
@@ -63,6 +64,6 @@ public class JavaTestData {
 
   private static void removeLibrary(Project project, Library library) {
     ApplicationManager.getApplication()
-        .runWriteAction(() -> ProjectLibraryTable.getInstance(project).removeLibrary(library));
+        .runWriteAction(() -> LibraryTablesRegistrar.getInstance().getLibraryTable(project).removeLibrary(library));
   }
 }

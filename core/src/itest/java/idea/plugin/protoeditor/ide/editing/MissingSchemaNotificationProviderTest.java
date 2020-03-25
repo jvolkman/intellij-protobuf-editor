@@ -40,7 +40,7 @@ public class MissingSchemaNotificationProviderTest extends PbCodeInsightFixtureT
     TextEditor textEditor = TextEditorProvider.getInstance().getTextEditor(myFixture.getEditor());
     EditorNotificationPanel panel =
         new MissingSchemaNotificationProvider()
-            .createNotificationPanel(psiFile.getVirtualFile(), textEditor);
+            .createNotificationPanel(psiFile.getVirtualFile(), textEditor, myFixture.getProject());
     assertThat(panel).isNull();
   }
 
@@ -49,7 +49,7 @@ public class MissingSchemaNotificationProviderTest extends PbCodeInsightFixtureT
     TextEditor textEditor = TextEditorProvider.getInstance().getTextEditor(myFixture.getEditor());
     EditorNotificationPanel panel =
         new MissingSchemaNotificationProvider()
-            .createNotificationPanel(psiFile.getVirtualFile(), textEditor);
+            .createNotificationPanel(psiFile.getVirtualFile(), textEditor, myFixture.getProject());
     assertThat(panel).isNotNull();
   }
 
@@ -58,7 +58,7 @@ public class MissingSchemaNotificationProviderTest extends PbCodeInsightFixtureT
     TextEditor textEditor = TextEditorProvider.getInstance().getTextEditor(myFixture.getEditor());
     EditorNotificationPanel panel =
         new MissingSchemaNotificationProvider()
-            .createNotificationPanel(psiFile.getVirtualFile(), textEditor);
+            .createNotificationPanel(psiFile.getVirtualFile(), textEditor, myFixture.getProject());
     assertThat(panel).isNull();
   }
 

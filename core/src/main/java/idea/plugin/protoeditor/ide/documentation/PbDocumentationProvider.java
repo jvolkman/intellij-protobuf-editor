@@ -56,7 +56,7 @@ public class PbDocumentationProvider extends AbstractDocumentationProvider {
 
     StringBuilder commentBuilder = new StringBuilder("<pre>");
     for (String line : PbCommentUtil.extractText(comments)) {
-      commentBuilder.append(StringUtil.escapeXml(line));
+      commentBuilder.append(StringUtil.escapeXmlEntities(line));
       commentBuilder.append("\n");
     }
     commentBuilder.append("</pre>");

@@ -56,7 +56,7 @@
     <backspaceHandlerDelegate implementation="idea.plugin.protoeditor.ide.editing.ProtoBackspaceHandler"/>
     <completion.confidence language="protobuf" implementationClass="idea.plugin.protoeditor.lang.completion.PbCompletionConfidence" />
     <completion.contributor language="protobuf" implementationClass="idea.plugin.protoeditor.lang.completion.PbCompletionContributor"/>
-    <enterHandlerDelegate implementation="idea.plugin.protoeditor.ide.editing.PbEnterBetweenBracesHandler"/>
+    <enterBetweenBracesDelegate language="protobuf" implementationClass="idea.plugin.protoeditor.ide.editing.PbEnterBetweenBracesDelegate"/>
     <lang.braceMatcher language="protobuf" implementationClass="idea.plugin.protoeditor.ide.editing.ProtoBraceMatcher"/>
     <lang.foldingBuilder language="protobuf" implementationClass="idea.plugin.protoeditor.ide.folding.ProtoFoldingBuilder"/>
     <quoteHandler fileType="protobuf" className="idea.plugin.protoeditor.ide.editing.ProtoQuoteHandler"/>
