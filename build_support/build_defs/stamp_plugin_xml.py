@@ -40,6 +40,11 @@ parser.add_argument(
     help="Stamp since-build with the build number",
 )
 parser.add_argument(
+    "--stamp_since_build_major",
+    action="store_true",
+    help="Stamp since-build with the major build number",
+)
+parser.add_argument(
     "--stamp_until_build",
     action="store_true",
     help=("Stamp until-build with the major release component of the build "
@@ -78,7 +83,7 @@ parser.add_argument(
 def _read_changelog(changelog_file):
     """Reads the changelog and transforms it into trivial HTML."""
     with io.open(changelog_file, encoding="utf-8") as f:
-        return "\n".join("<p>" + line + "</p>" for line in f.readlines())
+        return f.read()
 
 
 def _read_description(description_file):
@@ -157,6 +162,9 @@ def main():
 
     idea_plugin = dom.documentElement
 
+    if args.stamp_since_build and args.stamp_since_build_major:
+        raise ValueError("Cannot specify both stamp_since_build and stamp_since_build_major")
+
     if args.version and args.version_file:
         raise ValueError("Cannot supply both version and version_file")
 
@@ -167,7 +175,6 @@ def main():
         version_element = dom.createElement("version")
         new_elements.append(version_element)
 
-        version_value = None
         if args.version:
             version_value = args.version
         else:
@@ -176,22 +183,20 @@ def main():
         version_text = dom.createTextNode(version_value)
         version_element.appendChild(version_text)
 
-    if args.stamp_since_build or args.stamp_until_build:
+    if args.stamp_since_build or args.stamp_since_build_major or args.stamp_until_build:
         if idea_plugin.getElementsByTagName("idea-version"):
             raise ValueError("idea-version element already present")
-
-        # We strip the product code and build number to enable making a single
-        # plugin build that would work on multiple IDEs. That is, the 'intellij'
-        # plugin zip can be loaded in any JetBrains IDE.
-        idea_version_build_element = _strip_build_number(
-            _strip_product_code(api_version))
 
         idea_version_element = dom.createElement("idea-version")
         new_elements.append(idea_version_element)
 
         if args.stamp_since_build:
-            idea_version_element.setAttribute("since-build",
-                                              idea_version_build_element)
+            since_version = _strip_build_number(_strip_product_code(api_version))
+            idea_version_element.setAttribute("since-build", since_version)
+        elif args.stamp_since_build_major:
+            since_version = _parse_major_version(api_version)
+            idea_version_element.setAttribute("since-build", since_version)
+
         if args.stamp_until_build:
             until_version = _parse_major_version(api_version) + ".*"
             idea_version_element.setAttribute("until-build", until_version)

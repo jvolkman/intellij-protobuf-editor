@@ -3,8 +3,8 @@
 This plugin provides editor support for Protocol Buffer files, including text
 format.
 
-This is a fork of Google's own internal editor that I helped build during my time there. Google released it
-[here](https://github.com/google/intellij-protocol-buffer-editor) but does not plan to support it externally.
+This is a fork of an editor developed internally at Google and released unsupported 
+[here](https://github.com/google/intellij-protocol-buffer-editor).
 
 # Features
 
@@ -20,20 +20,38 @@ This is a fork of Google's own internal editor that I helped build during my tim
 * Navigating between protobuf files and some other languages (Java, Go, Python)
 * Full support for text format, both standalone and in custom options
 
-## Building and Testing
+## Text Format
 
-To build `plugin.jar`:
+Protobuf Text Format is most commonly used to specify long-form option values in `.proto` files. For example, as seen
+in the GRPC ecosystem:
+
+![GRPC example](doc/grpc.png)
+
+This plugin also supports standalone text format files with a `.textproto` or `.pb.` extension. Text formant by default
+does not provide a way to associate a file with its schema (a `message` in a `.proto` file). But the plugin supports
+the following comments in a text proto file:
+
+```
+# proto-file: path/to/file.proto
+# proto-message: SomeMessage
+# proto-import: path/to/file_with_extensions.proto
+# proto-import: path/to/another_file_with_extensions.proto
+
+foo: bar
+``` 
+
+Filenames are relative to configured roots (see Settings below). The `proto-message` name is scoped relatively to the package
+declared in the `proto-file` file. `proto-message` follows the same resolution rules as type names in `.proto` files. 
+
+# Building and Testing
+
+To build `protobuf-editor.jar`:
 
 ```
 bazel build //plugin
 ```
 
-The core plugin, java, and python support can be tested against IDEA Community.
-Go support must be tested against IDEA Ultimate.
-
+To run tests:
 ```
-bazel test //core/...
-bazel test //java/...
-bazel test //python/...
-bazel test //golang/... --define=ij_product=intellij-ue-latest
+bazel test //...
 ```
