@@ -36,6 +36,7 @@ import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
 import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
 import idea.plugin.protoeditor.lang.util.BuiltInType;
 import idea.plugin.protoeditor.lang.util.ValueTester;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -60,93 +61,93 @@ public class PbAnnotator implements Annotator {
           BuiltInType.SFIXED64);
 
   @Override
-  public void annotate(PsiElement element, final AnnotationHolder holder) {
+  public void annotate(PsiElement element, @NotNull final AnnotationHolder holder) {
     element.accept(
         new PbVisitor() {
           @Override
-          public void visitSymbolPath(PbSymbolPath path) {
+          public void visitSymbolPath(@NotNull PbSymbolPath path) {
             SharedAnnotations.annotateSymbolPath(path, holder);
           }
 
           @Override
-          public void visitImportName(PbImportName name) {
+          public void visitImportName(@NotNull PbImportName name) {
             annotateImportName(name, holder);
           }
 
           @Override
-          public void visitOptionName(PbOptionName name) {
+          public void visitOptionName(@NotNull PbOptionName name) {
             annotateOptionName(name, holder);
           }
 
           @Override
-          public void visitTypeName(PbTypeName name) {
+          public void visitTypeName(@NotNull PbTypeName name) {
             annotateTypeName(name, holder);
           }
 
           @Override
-          public void visitMapField(PbMapField mapField) {
+          public void visitMapField(@NotNull PbMapField mapField) {
             annotateMapField(mapField, holder);
             visitField(mapField);
           }
 
           @Override
-          public void visitGroupDefinition(PbGroupDefinition group) {
+          public void visitGroupDefinition(@NotNull PbGroupDefinition group) {
             annotateGroupDefinition(group, holder);
           }
 
           @Override
-          public void visitEnumDefinition(PbEnumDefinition enumDefinition) {
+          public void visitEnumDefinition(@NotNull PbEnumDefinition enumDefinition) {
             annotateEnumDefinition(enumDefinition, holder);
           }
 
           @Override
-          public void visitEnumValue(PbEnumValue value) {
+          public void visitEnumValue(@NotNull PbEnumValue value) {
             annotateEnumValue(value, holder);
           }
 
           @Override
-          public void visitEnumReservedStatement(PbEnumReservedStatement reservedStatement) {
+          public void visitEnumReservedStatement(@NotNull PbEnumReservedStatement reservedStatement) {
             annotateEnumReservedStatement(reservedStatement, holder);
           }
 
           @Override
-          public void visitExtendDefinition(PbExtendDefinition extendDefinition) {
+          public void visitExtendDefinition(@NotNull PbExtendDefinition extendDefinition) {
             annotateExtendDefinition(extendDefinition, holder);
           }
 
           @Override
-          public void visitOneofDefinition(PbOneofDefinition oneofDefinition) {
+          public void visitOneofDefinition(@NotNull PbOneofDefinition oneofDefinition) {
             annotateOneofDefinition(oneofDefinition, holder);
           }
 
           @Override
-          public void visitField(PbField field) {
+          public void visitField(@NotNull PbField field) {
             annotateField(field, holder);
           }
 
           @Override
-          public void visitReservedStatement(PbReservedStatement reservedStatement) {
+          public void visitReservedStatement(@NotNull PbReservedStatement reservedStatement) {
             annotateReservedStatement(reservedStatement, holder);
           }
 
           @Override
-          public void visitExtensionsStatement(PbExtensionsStatement extensionsStatement) {
+          public void visitExtensionsStatement(@NotNull PbExtensionsStatement extensionsStatement) {
             annotateExtensionsStatement(extensionsStatement, holder);
           }
 
           @Override
-          public void visitOptionExpression(PbOptionExpression option) {
+          public void visitOptionExpression(@NotNull PbOptionExpression option) {
             annotateOptionExpression(option, holder);
           }
 
           @Override
-          public void visitStringPart(PbStringPart part) {
+          public void visitStringPart(@NotNull PbStringPart part) {
             SharedAnnotations.annotateStringPart(
                 part, holder, PbSyntaxHighlighter.INVALID_STRING_ESCAPE);
           }
 
           @Override
-          public void visitPackageStatement(PbPackageStatement packageStatement) {
+          public void visitPackageStatement(@NotNull PbPackageStatement packageStatement) {
             annotatePackageStatement(packageStatement, holder);
           }
 

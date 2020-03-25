@@ -68,6 +68,7 @@ public class PbTextLanguageCodeStyleSettingsProvider extends LanguageCodeStyleSe
     }
   }
 
+  @NotNull
   @Override
   public CommonCodeStyleSettings getDefaultCommonSettings() {
     CommonCodeStyleSettings commonSettings = new CommonCodeStyleSettings(PbTextLanguage.INSTANCE);

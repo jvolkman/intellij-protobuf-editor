@@ -28,7 +28,7 @@ abstract class PbPackageStatementMixin extends PbStubbedElementBase<PbPackageSta
   }
 
   PbPackageStatementMixin(
-      PbPackageStatementStub stub, @SuppressWarnings("rawtypes") IStubElementType nodeType) {
+      PbPackageStatementStub stub, IStubElementType nodeType) {
     super(stub, nodeType);
   }
 }

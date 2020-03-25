@@ -32,6 +32,7 @@ public class ProtoBraceMatcher implements PairedBraceMatcher {
     new BracePair(ProtoTokenTypes.LT, ProtoTokenTypes.GT, true),
   };
 
+  @NotNull
   @Override
   public BracePair[] getPairs() {
     return PAIRS;

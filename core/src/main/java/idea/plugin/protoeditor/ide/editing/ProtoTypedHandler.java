@@ -51,22 +51,24 @@ import org.jetbrains.annotations.NotNull;
 public class ProtoTypedHandler extends TypedHandlerDelegate {
   private static final Logger logger = Logger.getInstance(ProtoTypedHandler.class);
 
+  @NotNull
   @Override
   public Result beforeCharTyped(
       final char c,
-      final Project project,
-      final Editor editor,
-      final PsiFile file,
-      FileType fileType) {
+      @NotNull final Project project,
+      @NotNull final Editor editor,
+      @NotNull final PsiFile file,
+      @NotNull FileType fileType) {
     if (c == '>' && handleFile(file) && TypedHandler.handleRParen(editor, file.getFileType(), c)) {
       return Result.STOP;
     }
     return Result.CONTINUE;
   }
 
+  @NotNull
   @Override
   public Result charTyped(
-      final char c, final Project project, final Editor editor, final PsiFile file) {
+      final char c, @NotNull final Project project, @NotNull final Editor editor, @NotNull final PsiFile file) {
 
     if (handleFile(file)) {
       if (c == '<') {
@@ -177,6 +179,7 @@ public class ProtoTypedHandler extends TypedHandlerDelegate {
 
       final FileType fileType = file.getFileType();
       BraceMatcher braceMatcher = BraceMatchingUtil.getBraceMatcher(fileType, iterator);
+      IElementType oppositeTokenType = braceMatcher.getOppositeBraceTokenType(iterator.getTokenType());
       boolean rBraceToken = braceMatcher.isRBraceToken(iterator, chars, fileType);
       final boolean isBrace = braceMatcher.isLBraceToken(iterator, chars, fileType) || rBraceToken;
       int lBraceOffset = -1;
@@ -184,11 +187,12 @@ public class ProtoTypedHandler extends TypedHandlerDelegate {
       if (CodeInsightSettings.getInstance().REFORMAT_BLOCK_ON_RBRACE
           && rBraceToken
           && braceMatcher.isStructuralBrace(iterator, chars, fileType)
-          && offset > 0) {
+          && offset > 0
+          && oppositeTokenType != null) {
         lBraceOffset =
             BraceMatchingUtil.findLeftLParen(
                 highlighter.createIterator(offset - 1),
-                braceMatcher.getOppositeBraceTokenType(iterator.getTokenType()),
+                oppositeTokenType,
                 editor.getDocument().getCharsSequence(),
                 fileType);
       }

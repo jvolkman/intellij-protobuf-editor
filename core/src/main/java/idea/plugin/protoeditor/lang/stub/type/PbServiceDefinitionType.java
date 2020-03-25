@@ -40,9 +40,10 @@ public class PbServiceDefinitionType
     return new PbServiceDefinitionImpl(stub, this);
   }
 
+  @NotNull
   @Override
   public PbServiceDefinitionStub createStub(
-      @NotNull PbServiceDefinition psi, @SuppressWarnings("rawtypes") StubElement parentStub) {
+      @NotNull PbServiceDefinition psi, StubElement parentStub) {
     return new PbServiceDefinitionStub(parentStub, this, psi.getName());
   }
 
@@ -61,7 +62,7 @@ public class PbServiceDefinitionType
   @NotNull
   @Override
   public PbServiceDefinitionStub deserialize(
-      @NotNull StubInputStream dataStream, @SuppressWarnings("rawtypes") StubElement parentStub)
+      @NotNull StubInputStream dataStream, StubElement parentStub)
       throws IOException {
     String name = null;
     StringRef nameRef = dataStream.readName();

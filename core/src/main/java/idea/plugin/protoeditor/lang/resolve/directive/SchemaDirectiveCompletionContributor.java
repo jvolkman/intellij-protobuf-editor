@@ -45,7 +45,7 @@ public class SchemaDirectiveCompletionContributor extends CompletionContributor 
     @Override
     protected void addCompletions(
         @NotNull CompletionParameters parameters,
-        ProcessingContext context,
+        @NotNull ProcessingContext context,
         @NotNull CompletionResultSet result) {
 
       // Only contribute completions when the comment text up to the character contains either no

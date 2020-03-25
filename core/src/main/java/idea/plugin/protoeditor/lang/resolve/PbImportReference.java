@@ -80,9 +80,6 @@ public class PbImportReference extends PsiPolyVariantReferenceBase<PsiElement> {
   @Override
   public Object[] getVariants() {
     PsiElement value = getElement();
-    if (value == null) {
-      return LookupElement.EMPTY_ARRAY;
-    }
     String path = importPath;
     int lastSlash = path.lastIndexOf('/');
     path = lastSlash >= 0 ? path.substring(0, lastSlash) : "";
@@ -117,9 +114,6 @@ public class PbImportReference extends PsiPolyVariantReferenceBase<PsiElement> {
   @NotNull
   private ResolveResult[] multiResolveNoCache() {
     PsiElement value = getElement();
-    if (value == null) {
-      return ResolveResult.EMPTY_ARRAY;
-    }
     List<PbFile> results = PbFileResolver.findFilesForContext(importPath, value);
     return results.stream().map(PsiElementResolveResult::new).toArray(ResolveResult[]::new);
   }

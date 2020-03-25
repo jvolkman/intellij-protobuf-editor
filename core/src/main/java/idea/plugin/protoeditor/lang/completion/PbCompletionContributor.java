@@ -110,7 +110,7 @@ public class PbCompletionContributor extends CompletionContributor {
     @Override
     protected void addCompletions(
         @NotNull CompletionParameters parameters,
-        ProcessingContext processingContext,
+        @NotNull ProcessingContext processingContext,
         @NotNull CompletionResultSet result) {
       PsiElement element = parameters.getPosition();
       PbField fieldParent = PsiTreeUtil.getParentOfType(element, PbField.class);
@@ -136,7 +136,7 @@ public class PbCompletionContributor extends CompletionContributor {
     @Override
     protected void addCompletions(
         @NotNull CompletionParameters completionParameters,
-        ProcessingContext processingContext,
+        @NotNull ProcessingContext processingContext,
         @NotNull CompletionResultSet result) {
       result.addAllElements(TOP_LEVEL_ENTRY_START);
     }
@@ -168,7 +168,7 @@ public class PbCompletionContributor extends CompletionContributor {
     @Override
     protected void addCompletions(
         @NotNull CompletionParameters parameters,
-        ProcessingContext processingContext,
+        @NotNull ProcessingContext processingContext,
         @NotNull CompletionResultSet result) {
       PsiElement element = parameters.getPosition();
       PbSimpleField simpleField = PsiTreeUtil.getParentOfType(element, PbSimpleField.class);
@@ -216,7 +216,7 @@ public class PbCompletionContributor extends CompletionContributor {
     @Override
     protected void addCompletions(
         @NotNull CompletionParameters parameters,
-        ProcessingContext processingContext,
+        @NotNull ProcessingContext processingContext,
         @NotNull CompletionResultSet result) {
 
       PsiElement element = parameters.getPosition();

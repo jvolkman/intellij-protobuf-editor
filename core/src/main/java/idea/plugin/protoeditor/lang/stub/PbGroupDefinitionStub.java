@@ -29,7 +29,7 @@ public class PbGroupDefinitionStub extends StubBase<PbGroupDefinition>
   private String name;
 
   public PbGroupDefinitionStub(
-      @SuppressWarnings("rawtypes") StubElement parent,
+      StubElement parent,
       PbGroupDefinitionType elementType,
       String name) {
     super(parent, elementType);

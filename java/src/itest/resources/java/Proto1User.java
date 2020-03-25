@@ -19,7 +19,6 @@ import com.test.api_v1.M1;
 import com.test.api_v1.M1_NestedM1;
 import com.test.api_v1.M1_TestMapEntry;
 import com.test.api_v1.weirdMessage_name;
-import idea.plugin.protoeditor.java.PbJavaGotoDeclarationHandlerTest;
 
 import java.util.Iterator;
 import java.util.List;
@@ -28,12 +27,12 @@ import java.util.List;
  * Test references to generated java API 1 protobuf code.
  *
  * <p>We use a variable (or comment) {@link
- * PbJavaGotoDeclarationHandlerTest#CARET_MARKER} to
+ * idea.plugin.protoeditor.java.PbJavaGotoDeclarationHandlerTest#CARET_MARKER} to
  * mark where to place a caret for testing. This makes the file compilable, and so that we can try
  * out the protobuf plugin on this file in an IDE interactively.
  *
  * <p>We specify test expectations with {@link
- * PbJavaGotoDeclarationHandlerTest#EXPECT_MARKER}.
+ * idea.plugin.protoeditor.gencodeutils.GotoExpectationMarker#EXPECT_MARKER}.
  */
 @SuppressWarnings("unused") // Loaded by IntelliJ test.
 public class Proto1User {

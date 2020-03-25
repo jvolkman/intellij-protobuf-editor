@@ -43,7 +43,7 @@ public class PbOptionReferenceTest extends PbCodeInsightFixtureTestCase {
     return discoveredPath == null ? "" : discoveredPath;
   }
 
-  private PsiElement resolve() throws Exception {
+  private PsiElement resolve() {
     String filename = "lang/options/" + getTestName(false) + ".proto.testdata";
     PsiReference ref = myFixture.getReferenceAtCaretPosition(filename);
     assertNotNull(ref);

@@ -29,7 +29,7 @@ public class PbExtendDefinitionStub extends StubBase<PbExtendDefinition>
 
   // TODO(volkman): extendedType might not be a string.
   public PbExtendDefinitionStub(
-      @SuppressWarnings("rawtypes") StubElement parent,
+      StubElement parent,
       PbExtendDefinitionType elementType,
       String extendedType) {
     super(parent, elementType);
@@ -43,7 +43,7 @@ public class PbExtendDefinitionStub extends StubBase<PbExtendDefinition>
   @Nullable
   @Override
   public QualifiedName getChildScope() {
-    PbStatementOwnerStub owner = getOwner();
+    PbStatementOwnerStub<?> owner = getOwner();
     if (owner != null) {
       return owner.getChildScope();
     }

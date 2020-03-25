@@ -39,7 +39,6 @@ import java.util.List;
 public class ProtoFoldingBuilder extends FoldingBuilderEx implements DumbAware {
   @NotNull
   @Override
-  @SuppressWarnings("unchecked")
   public FoldingDescriptor[] buildFoldRegions(
       @NotNull PsiElement root, @NotNull Document document, boolean quick) {
 

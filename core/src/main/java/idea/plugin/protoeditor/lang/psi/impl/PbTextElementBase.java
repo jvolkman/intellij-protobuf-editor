@@ -20,6 +20,7 @@ import com.intellij.lang.ASTNode;
 import com.intellij.lang.Language;
 import idea.plugin.protoeditor.lang.PbTextLanguage;
 import idea.plugin.protoeditor.lang.psi.PbTextElement;
+import org.jetbrains.annotations.NotNull;
 
 abstract class PbTextElementBase extends ASTWrapperPsiElement implements PbTextElement {
 
@@ -27,6 +28,7 @@ abstract class PbTextElementBase extends ASTWrapperPsiElement implements PbTextE
     super(node);
   }
 
+  @NotNull
   @Override
   public Language getLanguage() {
     return PbTextLanguage.INSTANCE;

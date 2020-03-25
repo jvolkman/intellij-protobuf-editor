@@ -58,7 +58,7 @@ abstract class PbStubbedNamedDefinitionBase<T extends PbNamedElementStub<?>>
   @Nullable
   @Override
   public String getName() {
-    PbNamedElementStub stub = getStub();
+    PbNamedElementStub<?> stub = getStub();
     if (stub != null) {
       return stub.getName();
     }
@@ -101,7 +101,7 @@ abstract class PbStubbedNamedDefinitionBase<T extends PbNamedElementStub<?>>
   public ItemPresentation getPresentation() {
     PbNamedElement element = this;
     return new ItemPresentation() {
-      @Nullable
+
       @Override
       public String getPresentableText() {
         return element.getPresentableText();

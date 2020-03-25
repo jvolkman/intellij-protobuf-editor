@@ -44,9 +44,10 @@ public class PbPackageStatementType
     return new PbPackageStatementImpl(stub, this);
   }
 
+  @NotNull
   @Override
   public PbPackageStatementStub createStub(
-      @NotNull PbPackageStatement psi, @SuppressWarnings("rawtypes") StubElement parentStub) {
+      @NotNull PbPackageStatement psi, StubElement parentStub) {
     QualifiedName packageNameQualifiedName = PbPsiUtil.EMPTY_QUALIFIED_NAME;
     PbPackageName packageName = psi.getPackageName();
     if (packageName != null) {
@@ -72,7 +73,7 @@ public class PbPackageStatementType
   @NotNull
   @Override
   public PbPackageStatementStub deserialize(
-      @NotNull StubInputStream dataStream, @SuppressWarnings("rawtypes") StubElement parentStub)
+      @NotNull StubInputStream dataStream, StubElement parentStub)
       throws IOException {
     StringRef packageName = dataStream.readName();
     return new PbPackageStatementStub(

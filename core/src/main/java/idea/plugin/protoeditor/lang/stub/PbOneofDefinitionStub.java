@@ -28,7 +28,7 @@ public class PbOneofDefinitionStub extends StubBase<PbOneofDefinition>
   private String name;
 
   public PbOneofDefinitionStub(
-      @SuppressWarnings("rawtypes") StubElement parent,
+      StubElement parent,
       PbOneofDefinitionType elementType,
       String name) {
     super(parent, elementType);
@@ -50,7 +50,7 @@ public class PbOneofDefinitionStub extends StubBase<PbOneofDefinition>
   @Nullable
   @Override
   public QualifiedName getChildScope() {
-    PbStatementOwnerStub owner = getOwner();
+    PbStatementOwnerStub<?> owner = getOwner();
     if (owner != null) {
       return owner.getChildScope();
     }

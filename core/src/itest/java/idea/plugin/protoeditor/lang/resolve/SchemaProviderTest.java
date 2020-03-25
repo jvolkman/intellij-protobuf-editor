@@ -36,7 +36,7 @@ public class SchemaProviderTest extends PbCodeInsightFixtureTestCase {
     return discoveredPath == null ? "" : discoveredPath;
   }
 
-  public void testRootMessageProvider() throws Exception {
+  public void testRootMessageProvider() {
     final PbFile messageProto =
         (PbFile) myFixture.configureByFile("lang/resolve/root_message.proto");
     final PbMessageType message =

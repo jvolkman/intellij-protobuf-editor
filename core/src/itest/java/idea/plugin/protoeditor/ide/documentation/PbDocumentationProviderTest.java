@@ -26,7 +26,7 @@ import java.util.Arrays;
 /** Tests for {@link PbDocumentationProvider}. */
 public class PbDocumentationProviderTest extends PbCodeInsightFixtureTestCase {
 
-  public void testGenerateDocReturnsFormattedComments() throws Exception {
+  public void testGenerateDocReturnsFormattedComments() {
     PbStatement msg =
         loadSymbol(
             "Msg",
@@ -42,7 +42,7 @@ public class PbDocumentationProviderTest extends PbCodeInsightFixtureTestCase {
         "<pre>Comments for Msg. Example:\n  Msg.abcd = 5\n&lt;escaped-tag/&gt;\n</pre>", doc);
   }
 
-  public void testGenerateDocWithNoCommentsReturnsNull() throws Exception {
+  public void testGenerateDocWithNoCommentsReturnsNull() {
     PbStatement msg = loadSymbol("Msg", "syntax = 'proto2';", "", "message Msg {", "}");
     String doc = new PbDocumentationProvider().generateDoc(msg, null);
     assertNull(doc);

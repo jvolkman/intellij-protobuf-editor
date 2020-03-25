@@ -21,18 +21,21 @@ import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.ex.temp.TempFileSystem;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
 
 /** A {@link GoRootsProvider} for unit testing. */
 public class GoProtoTestRootsProvider implements GoRootsProvider {
+  @NotNull
   @Override
   public Collection<VirtualFile> getGoPathRoots(
       @Nullable Project project, @Nullable Module module) {
     return ImmutableList.of();
   }
 
+  @NotNull
   @Override
   public Collection<VirtualFile> getGoPathSourcesRoots(
       @Nullable Project project, @Nullable Module module) {
@@ -40,6 +43,7 @@ public class GoProtoTestRootsProvider implements GoRootsProvider {
     return root == null ? ImmutableList.of() : ImmutableList.of(root);
   }
 
+  @NotNull
   @Override
   public Collection<VirtualFile> getGoPathBinRoots(
       @Nullable Project project, @Nullable Module module) {

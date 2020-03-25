@@ -52,7 +52,7 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
     super.tearDown();
   }
 
-  public void testManagerTracksProjectRootsChanges() throws Exception {
+  public void testManagerTracksProjectRootsChanges() {
     // Create a new project with two modules and a total of 3 roots.
     File projectDir = new File(tempDir, "project");
     assertTrue(projectDir.mkdirs());
@@ -138,7 +138,7 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
         DefaultConfigurator.getBuiltInIncludeEntry());
   }
 
-  public void testExtensionConfiguratorsTakePrecedence() throws Exception {
+  public void testExtensionConfiguratorsTakePrecedence() {
     File projectDir = new File(tempDir, "project");
     assertTrue(projectDir.mkdirs());
 

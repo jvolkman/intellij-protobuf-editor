@@ -21,6 +21,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.QualifiedName;
 import com.intellij.usageView.UsageViewLongNameLocation;
 import idea.plugin.protoeditor.lang.psi.PbSymbol;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /** Provides the title for the find usages tool window. */
@@ -28,7 +29,7 @@ public class PbElementDescriptionProvider implements ElementDescriptionProvider 
 
   @Nullable
   @Override
-  public String getElementDescription(PsiElement element, ElementDescriptionLocation location) {
+  public String getElementDescription(@NotNull PsiElement element, @NotNull ElementDescriptionLocation location) {
     if (location instanceof UsageViewLongNameLocation) {
       if (element instanceof PbSymbol) {
         PbSymbol symbol = (PbSymbol) element;

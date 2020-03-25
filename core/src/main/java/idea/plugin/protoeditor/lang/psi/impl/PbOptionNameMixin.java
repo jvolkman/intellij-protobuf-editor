@@ -148,11 +148,7 @@ abstract class PbOptionNameMixin extends PbElementBase implements PbOptionName {
       if (typeName == null) {
         return null;
       }
-      BuiltInType builtInType = typeName.getBuiltInType();
-      if (builtInType == null) {
-        return null;
-      }
-      return builtInType;
+      return typeName.getBuiltInType();
     } else if (specialType == SpecialOptionType.FIELD_JSON_NAME) {
       return BuiltInType.STRING;
     }
@@ -170,11 +166,7 @@ abstract class PbOptionNameMixin extends PbElementBase implements PbOptionName {
     if (typeName == null) {
       return null;
     }
-    BuiltInType builtInType = typeName.getBuiltInType();
-    if (builtInType == null) {
-      return null;
-    }
-    return builtInType;
+    return typeName.getBuiltInType();
   }
 
   @Nullable

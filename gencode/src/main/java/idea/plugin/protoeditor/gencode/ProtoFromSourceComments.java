@@ -94,8 +94,8 @@ public final class ProtoFromSourceComments {
 
   private static void shiftInNextChild(PsiElement[] children) {
     int lastIndex = children.length - 1;
-    for (int i = 0; i < lastIndex; i++) {
-      children[i] = children[i + 1];
+    if (lastIndex >= 0) {
+      System.arraycopy(children, 1, children, 0, lastIndex);
     }
     children[lastIndex] = children[lastIndex].getNextSibling();
   }

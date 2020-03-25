@@ -128,9 +128,7 @@ public final class TestUtils {
     project.putUserData(TEST_FILE_RESOLVE_PROVIDER, provider);
     Disposer.register(
         disposable,
-        () -> {
-          removeTestFileResolveProvider(project);
-        });
+        () -> removeTestFileResolveProvider(project));
   }
 
   private static void removeTestFileResolveProvider(Project project) {

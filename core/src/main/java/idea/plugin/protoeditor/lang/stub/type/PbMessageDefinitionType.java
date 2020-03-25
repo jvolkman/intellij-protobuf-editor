@@ -40,9 +40,10 @@ public class PbMessageDefinitionType
     return new PbMessageDefinitionImpl(stub, this);
   }
 
+  @NotNull
   @Override
   public PbMessageDefinitionStub createStub(
-      @NotNull PbMessageDefinition psi, @SuppressWarnings("rawtypes") StubElement parentStub) {
+      @NotNull PbMessageDefinition psi, StubElement parentStub) {
     return new PbMessageDefinitionStub(parentStub, this, psi.getName());
   }
 
@@ -61,7 +62,7 @@ public class PbMessageDefinitionType
   @NotNull
   @Override
   public PbMessageDefinitionStub deserialize(
-      @NotNull StubInputStream dataStream, @SuppressWarnings("rawtypes") StubElement parentStub)
+      @NotNull StubInputStream dataStream, StubElement parentStub)
       throws IOException {
     String name = null;
     StringRef nameRef = dataStream.readName();

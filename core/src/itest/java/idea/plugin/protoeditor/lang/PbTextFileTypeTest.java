@@ -23,8 +23,8 @@ import java.util.List;
 
 import static com.google.common.truth.Truth.assertThat;
 
-/** Test cases for {@link PbTextFileTypeFactory}. */
-public class PbTextFileTypeFactoryTest extends PbCodeInsightFixtureTestCase {
+/** Test cases for {@link PbTextFileType}. */
+public class PbTextFileTypeTest extends PbCodeInsightFixtureTestCase {
 
   // This should match the list of registered extensions in PbTextFileTypeFactory.
   private static final List<String> EXTENSIONS =

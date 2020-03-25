@@ -20,6 +20,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.TokenSet;
 import com.intellij.psi.util.PsiTreeUtil;
 import idea.plugin.protoeditor.lang.psi.*;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 abstract class PbTextMessageValueMixin extends PbTextElementBase implements PbTextMessageValue {
@@ -47,6 +48,7 @@ abstract class PbTextMessageValueMixin extends PbTextElementBase implements PbTe
     return (PbMessageType) namedType;
   }
 
+  @NotNull
   @Override
   public PsiElement getStart() {
     return findNotNullChildByType(START_TOKENS);

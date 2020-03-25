@@ -28,6 +28,7 @@ import idea.plugin.protoeditor.java.names.NameGeneratorSelector;
 import idea.plugin.protoeditor.java.names.NameMatcher;
 import idea.plugin.protoeditor.lang.psi.*;
 import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class PbJavaGotoDeclarationHandler implements GotoDeclarationHandler {
 
   @Nullable
   @Override
-  public String getActionText(DataContext dataContext) {
+  public String getActionText(@NotNull DataContext dataContext) {
     return null;
   }
 

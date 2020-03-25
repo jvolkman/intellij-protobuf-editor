@@ -21,6 +21,7 @@ import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.openapi.project.Project;
 import com.intellij.serviceContainer.NonInjectable;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -52,7 +53,7 @@ public class PbTextLanguageSettings
   }
 
   @Override
-  public void loadState(State state) {
+  public void loadState(@NotNull State state) {
     this.state = state;
   }
 

@@ -28,7 +28,7 @@ public class PbMessageDefinitionStub extends StubBase<PbMessageDefinition>
   private String name;
 
   public PbMessageDefinitionStub(
-      @SuppressWarnings("rawtypes") StubElement parent,
+      StubElement parent,
       PbMessageDefinitionType elementType,
       String name) {
     super(parent, elementType);

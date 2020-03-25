@@ -24,6 +24,7 @@ import com.intellij.psi.stubs.IStubElementType;
 import idea.plugin.protoeditor.lang.psi.PbElement;
 import idea.plugin.protoeditor.lang.psi.PbFile;
 import idea.plugin.protoeditor.lang.stub.PbElementStub;
+import org.jetbrains.annotations.NotNull;
 
 abstract class PbStubbedElementBase<T extends PbElementStub<?>> extends StubBasedPsiElementBase<T>
     implements PbElement, PbOverridableElement, StubBasedPsiElement<T> {
@@ -50,6 +51,7 @@ abstract class PbStubbedElementBase<T extends PbElementStub<?>> extends StubBase
     return override != null ? override : super.getParent();
   }
 
+  @NotNull
   @Override
   public PsiElement getNavigationElement() {
     PsiElement override = getNavigationElementOverride();

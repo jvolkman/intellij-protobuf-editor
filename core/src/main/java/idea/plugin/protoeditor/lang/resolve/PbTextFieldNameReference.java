@@ -150,7 +150,7 @@ public class PbTextFieldNameReference extends PsiReferenceBase<PbTextFieldName> 
   }
 
   @Override
-  public PsiElement handleElementRename(String newElementName) {
+  public PsiElement handleElementRename(@NotNull String newElementName) {
     PsiElement identifier = getElement().getNameIdentifier();
     if (identifier != null) {
       ASTNode node = identifier.getNode();

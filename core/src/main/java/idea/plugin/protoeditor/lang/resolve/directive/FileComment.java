@@ -20,13 +20,14 @@ import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiReference;
 import idea.plugin.protoeditor.lang.resolve.PbImportReference;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 class FileComment extends SchemaComment {
 
-  FileComment(PsiComment comment, TextRange keyRange, TextRange nameRange, Type type) {
+  FileComment(@NotNull PsiComment comment, TextRange keyRange, TextRange nameRange, Type type) {
     super(comment, keyRange, nameRange, type);
   }
 

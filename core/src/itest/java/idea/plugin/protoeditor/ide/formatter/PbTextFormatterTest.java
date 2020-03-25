@@ -33,7 +33,7 @@ public class PbTextFormatterTest extends PbCodeInsightFixtureTestCase {
     myFixture.configureByFiles("FormatterTestBefore.pb");
     new WriteCommandAction.Simple<Void>(getProject()) {
       @Override
-      protected void run() throws Throwable {
+      protected void run() {
         CodeStyleManager.getInstance(getProject()).reformat(myFixture.getFile());
       }
     }.execute();

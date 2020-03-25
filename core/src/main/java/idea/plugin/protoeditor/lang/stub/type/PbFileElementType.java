@@ -54,15 +54,13 @@ public class PbFileElementType extends IStubFileElementType<PbFileStub> {
   }
 
   @Override
-  public void serialize(@NotNull final PbFileStub stub, @NotNull final StubOutputStream dataStream)
-      throws IOException {}
+  public void serialize(@NotNull final PbFileStub stub, @NotNull final StubOutputStream dataStream) {}
 
   @NotNull
   @Override
   public PbFileStub deserialize(
       @NotNull final StubInputStream dataStream,
-      final @SuppressWarnings("rawtypes") StubElement parentStub)
-      throws IOException {
+      final StubElement parentStub) {
     return new PbFileStub(null);
   }
 

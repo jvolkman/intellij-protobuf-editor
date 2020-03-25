@@ -246,7 +246,7 @@ public class ProtoSymbolPathReference extends PsiPolyVariantReferenceBase<PsiEle
       }
     }
 
-    return results.toArray(new ResolveResult[results.size()]);
+    return results.toArray(new ResolveResult[0]);
   }
 
   private ResolveResult[] resolveTopDown(QualifiedName name) {
@@ -256,7 +256,7 @@ public class ProtoSymbolPathReference extends PsiPolyVariantReferenceBase<PsiEle
     } else {
       results = resolver.resolveName(name, resolveFilter);
     }
-    return results.toArray(new ResolveResult[results.size()]);
+    return results.toArray(new ResolveResult[0]);
   }
 
   @NotNull
@@ -305,7 +305,7 @@ public class ProtoSymbolPathReference extends PsiPolyVariantReferenceBase<PsiEle
   }
 
   @Override
-  public PsiElement handleElementRename(String newElementName) throws IncorrectOperationException {
+  public PsiElement handleElementRename(@NotNull String newElementName) throws IncorrectOperationException {
     ASTNode node = symbolPath.getNode().findChildByType(ProtoTokenTypes.IDENTIFIER_LITERAL);
     if (node instanceof LeafElement) {
       ((LeafElement) node).replaceWithText(newElementName);

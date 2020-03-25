@@ -37,9 +37,10 @@ public class PbExtendDefinitionType
     return new PbExtendDefinitionImpl(stub, this);
   }
 
+  @NotNull
   @Override
   public PbExtendDefinitionStub createStub(
-      @NotNull PbExtendDefinition psi, @SuppressWarnings("rawtypes") StubElement parentStub) {
+      @NotNull PbExtendDefinition psi, StubElement parentStub) {
     // TODO(volkman): Handle extended type better
     String typeString = null;
     PbTypeName typeName = psi.getTypeName();
@@ -65,7 +66,7 @@ public class PbExtendDefinitionType
   @NotNull
   @Override
   public PbExtendDefinitionStub deserialize(
-      @NotNull StubInputStream dataStream, @SuppressWarnings("rawtypes") StubElement parentStub)
+      @NotNull StubInputStream dataStream, StubElement parentStub)
       throws IOException {
     String extendedType = dataStream.readUTF();
     return new PbExtendDefinitionStub(parentStub, this, extendedType);

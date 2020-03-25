@@ -63,7 +63,7 @@ public class PbEnumValueReference extends PsiReferenceBase<ProtoIdentifierValue>
   }
 
   @Override
-  public PsiElement handleElementRename(String newElementName) throws IncorrectOperationException {
+  public PsiElement handleElementRename(@NotNull String newElementName) throws IncorrectOperationException {
     PsiElement element = getElement().getIdentifierLiteral();
     if (element != null) {
       ASTNode node = element.getNode();

@@ -30,7 +30,7 @@ public class PbStructureViewFactory implements PsiStructureViewFactory {
 
   @Nullable
   @Override
-  public StructureViewBuilder getStructureViewBuilder(final PsiFile psiFile) {
+  public StructureViewBuilder getStructureViewBuilder(@NotNull final PsiFile psiFile) {
     if (!(psiFile instanceof PbFile)) {
       return null;
     }

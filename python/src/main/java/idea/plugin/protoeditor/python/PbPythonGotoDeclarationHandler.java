@@ -29,6 +29,7 @@ import idea.plugin.protoeditor.gencode.ProtoFromSourceComments;
 import idea.plugin.protoeditor.lang.psi.PbElement;
 import idea.plugin.protoeditor.lang.psi.PbFile;
 import idea.plugin.protoeditor.lang.psi.PbSymbol;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
@@ -42,7 +43,7 @@ public final class PbPythonGotoDeclarationHandler implements GotoDeclarationHand
 
   @Nullable
   @Override
-  public String getActionText(DataContext context) {
+  public String getActionText(@NotNull DataContext context) {
     return null;
   }
 

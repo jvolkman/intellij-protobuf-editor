@@ -28,7 +28,7 @@ public class PbServiceDefinitionStub extends StubBase<PbServiceDefinition>
   private String name;
 
   public PbServiceDefinitionStub(
-      @SuppressWarnings("rawtypes") StubElement parent,
+      StubElement parent,
       PbServiceDefinitionType elementType,
       String name) {
     super(parent, elementType);
