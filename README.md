@@ -20,7 +20,7 @@ This is a fork of [google/intellij-protocol-buffer-editor](https://github.com/go
 
 # Installation
 
-[Install](https://plugins.jetbrains.com/plugin/14004-protocol-buffer-editor) from the JetBrains plugin repository, or:
+Install from the JetBrains [plugin repository](https://plugins.jetbrains.com/plugin/14004-protocol-buffer-editor), or:
 * Download a [release](https://github.com/jvolkman/intellij-protobuf-editor/releases) and install manually
 * [Build](#building-and-testing) from source
 
@@ -62,7 +62,7 @@ in the GRPC ecosystem:
 
 ![GRPC example](doc/grpc.png)
 
-This plugin also supports standalone text format files with a `.textproto` or `.pb.` extension. Text formant by default
+This plugin also supports standalone text format files with a `.textproto` or `.pb`. extension. Text formant by default
 does not provide a way to associate a file with its schema (a `message` in a `.proto` file). But the plugin supports
 the following comments in a text proto file:
 
