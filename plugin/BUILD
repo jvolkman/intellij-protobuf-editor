@@ -48,11 +48,12 @@ genrule(
 
 stamped_plugin_xml(
     name = "standalone_plugin_xml",
-    changelog_file = "CHANGELOG",
-    description_file = "plugin_description",
+    changelog_file = "changelog.html",
+    description_file = "plugin_description.html",
     plugin_id = "idea.plugin.protoeditor",
     plugin_name = "Protocol Buffer Editor",
-    stamp_since_build = False,
+    stamp_since_build_major = True,
+    stamp_until_build = True,
     vendor_file = "vendor.xml",
     version_file = ":version_file",
 )

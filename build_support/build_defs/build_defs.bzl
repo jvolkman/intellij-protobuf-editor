@@ -49,6 +49,7 @@ def stamped_plugin_xml(
         plugin_id = None,
         plugin_name = None,
         stamp_since_build = False,
+        stamp_since_build_major = False,
         stamp_until_build = False,
         version = None,
         version_file = None,
@@ -64,6 +65,7 @@ def stamped_plugin_xml(
       plugin_id: the plugin ID to stamp
       plugin_name: the plugin name to stamp
       stamp_since_build: Add build number to idea-version since-build.
+      stamp_since_build_major: Use the major branch number as the since-build.
       stamp_until_build: Use idea-version until-build to limit plugin to the
           current major release.
       version: A version number to stamp.
@@ -88,6 +90,7 @@ def stamped_plugin_xml(
         "./$(location {stamp_tool})",
         "--api_version_txt=$(location {api_version_txt_name})",
         "{stamp_since_build}",
+        "{stamp_since_build_major}",
         "{stamp_until_build}",
     ]
     srcs = [api_version_txt_name]
@@ -131,6 +134,10 @@ def stamped_plugin_xml(
         stamp_since_build = _optstr(
             "stamp_since_build",
             stamp_since_build,
+        ),
+        stamp_since_build_major = _optstr(
+            "stamp_since_build_major",
+            stamp_since_build_major,
         ),
         stamp_until_build = _optstr(
             "stamp_until_build",

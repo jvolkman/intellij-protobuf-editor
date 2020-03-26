@@ -66,7 +66,7 @@ java_library(
     resources = glob(
         ["resources/**"],
         exclude = [
-            "resources/META-INF/**",
+            "resources/META-INF/plugin.xml",
             "resources/update_include_files.sh",
         ],
     ),
