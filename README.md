@@ -20,6 +20,22 @@ This is a fork of an editor developed internally at Google and released unsuppor
 * Navigating between protobuf files and some other languages (Java, Go, Python)
 * Full support for text format, both standalone and in custom options
 
+## Path Settings
+
+By default, the collection of project source roots is used as the protobuf search path, and the protobuf descriptor and
+well-known type files are provided by the plugin JAR. These paths can be customized in the editor's language settings: 
+
+![Settings](doc/settings.png)
+
+To customize:
+* Uncheck `Configure automatically`
+* Add paths that include protobuf files
+  * The `Prefix` column can be used to specify an import prefix for the path. So, for example, if the path is 
+    `src/protos` and the prefix is `foo/bar`, the file at `src/protos/mine.proto` would be imported as
+    `foo/bar/mine.proto`.
+* Organize the paths in the proper resolution order. Files found in paths at the top of the list take precedence.
+
+
 ## Text Format
 
 Protobuf Text Format is most commonly used to specify long-form option values in `.proto` files. For example, as seen
@@ -40,8 +56,9 @@ the following comments in a text proto file:
 foo: bar
 ``` 
 
-Filenames are relative to configured roots (see Settings below). The `proto-message` name is scoped relatively to the package
-declared in the `proto-file` file. `proto-message` follows the same resolution rules as type names in `.proto` files. 
+Filenames are relative to configured roots (see [Settings](#path-settings)). The `proto-message` name is scoped 
+relatively to the package declared in the `proto-file` file. `proto-message` follows the same resolution rules as type 
+names in `.proto` files. 
 
 # Building and Testing
 

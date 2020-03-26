@@ -28,14 +28,11 @@ import java.util.Collection;
 import java.util.Collections;
 
 /**
- * A {@link ProjectSettingsConfigurator} that generates configuration based on project roots.
+ * A {@link ProjectSettingsConfigurator} that generates configuration based on project source roots.
  *
  * <p>The descriptor is set to <code>google/protobuf/descriptor.proto</code>.
  */
 public class DefaultConfigurator implements ProjectSettingsConfigurator {
-  // TODO(volkman): currently for an empty project, the configured descriptor is not resolvable. It
-  // would be nice to include an open source descriptor.proto in the plugin.jar and use it.
-
   private static final String DESCRIPTOR = "google/protobuf/descriptor.proto";
 
   @Nullable
@@ -43,7 +40,7 @@ public class DefaultConfigurator implements ProjectSettingsConfigurator {
   public PbProjectSettings configure(Project project, PbProjectSettings settings) {
     settings.setDescriptorPath(DESCRIPTOR);
     settings.getImportPathEntries().clear();
-    VirtualFile[] roots = ProjectRootManager.getInstance(project).getContentRoots();
+    VirtualFile[] roots = ProjectRootManager.getInstance(project).getContentSourceRoots();
     for (VirtualFile root : roots) {
       settings.getImportPathEntries().add(new ImportPathEntry(root.getUrl(), ""));
     }

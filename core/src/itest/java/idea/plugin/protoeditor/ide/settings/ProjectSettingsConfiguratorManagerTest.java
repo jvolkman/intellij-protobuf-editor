@@ -20,10 +20,7 @@ import com.intellij.openapi.extensions.ExtensionPoint;
 import com.intellij.openapi.module.EmptyModuleType;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.roots.ContentEntry;
-import com.intellij.openapi.roots.ModifiableRootModel;
-import com.intellij.openapi.roots.ModuleRootManager;
-import com.intellij.openapi.roots.ProjectRootManager;
+import com.intellij.openapi.roots.*;
 import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -62,10 +59,9 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
     Module module2 = doCreateRealModuleIn("module2", project, EmptyModuleType.getInstance());
 
     File module1Root1 = new File(projectDir, "module1Root1");
-    File module1Root2 = new File(projectDir, "module1Root2");
+    File module1Root1Src = new File(module1Root1, "src");
     File module2Root1 = new File(projectDir, "module2Root1");
-    assertTrue(module1Root1.mkdirs());
-    assertTrue(module1Root2.mkdirs());
+    assertTrue(module1Root1Src.mkdirs());
     assertTrue(module2Root1.mkdirs());
 
     // Clear extension point and register only the DefaultConfigurator.
@@ -88,10 +84,9 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
               model.commit();
             });
 
-    // Should have one root now, plus the descriptor.
+    // Still no roots since module has no source directory.
     assertSameElements(
         PbProjectSettings.getInstance(project).getImportPathEntries(),
-        new ImportPathEntry(VfsUtil.pathToUrl(module1Root1.getPath()), ""),
         DefaultConfigurator.getBuiltInIncludeEntry());
 
     ApplicationManager.getApplication()
@@ -99,19 +94,30 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
             () -> {
               ModifiableRootModel model =
                   ModuleRootManager.getInstance(module1).getModifiableModel();
-              model.addContentEntry(notNull(VfsUtil.findFileByIoFile(module1Root2, false)));
-              model.commit();
-
-              model = ModuleRootManager.getInstance(module2).getModifiableModel();
-              model.addContentEntry(notNull(VfsUtil.findFileByIoFile(module2Root1, false)));
+              ContentEntry entry = model.getContentEntries()[0];
+              entry.addSourceFolder(entry.getUrl() + "/src", false);
               model.commit();
             });
 
-    // And now three, plus the descriptor.
+    // Should have one root now, plus the descriptor.
     assertSameElements(
         PbProjectSettings.getInstance(project).getImportPathEntries(),
-        new ImportPathEntry(VfsUtil.pathToUrl(module1Root1.getPath()), ""),
-        new ImportPathEntry(VfsUtil.pathToUrl(module1Root2.getPath()), ""),
+        new ImportPathEntry(VfsUtil.pathToUrl(module1Root1Src.getPath()), ""),
+        DefaultConfigurator.getBuiltInIncludeEntry());
+
+    ApplicationManager.getApplication()
+        .runWriteAction(
+            () -> {
+              ModifiableRootModel model = ModuleRootManager.getInstance(module2).getModifiableModel();
+              ContentEntry entry = model.addContentEntry(notNull(VfsUtil.findFileByIoFile(module2Root1, false)));
+              entry.addSourceFolder(entry.getUrl(), false);
+              model.commit();
+            });
+
+    // And now two, plus the descriptor.
+    assertSameElements(
+        PbProjectSettings.getInstance(project).getImportPathEntries(),
+        new ImportPathEntry(VfsUtil.pathToUrl(module1Root1Src.getPath()), ""),
         new ImportPathEntry(VfsUtil.pathToUrl(module2Root1.getPath()), ""),
         DefaultConfigurator.getBuiltInIncludeEntry());
 
@@ -119,21 +125,35 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
         .runWriteAction(
             () -> {
               ModifiableRootModel model =
-                  ModuleRootManager.getInstance(module1).getModifiableModel();
-              VirtualFile rootToKeep = notNull(VfsUtil.findFileByIoFile(module1Root2, false));
+                  ModuleRootManager.getInstance(module2).getModifiableModel();
               for (ContentEntry entry : model.getContentEntries()) {
-                if (!rootToKeep.equals(entry.getFile())) {
-                  model.removeContentEntry(entry);
+                model.removeContentEntry(entry);
+              }
+              model.commit();
+            });
+
+    // And now back to one, plus the descriptor.
+    assertSameElements(
+        PbProjectSettings.getInstance(project).getImportPathEntries(),
+        new ImportPathEntry(VfsUtil.pathToUrl(module1Root1Src.getPath()), ""),
+        DefaultConfigurator.getBuiltInIncludeEntry());
+
+    ApplicationManager.getApplication()
+        .runWriteAction(
+            () -> {
+              ModifiableRootModel model =
+                  ModuleRootManager.getInstance(module1).getModifiableModel();
+              for (ContentEntry entry : model.getContentEntries()) {
+                for (SourceFolder folder : entry.getSourceFolders()) {
+                  entry.removeSourceFolder(folder);
                 }
               }
               model.commit();
             });
 
-    // And now back to two, plus the descriptor.
+    // We removed all of the source folders (but left the root), so there should be no paths remaining.
     assertSameElements(
         PbProjectSettings.getInstance(project).getImportPathEntries(),
-        new ImportPathEntry(VfsUtil.pathToUrl(module1Root2.getPath()), ""),
-        new ImportPathEntry(VfsUtil.pathToUrl(module2Root1.getPath()), ""),
         DefaultConfigurator.getBuiltInIncludeEntry());
   }
 
@@ -183,7 +203,9 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
             () -> {
               ModifiableRootModel model =
                   ModuleRootManager.getInstance(module).getModifiableModel();
-              model.addContentEntry(notNull(VfsUtil.findFileByIoFile(module1Root1, false)));
+              ContentEntry entry =
+                  model.addContentEntry(notNull(VfsUtil.findFileByIoFile(module1Root1, false)));
+              entry.addSourceFolder(entry.getUrl(), false);
               model.commit();
             });
 
@@ -198,7 +220,9 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
             () -> {
               ModifiableRootModel model =
                   ModuleRootManager.getInstance(module).getModifiableModel();
-              model.addContentEntry(notNull(VfsUtil.findFileByIoFile(foobarRoot, false)));
+              ContentEntry entry =
+                  model.addContentEntry(notNull(VfsUtil.findFileByIoFile(foobarRoot, false)));
+              entry.addSourceFolder(entry.getUrl(), false);
               model.commit();
             });
 

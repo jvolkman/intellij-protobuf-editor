@@ -19,6 +19,7 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.module.EmptyModuleType;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.roots.ContentEntry;
 import com.intellij.openapi.roots.ModifiableRootModel;
 import com.intellij.openapi.roots.ModuleRootManager;
 import com.intellij.openapi.util.io.FileUtil;
@@ -62,11 +63,13 @@ public class DefaultConfiguratorTest extends HeavyPlatformTestCase {
     Module module2 = doCreateRealModuleIn("module2", project, EmptyModuleType.getInstance());
 
     File module1Root1 = new File(projectDir, "module1Root1");
-    File module1Root2 = new File(projectDir, "module1Root2");
+    File module1Root1Src1 = new File(module1Root1, "src1");
+    File module1Root1Src2 = new File(module1Root1, "src2");
     File module2Root1 = new File(projectDir, "module2Root1");
-    assertTrue(module1Root1.mkdirs());
-    assertTrue(module1Root2.mkdirs());
-    assertTrue(module2Root1.mkdirs());
+    File module2Root1Src1 = new File(module2Root1, "src1");
+    assertTrue(module1Root1Src1.mkdirs());
+    assertTrue(module1Root1Src2.mkdirs());
+    assertTrue(module2Root1Src1.mkdirs());
 
     ApplicationManager.getApplication()
         .runWriteAction(
@@ -75,10 +78,12 @@ public class DefaultConfiguratorTest extends HeavyPlatformTestCase {
                   ModuleRootManager.getInstance(module1).getModifiableModel();
               ModifiableRootModel model2 =
                   ModuleRootManager.getInstance(module2).getModifiableModel();
-              model1.addContentEntry(notNull(VfsUtil.findFileByIoFile(module1Root1, false)));
-              model1.addContentEntry(notNull(VfsUtil.findFileByIoFile(module1Root2, false)));
+              ContentEntry entry = model1.addContentEntry(notNull(VfsUtil.findFileByIoFile(module1Root1, false)));
+              entry.addSourceFolder(entry.getUrl() + "/src1", false);
+              entry.addSourceFolder(entry.getUrl() + "/src2", false);
               model1.commit();
-              model2.addContentEntry(notNull(VfsUtil.findFileByIoFile(module2Root1, false)));
+              entry = model2.addContentEntry(notNull(VfsUtil.findFileByIoFile(module2Root1, false)));
+              entry.addSourceFolder(entry.getUrl() + "/src1", false);
               model2.commit();
             });
 
@@ -91,9 +96,9 @@ public class DefaultConfiguratorTest extends HeavyPlatformTestCase {
     assertEquals("google/protobuf/descriptor.proto", settings.getDescriptorPath());
     assertSameElements(
         settings.getImportPathEntries(),
-        new ImportPathEntry(VfsUtil.pathToUrl(module1Root1.getPath()), ""),
-        new ImportPathEntry(VfsUtil.pathToUrl(module1Root2.getPath()), ""),
-        new ImportPathEntry(VfsUtil.pathToUrl(module2Root1.getPath()), ""),
+        new ImportPathEntry(VfsUtil.pathToUrl(module1Root1Src1.getPath()), ""),
+        new ImportPathEntry(VfsUtil.pathToUrl(module1Root1Src2.getPath()), ""),
+        new ImportPathEntry(VfsUtil.pathToUrl(module2Root1Src1.getPath()), ""),
         DefaultConfigurator.getBuiltInIncludeEntry());
   }
 
