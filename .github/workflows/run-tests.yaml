@@ -34,3 +34,13 @@ jobs:
       - name: Test
         run: |
           "${GITHUB_WORKSPACE}/bin/bazel" test //... --color=yes
+
+      - name: Build plugin
+        run: |
+          "${GITHUB_WORKSPACE}/bin/bazel" build //plugin --color=yes
+
+      - name: Store plugin artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: protobuf-editor
+          path: bazel-bin/plugin/protobuf-editor.jar
