@@ -1,5 +1,7 @@
 # Protocol Buffers support for IntelliJ
 
+![Run Tests](https://github.com/jvolkman/intellij-protobuf-editor/workflows/Run%20Tests/badge.svg)
+
 This plugin provides editor support for Protocol Buffer files, including text
 format.
 
