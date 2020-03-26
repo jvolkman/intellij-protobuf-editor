@@ -42,5 +42,5 @@ jobs:
       - name: Store plugin artifact
         uses: actions/upload-artifact@v1
         with:
-          name: protobuf-editor.jar
+          name: protobuf-editor
           path: bazel-bin/plugin/protobuf-editor.jar
