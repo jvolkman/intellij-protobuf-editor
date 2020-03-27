@@ -1,6 +1,6 @@
 # Protocol Buffers support for IntelliJ
 
-[![Run Tests](https://github.com/jvolkman/intellij-protobuf-editor/workflows/Run%20Tests/badge.svg)](https://github.com/jvolkman/intellij-protobuf-editor/actions)
+[![Run Tests](https://github.com/jvolkman/intellij-protobuf-editor/workflows/Run%20Tests/badge.svg)](https://github.com/jvolkman/intellij-protobuf-editor/actions) [![Join the chat at https://gitter.im/intellij-protobuf-editor/community](https://badges.gitter.im/intellij-protobuf-editor/community.svg)](https://gitter.im/intellij-protobuf-editor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 IntelliJ [plugin](https://plugins.jetbrains.com/plugin/14004-protocol-buffer-editor) for editing Google [Protocol Buffers](https://developers.google.com/protocol-buffers). Features include:
 
