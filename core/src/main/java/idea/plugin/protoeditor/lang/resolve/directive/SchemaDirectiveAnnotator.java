@@ -17,6 +17,7 @@ package idea.plugin.protoeditor.lang.resolve.directive;
 
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.Annotator;
+import com.intellij.lang.annotation.HighlightSeverity;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiElement;
@@ -54,16 +55,16 @@ public class SchemaDirectiveAnnotator implements Annotator {
     if (keyRange == null) {
       return;
     }
-    holder
-        .createInfoAnnotation(keyRange.shiftRight(comment.getTextOffset()), /* message= */ null)
-        .setTextAttributes(PbTextSyntaxHighlighter.COMMENT_DIRECTIVE);
+    holder.newSilentAnnotation(HighlightSeverity.INFORMATION)
+        .range(keyRange.shiftRight(comment.getTextOffset()))
+        .textAttributes(PbTextSyntaxHighlighter.COMMENT_DIRECTIVE)
+        .create();
 
     if (schemaComment.getName() == null) {
-      holder
-          .createWarningAnnotation(
-              keyRange.shiftRight(comment.getTextOffset()),
-              missingNameWarning(schemaComment.getType()))
-          .setAfterEndOfLine(true);
+       holder.newAnnotation(HighlightSeverity.WARNING, missingNameWarning(schemaComment.getType()))
+          .range(keyRange.shiftRight(comment.getTextOffset()))
+          .afterEndOfLine()
+          .create();
       return;
     }
 
@@ -73,18 +74,19 @@ public class SchemaDirectiveAnnotator implements Annotator {
       if (messageReference != null) {
         PsiElement resolved = messageReference.resolve();
         if (resolved != null && !(resolved instanceof PbMessageType)) {
-          holder.createWarningAnnotation(
-              messageReference.getRangeInElement().shiftRight(comment.getTextOffset()),
-              PbLangBundle.message("message.type.expected"));
+          holder.newAnnotation(HighlightSeverity.WARNING, PbLangBundle.message("message.type.expected"))
+              .range(messageReference.getRangeInElement().shiftRight(comment.getTextOffset()))
+              .create();
         }
       }
     }
 
     // Add warning to comments if one of the message or file comments is missing.
     if (directive.getFileComment() == null || directive.getMessageComment() == null) {
-      holder.createWarningAnnotation(
-          keyRange.shiftRight(comment.getTextOffset()),
-          PbLangBundle.message("file.and.message.comments.must.be.specified"));
+      holder.newAnnotation(
+          HighlightSeverity.WARNING, PbLangBundle.message("file.and.message.comments.must.be.specified"))
+          .range(keyRange.shiftRight(comment.getTextOffset()))
+          .create();
     }
 
     for (PsiReference ref : schemaComment.getAllReferences()) {
@@ -92,12 +94,13 @@ public class SchemaDirectiveAnnotator implements Annotator {
       if (symbol.isEmpty() || ref.resolve() != null) {
         continue;
       }
-      holder.createWarningAnnotation(
-          ref.getRangeInElement().shiftRight(ref.getElement().getStartOffsetInParent()),
-          cannotResolveWarning(ref, symbol));
+      holder.newAnnotation(HighlightSeverity.WARNING, cannotResolveWarning(ref, symbol))
+          .range(ref.getRangeInElement().shiftRight(ref.getElement().getStartOffsetInParent()))
+          .create();
     }
   }
 
+  @NotNull
   private String missingNameWarning(SchemaComment.Type type) {
     switch (type) {
       case FILE:
@@ -106,7 +109,7 @@ public class SchemaDirectiveAnnotator implements Annotator {
       case MESSAGE:
         return PbLangBundle.message("missing.message.name");
       default:
-        return null;
+        throw new AssertionError("Unknown SchemaComment.Type: " + type);
     }
   }
 

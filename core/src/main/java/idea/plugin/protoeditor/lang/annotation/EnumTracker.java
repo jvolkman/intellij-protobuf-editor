@@ -18,6 +18,7 @@ package idea.plugin.protoeditor.lang.annotation;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.*;
 import com.intellij.lang.annotation.AnnotationHolder;
+import com.intellij.lang.annotation.HighlightSeverity;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.CachedValueProvider;
 import com.intellij.psi.util.CachedValuesManager;
@@ -66,7 +67,7 @@ final class EnumTracker {
     EnumTracker tracker = getTracker(enumDefinition);
     Collection<ProblemAnnotation> problems = tracker.queuedAnnotations.get(element);
     for (ProblemAnnotation problem : problems) {
-      holder.createErrorAnnotation(problem.annotationElement, problem.message);
+      holder.newAnnotation(HighlightSeverity.ERROR, problem.message).range(problem.annotationElement).create();
     }
   }
 

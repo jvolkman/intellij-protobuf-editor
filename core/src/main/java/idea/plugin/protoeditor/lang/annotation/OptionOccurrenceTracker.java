@@ -18,6 +18,7 @@ package idea.plugin.protoeditor.lang.annotation;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import com.intellij.lang.annotation.AnnotationHolder;
+import com.intellij.lang.annotation.HighlightSeverity;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.CachedValueProvider.Result;
 import com.intellij.psi.util.CachedValuesManager;
@@ -357,21 +358,21 @@ public class OptionOccurrenceTracker {
       Occurrence first = parent.firstOccurrence(field);
       if (first != null && !first.equals(this) && !field.isRepeated()) {
         // Already set.
-        holder.createErrorAnnotation(
-            annotationElement,
-            PbLangBundle.message("non.repeated.field.specified.multiple.times", field.getName()));
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("non.repeated.field.specified.multiple.times", field.getName()))
+            .range(annotationElement)
+            .create();
       } else {
         PbOneofDefinition oneof = field.getOneof();
         PbField previousOneofField = oneof != null ? parent.registeredOneofFields.get(oneof) : null;
         if (previousOneofField != null && !previousOneofField.equals(field)) {
           // Another field in the same oneof was already set.
-          holder.createErrorAnnotation(
-              annotationElement,
-              PbLangBundle.message(
-                  "multiple.oneof.fields.specified",
-                  field.getName(),
-                  previousOneofField.getName(),
-                  oneof.getName()));
+          holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message(
+              "multiple.oneof.fields.specified",
+              field.getName(),
+              previousOneofField.getName(),
+              oneof.getName()))
+              .range(annotationElement)
+              .create();
         }
       }
 
@@ -495,12 +496,12 @@ public class OptionOccurrenceTracker {
 
       if (!missingFieldNames.isEmpty()) {
         // Required field is missing.
-        holder.createErrorAnnotation(
-            annotationElement,
-            PbLangBundle.message(
-                "missing.required.fields",
-                message.getName(),
-                String.join(", ", missingFieldNames)));
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message(
+            "missing.required.fields",
+            message.getName(),
+            String.join(", ", missingFieldNames)))
+            .range(annotationElement)
+            .create();
       }
     }
 
