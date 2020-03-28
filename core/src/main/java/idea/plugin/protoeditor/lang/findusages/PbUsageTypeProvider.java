@@ -30,13 +30,13 @@ import org.jetbrains.annotations.Nullable;
 public class PbUsageTypeProvider implements UsageTypeProvider {
 
   static final UsageType EXTEND_DEFINITION =
-      new UsageType(PbLangBundle.message("usage.extend.type.reference"));
+      new UsageType(() -> PbLangBundle.message("usage.extend.type.reference"));
   static final UsageType FIELD_DECLARATION =
-      new UsageType(PbLangBundle.message("usage.field.type.reference"));
+      new UsageType(() -> PbLangBundle.message("usage.field.type.reference"));
   static final UsageType OPTION_EXPRESSION =
-      new UsageType(PbLangBundle.message("usage.option.expr.reference"));
+      new UsageType(() -> PbLangBundle.message("usage.option.expr.reference"));
   static final UsageType SERVICE_TYPE =
-      new UsageType(PbLangBundle.message("usage.service.type.reference"));
+      new UsageType(() -> PbLangBundle.message("usage.service.type.reference"));
 
   @Nullable
   @Override
