@@ -48,7 +48,7 @@ public class PbImportReferenceTest extends PbCodeInsightFixtureTestCase {
     return discoveredPath == null ? "" : discoveredPath;
   }
 
-  public void testImportSibling() throws Exception {
+  public void testImportSibling() {
     String siblingProto = "lang/resolve/Sibling.proto";
 
     final VirtualFile vFile =

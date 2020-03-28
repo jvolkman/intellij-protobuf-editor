@@ -48,13 +48,13 @@ public class PbTextDirectiveResolveTest extends PbCodeInsightFixtureTestCase {
     return ref.resolve();
   }
 
-  public void testFileRef() throws Exception {
+  public void testFileRef() {
     myFixture.configureByFile("lang/resolve/root_message.proto");
     PsiElement target = resolve();
     assertThat(target).isInstanceOf(PbFile.class);
   }
 
-  public void testMessageRef() throws Exception {
+  public void testMessageRef() {
     myFixture.configureByFile("lang/resolve/root_message.proto");
     PsiElement target = resolve();
     assertThat(target).isInstanceOf(PbMessageType.class);
@@ -63,7 +63,7 @@ public class PbTextDirectiveResolveTest extends PbCodeInsightFixtureTestCase {
     assertThat(qualifiedName.toString()).isEqualTo("foo.bar.Message");
   }
 
-  public void testPublicMessageRef() throws Exception {
+  public void testPublicMessageRef() {
     myFixture.configureByFile("lang/resolve/root_message.proto");
     myFixture.configureByFile("lang/resolve/public_message.proto");
     PsiElement target = resolve();
@@ -73,7 +73,7 @@ public class PbTextDirectiveResolveTest extends PbCodeInsightFixtureTestCase {
     assertThat(qualifiedName.toString()).isEqualTo("foo.bar.Message");
   }
 
-  public void testFieldRef() throws Exception {
+  public void testFieldRef() {
     myFixture.configureByFile("lang/resolve/root_message.proto");
     PsiElement target = resolve();
     assertThat(target).isInstanceOf(PbField.class);
