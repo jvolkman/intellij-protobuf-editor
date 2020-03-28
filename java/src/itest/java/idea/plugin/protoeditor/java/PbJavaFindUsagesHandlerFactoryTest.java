@@ -34,7 +34,6 @@ import idea.plugin.protoeditor.lang.psi.PbSymbol;
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.google.common.truth.Truth.assertThat;
