@@ -25,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 public class PbEnumDefinitionStub extends StubBase<PbEnumDefinition>
     implements PbNamedElementStub<PbEnumDefinition>, PbStatementOwnerStub<PbEnumDefinition> {
 
-  private String name;
+  private final String name;
 
   public PbEnumDefinitionStub(
       StubElement parent,

@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 public class PbGroupDefinitionStub extends StubBase<PbGroupDefinition>
     implements PbNamedElementStub<PbGroupDefinition>, PbStatementOwnerStub<PbGroupDefinition> {
 
-  private String name;
+  private final String name;
 
   public PbGroupDefinitionStub(
       StubElement parent,

@@ -68,7 +68,7 @@ public class PbLanguageSettingsForm implements ConfigurableUi<PbProjectSettings>
   private JCheckBox autoConfigCheckbox;
 
   // A list of components that are enabled/disabled based on the auto config check box.
-  private List<JComponent> manualConfigComponents = new ArrayList<>();
+  private final List<JComponent> manualConfigComponents = new ArrayList<>();
 
   PbLanguageSettingsForm(Project project) {
     this.project = project;

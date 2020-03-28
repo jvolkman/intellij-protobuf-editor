@@ -25,7 +25,7 @@ import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
 
 public class StringLexer extends FlexAdapter {
 
-  private _StringLexer lexer;
+  private final _StringLexer lexer;
 
   public StringLexer() {
     this(ProtoTokenTypes.STRING_LITERAL);

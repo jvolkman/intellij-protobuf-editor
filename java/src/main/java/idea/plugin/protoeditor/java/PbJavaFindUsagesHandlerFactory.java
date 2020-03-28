@@ -95,7 +95,7 @@ public class PbJavaFindUsagesHandlerFactory extends FindUsagesHandlerFactory {
     // non-specialized members could live in a base class for the sake of smaller code size.
     private static final boolean CHECK_BASES = false;
 
-    private NotNullLazyValue<List<NameGenerator>> nameGenerators =
+    private final NotNullLazyValue<List<NameGenerator>> nameGenerators =
         new NotNullLazyValue<List<NameGenerator>>() {
           @NotNull
           @Override
