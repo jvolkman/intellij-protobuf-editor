@@ -50,88 +50,88 @@ public class PbOptionReferenceTest extends PbCodeInsightFixtureTestCase {
     return ref.resolve();
   }
 
-  public void testCustomExtendedFieldOption() throws Exception {
+  public void testCustomExtendedFieldOption() {
     assertIsField(resolve(), "foo.bar.crazy_extended_option_field");
   }
 
-  public void testCustomFieldOption() throws Exception {
+  public void testCustomFieldOption() {
     assertIsField(resolve(), "foo.bar.MyType.crazy_option_field");
   }
 
-  public void testEnumOption() throws Exception {
+  public void testEnumOption() {
     assertIsField(resolve(), "google.protobuf.EnumOptions.allow_alias");
   }
 
-  public void testEnumValueOption() throws Exception {
+  public void testEnumValueOption() {
     assertIsField(resolve(), "google.protobuf.EnumValueOptions.deprecated");
   }
 
-  public void testFieldOption() throws Exception {
+  public void testFieldOption() {
     assertIsField(resolve(), "google.protobuf.FieldOptions.weak");
   }
 
-  public void testFileOption() throws Exception {
+  public void testFileOption() {
     assertIsField(resolve(), "google.protobuf.FileOptions.java_package");
   }
 
-  public void testMessageOption() throws Exception {
+  public void testMessageOption() {
     assertIsField(resolve(), "google.protobuf.MessageOptions.deprecated");
   }
 
-  public void testMethodOption() throws Exception {
+  public void testMethodOption() {
     assertIsField(resolve(), "google.protobuf.MethodOptions.deprecated");
   }
 
-  public void testOneofCustomOption() throws Exception {
+  public void testOneofCustomOption() {
     assertIsField(resolve(), "foo.bar.test_oneof_option");
   }
 
-  public void testServiceOption() throws Exception {
+  public void testServiceOption() {
     assertIsField(resolve(), "google.protobuf.ServiceOptions.deprecated");
   }
 
-  public void testMapKeyOption() throws Exception {
+  public void testMapKeyOption() {
     assertIsField(resolve(), "foo.bar.TestMessage.SomeMapEntry.key");
   }
 
-  public void testMapValueOption() throws Exception {
+  public void testMapValueOption() {
     assertIsField(resolve(), "foo.bar.TestMessage.SomeMapEntry.value");
   }
 
-  public void testGroupDefinitionFieldOption() throws Exception {
+  public void testGroupDefinitionFieldOption() {
     assertIsField(resolve(), "foo.bar.mygroupoption");
   }
 
-  public void testGroupDefinitionMemberOption() throws Exception {
+  public void testGroupDefinitionMemberOption() {
     assertIsField(resolve(), "foo.bar.MyGroupOption.zz");
   }
 
-  public void testEnumValueReference() throws Exception {
+  public void testEnumValueReference() {
     assertIsEnumValue(resolve(), "google.protobuf.FieldOptions.STRING_PIECE");
   }
 
-  public void testCustomOptionEnumValueReference() throws Exception {
+  public void testCustomOptionEnumValueReference() {
     assertIsEnumValue(resolve(), "foo.bar.FOO");
   }
 
-  public void testCustomOptionExtensionNameEnumValueReference() throws Exception {
+  public void testCustomOptionExtensionNameEnumValueReference() {
     assertIsEnumValue(resolve(), "foo.bar.FOO");
   }
 
-  public void testCustomOptionEnumKeywordNameReference() throws Exception {
+  public void testCustomOptionEnumKeywordNameReference() {
     assertIsEnumValue(resolve(), "foo.bar.inf");
   }
 
-  public void testOptionNameDoesNotResolveExtensionField() throws Exception {
+  public void testOptionNameDoesNotResolveExtensionField() {
     // A non-extension option name should not resolve extension fields in the target type.
     assertNull(resolve());
   }
 
-  public void testFirstOfMultipleExtensionNames() throws Exception {
+  public void testFirstOfMultipleExtensionNames() {
     assertIsField(resolve(), "foo.bar.opt");
   }
 
-  public void testExtensionRangeOption() throws Exception {
+  public void testExtensionRangeOption() {
     assertIsField(resolve(), "foo.bar.value_ext");
   }
 

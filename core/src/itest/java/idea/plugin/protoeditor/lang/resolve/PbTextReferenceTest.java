@@ -51,66 +51,66 @@ public class PbTextReferenceTest extends PbCodeInsightFixtureTestCase {
     return ref.resolve();
   }
 
-  public void testTextTopLevelFieldReference() throws Exception {
+  public void testTextTopLevelFieldReference() {
     assertIsField(resolve(), "foo.bar.MyType.nested");
   }
 
-  public void testTextNestedFieldReference() throws Exception {
+  public void testTextNestedFieldReference() {
     assertIsField(resolve(), "foo.bar.MyNestedType.str");
   }
 
-  public void testTextEnumValueReference() throws Exception {
+  public void testTextEnumValueReference() {
     assertIsEnumValue(resolve(), "foo.bar.FOO");
   }
 
-  public void testTextEnumNumberReference() throws Exception {
+  public void testTextEnumNumberReference() {
     assertIsEnumValue(resolve(), "foo.bar.FOO");
   }
 
-  public void testTextExtensionNameReference() throws Exception {
+  public void testTextExtensionNameReference() {
     assertIsField(resolve(), "foo.bar.ext_opt");
   }
 
-  public void testTextAnyTypeReference() throws Exception {
+  public void testTextAnyTypeReference() {
     myFixture.configureByFile("lang/options/any.proto");
     assertIsMessage(resolve(), "foo.bar.MyType");
   }
 
-  public void testTextAnyValueReference() throws Exception {
+  public void testTextAnyValueReference() {
     myFixture.configureByFile("lang/options/any.proto");
     assertIsField(resolve(), "foo.bar.MyType.value");
   }
 
-  public void testTextAnyDirectValueReference() throws Exception {
+  public void testTextAnyDirectValueReference() {
     myFixture.configureByFile("lang/options/any.proto");
     assertIsField(resolve(), "foo.bar.MyType.value");
   }
 
-  public void testTextNestedAnyValueReference() throws Exception {
+  public void testTextNestedAnyValueReference() {
     myFixture.configureByFile("lang/options/any.proto");
     assertIsField(resolve(), "foo.bar.AnyType2.bar");
   }
 
-  public void testTextFieldDoesNotResolveExtensionField() throws Exception {
+  public void testTextFieldDoesNotResolveExtensionField() {
     // A non-extension field name should not resolve extension fields in the target type.
     assertNull(resolve());
   }
 
-  public void testAggregateExtensionImport() throws Exception {
+  public void testAggregateExtensionImport() {
     myFixture.configureByFile("lang/options/constraints.proto");
     myFixture.configureByFile("lang/options/validation.proto");
     assertIsField(resolve(), "ext_bug.validation.InRange.min");
   }
 
-  public void testTextGroupDefinitionFieldOption() throws Exception {
+  public void testTextGroupDefinitionFieldOption() {
     assertIsField(resolve(), "foo.bar.OptionType.mygroupoption");
   }
 
-  public void testTextGroupDefinitionFieldOptionUnresolved() throws Exception {
+  public void testTextGroupDefinitionFieldOptionUnresolved() {
     assertNull(resolve());
   }
 
-  public void testTextGroupDefinitionMemberOption() throws Exception {
+  public void testTextGroupDefinitionMemberOption() {
     assertIsField(resolve(), "foo.bar.OptionType.MyGroupOption.zz");
   }
 
