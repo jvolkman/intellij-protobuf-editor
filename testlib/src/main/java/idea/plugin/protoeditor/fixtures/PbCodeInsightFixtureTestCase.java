@@ -27,11 +27,6 @@ public class PbCodeInsightFixtureTestCase extends BasePlatformTestCase {
   protected final Disposable testDisposable = new TestDisposable();
 
   @Override
-  protected void setUp() throws Exception {
-    super.setUp();
-  }
-
-  @Override
   protected void tearDown() throws Exception {
     Disposer.dispose(testDisposable);
     super.tearDown();
