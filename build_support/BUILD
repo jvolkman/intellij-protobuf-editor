@@ -5,22 +5,22 @@ package(default_visibility = ["//visibility:public"])
 #
 alias(
     name = "intellij_sdk",
-    actual = "@idea_ue_2019_3//:plugin_sdk"
+    actual = "@idea_ue_2020_1//:plugin_sdk"
 )
 
 alias(
     name = "_java_support_internal",
-    actual = "@idea_ue_2019_3//:java_support"
+    actual = "@idea_ue_2020_1//:java_support"
 )
 
 alias(
     name = "_go_support_internal",
-    actual = "@go_2019_3//:plugin_sdk"
+    actual = "@go_2020_1//:plugin_sdk"
 )
 
 alias(
     name = "_python_support_internal",
-    actual = "@python_2019_3//:plugin_sdk"
+    actual = "@python_2020_1//:plugin_sdk"
 )
 
 #
