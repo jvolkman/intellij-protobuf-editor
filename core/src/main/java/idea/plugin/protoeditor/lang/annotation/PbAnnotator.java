@@ -19,9 +19,7 @@ import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import com.intellij.codeInspection.ProblemHighlightType;
-import com.intellij.lang.annotation.Annotation;
-import com.intellij.lang.annotation.AnnotationHolder;
-import com.intellij.lang.annotation.Annotator;
+import com.intellij.lang.annotation.*;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNameIdentifierOwner;
@@ -152,7 +150,7 @@ public class PbAnnotator implements Annotator {
           }
 
           @Override
-          public void visitElement(PsiElement element) {
+          public void visitElement(@NotNull PsiElement element) {
             if (ProtoTokenTypes.IDENTIFIER_LITERAL.equals(element.getNode().getElementType())) {
               PsiElement parent = element.getParent();
               if (parent instanceof PbSymbol
@@ -211,7 +209,9 @@ public class PbAnnotator implements Annotator {
     if (literal != null) {
       String error = tester.testValue(literal);
       if (error != null) {
-        holder.createErrorAnnotation(literal.getTextRange(), error);
+        holder.newAnnotation(HighlightSeverity.ERROR, error)
+            .range(literal.getTextRange())
+            .create();
       }
     }
   }
@@ -222,12 +222,15 @@ public class PbAnnotator implements Annotator {
     if (literal != null) {
       if (name.getSpecialType() == SpecialOptionType.FIELD_DEFAULT) {
         // Message fields cannot have default values.
-        holder.createErrorAnnotation(
-            option.getTextRange(), PbLangBundle.message("message.field.cannot.have.default.value"));
+        holder.newAnnotation(
+            HighlightSeverity.ERROR, PbLangBundle.message("message.field.cannot.have.default.value"))
+            .range(option.getTextRange())
+            .create();
       } else if (!(literal instanceof PbAggregateValue)) {
         // Message options must be set to aggregate values.
-        holder.createErrorAnnotation(
-            literal.getTextRange(), PbLangBundle.message("aggregate.value.expected"));
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("aggregate.value.expected"))
+            .range(literal.getTextRange())
+            .create();
       }
     }
   }
@@ -237,8 +240,9 @@ public class PbAnnotator implements Annotator {
     if (literal instanceof PbIdentifierValue) {
       SharedAnnotations.annotateEnumOptionValue((PbIdentifierValue) literal, holder);
     } else if (literal != null) {
-      holder.createErrorAnnotation(
-          literal.getTextRange(), PbLangBundle.message("enum.value.expected"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("enum.value.expected"))
+          .range(literal.getTextRange())
+          .create();
     }
   }
 
@@ -254,7 +258,9 @@ public class PbAnnotator implements Annotator {
     }
     BuiltInType keyBuiltInType = keyType.getBuiltInType();
     if (keyBuiltInType == null || !ALLOWED_KEY_TYPES.contains(keyBuiltInType)) {
-      holder.createErrorAnnotation(keyType, PbLangBundle.message("map.key.type"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("map.key.type"))
+          .range(keyType)
+          .create();
     }
   }
 
@@ -278,9 +284,9 @@ public class PbAnnotator implements Annotator {
     }
     Long enumNumber = numberValue.getLongValue();
     if (enumNumber != null && enumNumber != 0) {
-      holder.createErrorAnnotation(
-          valueType.getSymbolPath().getSymbol(),
-          PbLangBundle.message("map.value.first.enum.value.zero"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("map.value.first.enum.value.zero"))
+          .range(valueType.getSymbolPath().getSymbol())
+          .create();
     }
   }
 
@@ -306,7 +312,9 @@ public class PbAnnotator implements Annotator {
       TextRange range =
           TextRange.create(
               enumDefinition.getTextRange().getStartOffset(), name.getTextRange().getEndOffset());
-      holder.createErrorAnnotation(range, PbLangBundle.message("enum.at.least.one.value"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("enum.at.least.one.value"))
+          .range(range)
+          .create();
     }
   }
 
@@ -335,7 +343,9 @@ public class PbAnnotator implements Annotator {
           TextRange.create(
               extendDefinition.getTextRange().getStartOffset(),
               extendDefinition.getTypeName().getTextRange().getEndOffset());
-      holder.createErrorAnnotation(range, PbLangBundle.message("extend.at.least.one.field"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("extend.at.least.one.field"))
+          .range(range)
+          .create();
     }
   }
 
@@ -354,7 +364,9 @@ public class PbAnnotator implements Annotator {
       TextRange range =
           TextRange.create(
               oneofDefinition.getTextRange().getStartOffset(), name.getTextRange().getEndOffset());
-      holder.createErrorAnnotation(range, PbLangBundle.message("oneof.at.least.one.field"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("oneof.at.least.one.field"))
+          .range(range)
+          .create();
     }
   }
 
@@ -386,7 +398,9 @@ public class PbAnnotator implements Annotator {
     if (!((PbMessageType) owner).isMessageSet()) {
       return;
     }
-    holder.createErrorAnnotation(field, PbLangBundle.message("message.set.fields"));
+    holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("message.set.fields"))
+        .range(field)
+        .create();
   }
 
   private static void annotateMessageSetExtensionField(PbField field, AnnotationHolder holder) {
@@ -403,16 +417,18 @@ public class PbAnnotator implements Annotator {
     PbFieldLabel label = field.getDeclaredLabel();
     if (label != null) {
       if (field.getCanonicalLabel() != CanonicalFieldLabel.OPTIONAL) {
-        holder.createErrorAnnotation(
-            label, PbLangBundle.message("message.set.extensions.optional.messages"));
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("message.set.extensions.optional.messages"))
+            .range(label)
+            .create();
       }
     }
     // Type must be a message.
     PbTypeName type = field.getTypeName();
     if (type != null
         && PbPsiUtil.resolveRefToType(type.getEffectiveReference(), PbMessageType.class) == null) {
-      holder.createErrorAnnotation(
-          type, PbLangBundle.message("message.set.extensions.optional.messages"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("message.set.extensions.optional.messages"))
+          .range(type)
+          .create();
     }
   }
 
@@ -425,9 +441,13 @@ public class PbAnnotator implements Annotator {
       return;
     }
     if (statement instanceof PbMapField) {
-      holder.createErrorAnnotation(label, PbLangBundle.message("map.fields.cannot.have.labels"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("map.fields.cannot.have.labels"))
+          .range(label)
+          .create();
     } else if (statement.getStatementOwner() instanceof PbOneofDefinition) {
-      holder.createErrorAnnotation(label, PbLangBundle.message("oneof.fields.cannot.have.labels"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("oneof.fields.cannot.have.labels"))
+          .range(label)
+          .create();
     }
   }
 
@@ -467,9 +487,10 @@ public class PbAnnotator implements Annotator {
       default:
         TextRange range = symbol != null ? symbol.getTextRange() : name.getTextRange();
         String symbolName = symbol != null ? symbol.getText() : name.getText();
-        holder
-            .createErrorAnnotation(range, PbLangBundle.message("cannot.resolve.option", symbolName))
-            .setHighlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL);
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("cannot.resolve.option", symbolName))
+            .range(range)
+            .highlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL)
+            .create();
     }
   }
 
@@ -478,17 +499,18 @@ public class PbAnnotator implements Annotator {
     if (name instanceof PbMessageTypeName) {
       // Must be a message type.
       if (PbPsiUtil.resolveRefToType(name.getEffectiveReference(), PbMessageType.class) == null) {
-        holder.createErrorAnnotation(
-            name.getSymbolPath().getSymbol(), PbLangBundle.message("message.type.expected"));
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("message.type.expected"))
+            .range(name.getSymbolPath().getSymbol())
+            .create();
       }
     } else {
       // If it's not a built-in type, it must be a message or enum.
       if (!name.isBuiltInType()
           && PbPsiUtil.resolveRefToType(name.getEffectiveReference(), PbNamedTypeElement.class)
               == null) {
-        holder.createErrorAnnotation(
-            name.getSymbolPath().getSymbol(),
-            PbLangBundle.message("message.enum.or.builtin.type.expected"));
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("message.enum.or.builtin.type.expected"))
+            .range(name.getSymbolPath().getSymbol())
+            .create();
       }
     }
   }
@@ -514,9 +536,9 @@ public class PbAnnotator implements Annotator {
     if (type instanceof PbMessageType && field.isRepeated()) {
       // Repeated message fields must be defined using aggregate syntax. So, a repeated message
       // field cannot be a qualifier.
-      holder.createErrorAnnotation(
-          getOptionNameAnnotationElement(name),
-          PbLangBundle.message("repeated.message.aggregate.value", field.getName()));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("repeated.message.aggregate.value", field.getName()))
+          .range(getOptionNameAnnotationElement(name))
+          .create();
     }
   }
 
@@ -536,9 +558,9 @@ public class PbAnnotator implements Annotator {
     if (specialType == SpecialOptionType.FIELD_DEFAULT) {
       PbField parent = PsiTreeUtil.getParentOfType(name, PbField.class);
       if (parent != null && parent.isRepeated()) {
-        holder.createErrorAnnotation(
-            getOptionNameAnnotationElement(name),
-            PbLangBundle.message("repeated.field.default.value"));
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("repeated.field.default.value"))
+            .range(getOptionNameAnnotationElement(name))
+            .create();
       }
     }
 
@@ -546,8 +568,9 @@ public class PbAnnotator implements Annotator {
     if (specialType == SpecialOptionType.FIELD_JSON_NAME) {
       PbField parentField = PsiTreeUtil.getParentOfType(name, PbField.class);
       if (parentField != null && parentField.isExtension()) {
-        holder.createErrorAnnotation(
-            name, PbLangBundle.message("extension.field.json.name.not.allowed"));
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("extension.field.json.name.not.allowed"))
+            .range(name)
+            .create();
       }
     }
   }
@@ -555,20 +578,19 @@ public class PbAnnotator implements Annotator {
   private static void annotateImportName(PbImportName name, AnnotationHolder holder) {
     switch (SharedAnnotations.getReferenceState(name.getReference())) {
       case AMBIGUOUS:
-        holder.createErrorAnnotation(
-            name.getStringValue().getTextRangeNoQuotes(),
-            PbLangBundle.message("ambiguous.import", name.getStringValue().getAsString()));
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("ambiguous.import", name.getStringValue().getAsString()))
+            .range(name.getStringValue().getTextRangeNoQuotes())
+            .create();
         break;
       case VALID:
       case NULL:
         break;
       case UNRESOLVED:
       default:
-        holder
-            .createErrorAnnotation(
-                name.getStringValue().getTextRangeNoQuotes(),
-                PbLangBundle.message("cannot.resolve.import", name.getStringValue().getAsString()))
-            .setHighlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL);
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("cannot.resolve.import", name.getStringValue().getAsString()))
+            .range(name.getStringValue().getTextRangeNoQuotes())
+            .highlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL)
+            .create();
     }
   }
 
@@ -595,8 +617,7 @@ public class PbAnnotator implements Annotator {
       return;
     }
 
-    Annotation createdAnnotation = createConflictAnnotation(file, symbol, qualifiedName, holder);
-    if (createdAnnotation == null && symbol instanceof PbSymbolContributor) {
+    if (!createConflictAnnotation(file, symbol, qualifiedName, holder) && symbol instanceof PbSymbolContributor) {
       // No conflicts as defined in source, but let's make sure none of the contributed symbols
       // conflict as well.
       for (PbSymbol contributed : ((PbSymbolContributor) symbol).getAdditionalSiblings()) {
@@ -616,12 +637,13 @@ public class PbAnnotator implements Annotator {
       return;
     }
     if (!packageStatement.equals(firstPackageStatement)) {
-      holder.createErrorAnnotation(
-          packageStatement, PbLangBundle.message("duplicate.package.statement"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("duplicate.package.statement"))
+          .range(packageStatement)
+          .create();
     }
   }
 
-  private static Annotation createConflictAnnotation(
+  private static boolean createConflictAnnotation(
       PbFile file, PbSymbol symbol, QualifiedName qualifiedName, AnnotationHolder holder) {
     PsiElement annotationElement = getSymbolNameAnnotationElement(symbol);
     int symbolOffset = annotationElement.getTextRange().getStartOffset();
@@ -647,12 +669,13 @@ public class PbAnnotator implements Annotator {
       if (file.equals(otherFile)) {
         PsiElement otherAnnotationElement = getSymbolNameAnnotationElement(otherSymbol);
         if (otherAnnotationElement.getTextRange().getStartOffset() < symbolOffset) {
-          return holder.createErrorAnnotation(
-              annotationElement,
-              PbLangBundle.message(
-                  "symbol.already.defined.in.scope",
-                  qualifiedName.getLastComponent(),
-                  qualifiedName.removeLastComponent().toString()));
+          holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message(
+              "symbol.already.defined.in.scope",
+              qualifiedName.getLastComponent(),
+              qualifiedName.removeLastComponent().toString()))
+              .range(annotationElement)
+              .create();
+          return true;
         }
       } else {
         conflictFiles.add(otherFile);
@@ -662,12 +685,13 @@ public class PbAnnotator implements Annotator {
       // Figure out the import path (as written in the import statement) for the first-listed
       // conflicting import.
       String importName = getFirstImportName(file, conflictFiles);
-      return holder.createErrorAnnotation(
-          annotationElement,
-          PbLangBundle.message(
-              "symbol.already.defined.in.other.file", qualifiedName.toString(), importName));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message(
+          "symbol.already.defined.in.other.file", qualifiedName.toString(), importName))
+          .range(annotationElement)
+          .create();
+      return true;
     }
-    return null;
+    return false;
   }
 
   private static String getFirstImportName(PbFile file, Set<PbFile> conflictFiles) {

@@ -16,7 +16,6 @@
 package idea.plugin.protoeditor.ide.highlighter;
 
 import com.intellij.codeInsight.daemon.impl.HighlightInfoType;
-import com.intellij.lang.annotation.Annotation;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.Annotator;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
@@ -101,7 +100,7 @@ public class PbHighlightingAnnotator implements Annotator {
           }
 
           @Override
-          public void visitElement(PsiElement element) {
+          public void visitElement(@NotNull PsiElement element) {
             IElementType type = element.getNode().getElementType();
             if (Objects.equals(
                 PbSyntaxHighlighter.getTokenKey(type), PbSyntaxHighlighter.KEYWORD)) {
@@ -128,9 +127,9 @@ public class PbHighlightingAnnotator implements Annotator {
       @NotNull PsiElement element,
       @NotNull AnnotationHolder holder,
       @NotNull TextAttributesKey key) {
-    Annotation annotation =
-        holder.createAnnotation(
-            HighlightInfoType.SYMBOL_TYPE_SEVERITY, element.getTextRange(), null);
-    annotation.setTextAttributes(key);
+    holder.newSilentAnnotation(HighlightInfoType.SYMBOL_TYPE_SEVERITY)
+        .range(element.getTextRange())
+        .textAttributes(key)
+        .create();
   }
 }

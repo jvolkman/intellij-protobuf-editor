@@ -19,6 +19,7 @@ import com.intellij.codeInspection.ProblemHighlightType;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.AnnotationSession;
 import com.intellij.lang.annotation.Annotator;
+import com.intellij.lang.annotation.HighlightSeverity;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.util.Key;
 import com.intellij.openapi.util.TextRange;
@@ -205,8 +206,9 @@ public class PbTextAnnotator implements Annotator {
         PsiElement next = name.getNextSibling();
         if (next == null || !":".equals(next.getText())) {
           TextRange range = TextRange.from(name.getTextOffset() + name.getTextLength(), 1);
-          holder.createErrorAnnotation(
-              range, PbLangBundle.message("expected.colon.after.non.message.field"));
+          holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("expected.colon.after.non.message.field"))
+              .range(range)
+              .create();
         }
       }
 
@@ -223,14 +225,18 @@ public class PbTextAnnotator implements Annotator {
       if (value instanceof PbTextLiteral) {
         String error = tester.testValue((PbTextLiteral) value);
         if (error != null) {
-          holder.createErrorAnnotation(value.getTextRange(), error);
+          holder.newAnnotation(HighlightSeverity.ERROR, error)
+              .range(value.getTextRange())
+              .create();
         }
       } else {
         // Probably a message, which is not a literal.
         // We can pass null to the tester to get an appropriate error message.
         String error = tester.testValue(null);
         if (error != null) {
-          holder.createErrorAnnotation(value, error);
+          holder.newAnnotation(HighlightSeverity.ERROR, error)
+              .range(value)
+              .create();
         }
       }
     }
@@ -241,8 +247,9 @@ public class PbTextAnnotator implements Annotator {
     for (PbTextElement value : field.getValues()) {
       if (!(value instanceof PbTextMessage)) {
         // Message options must be set to message values.
-        holder.createErrorAnnotation(
-            value.getTextRange(), PbLangBundle.message("message.value.expected"));
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("message.value.expected"))
+            .range(value.getTextRange())
+            .create();
       }
     }
   }
@@ -255,8 +262,9 @@ public class PbTextAnnotator implements Annotator {
       } else if (value instanceof PbTextNumberValue && ((PbTextNumberValue) value).isValidInt32()) {
         SharedAnnotations.annotateEnumOptionValue((PbTextNumberValue) value, holder);
       } else {
-        holder.createErrorAnnotation(
-            value.getTextRange(), PbLangBundle.message("enum.value.expected"));
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("enum.value.expected"))
+            .range(value.getTextRange())
+            .create();
       }
     }
   }
@@ -267,8 +275,9 @@ public class PbTextAnnotator implements Annotator {
     PbField declaredField = field.getFieldName().getDeclaredField();
     if (declaredField != null && isIncorrectValueListUsage(field, declaredField)) {
       // Non-repeated fields cannot be initialized with value lists.
-      holder.createErrorAnnotation(
-          valueList, PbLangBundle.message("non.repeated.value.list", declaredField.getName()));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("non.repeated.value.list", declaredField.getName()))
+          .range(valueList)
+          .create();
     }
   }
 
@@ -294,10 +303,10 @@ public class PbTextAnnotator implements Annotator {
         default:
           TextRange range = identifier != null ? identifier.getTextRange() : name.getTextRange();
           String symbolName = identifier != null ? identifier.getText() : name.getText();
-          holder
-              .createErrorAnnotation(
-                  range, PbLangBundle.message("cannot.resolve.field", symbolName))
-              .setHighlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL);
+          holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("cannot.resolve.field", symbolName))
+              .range(range)
+              .highlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL)
+              .create();
       }
     }
 
@@ -345,8 +354,9 @@ public class PbTextAnnotator implements Annotator {
     if (ref != null) {
       PsiElement resolved = ref.resolve();
       if (resolved != null && !(resolved instanceof PbMessageType)) {
-        holder.createErrorAnnotation(
-            symbolPath.getSymbol(), PbLangBundle.message("message.type.expected"));
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("message.type.expected"))
+            .range(symbolPath.getSymbol())
+            .create();
       }
     }
 
@@ -357,7 +367,9 @@ public class PbTextAnnotator implements Annotator {
     }
     PbTextMessage parentMessage = PsiTreeUtil.getParentOfType(thisField, PbTextMessage.class);
     if (parentMessage == null || !isAnyType(parentMessage.getDeclaredMessage())) {
-      holder.createErrorAnnotation(name, PbLangBundle.message("any.value.parent.field"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("any.value.parent.field"))
+          .range(name)
+          .create();
     }
   }
 
@@ -369,7 +381,9 @@ public class PbTextAnnotator implements Annotator {
       @NotNull PbTextDomain domain, @NotNull AnnotationHolder holder) {
     String domainText = domain.getDomainName();
     if (!"type.googleapis.com".equals(domainText) && !"type.googleprod.com".equals(domainText)) {
-      holder.createErrorAnnotation(domain, PbLangBundle.message("invalid.any.type.domain"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("invalid.any.type.domain"))
+          .range(domain)
+          .create();
     }
   }
 

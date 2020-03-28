@@ -17,6 +17,7 @@ package idea.plugin.protoeditor.lang.annotation;
 
 import com.google.common.collect.ImmutableMap;
 import com.intellij.lang.annotation.AnnotationHolder;
+import com.intellij.lang.annotation.HighlightSeverity;
 import com.intellij.psi.util.CachedValueProvider.Result;
 import com.intellij.psi.util.CachedValuesManager;
 import com.intellij.psi.util.PsiModificationTracker;
@@ -71,7 +72,9 @@ public class SpecialOptionTracker {
     }
 
     // The occurrence is non-null and is not our option, so ours is a duplicate.
-    holder.createErrorAnnotation(
-        name, PbLangBundle.message("special.option.multiple.times", name.getText()));
+    holder.newAnnotation(
+        HighlightSeverity.ERROR, PbLangBundle.message("special.option.multiple.times", name.getText()))
+        .range(name)
+        .create();
   }
 }

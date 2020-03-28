@@ -16,8 +16,8 @@
 package idea.plugin.protoeditor.lang.annotation;
 
 import com.intellij.codeInspection.ProblemHighlightType;
-import com.intellij.lang.annotation.Annotation;
 import com.intellij.lang.annotation.AnnotationHolder;
+import com.intellij.lang.annotation.HighlightSeverity;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
@@ -81,11 +81,11 @@ public class SharedAnnotations {
         break;
       case UNRESOLVED:
       default:
-        holder
-            .createErrorAnnotation(
-                enumElement.getTextRange(),
-                PbLangBundle.message("cannot.resolve.enum.value", enumElement.getText()))
-            .setHighlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL);
+        holder.newAnnotation(
+            HighlightSeverity.ERROR, PbLangBundle.message("cannot.resolve.enum.value", enumElement.getText()))
+            .range(enumElement.getTextRange())
+            .highlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL)
+            .create();
     }
   }
 
@@ -93,17 +93,16 @@ public class SharedAnnotations {
   static void annotateStringPart(
       ProtoStringPart part, AnnotationHolder holder, TextAttributesKey invalidEscapeAttributes) {
     if (part.isUnterminated()) {
-      Annotation annotation =
-          holder.createErrorAnnotation(
-              part.getTextRange(), PbLangBundle.message("unterminated.string"));
-      annotation.setAfterEndOfLine(true);
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("unterminated.string"))
+          .range(part.getTextRange())
+          .afterEndOfLine()
+          .create();
     }
     for (TextRange range : part.getInvalidEscapeRanges()) {
-      Annotation annotation =
-          holder.createErrorAnnotation(
-              range.shiftRight(part.getTextOffset()),
-              PbLangBundle.message("illegal.escape.sequence"));
-      annotation.setTextAttributes(invalidEscapeAttributes);
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("illegal.escape.sequence"))
+          .range(range.shiftRight(part.getTextOffset()))
+          .textAttributes(invalidEscapeAttributes)
+          .create();
     }
   }
 
@@ -142,20 +141,21 @@ public class SharedAnnotations {
         if (path.getParent() instanceof ProtoSymbolPath) {
           return false;
         }
-        holder.createErrorAnnotation(
-            path.getSymbol().getTextRange(),
-            PbLangBundle.message("ambiguous.symbol", path.getSymbol().getText()));
+        holder.newAnnotation(
+            HighlightSeverity.ERROR, PbLangBundle.message("ambiguous.symbol", path.getSymbol().getText()))
+            .range(path.getSymbol().getTextRange())
+            .create();
         return true;
       case VALID:
       case NULL:
         break;
       case UNRESOLVED:
       default:
-        holder
-            .createErrorAnnotation(
-                path.getSymbol().getTextRange(),
-                PbLangBundle.message("cannot.resolve.symbol", path.getSymbol().getText()))
-            .setHighlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL);
+        holder.newAnnotation(
+            HighlightSeverity.ERROR, PbLangBundle.message("cannot.resolve.symbol", path.getSymbol().getText()))
+            .range(path.getSymbol().getTextRange())
+            .highlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL)
+            .create();
         return true;
     }
     return false;
@@ -184,7 +184,9 @@ public class SharedAnnotations {
     if (resolved instanceof PbField) {
       // This could happen if the descriptor is missing.
       if (qualifierType == null) {
-        holder.createErrorAnnotation(symbolRange, PbLangBundle.message("unresolved.parent.type"));
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("unresolved.parent.type"))
+            .range(symbolRange)
+            .create();
       } else {
         PbField field = (PbField) resolved;
         boolean isExtension =
@@ -192,17 +194,19 @@ public class SharedAnnotations {
                 ? PbPsiUtil.fieldIsExtensionOrMember(field, qualifierType)
                 : PbPsiUtil.fieldIsExtension(field, qualifierType);
         if (!isExtension) {
-          holder.createErrorAnnotation(
-              symbolRange,
-              PbLangBundle.message(
-                  "field.does.not.extend.type", field.getName(), qualifierType.getQualifiedName()));
+          holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message(
+              "field.does.not.extend.type", field.getName(), qualifierType.getQualifiedName()))
+              .range(symbolRange)
+              .create();
         }
       }
 
     } else {
       // Extension option name must point to a field.
-      holder.createErrorAnnotation(
-          symbolRange, PbLangBundle.message("extension.option.not.a.field", referenceString));
+      holder.newAnnotation(
+          HighlightSeverity.ERROR, PbLangBundle.message("extension.option.not.a.field", referenceString))
+          .range(symbolRange)
+          .create();
     }
   }
 }

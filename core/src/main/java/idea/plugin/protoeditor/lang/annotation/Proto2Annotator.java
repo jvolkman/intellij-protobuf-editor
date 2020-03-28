@@ -18,6 +18,7 @@ package idea.plugin.protoeditor.lang.annotation;
 import com.google.common.base.Ascii;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.Annotator;
+import com.intellij.lang.annotation.HighlightSeverity;
 import com.intellij.psi.PsiElement;
 import idea.plugin.protoeditor.lang.PbLangBundle;
 import idea.plugin.protoeditor.lang.psi.*;
@@ -58,7 +59,9 @@ public class Proto2Annotator implements Annotator {
       return;
     }
     if (field.getDeclaredLabel() == null) {
-      holder.createErrorAnnotation(field, PbLangBundle.message("proto2.field.label.required"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto2.field.label.required"))
+          .range(field)
+          .create();
     }
   }
 
@@ -70,12 +73,15 @@ public class Proto2Annotator implements Annotator {
     PsiElement nameIdentifier = group.getNameIdentifier();
     String name = group.getName();
     if (name != null && nameIdentifier != null && !Ascii.isUpperCase(name.charAt(0))) {
-      holder.createErrorAnnotation(
-          nameIdentifier, PbLangBundle.message("proto2.group.name.capital.letter"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto2.group.name.capital.letter"))
+          .range(nameIdentifier)
+          .create();
     }
     if (!(group.getStatementOwner() instanceof PbOneofDefinition)
         && group.getDeclaredLabel() == null) {
-      holder.createErrorAnnotation(group, PbLangBundle.message("proto2.field.label.required"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto2.field.label.required"))
+          .range(group)
+          .create();
     }
   }
 }

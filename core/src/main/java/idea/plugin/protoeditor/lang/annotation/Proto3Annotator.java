@@ -19,6 +19,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.Annotator;
+import com.intellij.lang.annotation.HighlightSeverity;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.CachedValueProvider.Result;
 import com.intellij.psi.util.CachedValuesManager;
@@ -104,7 +105,9 @@ public class Proto3Annotator implements Annotator {
     }
     Long enumNumber = numberValue.getLongValue();
     if (enumNumber != null && enumNumber != 0) {
-      holder.createErrorAnnotation(value, PbLangBundle.message("proto3.first.enum.value.zero"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto3.first.enum.value.zero"))
+          .range(value)
+          .create();
     }
   }
 
@@ -136,8 +139,9 @@ public class Proto3Annotator implements Annotator {
         return;
       }
     }
-    holder.createErrorAnnotation(
-        extendee.getSymbolPath().getSymbol(), PbLangBundle.message("proto3.extensions"));
+    holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto3.extensions"))
+        .range(extendee.getSymbolPath().getSymbol())
+        .create();
   }
 
   /*
@@ -145,7 +149,9 @@ public class Proto3Annotator implements Annotator {
    */
   private static void annotateExtensionsStatement(
       PbExtensionsStatement statement, AnnotationHolder holder) {
-    holder.createErrorAnnotation(statement, PbLangBundle.message("proto3.extension.ranges"));
+    holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto3.extension.ranges"))
+        .range(statement)
+        .create();
   }
 
   /*
@@ -156,9 +162,13 @@ public class Proto3Annotator implements Annotator {
   private static void annotateField(PbField field, AnnotationHolder holder) {
     PbFieldLabel label = field.getDeclaredLabel();
     if (label != null && "optional".equals(label.getText())) {
-      holder.createErrorAnnotation(label, PbLangBundle.message("proto3.optional.fields"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto3.optional.fields"))
+          .range(label)
+          .create();
     } else if (label != null && "required".equals(label.getText())) {
-      holder.createErrorAnnotation(label, PbLangBundle.message("proto3.required.fields"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto3.required.fields"))
+          .range(label)
+          .create();
     }
 
     PsiElement nameIdentifier = field.getNameIdentifier();
@@ -167,8 +177,9 @@ public class Proto3Annotator implements Annotator {
       Multimap<String, PbField> fieldNameMap = getProto3NameToFieldMap(message);
       String convertedName = toLowerWithoutUnderscores(nameIdentifier.getText());
       if (fieldNameMap.get(convertedName).size() > 1) {
-        holder.createErrorAnnotation(
-            nameIdentifier, PbLangBundle.message("proto3.field.name.uniqueness"));
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto3.field.name.uniqueness"))
+            .range(nameIdentifier)
+            .create();
       }
     }
 
@@ -179,8 +190,9 @@ public class Proto3Annotator implements Annotator {
       if (enumDef != null) {
         PbFile definingFile = enumDef.getPbFile();
         if (definingFile.getSyntaxLevel() != SyntaxLevel.PROTO3) {
-          holder.createErrorAnnotation(
-              fieldType.getSymbolPath().getSymbol(), PbLangBundle.message("proto3.enums"));
+          holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto3.enums"))
+              .range(fieldType.getSymbolPath().getSymbol())
+              .create();
         }
       }
     }
@@ -190,7 +202,9 @@ public class Proto3Annotator implements Annotator {
    * Group fields are not allowed in proto3.
    */
   private static void annotateGroupDefinition(PbGroupDefinition group, AnnotationHolder holder) {
-    holder.createErrorAnnotation(group, PbLangBundle.message("proto3.group.fields"));
+    holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto3.group.fields"))
+        .range(group)
+        .create();
   }
 
   /*
@@ -200,7 +214,9 @@ public class Proto3Annotator implements Annotator {
       PbImportStatement statement, AnnotationHolder holder) {
     PsiElement label = statement.getImportLabel();
     if (label != null && statement.isWeak()) {
-      holder.createErrorAnnotation(label, PbLangBundle.message("proto3.weak.imports"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto3.weak.imports"))
+          .range(label)
+          .create();
     }
   }
 
@@ -209,7 +225,9 @@ public class Proto3Annotator implements Annotator {
    */
   private static void annotateOptionExpression(PbOptionExpression option, AnnotationHolder holder) {
     if (option.getOptionName().getSpecialType() == SpecialOptionType.FIELD_DEFAULT) {
-      holder.createErrorAnnotation(option, PbLangBundle.message("proto3.default.values"));
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto3.default.values"))
+          .range(option)
+          .create();
     }
   }
 
@@ -235,13 +253,16 @@ public class Proto3Annotator implements Annotator {
         return;
       }
       if (!"NO_COMPATIBILITY".equals(enumValue.getName())) {
-        holder.createErrorAnnotation(
-            optionName, PbLangBundle.message("proto3.cc_api_compatibility"));
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto3.cc_api_compatibility"))
+            .range(optionName)
+            .create();
       }
     } else if (PbPsiUtil.isDescriptorOption(optionExpression, "message_set_wire_format")) {
       ProtoBooleanValue booleanValue = optionExpression.getBooleanValue();
       if (booleanValue != null && Boolean.TRUE.equals(booleanValue.getBooleanValue())) {
-        holder.createErrorAnnotation(optionName, PbLangBundle.message("proto3.messageset"));
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto3.messageset"))
+            .range(optionName)
+            .create();
       }
     }
   }
