@@ -339,16 +339,14 @@ public class PbJavaFindUsagesHandlerFactoryTest extends LightJavaCodeInsightFixt
   }
 
   private static String describeUsages(List<UsageInfo> uses) {
-    return String.join(
-        ", ",
-        uses.stream()
-            .map(
-                use ->
-                    String.format(
-                        "%s:%s %s",
-                        notNull(use.getFile()).getName(),
-                        use.getNavigationOffset(),
-                        notNull(use.getReference()).getCanonicalText()))
-            .collect(Collectors.toList()));
+    return uses.stream()
+        .map(
+            use ->
+                String.format(
+                    "%s:%s %s",
+                    notNull(use.getFile()).getName(),
+                    use.getNavigationOffset(),
+                    notNull(use.getReference()).getCanonicalText()))
+        .collect(Collectors.joining(", "));
   }
 }
