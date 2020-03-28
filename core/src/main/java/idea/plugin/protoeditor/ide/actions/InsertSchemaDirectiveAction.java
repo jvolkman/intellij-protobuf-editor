@@ -91,11 +91,6 @@ public class InsertSchemaDirectiveAction extends AnAction {
     event.getPresentation().setEnabledAndVisible(true);
   }
 
-  @Override
-  public boolean startInTransaction() {
-    return true;
-  }
-
   private static void insertFileAnnotation(Project project, PbTextFile file, Editor editor) {
     PsiDocumentManager.getInstance(project).commitDocument(editor.getDocument());
     SchemaDirective directive = SchemaDirective.find(file);
