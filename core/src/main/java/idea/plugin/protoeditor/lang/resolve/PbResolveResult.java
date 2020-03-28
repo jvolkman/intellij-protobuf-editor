@@ -32,10 +32,10 @@ public final class PbResolveResult implements ResolveResult {
     ELEMENT
   }
 
-  private PbSymbol symbol;
-  private QualifiedName name;
-  private ResultType resultType;
-  private boolean validResult;
+  private final PbSymbol symbol;
+  private final QualifiedName name;
+  private final ResultType resultType;
+  private final boolean validResult;
 
   PbResolveResult(@NotNull PbSymbol element, QualifiedName name, ResultType resultType) {
     this(element, name, resultType, true);

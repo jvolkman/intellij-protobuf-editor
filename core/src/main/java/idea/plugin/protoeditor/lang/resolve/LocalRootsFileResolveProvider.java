@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
 /** A {@link FileResolveProvider} that simply looks at project roots. Used mainly for testing. */
 public class LocalRootsFileResolveProvider implements FileResolveProvider {
 
-  private String descriptorPath;
+  private final String descriptorPath;
 
   public LocalRootsFileResolveProvider(String descriptorPath) {
     this.descriptorPath = descriptorPath;

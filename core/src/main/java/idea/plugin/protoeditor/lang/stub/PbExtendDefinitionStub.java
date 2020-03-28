@@ -25,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 public class PbExtendDefinitionStub extends StubBase<PbExtendDefinition>
     implements PbStatementStub<PbExtendDefinition>, PbStatementOwnerStub<PbExtendDefinition> {
 
-  private String extendedType;
+  private final String extendedType;
 
   // TODO(volkman): extendedType might not be a string.
   public PbExtendDefinitionStub(

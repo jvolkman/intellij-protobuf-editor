@@ -33,7 +33,7 @@ import java.util.Set;
 /** {@link FileResolveProvider} implementation that uses settings from {@link PbProjectSettings}. */
 public class SettingsFileResolveProvider implements FileResolveProvider {
 
-  private PbProjectSettings staticSettings;
+  private final PbProjectSettings staticSettings;
 
   /** No-op constructor. Settings will be resolved by looking up the PbProjectSettings service. */
   public SettingsFileResolveProvider() {

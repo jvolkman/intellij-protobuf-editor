@@ -25,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 public class PbServiceDefinitionStub extends StubBase<PbServiceDefinition>
     implements PbNamedElementStub<PbServiceDefinition>, PbStatementOwnerStub<PbServiceDefinition> {
 
-  private String name;
+  private final String name;
 
   public PbServiceDefinitionStub(
       StubElement parent,

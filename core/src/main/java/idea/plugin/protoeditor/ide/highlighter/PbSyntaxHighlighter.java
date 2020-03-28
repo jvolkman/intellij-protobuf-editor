@@ -161,7 +161,7 @@ public class PbSyntaxHighlighter extends SyntaxHighlighterBase {
     return Collections.unmodifiableMap(map);
   }
 
-  private boolean highlightKeywords;
+  private final boolean highlightKeywords;
 
   public PbSyntaxHighlighter() {
     this(false);
