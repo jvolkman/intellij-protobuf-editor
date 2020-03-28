@@ -18,7 +18,6 @@ package com.google.idea.testing;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.google.common.io.Files;
-import com.intellij.ide.plugins.PluginManagerCore;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.application.Application;
 import com.intellij.openapi.application.PathManager;
@@ -69,13 +68,11 @@ public class BlazeTestSystemPropertiesRule extends ExternalResource {
 
     setIfEmpty("idea.classpath.index.enabled", "false");
 
-    // Some plugins have a since-build and until-build restriction, so we need
-    // to update the build number here
-    PluginManagerCore.BUILD_NUMBER = readApiVersionNumber();
-    assert PluginManagerCore.BUILD_NUMBER != null;
+    String apiVersionNumber = readApiVersionNumber();
+    assert apiVersionNumber != null;
 
     setIfEmpty(
-            PlatformUtils.PLATFORM_PREFIX_KEY, determinePlatformPrefix(PluginManagerCore.BUILD_NUMBER));
+            PlatformUtils.PLATFORM_PREFIX_KEY, determinePlatformPrefix(apiVersionNumber));
 
     // Tests fail if they access files outside of the project roots and other system directories.
     // Ensure runfiles and platform api are whitelisted.
