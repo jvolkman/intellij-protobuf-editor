@@ -15,14 +15,14 @@
  */
 package idea.plugin.protoeditor.ide.settings;
 
-import com.intellij.ProjectTopics;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.application.ModalityState;
-import com.intellij.openapi.components.ProjectComponent;
+import com.intellij.openapi.components.Service;
+import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ModuleRootEvent;
 import com.intellij.openapi.roots.ModuleRootListener;
-import com.intellij.util.messages.MessageBusConnection;
+import com.intellij.openapi.startup.StartupActivity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -38,17 +38,17 @@ import java.util.TreeSet;
  * PbProjectSettings#isAutoConfigEnabled()} returns <code>true</code>. Configuration is updated
  * whenever the project is opened or the project's roots change.
  */
-public class ProjectSettingsConfiguratorManager implements ProjectComponent {
+@Service
+public final class ProjectSettingsConfiguratorManager {
 
   private final Project project;
-  private MessageBusConnection bus;
 
   public ProjectSettingsConfiguratorManager(Project project) {
     this.project = project;
   }
 
   public static ProjectSettingsConfiguratorManager getInstance(Project project) {
-    return project.getComponent(ProjectSettingsConfiguratorManager.class);
+    return ServiceManager.getService(project, ProjectSettingsConfiguratorManager.class);
   }
 
   /**
@@ -86,30 +86,6 @@ public class ProjectSettingsConfiguratorManager implements ProjectComponent {
     return suggestions;
   }
 
-  @Override
-  public void initComponent() {
-    bus = project.getMessageBus().connect();
-    bus.subscribe(
-        ProjectTopics.PROJECT_ROOTS,
-        new ModuleRootListener() {
-          @Override
-          public void rootsChanged(@NotNull ModuleRootEvent event) {
-            configureSettingsIfNecessary();
-          }
-        });
-  }
-
-  @Override
-  public void disposeComponent() {
-    bus.disconnect();
-    bus = null;
-  }
-
-  @Override
-  public void projectOpened() {
-    configureSettingsIfNecessary();
-  }
-
   private ProjectSettingsConfigurator[] getConfigurators() {
     return ProjectSettingsConfigurator.EP_NAME.getExtensions(project);
   }
@@ -125,6 +101,20 @@ public class ProjectSettingsConfiguratorManager implements ProjectComponent {
         ApplicationManager.getApplication()
             .invokeLater(() -> PbProjectSettings.notifyUpdated(project), ModalityState.NON_MODAL);
       }
+    }
+  }
+
+  static final class ProjectRootsListener implements ModuleRootListener {
+    @Override
+    public void rootsChanged(@NotNull ModuleRootEvent event) {
+      ProjectSettingsConfiguratorManager.getInstance(event.getProject()).configureSettingsIfNecessary();
+    }
+  }
+
+  static final class ProjectOpenedActivity implements StartupActivity {
+    @Override
+    public void runActivity(@NotNull Project project) {
+      ProjectSettingsConfiguratorManager.getInstance(project).configureSettingsIfNecessary();
     }
   }
 }

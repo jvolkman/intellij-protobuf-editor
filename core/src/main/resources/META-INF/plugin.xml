@@ -87,6 +87,8 @@
     </projectConfigurable>
     <projectService serviceImplementation="idea.plugin.protoeditor.ide.settings.PbProjectSettings"/>
     <projectService serviceImplementation="idea.plugin.protoeditor.ide.settings.PbTextLanguageSettings"/>
+    <postStartupActivity
+            implementation="idea.plugin.protoeditor.ide.settings.ProjectSettingsConfiguratorManager$ProjectOpenedActivity"/>
 
     <!-- Enable usage highlights for non-project targets -->
     <useScopeEnlarger implementation="idea.plugin.protoeditor.lang.resolve.PbUseScopeEnlarger"/>
@@ -158,6 +160,12 @@
 
   <application-components>
   </application-components>
+
+  <projectListeners>
+    <listener
+            class="idea.plugin.protoeditor.ide.settings.ProjectSettingsConfiguratorManager$ProjectRootsListener"
+            topic="com.intellij.openapi.roots.ModuleRootListener"/>
+  </projectListeners>
 
   <actions>
     <action
