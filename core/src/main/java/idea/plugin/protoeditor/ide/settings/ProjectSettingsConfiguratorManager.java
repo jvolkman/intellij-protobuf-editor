@@ -15,6 +15,7 @@
  */
 package idea.plugin.protoeditor.ide.settings;
 
+import com.intellij.ide.plugins.DynamicPluginListener;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.application.ModalityState;
 import com.intellij.openapi.components.Service;
@@ -114,6 +115,10 @@ public final class ProjectSettingsConfiguratorManager {
   static final class ProjectOpenedActivity implements StartupActivity {
     @Override
     public void runActivity(@NotNull Project project) {
+      project.getExtensionArea().getExtensionPoint(ProjectSettingsConfigurator.EP_NAME)
+          .addExtensionPointListener(() -> {
+            ProjectSettingsConfiguratorManager.getInstance(project).configureSettingsIfNecessary();
+          }, false, project);
       ProjectSettingsConfiguratorManager.getInstance(project).configureSettingsIfNecessary();
     }
   }

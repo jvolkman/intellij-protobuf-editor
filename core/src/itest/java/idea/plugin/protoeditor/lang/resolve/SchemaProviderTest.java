@@ -58,7 +58,7 @@ public class SchemaProviderTest extends PbCodeInsightFixtureTestCase {
         };
 
     Disposable disposable = new TestDisposable();
-    Extensions.getRootArea().getExtensionPoint(SchemaProvider.EP_NAME).registerExtension(extension, disposable);
+    getProject().getExtensionArea().getExtensionPoint(SchemaProvider.EP_NAME).registerExtension(extension, disposable);
     try {
       PbTextFile textFile = (PbTextFile) myFixture.configureByFile("lang/resolve/root_data.pb");
       PbTextMessage rootMessage = textFile.getRootMessage();

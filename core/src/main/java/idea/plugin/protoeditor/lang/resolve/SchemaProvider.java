@@ -32,7 +32,7 @@ public interface SchemaProvider {
     if (file == null) {
       return null;
     }
-    for (SchemaProvider provider : SchemaProvider.EP_NAME.getExtensions()) {
+    for (SchemaProvider provider : SchemaProvider.EP_NAME.getExtensions(file.getProject())) {
       SchemaInfo info = provider.getSchemaInfo(file);
       if (info != null) {
         return info;

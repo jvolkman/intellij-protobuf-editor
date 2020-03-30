@@ -4,12 +4,19 @@
   <extensionPoints>
     <extensionPoint qualifiedName="idea.plugin.protoeditor.fileResolveProvider"
         interface="idea.plugin.protoeditor.lang.resolve.FileResolveProvider"
-        area="IDEA_PROJECT"/>
+        area="IDEA_PROJECT"
+        dynamic="true"
+    />
     <extensionPoint qualifiedName="idea.plugin.protoeditor.projectSettingsConfigurator"
         interface="idea.plugin.protoeditor.ide.settings.ProjectSettingsConfigurator"
-        area="IDEA_PROJECT"/>
+        area="IDEA_PROJECT"
+        dynamic="true"
+    />
     <extensionPoint qualifiedName="idea.plugin.protoeditor.schemaProvider"
-        interface="idea.plugin.protoeditor.lang.resolve.SchemaProvider"/>
+        interface="idea.plugin.protoeditor.lang.resolve.SchemaProvider"
+        area="IDEA_PROJECT"
+        dynamic="true"
+    />
   </extensionPoints>
 
   <extensions defaultExtensionNs="idea.plugin.protoeditor">
@@ -151,15 +158,6 @@
     <liveTemplateContext
         implementation="idea.plugin.protoeditor.ide.template.PbTextLanguageContext"/>
   </extensions>
-
-  <project-components>
-    <component>
-      <implementation-class>idea.plugin.protoeditor.ide.settings.ProjectSettingsConfiguratorManager</implementation-class>
-    </component>
-  </project-components>
-
-  <application-components>
-  </application-components>
 
   <projectListeners>
     <listener
