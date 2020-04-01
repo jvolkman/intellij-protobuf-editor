@@ -172,7 +172,6 @@ def intellij_integration_test_suite(
     runtime_deps = list(runtime_deps)
     runtime_deps.extend([
         ":" + bundled_plugins_name,
-        "@local_jdk//:lib/tools.jar",
     ])
 
     jvm_flags = list(jvm_flags)
