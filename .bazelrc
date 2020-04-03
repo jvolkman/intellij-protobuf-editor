@@ -1,0 +1,6 @@
+build --javabase=@bazel_tools//tools/jdk:remote_jdk11
+build --java_toolchain=@bazel_tools//tools/jdk:toolchain_java11 
+build --javacopt="-source 8"
+build --javacopt="-target 8"
+test --javabase=@bazel_tools//tools/jdk:remote_jdk11
+run --javabase=@bazel_tools//tools/jdk:remote_jdk11
