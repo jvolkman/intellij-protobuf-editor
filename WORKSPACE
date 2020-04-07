@@ -5,49 +5,27 @@ load("@bazel_tools//tools/build_defs/repo:jvm.bzl", "jvm_maven_import_external")
 
 # The plugin api for IntelliJ UE.
 http_archive(
-    name = "idea_ue_2019_3",
-    build_file = "@//build_support/external:BUILD.idea_ue",
-    sha256 = "c02e4202e94957e1e659be60ca795f9827b3069486612de8e8bc07291a9b64c4",
-    strip_prefix = "idea-IU-193.6911.18",
-    url = "https://download-cf.jetbrains.com/idea/ideaIU-2019.3.4-no-jbr.tar.gz",
-)
-
-http_archive(
     name = "idea_ue_2020_1",
     build_file = "@//build_support/external:BUILD.idea_ue",
-    sha256 = "da490ae54f1770312a28428979b46d42165eeca991c560fdfe5e7f3f673e1931",
-    strip_prefix = "idea-IU-201.6668.13",
-    url = "https://download-cf.jetbrains.com/idea/ideaIU-201.6668.13-no-jbr.tar.gz",
+    sha256 = "745ced0d936e9e1db945848e099923214091674616bd72730fb0d019ec0a6190",
+    strip_prefix = "idea-IU-201.6668.113",
+    url = "https://download-cf.jetbrains.com/idea/ideaIU-2020.1-no-jbr.tar.gz",
 )
 
 # Python plugin for IntelliJ CE 2019.3. Required at compile-time for python-specific features.
 http_archive(
-    name = "python_2019_3",
-    build_file = "@//build_support/external:BUILD.idea_python",
-    sha256 = "432cc656fcfe99c25450fd9ea085b5d9dad754c478cee0059a19fac26636751f",
-    url = "https://plugins.jetbrains.com/files/631/81167/python.zip",
-)
-
-http_archive(
     name = "python_2020_1",
     build_file = "@//build_support/external:BUILD.idea_python",
-    sha256 = "a480bac355a06b9ad13d67177d3d4d2c77958e0f4c658a0afde3368b7b71417c",
-    url = "https://plugins.jetbrains.com/files/631/81891/python.zip",
+    sha256 = "baf9f7e9cc9ec3f7b518512665cfcc3e2133991cbdd0cdfcbfb29adbc9b4169f",
+    url = "https://plugins.jetbrains.com/files/631/82950/python.zip",
 )
 
 # Go plugin for IntelliJ UE. Required at compile-time for Bazel integration.
 http_archive(
-    name = "go_2019_3",
-    build_file = "@//build_support/external:BUILD.idea_go",
-    sha256 = "cf6a6116d49ee0a57c0fa5601d943b71c1965f2fc3e171b34fbc39816bc70c50",
-    url = "https://plugins.jetbrains.com/files/9568/79857/intellij-go-193.6494.35.125.zip",
-)
-
-http_archive(
     name = "go_2020_1",
     build_file = "@//build_support/external:BUILD.idea_go",
-    sha256 = "580e9088af3d635b28124935ff3e865879c5e993b18c2398136b8af851fb8f53",
-    url = "https://plugins.jetbrains.com/files/9568/81610/intellij-go-201.6668.1.98.zip",
+    sha256 = "cfd842808a38ec8dc4266eeec57299b459ae5a2d8cfc61004e9c6721565fd927",
+    url = "https://plugins.jetbrains.com/files/9568/82417/intellij-go-201.6668.60.126.zip",
 )
 
 # jflex for IDEA
