@@ -46,11 +46,17 @@ public class PbFileResolver {
 
   @NotNull
   public static List<PbFile> findFilesInModule(@NotNull String path, @NotNull Module module) {
+    if (!isValidImportPath(path)) {
+      return Collections.emptyList();
+    }
     return findFiles(module.getProject(), (provider) -> provider.findFile(path, module));
   }
 
   @NotNull
   public static List<PbFile> findFilesInProject(@NotNull String path, @NotNull Project project) {
+    if (!isValidImportPath(path)) {
+      return Collections.emptyList();
+    }
     return findFiles(project, (provider) -> provider.findFile(path, project));
   }
 
@@ -68,13 +74,32 @@ public class PbFileResolver {
   @NotNull
   public static Collection<ChildEntry> getChildNamesInModule(
       @NotNull String path, @NotNull Module module) {
+    if (!isValidImportPath(path)) {
+      return Collections.emptyList();
+    }
     return getChildEntries(module.getProject(), provider -> provider.getChildEntries(path, module));
   }
 
   @NotNull
   public static Collection<ChildEntry> getChildNamesInProject(
       @NotNull String path, @NotNull Project project) {
+    if (!isValidImportPath(path)) {
+      return Collections.emptyList();
+    }
     return getChildEntries(project, provider -> provider.getChildEntries(path, project));
+  }
+
+  public static boolean isValidImportPath(@NotNull String path) {
+    return !(path.contains("//")
+        || path.contains("\\")
+        || path.contains("/./")
+        || path.contains("/../")
+        || path.startsWith("./")
+        || path.startsWith("../")
+        || path.endsWith("/.")
+        || path.endsWith("/..")
+        || path.equals(".")
+        || path.equals(".."));
   }
 
   @NotNull

@@ -32,6 +32,7 @@ import idea.plugin.protoeditor.lang.psi.*;
 import idea.plugin.protoeditor.lang.psi.PbField.CanonicalFieldLabel;
 import idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil;
 import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
+import idea.plugin.protoeditor.lang.resolve.PbFileResolver;
 import idea.plugin.protoeditor.lang.util.BuiltInType;
 import idea.plugin.protoeditor.lang.util.ValueTester;
 import org.jetbrains.annotations.NotNull;
@@ -576,10 +577,19 @@ public class PbAnnotator implements Annotator {
   }
 
   private static void annotateImportName(PbImportName name, AnnotationHolder holder) {
+    String path = name.getStringValue().getAsString();
+    TextRange range = name.getStringValue().getTextRangeNoQuotes();
+    if (!PbFileResolver.isValidImportPath(path)) {
+      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("bad.import.path"))
+          .range(range)
+          .highlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL)
+          .create();
+      return;
+    }
     switch (SharedAnnotations.getReferenceState(name.getReference())) {
       case AMBIGUOUS:
-        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("ambiguous.import", name.getStringValue().getAsString()))
-            .range(name.getStringValue().getTextRangeNoQuotes())
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("ambiguous.import", path))
+            .range(range)
             .create();
         break;
       case VALID:
@@ -587,8 +597,8 @@ public class PbAnnotator implements Annotator {
         break;
       case UNRESOLVED:
       default:
-        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("cannot.resolve.import", name.getStringValue().getAsString()))
-            .range(name.getStringValue().getTextRangeNoQuotes())
+        holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("cannot.resolve.import", path))
+            .range(range)
             .highlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL)
             .create();
     }
