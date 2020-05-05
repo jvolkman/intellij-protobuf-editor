@@ -51,8 +51,8 @@ http_file(
 http_archive(
     name = "grammar_kit",
     build_file = "//build_support/external:BUILD.grammar_kit",
-    sha256 = "a33f9732b8bed61e509a8282e9a9ae72130ab5e7e18a449eb60cf00bb142018d",
-    url = "https://github.com/JetBrains/Grammar-Kit/releases/download/2019.3/grammar-kit-2019.3.zip",
+    sha256 = "9cfc31d090de5c68ff6e3fd265615168ec1d28a95984c6d96cb0ebabaab08562",
+    url = "https://github.com/JetBrains/Grammar-Kit/releases/download/2020.1/grammar-kit-2020.1.zip",
 )
 
 jvm_maven_import_external(
