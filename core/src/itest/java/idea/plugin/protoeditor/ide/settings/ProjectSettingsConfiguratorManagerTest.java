@@ -17,6 +17,7 @@ package idea.plugin.protoeditor.ide.settings;
 
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.extensions.ExtensionPoint;
+import com.intellij.openapi.extensions.impl.ExtensionPointImpl;
 import com.intellij.openapi.module.EmptyModuleType;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
@@ -67,7 +68,7 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
     // Clear extension point and register only the DefaultConfigurator.
     ExtensionPoint<ProjectSettingsConfigurator> extensionPoint =
         project.getExtensionArea().getExtensionPoint(ProjectSettingsConfigurator.EP_NAME);
-    extensionPoint.reset();
+    ((ExtensionPointImpl) extensionPoint).reset();
     extensionPoint.registerExtension(new DefaultConfigurator(), getTestRootDisposable());
 
     // No roots currently.
