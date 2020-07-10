@@ -21,7 +21,6 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.LogicalPosition;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiDocumentManager;
-import com.intellij.psi.impl.source.PostprocessReformattingAspect;
 import com.intellij.testFramework.EditorTestUtil;
 import com.intellij.testFramework.EditorTestUtil.CaretAndSelectionState;
 import com.intellij.testFramework.EditorTestUtil.CaretInfo;
@@ -77,7 +76,6 @@ public class PbCommenterTest extends PbCodeInsightFixtureTestCase {
 
   private void performTypingAction(Editor editor, char typedChar) {
     EditorTestUtil.performTypingAction(editor, typedChar);
-    getProject().getComponent(PostprocessReformattingAspect.class).doPostponedFormatting();
     PsiDocumentManager.getInstance(getProject()).commitAllDocuments();
   }
 }
