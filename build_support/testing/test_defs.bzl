@@ -122,7 +122,7 @@ def intellij_integration_test_suite(
         test_package_root,
         deps,
         additional_class_rules = [],
-        size = "medium",
+        size = "large",
         sdk = "//build_support:intellij_sdk",
         jvm_flags = [],
         runtime_deps = [],
