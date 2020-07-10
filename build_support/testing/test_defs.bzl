@@ -176,6 +176,7 @@ def intellij_integration_test_suite(
 
     jvm_flags = list(jvm_flags)
     jvm_flags.extend([
+        "-Duser.home=$$TEST_TMPDIR",
         "-Didea.classpath.index.enabled=false",
         "-Djava.awt.headless=true",
         "-Dblaze.idea.api.version.file=$(location :%s)" % api_version_txt_name,
