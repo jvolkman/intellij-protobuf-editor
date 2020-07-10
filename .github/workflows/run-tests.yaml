@@ -33,7 +33,7 @@ jobs:
 
       - name: Test
         run: |
-          "${GITHUB_WORKSPACE}/bin/bazel" test //... --color=yes
+          "${GITHUB_WORKSPACE}/bin/bazel" test //... --color=yes --test_output=streamed
 
       - name: Build plugin
         run: |
