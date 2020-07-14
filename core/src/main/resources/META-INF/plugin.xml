@@ -23,6 +23,8 @@
     <!-- SettingsFileResolveProvider is listed first so that manually-configured descriptor paths always win. -->
     <fileResolveProvider id="settings" order="FIRST"
         implementation="idea.plugin.protoeditor.ide.settings.SettingsFileResolveProvider"/>
+    <fileResolveProvider id="library" order="LAST"
+                         implementation="idea.plugin.protoeditor.ide.settings.LibrariesAndSdkClassesRootsFileResolveProvider"/>
     <projectSettingsConfigurator id="default" order="LAST"
         implementation="idea.plugin.protoeditor.ide.settings.DefaultConfigurator"/>
 

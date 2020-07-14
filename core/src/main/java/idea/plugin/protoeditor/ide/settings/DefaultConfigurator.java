@@ -16,7 +16,10 @@
 package idea.plugin.protoeditor.ide.settings;
 
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectManager;
+import com.intellij.openapi.roots.ModuleRootManager;
 import com.intellij.openapi.roots.ProjectRootManager;
+import com.intellij.openapi.roots.ex.ProjectRootManagerEx;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import idea.plugin.protoeditor.ide.settings.PbProjectSettings.ImportPathEntry;
@@ -33,7 +36,7 @@ import java.util.Collections;
  * <p>The descriptor is set to <code>google/protobuf/descriptor.proto</code>.
  */
 public class DefaultConfigurator implements ProjectSettingsConfigurator {
-  private static final String DESCRIPTOR = "google/protobuf/descriptor.proto";
+  public static final String DESCRIPTOR = "google/protobuf/descriptor.proto";
 
   @Nullable
   @Override
@@ -45,11 +48,6 @@ public class DefaultConfigurator implements ProjectSettingsConfigurator {
       settings.getImportPathEntries().add(new ImportPathEntry(root.getUrl(), ""));
     }
 
-    ImportPathEntry includeEntry = getBuiltInIncludeEntry();
-    if (includeEntry != null) {
-      settings.getImportPathEntries().add(includeEntry);
-    }
-
     return settings;
   }
 
@@ -57,18 +55,5 @@ public class DefaultConfigurator implements ProjectSettingsConfigurator {
   @Override
   public Collection<String> getDescriptorPathSuggestions(Project project) {
     return Collections.singletonList(DESCRIPTOR);
-  }
-
-  @Nullable
-  static ImportPathEntry getBuiltInIncludeEntry() {
-    URL descriptorUrl = DefaultConfigurator.class.getResource("/include/google/protobuf/descriptor.proto");
-    if (descriptorUrl == null) {
-      return null;
-    }
-    VirtualFile descriptorFile = VfsUtil.findFileByURL(descriptorUrl);
-    if (descriptorFile == null) {
-      return null;
-    }
-    return new ImportPathEntry(descriptorFile.getParent().getParent().getParent().getUrl(), null);
   }
 }
