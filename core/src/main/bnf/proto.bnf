@@ -30,7 +30,6 @@
   psiPackage="idea.plugin.protoeditor.lang.psi"
   psiImplPackage="idea.plugin.protoeditor.lang.psi.impl"
   psiImplUtilClass="idea.plugin.protoeditor.lang.psi.util.PbPsiImplUtil"
-  psiTreeUtilClass="idea.plugin.protoeditor.lang.psi.util.PbPsiTreeUtil"
 
   elementTypeHolderClass="idea.plugin.protoeditor.lang.psi.PbTypes"
   elementTypeClass="idea.plugin.protoeditor.lang.psi.PbElementType"

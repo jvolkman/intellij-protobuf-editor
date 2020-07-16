@@ -15,12 +15,14 @@
  */
 package idea.plugin.protoeditor.lang.psi.util;
 
+import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.QualifiedName;
 import idea.plugin.protoeditor.lang.descriptor.Descriptor;
 import idea.plugin.protoeditor.lang.psi.*;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
@@ -247,6 +249,15 @@ public final class PbPsiUtil {
     }
     PsiReference ref = fieldType.getEffectiveReference();
     return ref != null && isGroupElement(ref.resolve());
+  }
+
+  public static boolean isFirstInside(@NotNull PsiElement element, @NotNull PsiElement ancestor) {
+    TextRange ancestorTextRange = ancestor.getTextRange();
+    TextRange elementTextRange = element.getTextRange();
+    if (ancestorTextRange == null || elementTextRange == null) {
+      return false;
+    }
+    return ancestorTextRange.getStartOffset() == elementTextRange.getStartOffset();
   }
 
   static boolean isElementType(PsiElement element, IElementType type) {

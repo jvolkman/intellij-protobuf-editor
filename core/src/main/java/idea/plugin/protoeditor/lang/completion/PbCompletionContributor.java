@@ -23,7 +23,7 @@ import com.intellij.psi.PsiErrorElement;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.util.ProcessingContext;
 import idea.plugin.protoeditor.lang.psi.*;
-import idea.plugin.protoeditor.lang.psi.util.PbPsiTreeUtil;
+import idea.plugin.protoeditor.lang.psi.util.PbPsiUtil;
 import idea.plugin.protoeditor.lang.util.BuiltInType;
 import org.jetbrains.annotations.NotNull;
 
@@ -177,7 +177,7 @@ public class PbCompletionContributor extends CompletionContributor {
       }
       SyntaxLevel syntaxLevel = simpleField.getPbFile().getSyntaxLevel();
       // Start of "simple field" (or message entry, before it's determined to be something else).
-      if (PbPsiTreeUtil.isFirstInside(element, simpleField)) {
+      if (PbPsiUtil.isFirstInside(element, simpleField)) {
         PbStatementOwner statementOwner =
             PsiTreeUtil.getParentOfType(element, PbStatementOwner.class);
         if (statementOwner instanceof PbMessageType) {
