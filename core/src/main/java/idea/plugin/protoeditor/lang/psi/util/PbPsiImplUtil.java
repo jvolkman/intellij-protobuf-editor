@@ -53,7 +53,7 @@ public final class PbPsiImplUtil {
     // tied to the generated field. See PbGroupDefinitionMixin.
     // Also, this method can be called on PbText* elements within an injected PbTextFile to get the
     // outer PbOptionOwner.
-    return PbPsiTreeUtil.getContextOfType(element, PbOptionOwner.class, true);
+    return PsiTreeUtil.getContextOfType(element, PbOptionOwner.class, true);
   }
 
   @NotNull

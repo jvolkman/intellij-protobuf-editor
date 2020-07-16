@@ -20,15 +20,8 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 
-/** An extension of PsiTreeUtil with additional utilities. */
-public class PbPsiTreeUtil extends PsiTreeUtil {
+/** General PSI utilities, similar to . */
+public class PbPsiTreeUtil {
 
-  public static boolean isFirstInside(@NotNull PsiElement element, @NotNull PsiElement ancestor) {
-    TextRange ancestorTextRange = ancestor.getTextRange();
-    TextRange elementTextRange = element.getTextRange();
-    if (ancestorTextRange == null || elementTextRange == null) {
-      return false;
-    }
-    return ancestorTextRange.getStartOffset() == elementTextRange.getStartOffset();
-  }
+
 }
