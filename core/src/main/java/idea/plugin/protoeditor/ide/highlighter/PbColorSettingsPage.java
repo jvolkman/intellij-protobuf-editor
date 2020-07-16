@@ -37,9 +37,9 @@ public class PbColorSettingsPage implements ColorSettingsPage {
         new AttributesDescriptor("Number", PbSyntaxHighlighter.NUMBER),
         new AttributesDescriptor("Keyword", PbSyntaxHighlighter.KEYWORD),
         new AttributesDescriptor("String", PbSyntaxHighlighter.STRING),
-        new AttributesDescriptor("Enum value", PbSyntaxHighlighter.ENUM_VALUE),
-        new AttributesDescriptor("Block comment", PbSyntaxHighlighter.BLOCK_COMMENT),
-        new AttributesDescriptor("Line comment", PbSyntaxHighlighter.LINE_COMMENT),
+        new AttributesDescriptor("Enum Value", PbSyntaxHighlighter.ENUM_VALUE),
+        new AttributesDescriptor("Block Comment", PbSyntaxHighlighter.BLOCK_COMMENT),
+        new AttributesDescriptor("Line Comment", PbSyntaxHighlighter.LINE_COMMENT),
         new AttributesDescriptor("Operator", PbSyntaxHighlighter.OPERATION_SIGN),
         new AttributesDescriptor("Braces", PbSyntaxHighlighter.BRACES),
         new AttributesDescriptor("Brackets", PbSyntaxHighlighter.BRACKETS),
@@ -47,9 +47,9 @@ public class PbColorSettingsPage implements ColorSettingsPage {
         new AttributesDescriptor("Dot", PbSyntaxHighlighter.DOT),
         new AttributesDescriptor("Semicolon", PbSyntaxHighlighter.SEMICOLON),
         new AttributesDescriptor("Comma", PbSyntaxHighlighter.COMMA),
-        new AttributesDescriptor("Valid escape sequence", PbSyntaxHighlighter.VALID_STRING_ESCAPE),
+        new AttributesDescriptor("Valid Escape Sequence", PbSyntaxHighlighter.VALID_STRING_ESCAPE),
         new AttributesDescriptor(
-            "Invalid escape sequence", PbSyntaxHighlighter.INVALID_STRING_ESCAPE),
+            "Invalid Escape Sequence", PbSyntaxHighlighter.INVALID_STRING_ESCAPE),
       };
 
   @Nullable

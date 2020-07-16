@@ -15,7 +15,7 @@
  */
 package idea.plugin.protoeditor.ide.settings;
 
-import com.intellij.ide.plugins.DynamicPluginListener;
+import com.intellij.openapi.Disposable;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.application.ModalityState;
 import com.intellij.openapi.components.Service;
@@ -40,7 +40,7 @@ import java.util.TreeSet;
  * whenever the project is opened or the project's roots change.
  */
 @Service
-public final class ProjectSettingsConfiguratorManager {
+public final class ProjectSettingsConfiguratorManager implements Disposable {
 
   private final Project project;
 
@@ -105,6 +105,10 @@ public final class ProjectSettingsConfiguratorManager {
     }
   }
 
+  @Override
+  public void dispose() {
+  }
+
   static final class ProjectRootsListener implements ModuleRootListener {
     @Override
     public void rootsChanged(@NotNull ModuleRootEvent event) {
@@ -115,11 +119,10 @@ public final class ProjectSettingsConfiguratorManager {
   static final class ProjectOpenedActivity implements StartupActivity {
     @Override
     public void runActivity(@NotNull Project project) {
+      ProjectSettingsConfiguratorManager instance = ProjectSettingsConfiguratorManager.getInstance(project);
       project.getExtensionArea().getExtensionPoint(ProjectSettingsConfigurator.EP_NAME)
-          .addExtensionPointListener(() -> {
-            ProjectSettingsConfiguratorManager.getInstance(project).configureSettingsIfNecessary();
-          }, false, project);
-      ProjectSettingsConfiguratorManager.getInstance(project).configureSettingsIfNecessary();
+          .addChangeListener(instance::configureSettingsIfNecessary, instance);
+      instance.configureSettingsIfNecessary();
     }
   }
 }
