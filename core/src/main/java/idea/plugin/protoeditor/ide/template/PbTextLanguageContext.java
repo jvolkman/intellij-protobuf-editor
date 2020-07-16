@@ -15,6 +15,7 @@
  */
 package idea.plugin.protoeditor.ide.template;
 
+import com.intellij.codeInsight.template.TemplateActionContext;
 import com.intellij.codeInsight.template.TemplateContextType;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiUtilCore;
@@ -29,7 +30,8 @@ class PbTextLanguageContext extends TemplateContextType {
   }
 
   @Override
-  public boolean isInContext(@NotNull PsiFile file, int offset) {
-    return PbTextLanguage.INSTANCE.is(PsiUtilCore.getLanguageAtOffset(file, offset));
+  public boolean isInContext(@NotNull TemplateActionContext templateActionContext) {
+    return PbTextLanguage.INSTANCE.is(
+        PsiUtilCore.getLanguageAtOffset(templateActionContext.getFile(), templateActionContext.getStartOffset()));
   }
 }

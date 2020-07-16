@@ -16,7 +16,6 @@
 package idea.plugin.protoeditor.lang.resolve;
 
 import com.intellij.openapi.Disposable;
-import com.intellij.openapi.extensions.Extensions;
 import com.intellij.openapi.util.Disposer;
 import com.intellij.psi.util.QualifiedName;
 import idea.plugin.protoeditor.TestUtils;
