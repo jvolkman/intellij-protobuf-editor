@@ -15,6 +15,7 @@
  */
 package idea.plugin.protoeditor.ide.template;
 
+import com.intellij.codeInsight.template.TemplateActionContext;
 import com.intellij.codeInsight.template.TemplateContextType;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
@@ -32,8 +33,9 @@ class PbLanguageContext extends TemplateContextType {
   }
 
   @Override
-  public boolean isInContext(@NotNull PsiFile file, int offset) {
-    return PbLanguage.INSTANCE.is(PsiUtilCore.getLanguageAtOffset(file, offset));
+  public boolean isInContext(@NotNull TemplateActionContext templateActionContext) {
+    return PbLanguage.INSTANCE.is(PsiUtilCore.getLanguageAtOffset(
+        templateActionContext.getFile(), templateActionContext.getStartOffset()));
   }
 
   /** Base context that returns true when the closest parent block is of the given type. */
@@ -47,8 +49,9 @@ class PbLanguageContext extends TemplateContextType {
     }
 
     @Override
-    public boolean isInContext(@NotNull PsiFile file, int offset) {
-      PsiElement element = PsiUtilCore.getElementAtOffset(file, offset);
+    public boolean isInContext(@NotNull TemplateActionContext templateActionContext) {
+      PsiElement element = PsiUtilCore.getElementAtOffset(
+          templateActionContext.getFile(), templateActionContext.getStartOffset());
       return bodyClass.isInstance(
           PsiTreeUtil.getParentOfType(element, PbBlockBody.class, /* strict */ false));
     }
