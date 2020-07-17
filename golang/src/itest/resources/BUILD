@@ -6,7 +6,6 @@ licenses(["notice"])  # Apache 2.0
 package(default_visibility = ["//visibility:private"])
 
 load("//testlib:expand_template.bzl", "expand_template")
-load("//testlib:expose_genfile.bzl", "expose_genfile")
 load(":defs.bzl", "pb_go_library", "pb_go_proto_library", "resources_import_prefix", "resources_package_name")
 
 filegroup(

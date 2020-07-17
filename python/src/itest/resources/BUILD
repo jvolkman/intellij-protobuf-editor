@@ -6,7 +6,6 @@ licenses(["notice"])  # Apache 2.0
 package(default_visibility = ["//visibility:private"])
 
 load("//testlib:expand_template.bzl", "expand_template")
-load("//testlib:expose_genfile.bzl", "expose_genfile")
 load("@com_github_grpc_grpc//bazel:python_rules.bzl", "py_proto_library")
 load(":defs.bzl", "strip_virtual_import")
 

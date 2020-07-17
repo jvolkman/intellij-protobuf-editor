@@ -1,13 +1,7 @@
 """Exposes a genfile by copying to output."""
 
 def _matches_path(f, search_path):
-    if f.short_path == search_path:
-        return True
-
-    # The OSS rules_go variant of go_proto_library places the generated .go file under a path like:
-    #   bazel-bin/golang/src/itest/resources/linux_amd64_stripped/proto3_go_proto%/golang/src/itest/resources/proto3.pb.go
-    # So, also search for the output file starting from '%/'.
-    return f.short_path.endswith("%/" + search_path)
+    return f.short_path.endswith("/" + search_path)
 
 def _expose_genfile(ctx):
     search_name = ctx.attr.genfile_orig or ctx.attr.genfile

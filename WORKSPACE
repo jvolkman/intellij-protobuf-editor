@@ -73,17 +73,17 @@ jvm_maven_import_external(
 
 jvm_maven_import_external(
     name = "mockito",
-    artifact = "org.mockito:mockito-core:3.3.3",
-    artifact_sha256 = "4be648c50456fba4686ba825000d628c1d805a3b92272ba9ad5b697dfa43036b",
+    artifact = "org.mockito:mockito-core:3.4.2",
+    artifact_sha256 = "357e4bcdf9d262a054e855470c158dd54c197e414e151d7116cbacdaac895cc6",
     licenses = ["notice"],  # Apache 2.0
     server_urls = ["https://repo.maven.apache.org/maven2"],
 )
 
 http_archive(
     name = "com_google_protobuf",
-    sha256 = "a79d19dcdf9139fa4b81206e318e33d245c4c9da1ffed21c87288ed4380426f9",
-    strip_prefix = "protobuf-3.11.4",
-    url = "https://github.com/protocolbuffers/protobuf/archive/v3.11.4.tar.gz",
+    sha256 = "71030a04aedf9f612d2991c1c552317038c3c5a2b578ac4745267a45e7037c29",
+    strip_prefix = "protobuf-3.12.3",
+    url = "https://github.com/protocolbuffers/protobuf/archive/v3.12.3.tar.gz",
 )
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
 protobuf_deps()
@@ -97,11 +97,11 @@ http_archive(
 
 http_archive(
     name = "io_bazel_rules_go",
+    sha256 = "2d536797707dd1697441876b2e862c58839f975c8fc2f0f96636cbd428f45866",
     urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.22.2/rules_go-v0.22.2.tar.gz",
-        "https://github.com/bazelbuild/rules_go/releases/download/v0.22.2/rules_go-v0.22.2.tar.gz",
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.23.5/rules_go-v0.23.5.tar.gz",
+        "https://github.com/bazelbuild/rules_go/releases/download/v0.23.5/rules_go-v0.23.5.tar.gz",
     ],
-    sha256 = "142dd33e38b563605f0d20e89d9ef9eda0fc3cb539a14be1bdb1350de2eda659",
 )
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_rules_dependencies", "go_register_toolchains")
@@ -111,9 +111,9 @@ go_register_toolchains()
 
 http_archive(
     name = "com_github_grpc_grpc",
-    urls = ["https://github.com/grpc/grpc/archive/v1.27.3.tar.gz"],
-    sha256 = "c2ab8a42a0d673c1acb596d276055adcc074c1116e427f118415da3e79e52969",
-    strip_prefix = "grpc-1.27.3",
+    urls = ["https://github.com/grpc/grpc/archive/v1.30.1.tar.gz"],
+    sha256 = "d6a10be7e803cc7ba73b3a03d34f6d18c046b562e4b08752c17aa978464baea3",
+    strip_prefix = "grpc-1.30.1",
 )
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
