@@ -9,6 +9,25 @@ def pb_go_proto_library(name, proto, genfile, visibility = None):
         name = name,
         proto = proto,
         importpath = native.package_name() + "/" + name,
+        visibility = visibility,
+    )
+    native.filegroup(
+        name = name + "_src",
+        srcs = [":" + name],
+        output_group = "go_generated_srcs",
+    )
+    expose_genfile(
+        name = name + "_exposed_src",
+        genfile = genfile,
+        genfile_orig = name + "/" + genfile,
+        deps = [":" + name + "_src"],
+    )
+
+def pb_gogo_proto_library(name, proto, genfile, visibility = None):
+    go_proto_library(
+        name = name,
+        proto = proto,
+        importpath = native.package_name() + "/" + name,
         compilers = ["@io_bazel_rules_go//proto:gogo_proto"],
         visibility = visibility,
     )

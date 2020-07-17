@@ -84,6 +84,15 @@ public class PbGolangGotoDeclarationHandlerTest extends PbCodeInsightFixtureTest
         .isEqualTo(62);
   }
 
+  public void testProto2Gogo() {
+    copyProtoAndGenCode("proto2_gogo.proto", "proto2_gogo.pb.go", "proto2_gogo_go_proto");
+    GoFile userFile = copyProtoUserFile("proto2_gogo_user.go", "proto2_gogo_user.go");
+
+    assertWithMessage("Number of markers (" + GotoExpectationMarker.EXPECT_MARKER + ")")
+            .that(checkExpectations(userFile))
+            .isEqualTo(62);
+  }
+
   public void testProto3() {
     copyProtoAndGenCode("proto3.proto", "proto3.pb.go", "proto3_go_proto");
     GoFile userFile = copyProtoUserFile("proto3_user.go", "proto3_user.go");
@@ -91,6 +100,15 @@ public class PbGolangGotoDeclarationHandlerTest extends PbCodeInsightFixtureTest
     assertWithMessage("Number of markers (" + GotoExpectationMarker.EXPECT_MARKER + ")")
         .that(checkExpectations(userFile))
         .isEqualTo(62);
+  }
+
+  public void testProto3Gogo() {
+    copyProtoAndGenCode("proto3_gogo.proto", "proto3_gogo.pb.go", "proto3_gogo_go_proto");
+    GoFile userFile = copyProtoUserFile("proto3_gogo_user.go", "proto3_gogo_user.go");
+
+    assertWithMessage("Number of markers (" + GotoExpectationMarker.EXPECT_MARKER + ")")
+            .that(checkExpectations(userFile))
+            .isEqualTo(62);
   }
 
   private void copyProtoAndGenCode(String protoFile, String generatedGoFile, String goPackageName) {
