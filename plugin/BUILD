@@ -25,6 +25,7 @@ java_library(
         "//java",
         "//python",
         "//golang",
+        "//erlang",
     ]
 )
 
@@ -34,6 +35,7 @@ intellij_plugin_library(
         "//golang:optional_plugin_xml",
         "//java:optional_plugin_xml",
         "//python:optional_plugin_xml",
+        "//erlang:optional_plugin_xml",
     ],
     plugin_xmls = ["//core:plugin_xml"],
     deps = [":combined_lib"],

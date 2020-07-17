@@ -4,4 +4,5 @@ exports_files([
     "BUILD.idea_go",
     "BUILD.grammar_kit",
     "BUILD.idea_jflex",
+    "BUILD.idea_erlang",
 ])

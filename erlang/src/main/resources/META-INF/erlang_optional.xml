@@ -1,0 +1,8 @@
+<idea-plugin>
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Erlang -> proto goto -->
+    <gotoDeclarationHandler
+      implementation="idea.plugin.protoeditor.erlang.PbErlangGotoDeclarationHandler" order="first"/>
+    <lang.documentationProvider language="Erlang" implementationClass="idea.plugin.protoeditor.erlang.PbErlangDocumentProvider" order="first" />
+  </extensions>
+</idea-plugin>

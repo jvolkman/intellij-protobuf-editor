@@ -28,6 +28,13 @@ http_archive(
     url = "https://plugins.jetbrains.com/files/9568/91477/intellij-go-201.8538.31.199.zip",
 )
 
+http_archive(
+    name = "erlang_2020_1",
+    build_file = "@//build_support/external:BUILD.idea_erlang",
+    sha256 = "8b1694978ae6f2b7e7801904d29c5c814f33b144d34a47e72b0df6b2476695bd",
+    url = "https://plugins.jetbrains.com/files/7083/83262/intellij-erlang-0.11.1059.zip",
+)
+
 # jflex for IDEA
 jvm_maven_import_external(
     name = "idea_jflex",

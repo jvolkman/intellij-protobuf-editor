@@ -23,6 +23,11 @@ alias(
     actual = "@python_2020_1//:plugin_sdk"
 )
 
+alias(
+    name = "_erlang_support_internal",
+    actual = "@erlang_2020_1//:plugin_sdk"
+)
+
 #
 # Tools
 #
@@ -108,5 +113,17 @@ java_library(
 java_library(
     name = "test_plugin_python_support",
     exports = [":_python_support_internal"],
+    testonly = 1,
+)
+
+java_library(
+    name = "plugin_erlang_support",
+    exports = [":_erlang_support_internal"],
+    neverlink = 1,
+)
+
+java_library(
+    name = "test_plugin_erlang_support",
+    exports = [":_erlang_support_internal"],
     testonly = 1,
 )
