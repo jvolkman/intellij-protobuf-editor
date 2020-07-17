@@ -9,6 +9,7 @@ def pb_go_proto_library(name, proto, genfile, visibility = None):
         name = name,
         proto = proto,
         importpath = native.package_name() + "/" + name,
+        compilers = ["@io_bazel_rules_go//proto:gogo_proto"],
         visibility = visibility,
     )
     native.filegroup(
