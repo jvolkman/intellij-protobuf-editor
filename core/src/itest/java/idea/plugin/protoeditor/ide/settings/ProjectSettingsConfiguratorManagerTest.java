@@ -28,6 +28,8 @@ import com.intellij.testFramework.HeavyPlatformTestCase;
 import idea.plugin.protoeditor.ide.settings.PbProjectSettings.ImportPathEntry;
 
 import java.io.File;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.UUID;
 
 import static idea.plugin.protoeditor.TestUtils.notNull;
@@ -71,9 +73,7 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
     extensionPoint.registerExtension(new DefaultConfigurator(), getTestRootDisposable());
 
     // No roots currently.
-    assertSameElements(
-        PbProjectSettings.getInstance(project).getImportPathEntries(),
-        DefaultConfigurator.getBuiltInIncludeEntry());
+    assertSameElements(PbProjectSettings.getInstance(project).getImportPathEntries());
 
     ApplicationManager.getApplication()
         .runWriteAction(
@@ -85,9 +85,7 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
             });
 
     // Still no roots since module has no source directory.
-    assertSameElements(
-        PbProjectSettings.getInstance(project).getImportPathEntries(),
-        DefaultConfigurator.getBuiltInIncludeEntry());
+    assertSameElements(PbProjectSettings.getInstance(project).getImportPathEntries());
 
     ApplicationManager.getApplication()
         .runWriteAction(
@@ -102,8 +100,7 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
     // Should have one root now, plus the descriptor.
     assertSameElements(
         PbProjectSettings.getInstance(project).getImportPathEntries(),
-        new ImportPathEntry(VfsUtil.pathToUrl(module1Root1Src.getPath()), ""),
-        DefaultConfigurator.getBuiltInIncludeEntry());
+        new ImportPathEntry(VfsUtil.pathToUrl(module1Root1Src.getPath()), ""));
 
     ApplicationManager.getApplication()
         .runWriteAction(
@@ -118,8 +115,7 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
     assertSameElements(
         PbProjectSettings.getInstance(project).getImportPathEntries(),
         new ImportPathEntry(VfsUtil.pathToUrl(module1Root1Src.getPath()), ""),
-        new ImportPathEntry(VfsUtil.pathToUrl(module2Root1.getPath()), ""),
-        DefaultConfigurator.getBuiltInIncludeEntry());
+        new ImportPathEntry(VfsUtil.pathToUrl(module2Root1.getPath()), ""));
 
     ApplicationManager.getApplication()
         .runWriteAction(
@@ -135,8 +131,7 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
     // And now back to one, plus the descriptor.
     assertSameElements(
         PbProjectSettings.getInstance(project).getImportPathEntries(),
-        new ImportPathEntry(VfsUtil.pathToUrl(module1Root1Src.getPath()), ""),
-        DefaultConfigurator.getBuiltInIncludeEntry());
+        new ImportPathEntry(VfsUtil.pathToUrl(module1Root1Src.getPath()), ""));
 
     ApplicationManager.getApplication()
         .runWriteAction(
@@ -152,9 +147,7 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
             });
 
     // We removed all of the source folders (but left the root), so there should be no paths remaining.
-    assertSameElements(
-        PbProjectSettings.getInstance(project).getImportPathEntries(),
-        DefaultConfigurator.getBuiltInIncludeEntry());
+    assertSameElements(PbProjectSettings.getInstance(project).getImportPathEntries());
   }
 
   public void testExtensionConfiguratorsTakePrecedence() {
@@ -212,8 +205,7 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
     // Should have one root now, plus the descriptor.
     assertSameElements(
         PbProjectSettings.getInstance(project).getImportPathEntries(),
-        new ImportPathEntry(VfsUtil.pathToUrl(module1Root1.getPath()), ""),
-        DefaultConfigurator.getBuiltInIncludeEntry());
+        new ImportPathEntry(VfsUtil.pathToUrl(module1Root1.getPath()), ""));
 
     ApplicationManager.getApplication()
         .runWriteAction(

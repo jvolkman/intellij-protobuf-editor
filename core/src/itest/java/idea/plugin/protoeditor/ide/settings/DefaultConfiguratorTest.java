@@ -98,27 +98,12 @@ public class DefaultConfiguratorTest extends HeavyPlatformTestCase {
         settings.getImportPathEntries(),
         new ImportPathEntry(VfsUtil.pathToUrl(module1Root1Src1.getPath()), ""),
         new ImportPathEntry(VfsUtil.pathToUrl(module1Root1Src2.getPath()), ""),
-        new ImportPathEntry(VfsUtil.pathToUrl(module2Root1Src1.getPath()), ""),
-        DefaultConfigurator.getBuiltInIncludeEntry());
+        new ImportPathEntry(VfsUtil.pathToUrl(module2Root1Src1.getPath()), ""));
   }
 
   public void testGetDescriptorPathSuggestions() {
     assertContainsElements(
         new DefaultConfigurator().getDescriptorPathSuggestions(getProject()),
         "google/protobuf/descriptor.proto");
-  }
-
-  public void testBuiltInDescriptor() throws IOException {
-    ImportPathEntry includeEntry = DefaultConfigurator.getBuiltInIncludeEntry();
-    assertNotNull(includeEntry);
-    assertEquals("", includeEntry.getPrefix());
-    VirtualFile descriptorDir =
-        VirtualFileManager.getInstance().findFileByUrl(includeEntry.getLocation());
-    assertNotNull(descriptorDir);
-    VirtualFile descriptorFile = descriptorDir.findFileByRelativePath("google/protobuf/descriptor.proto");
-    assertNotNull(descriptorFile);
-    String text = VfsUtil.loadText(descriptorFile);
-    // Simple check to make sure it's a descriptor.
-    assertTrue(text.contains("FileOptions"));
   }
 }
