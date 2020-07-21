@@ -15,6 +15,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class LibrariesAndSdkClassesRootsFileResolveProvider implements FileResolveProvider {
@@ -41,14 +42,14 @@ public class LibrariesAndSdkClassesRootsFileResolveProvider implements FileResol
     VirtualFile[] roots = Arrays.stream(LibraryTablesRegistrar.getInstance().getLibraryTable(project).getLibraries())
         .flatMap(library -> Arrays.stream(library.getFiles(OrderRootType.CLASSES)))
         .collect(Collectors.toList()).toArray(new VirtualFile[]{});
-    return findChildEntriesInRoots(roots);
+    return findChildEntriesInRoots(path, roots);
   }
 
   @NotNull
   @Override
   public Collection<ChildEntry> getChildEntries(@NotNull String path, @NotNull Module module) {
     VirtualFile[] roots = ModuleRootManager.getInstance(module).orderEntries().getAllLibrariesAndSdkClassesRoots();
-    return findChildEntriesInRoots(roots);
+    return findChildEntriesInRoots(path, roots);
   }
 
   @Nullable
@@ -79,8 +80,10 @@ public class LibrariesAndSdkClassesRootsFileResolveProvider implements FileResol
     return null;
   }
 
-  private Collection<ChildEntry> findChildEntriesInRoots(VirtualFile[] roots) {
-    return Arrays.stream(roots).flatMap(root -> VfsUtil.getChildren(root, PROTO_AND_DIRECTORY_FILTER)
+  private Collection<ChildEntry> findChildEntriesInRoots(String path, VirtualFile[] roots) {
+    return Arrays.stream(roots).map(root -> root.findChild(path))
+        .filter(Objects::nonNull)
+        .flatMap(root -> VfsUtil.getChildren(root, PROTO_AND_DIRECTORY_FILTER)
         .stream()
         .map(child -> new ChildEntry(child.getName(), child.isDirectory()))).collect(Collectors.toList());
   }

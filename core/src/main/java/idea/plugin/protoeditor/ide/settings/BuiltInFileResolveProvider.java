@@ -31,7 +31,7 @@ public class BuiltInFileResolveProvider implements FileResolveProvider {
   @Override
   public VirtualFile findFile(@NotNull String path, @NotNull Project project) {
     if (includeDir == null) return null;
-    if (!checkInJavaEnv(project)) {
+    if (!checkProtoRuntimeInClassesPath(project)) {
       VirtualFile file = includeDir.findFileByRelativePath(path);
       if (file != null && file.exists()) {
         return file;
@@ -50,8 +50,10 @@ public class BuiltInFileResolveProvider implements FileResolveProvider {
   @Override
   public Collection<ChildEntry> getChildEntries(@NotNull String path, @NotNull Project project) {
     if (includeDir == null) return Collections.emptyList();
-    if (!checkInJavaEnv(project)) {
-      return findChildEntriesInRoot(includeDir);
+    VirtualFile child = includeDir.findChild(path);
+    if (child == null) return Collections.emptyList();
+    if (!checkProtoRuntimeInClassesPath(project)) {
+      return findChildEntriesInRoot(child);
     }
     return Collections.emptyList();
   }
@@ -80,11 +82,27 @@ public class BuiltInFileResolveProvider implements FileResolveProvider {
     return GlobalSearchScope.projectScope(project);
   }
 
-  private boolean checkInJavaEnv(@NotNull Project project) {
-    Sdk projectSdk = ProjectRootManager.getInstance(project).getProjectSdk();
-    if (projectSdk == null) return false;
-    SdkTypeId projectSdkId = projectSdk.getSdkType();
-    return projectSdkId instanceof JavaSdkType;
+  private boolean checkProtoRuntimeInClassesPath(@NotNull Project project) {
+    Library[] libraries = LibraryTablesRegistrar.getInstance().getLibraryTable(project).getLibraries();
+    for (Library library : libraries) {
+      String name = library.getName();
+      if(name != null && name.startsWith("protobuf-java")){
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  private boolean checkProtoRuntimeInClassesPath(@NotNull Module module) {
+    VirtualFile[] libraries = ModuleRootManager.getInstance(module).orderEntries().getAllLibrariesAndSdkClassesRoots();
+    for (VirtualFile library : libraries) {
+      if(library.getNameWithoutExtension().startsWith("protobuf-java")){
+        return true;
+      }
+    }
+
+    return false;
   }
 
   private Collection<ChildEntry> findChildEntriesInRoot(VirtualFile root) {

@@ -31,10 +31,6 @@ public class PbTextReferenceTest extends PbCodeInsightFixtureTestCase {
   @Override
   public void setUp() throws Exception {
     super.setUp();
-    myFixture.addFileToProject(
-        TestUtils.OPENSOURCE_DESCRIPTOR_PATH, TestUtils.getOpensourceDescriptorText());
-    TestUtils.addTestFileResolveProvider(
-        getProject(), TestUtils.OPENSOURCE_DESCRIPTOR_PATH, getTestRootDisposable());
     TestUtils.registerTestdataFileExtension();
   }
 
