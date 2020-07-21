@@ -25,6 +25,8 @@
         implementation="idea.plugin.protoeditor.ide.settings.SettingsFileResolveProvider"/>
     <fileResolveProvider id="library" order="LAST"
                          implementation="idea.plugin.protoeditor.ide.settings.LibrariesAndSdkClassesRootsFileResolveProvider"/>
+    <fileResolveProvider id="builtIn" order="LAST"
+                         implementation="idea.plugin.protoeditor.ide.settings.BuiltInFileResolveProvider"/>
     <projectSettingsConfigurator id="default" order="LAST"
         implementation="idea.plugin.protoeditor.ide.settings.DefaultConfigurator"/>
 
