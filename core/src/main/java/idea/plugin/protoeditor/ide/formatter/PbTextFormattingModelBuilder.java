@@ -32,16 +32,16 @@ public class PbTextFormattingModelBuilder implements FormattingModelBuilder {
 
   @NotNull
   @Override
-  public FormattingModel createModel(PsiElement element, CodeStyleSettings settings) {
-    PsiFile file = element.getContainingFile();
+  public FormattingModel createModel(@NotNull FormattingContext formattingContext) {
+    PsiFile file = formattingContext.getContainingFile();
     return FormattingModelProvider.createFormattingModelForPsiFile(
         file,
         new PbTextBlock(
-            element.getNode(),
+            formattingContext.getNode(),
             Wrap.createWrap(WrapType.NONE, false),
             /* alignment= */ null,
-            createSpaceBuilder(settings)),
-        settings);
+            createSpaceBuilder(formattingContext.getCodeStyleSettings())),
+        formattingContext.getCodeStyleSettings());
   }
 
   private static SpacingBuilder createSpaceBuilder(CodeStyleSettings settings) {

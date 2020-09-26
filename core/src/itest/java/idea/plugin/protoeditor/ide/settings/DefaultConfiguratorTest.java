@@ -19,10 +19,10 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.module.EmptyModuleType;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ex.ProjectManagerEx;
 import com.intellij.openapi.roots.ContentEntry;
 import com.intellij.openapi.roots.ModifiableRootModel;
 import com.intellij.openapi.roots.ModuleRootManager;
-import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.VirtualFileManager;
@@ -31,34 +31,33 @@ import idea.plugin.protoeditor.ide.settings.PbProjectSettings.ImportPathEntry;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 import static idea.plugin.protoeditor.TestUtils.notNull;
 
 /** Unit tests for {@link DefaultConfigurator}. */
 public class DefaultConfiguratorTest extends HeavyPlatformTestCase {
 
-  private File tempDir = null;
-
   @Override
   public void setUp() throws Exception {
     super.setUp();
-    tempDir = FileUtil.createTempDirectory(getName(), UUID.randomUUID().toString(), false);
   }
 
   @Override
   public void tearDown() throws Exception {
-    FileUtil.delete(tempDir);
     super.tearDown();
+  }
+
+  @Override
+  protected boolean isCreateDirectoryBasedProject() {
+    return true;
   }
 
   public void testConfigure() {
     // Create a new project with two modules and a total of 3 roots.
-    File projectDir = new File(tempDir, "project");
+    File projectDir = getProjectDirOrFile().toFile();
     assertTrue(projectDir.mkdirs());
 
-    Project project = createProject(projectDir.toPath());
-    disposeOnTearDown(project);
+    Project project = doCreateAndOpenProject();
     Module module1 = doCreateRealModuleIn("module1", project, EmptyModuleType.getInstance());
     Module module2 = doCreateRealModuleIn("module2", project, EmptyModuleType.getInstance());
 
@@ -78,11 +77,11 @@ public class DefaultConfiguratorTest extends HeavyPlatformTestCase {
                   ModuleRootManager.getInstance(module1).getModifiableModel();
               ModifiableRootModel model2 =
                   ModuleRootManager.getInstance(module2).getModifiableModel();
-              ContentEntry entry = model1.addContentEntry(notNull(VfsUtil.findFileByIoFile(module1Root1, false)));
+              ContentEntry entry = model1.addContentEntry(notNull(VfsUtil.findFileByIoFile(module1Root1, true)));
               entry.addSourceFolder(entry.getUrl() + "/src1", false);
               entry.addSourceFolder(entry.getUrl() + "/src2", false);
               model1.commit();
-              entry = model2.addContentEntry(notNull(VfsUtil.findFileByIoFile(module2Root1, false)));
+              entry = model2.addContentEntry(notNull(VfsUtil.findFileByIoFile(module2Root1, true)));
               entry.addSourceFolder(entry.getUrl() + "/src1", false);
               model2.commit();
             });
@@ -100,6 +99,8 @@ public class DefaultConfiguratorTest extends HeavyPlatformTestCase {
         new ImportPathEntry(VfsUtil.pathToUrl(module1Root1Src2.getPath()), ""),
         new ImportPathEntry(VfsUtil.pathToUrl(module2Root1Src1.getPath()), ""),
         DefaultConfigurator.getBuiltInIncludeEntry());
+
+    ProjectManagerEx.getInstanceEx().forceCloseProject(project);
   }
 
   public void testGetDescriptorPathSuggestions() {

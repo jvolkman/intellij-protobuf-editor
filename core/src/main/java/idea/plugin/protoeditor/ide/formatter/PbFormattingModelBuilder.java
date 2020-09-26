@@ -34,15 +34,15 @@ public class PbFormattingModelBuilder implements FormattingModelBuilder {
 
   @NotNull
   @Override
-  public FormattingModel createModel(PsiElement element, CodeStyleSettings settings) {
-    PsiFile file = element.getContainingFile();
+  public FormattingModel createModel(@NotNull FormattingContext formattingContext) {
+    PsiFile file = formattingContext.getContainingFile();
     return new PsiBasedFormattingModel(
         file,
         new PbBlock(
-            element.getNode(),
+            formattingContext.getNode(),
             Wrap.createWrap(WrapType.NONE, false),
             null,
-            createSpaceBuilder(settings)),
+            createSpaceBuilder(formattingContext.getCodeStyleSettings())),
         FormattingDocumentModelImpl.createOn(file));
   }
 

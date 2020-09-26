@@ -17,6 +17,7 @@ package idea.plugin.protoeditor.lang.completion;
 
 import com.intellij.codeInsight.lookup.Lookup;
 import com.intellij.testFramework.fixtures.CompletionAutoPopupTester;
+import com.intellij.util.ThrowableRunnable;
 import idea.plugin.protoeditor.TestUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -42,7 +43,7 @@ public class PbCompletionAutoPopupTest extends PbCompletionContributorTestCase {
   }
 
   @Override
-  protected void invokeTestRunnable(@NotNull Runnable runnable) {
+  protected void runTestRunnable(@NotNull ThrowableRunnable<Throwable> runnable) throws Throwable {
     tester.runWithAutoPopupEnabled(runnable);
   }
 
