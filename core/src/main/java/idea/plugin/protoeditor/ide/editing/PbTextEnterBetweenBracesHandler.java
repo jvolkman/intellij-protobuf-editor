@@ -24,7 +24,7 @@ import com.intellij.psi.PsiFile;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * {@link EnterBetweenBracesHandler} implementation for prototext files.
+ * EnterBetweenBracesHandler implementation for prototext files.
  *
  * TODO: Figure out how to not extend the deprecated handler class. We use ProtoTypedHandler#inTextFormat rather than
  * just checking language equality.
