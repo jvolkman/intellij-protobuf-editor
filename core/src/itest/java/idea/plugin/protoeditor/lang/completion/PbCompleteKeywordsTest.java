@@ -61,7 +61,7 @@ public class PbCompleteKeywordsTest extends PbCompletionContributorTestCase {
   public void testImportAtTopLevel() {
     setInput("imp" + CARET_TAG);
     assertTrue(completeWithUniqueChoice());
-    assertResult("import ");
+    assertResult("import \"\";");
   }
 
   public void testMessageInMessageAutoInsertSpace() {
