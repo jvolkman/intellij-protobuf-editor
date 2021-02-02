@@ -57,7 +57,7 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
     assertTrue(projectDir.mkdirs());
 
     VirtualFile projectFile = createTestProjectStructure(projectDir.getPath());
-    Project project = PlatformTestUtil.loadAndOpenProject(projectFile.toNioPath());
+    Project project = PlatformTestUtil.loadAndOpenProject(projectFile.toNioPath(), getTestRootDisposable());
     disposeOnTearDown(project);
     Module module1 = doCreateRealModuleIn("module1", project, EmptyModuleType.getInstance());
     Module module2 = doCreateRealModuleIn("module2", project, EmptyModuleType.getInstance());
@@ -168,7 +168,7 @@ public class ProjectSettingsConfiguratorManagerTest extends HeavyPlatformTestCas
     assertTrue(projectDir.mkdirs());
 
     VirtualFile projectFile = createTestProjectStructure(projectDir.getPath());
-    Project project = PlatformTestUtil.loadAndOpenProject(projectFile.toNioPath());
+    Project project = PlatformTestUtil.loadAndOpenProject(projectFile.toNioPath(), getTestRootDisposable());
     disposeOnTearDown(project);
     Module module = doCreateRealModuleIn("module", project, EmptyModuleType.getInstance());
 

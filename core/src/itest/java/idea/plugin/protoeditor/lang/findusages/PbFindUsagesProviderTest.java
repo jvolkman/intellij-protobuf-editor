@@ -73,7 +73,7 @@ public class PbFindUsagesProviderTest extends PbCodeInsightFixtureTestCase {
     assertEquals("user.proto", notNull(usageInfo.getFile()).getName());
     assertEquals(fileUser.getText().indexOf("M1 user = 777;"), usageInfo.getNavigationOffset());
     assertEquals(2, notNull(usageInfo.getRangeInElement()).getLength());
-    assertSameElements(describeUsagesTypes(usageInfos), PbUsageTypeProvider.FIELD_DECLARATION);
+    assertSameElements(describeUsageTypeNames(usageInfos), PbUsageTypeProvider.fieldDeclaration().toString());
   }
 
   public void testNestedMessagePreventsToplevelUsage() {
@@ -107,7 +107,7 @@ public class PbFindUsagesProviderTest extends PbCodeInsightFixtureTestCase {
     UsageInfo usageInfo = notNull(ContainerUtil.getFirstItem(usageInfos));
     assertEquals("user.proto", notNull(usageInfo.getFile()).getName());
     assertEquals(fileUser.getText().indexOf("E1 user = 777;"), usageInfo.getNavigationOffset());
-    assertSameElements(describeUsagesTypes(usageInfos), PbUsageTypeProvider.FIELD_DECLARATION);
+    assertSameElements(describeUsageTypeNames(usageInfos), PbUsageTypeProvider.fieldDeclaration().toString());
   }
 
   public void testFullyQualified() {
@@ -148,11 +148,11 @@ public class PbFindUsagesProviderTest extends PbCodeInsightFixtureTestCase {
     assertEquals(204, fileDef.getText().indexOf("Foo {}"));
     assertEquals(84, fileUser.getText().indexOf("Foo.Bar Foo = 777;"));
     assertSameElements(
-        describeUsagesTypes(usageInfos),
-        PbUsageTypeProvider.FIELD_DECLARATION,
-        PbUsageTypeProvider.SERVICE_TYPE,
-        PbUsageTypeProvider.EXTEND_DEFINITION,
-        PbUsageTypeProvider.FIELD_DECLARATION);
+        describeUsageTypeNames(usageInfos),
+        PbUsageTypeProvider.fieldDeclaration().toString(),
+        PbUsageTypeProvider.serviceType().toString(),
+        PbUsageTypeProvider.extendDefinition().toString(),
+        PbUsageTypeProvider.fieldDeclaration().toString());
   }
 
   public void testMessageNamedMessage() {
@@ -193,7 +193,7 @@ public class PbFindUsagesProviderTest extends PbCodeInsightFixtureTestCase {
     UsageInfo usageInfo = notNull(ContainerUtil.getFirstItem(usageInfos));
     assertEquals("user.proto", notNull(usageInfo.getFile()).getName());
     assertEquals(fileUser.getText().indexOf("moo) = true;"), usageInfo.getNavigationOffset());
-    assertSameElements(describeUsagesTypes(usageInfos), PbUsageTypeProvider.OPTION_EXPRESSION);
+    assertSameElements(describeUsageTypeNames(usageInfos), PbUsageTypeProvider.optionExpression().toString());
   }
 
   public void testPackageName() {
@@ -216,7 +216,7 @@ public class PbFindUsagesProviderTest extends PbCodeInsightFixtureTestCase {
     UsageInfo usageInfo = notNull(ContainerUtil.getFirstItem(usageInfos));
     assertEquals("user.proto", notNull(usageInfo.getFile()).getName());
     assertEquals(fileUser.getText().indexOf("abc.xyz.M1 f1 = 1;"), usageInfo.getNavigationOffset());
-    assertSameElements(describeUsagesTypes(usageInfos), PbUsageTypeProvider.FIELD_DECLARATION);
+    assertSameElements(describeUsageTypeNames(usageInfos), PbUsageTypeProvider.fieldDeclaration().toString());
   }
 
   private PsiFile createFile(String filename, String... fileContents) {
@@ -248,13 +248,13 @@ public class PbFindUsagesProviderTest extends PbCodeInsightFixtureTestCase {
         .collect(Collectors.toList());
   }
 
-  private static Collection<UsageType> describeUsagesTypes(Collection<UsageInfo> usageInfos) {
+  private static Collection<String> describeUsageTypeNames(Collection<UsageInfo> usageInfos) {
     return usageInfos
         .stream()
         .map(
             usageInfo -> {
               UsageType usageType = USAGE_TYPE_PROVIDER.getUsageType(usageInfo.getElement());
-              return usageType != null ? usageType : UsageType.UNCLASSIFIED;
+              return usageType != null ? usageType.toString() : UsageType.UNCLASSIFIED.toString();
             })
         .collect(Collectors.toList());
   }
