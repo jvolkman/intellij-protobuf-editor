@@ -51,8 +51,8 @@ http_file(
 http_archive(
     name = "grammar_kit",
     build_file = "//build_support/external:BUILD.grammar_kit",
-    sha256 = "9cfc31d090de5c68ff6e3fd265615168ec1d28a95984c6d96cb0ebabaab08562",
-    url = "https://github.com/JetBrains/Grammar-Kit/releases/download/2020.1/grammar-kit-2020.1.zip",
+    sha256 = "d7fe9ec0a4ca0ceee5bbc26c6699e829762f6229981eac9f466bbd1342a55376",
+    url = "https://github.com/JetBrains/Grammar-Kit/releases/download/2020.3.1/grammar-kit-2020.3.1.zip",
 )
 
 jvm_maven_import_external(
@@ -81,9 +81,9 @@ jvm_maven_import_external(
 
 http_archive(
     name = "com_google_protobuf",
-    sha256 = "71030a04aedf9f612d2991c1c552317038c3c5a2b578ac4745267a45e7037c29",
-    strip_prefix = "protobuf-3.12.3",
-    url = "https://github.com/protocolbuffers/protobuf/archive/v3.12.3.tar.gz",
+    sha256 = "d0f5f605d0d656007ce6c8b5a82df3037e1d8fe8b121ed42e536f569dec16113",
+    strip_prefix = "protobuf-3.14.0",
+    url = "https://codeload.github.com/protocolbuffers/protobuf/archive/3.14.0.tar.gz",
 )
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
 protobuf_deps()
