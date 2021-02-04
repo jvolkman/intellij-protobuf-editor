@@ -29,14 +29,21 @@ import org.jetbrains.annotations.Nullable;
  */
 public class PbUsageTypeProvider implements UsageTypeProvider {
 
-  static final UsageType EXTEND_DEFINITION =
-      new UsageType(() -> PbLangBundle.message("usage.extend.type.reference"));
-  static final UsageType FIELD_DECLARATION =
-      new UsageType(() -> PbLangBundle.message("usage.field.type.reference"));
-  static final UsageType OPTION_EXPRESSION =
-      new UsageType(() -> PbLangBundle.message("usage.option.expr.reference"));
-  static final UsageType SERVICE_TYPE =
-      new UsageType(() -> PbLangBundle.message("usage.service.type.reference"));
+  public static UsageType fieldDeclaration() {
+    return new UsageType(() -> PbLangBundle.message("usage.field.type.reference"));
+  }
+
+  public static UsageType extendDefinition() {
+    return new UsageType(() -> PbLangBundle.message("usage.extend.type.reference"));
+  }
+
+  public static UsageType serviceType() {
+    return new UsageType(() -> PbLangBundle.message("usage.service.type.reference"));
+  }
+
+  public static UsageType optionExpression() {
+    return new UsageType(() -> PbLangBundle.message("usage.option.expr.reference"));
+  }
 
   @Nullable
   @Override
@@ -44,18 +51,18 @@ public class PbUsageTypeProvider implements UsageTypeProvider {
     PbTypeName typeParent = PsiTreeUtil.getParentOfType(element, PbTypeName.class);
     if (typeParent != null) {
       if (PsiTreeUtil.getParentOfType(typeParent, PbField.class) != null) {
-        return FIELD_DECLARATION;
+        return fieldDeclaration();
       }
       PbDefinition owner = PsiTreeUtil.getParentOfType(typeParent, PbDefinition.class);
       if (owner instanceof PbExtendDefinition) {
-        return EXTEND_DEFINITION;
+        return extendDefinition();
       }
       if (owner instanceof PbServiceDefinition) {
-        return SERVICE_TYPE;
+        return serviceType();
       }
     }
     if (PsiTreeUtil.getParentOfType(element, PbOptionExpression.class) != null) {
-      return OPTION_EXPRESSION;
+      return optionExpression();
     }
     return null;
   }

@@ -44,7 +44,7 @@ genrule(
         set -e
         WORK=`pwd`
         SKEL=`echo $(SRCS) | tr ' ' '\n' | grep 'skeleton' | tr '\n' ' '`
-        GRAMMARS=`echo $(SRCS) | tr ' ' '\n' | grep '\.flex$$' | tr '\n' ' '`
+        GRAMMARS=`echo $(SRCS) | tr ' ' '\n' | grep '\\.flex$$' | tr '\n' ' '`
 
         mkdir $(@D)/gen
         $(location //build_support:idea_jflex) \

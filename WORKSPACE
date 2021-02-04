@@ -5,27 +5,27 @@ load("@bazel_tools//tools/build_defs/repo:jvm.bzl", "jvm_maven_import_external")
 
 # The plugin api for IntelliJ UE.
 http_archive(
-    name = "idea_ue_2020_3",
+    name = "idea_ue_2021_1",
     build_file = "@//build_support/external:BUILD.idea_ue",
-    sha256 = "c118402cbe57dc03aab4165d836fa4a4ac286c1c11639a0e708a0ad60cab7888",
-    strip_prefix = "idea-IU-203.3645.34",
-    url = "https://download-cf.jetbrains.com/idea/ideaIU-203.3645.34.tar.gz",
+    sha256 = "fdca0791d42d044f29e6aaa32c06ada13c687ed9e95cc59b5b2fb2f83767ca97",
+    strip_prefix = "idea-IU-211.4961.33",
+    url = "https://download-cf.jetbrains.com/idea/ideaIU-211.4961.33.tar.gz",
 )
 
 # Python plugin for IntelliJ UE. Required at compile-time for python-specific features.
 http_archive(
-    name = "python_2020_3",
+    name = "python_2021_1",
     build_file = "@//build_support/external:BUILD.idea_python",
-    sha256 = "63f114062bd729a63f20801dc887a3ad924e6ebd4aedfe14316930053d0fb17a",
-    url = "https://plugins.jetbrains.com/files/631/97630/python-203.3645.40.zip",
+    sha256 = "05f8d2cf5e2833f2814eb0c11717cc9e674f504bf5e8dcbc1d81e0b330c81b8e",
+    url = "https://plugins.jetbrains.com/files/631/108977/python-211.4961.33.zip",
 )
 
 # Go plugin for IntelliJ UE. Required at compile-time for Bazel integration.
 http_archive(
-    name = "go_2020_3",
+    name = "go_2021_1",
     build_file = "@//build_support/external:BUILD.idea_go",
-    sha256 = "d9e65ab957b6c9160fef3c67cd268097ef87ebdf154e379b7a021058ce821f94",
-    url = "https://plugins.jetbrains.com/files/9568/97460/go-203.3645.34.zip",
+    sha256 = "5b130bdbfc4f15689638df8bdb7eb51e88791b2fce2f461ea78ca9ee888533b6",
+    url = "https://plugins.jetbrains.com/files/9568/108830/go-211.4961.30.zip",
 )
 
 # jflex for IDEA
@@ -51,8 +51,8 @@ http_file(
 http_archive(
     name = "grammar_kit",
     build_file = "//build_support/external:BUILD.grammar_kit",
-    sha256 = "9cfc31d090de5c68ff6e3fd265615168ec1d28a95984c6d96cb0ebabaab08562",
-    url = "https://github.com/JetBrains/Grammar-Kit/releases/download/2020.1/grammar-kit-2020.1.zip",
+    sha256 = "d7fe9ec0a4ca0ceee5bbc26c6699e829762f6229981eac9f466bbd1342a55376",
+    url = "https://github.com/JetBrains/Grammar-Kit/releases/download/2020.3.1/grammar-kit-2020.3.1.zip",
 )
 
 jvm_maven_import_external(
@@ -81,9 +81,9 @@ jvm_maven_import_external(
 
 http_archive(
     name = "com_google_protobuf",
-    sha256 = "71030a04aedf9f612d2991c1c552317038c3c5a2b578ac4745267a45e7037c29",
-    strip_prefix = "protobuf-3.12.3",
-    url = "https://github.com/protocolbuffers/protobuf/archive/v3.12.3.tar.gz",
+    sha256 = "d0f5f605d0d656007ce6c8b5a82df3037e1d8fe8b121ed42e536f569dec16113",
+    strip_prefix = "protobuf-3.14.0",
+    url = "https://github.com/protocolbuffers/protobuf/archive/v3.14.0.tar.gz",
 )
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
 protobuf_deps()
