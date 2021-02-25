@@ -56,6 +56,7 @@ stamped_plugin_xml(
     stamp_until_build = True,
     vendor_file = "vendor.xml",
     version_file = ":version_file",
+    require_restart = "true",
 )
 
 intellij_plugin(

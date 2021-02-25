@@ -56,6 +56,7 @@ def stamped_plugin_xml(
         changelog_file = None,
         description_file = None,
         vendor_file = None,
+        require_restart = False,
         **kwargs):
     """Stamps a plugin xml file with the IJ build number.
 
@@ -126,6 +127,9 @@ def stamped_plugin_xml(
     if vendor_file:
         args.append("--vendor_file=$(location {vendor_file})")
         srcs.append(vendor_file)
+
+    if require_restart:
+        args.append("--require_restart")
 
     cmd = " ".join(args).format(
         plugin_xml = plugin_xml,
