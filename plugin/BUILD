@@ -16,7 +16,7 @@ package(default_visibility = ["//visibility:private"])
 licenses(["notice"])  # Apache License 2.0
 
 # Standalone plugin version.
-PROTO_PLUGIN_VERSION = "2.2.0"
+PROTO_PLUGIN_VERSION = "2.2.1"
 
 java_library(
     name = "combined_lib",
