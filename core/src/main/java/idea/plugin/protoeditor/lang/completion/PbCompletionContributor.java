@@ -159,7 +159,7 @@ public class PbCompletionContributor extends CompletionContributor {
             .collect(Collectors.toList());
 
     private static final List<LookupElement> PROTO3_FIELD_LABELS =
-        Stream.of("repeated")
+        Stream.of("optional", "repeated")
             .map(PbCompletionContributor::lookupElementWithSpace)
             .collect(Collectors.toList());
 

@@ -155,17 +155,13 @@ public class Proto3Annotator implements Annotator {
   }
 
   /*
-   * Fields cannot be marked required or optional.
+   * Fields cannot be marked required.
    * Field names must be unique after converting to lowercase and removing underscores.
    * Enum types must be defined in proto3 files.
    */
   private static void annotateField(PbField field, AnnotationHolder holder) {
     PbFieldLabel label = field.getDeclaredLabel();
-    if (label != null && "optional".equals(label.getText())) {
-      holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto3.optional.fields"))
-          .range(label)
-          .create();
-    } else if (label != null && "required".equals(label.getText())) {
+    if (label != null && "required".equals(label.getText())) {
       holder.newAnnotation(HighlightSeverity.ERROR, PbLangBundle.message("proto3.required.fields"))
           .range(label)
           .create();
