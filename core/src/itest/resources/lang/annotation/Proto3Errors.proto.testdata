@@ -16,7 +16,7 @@ message ExtensionRangesTest {
 
 message FieldLabelsTest {
   int32 valid = 1;
-  <error descr="The 'optional' keyword should not be specified in proto3 (fields are optional by default)">optional</error> int32 invalid_optional = 2;
+  optional int32 valid_optional = 2;
   <error descr="Required fields are not supported in proto3">required</error> int32 invalid_required = 3;
 }
 
