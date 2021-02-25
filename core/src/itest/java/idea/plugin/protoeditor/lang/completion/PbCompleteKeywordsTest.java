@@ -210,10 +210,11 @@ public class PbCompleteKeywordsTest extends PbCompletionContributorTestCase {
     assertSameElements(completions, "option", "optional");
   }
 
-  public void testOptionForProto3() {
+  public void testOptionOrOptionalForProto3() {
     withSyntax("proto3");
     setInput("message Foo {", "  repeated int32 field1 = 1;", "  opt" + CARET_TAG, "}");
-    assertTrue(completeWithUniqueChoice());
-    assertResult("message Foo {", "  repeated int32 field1 = 1;", "  option ", "}");
+    Collection<String> completions = getCompletionItemsAsStrings();
+    assertNotNull(completions);
+    assertSameElements(completions, "option", "optional");
   }
 }
