@@ -78,6 +78,11 @@ parser.add_argument(
     "--vendor_file",
     help="File with vendor element data to add to plugin.xml",
 )
+parser.add_argument(
+    "--require_restart",
+    action="store_true",
+    help="Add require-restart parameter to root node",
+)
 
 
 def _read_changelog(changelog_file):
@@ -152,6 +157,8 @@ def main():
 
     if args.plugin_xml:
         dom = minidom.parse(args.plugin_xml)
+    elif args.require_restart:
+        dom = minidom.parseString("<idea-plugin require-restart=\"true\"/>")
     else:
         dom = minidom.parseString("<idea-plugin/>")
 
