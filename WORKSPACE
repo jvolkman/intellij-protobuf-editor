@@ -16,7 +16,7 @@ http_archive(
 http_archive(
     name = "python_2020_3",
     build_file = "@//build_support/external:BUILD.idea_python",
-    sha256 = "63f114062bd729a63f20801dc887a3ad924e6ebd4aedfe14316930053d0fb17a",
+    sha256 = "92f146eefe7eff8434e15678291c6b2ad5b5f5e75e1e70978abb93858f439914",
     url = "https://plugins.jetbrains.com/files/631/97630/python-203.3645.40.zip",
 )
 
@@ -24,7 +24,7 @@ http_archive(
 http_archive(
     name = "go_2020_3",
     build_file = "@//build_support/external:BUILD.idea_go",
-    sha256 = "d9e65ab957b6c9160fef3c67cd268097ef87ebdf154e379b7a021058ce821f94",
+    sha256 = "75522e7650566584bc77d217a9d9e40724fd34c685fc44e8625668ceb2ea4fbe",
     url = "https://plugins.jetbrains.com/files/9568/97460/go-203.3645.34.zip",
 )
 
