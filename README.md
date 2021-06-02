@@ -1,3 +1,7 @@
+# Note: this plugin has moved to JetBrains
+This plugin has been adopted by JetBrains and now lives primarly at https://github.com/JetBrains/intellij-plugins/tree/master/protobuf. Future releases will be bundled with certain versions of JetBrains' tools. As such, this repository likely won't see new updates. Issue tracking and other stuff is still in a bit of a transition phase.
+
+
 # Protocol Buffers support for IntelliJ
 
 [![Run Tests](https://github.com/jvolkman/intellij-protobuf-editor/workflows/Run%20Tests/badge.svg)](https://github.com/jvolkman/intellij-protobuf-editor/actions) [![Join the chat at https://gitter.im/intellij-protobuf-editor/community](https://badges.gitter.im/intellij-protobuf-editor/community.svg)](https://gitter.im/intellij-protobuf-editor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
