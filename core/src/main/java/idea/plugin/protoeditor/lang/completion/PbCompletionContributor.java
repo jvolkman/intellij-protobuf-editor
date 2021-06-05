@@ -18,6 +18,8 @@ package idea.plugin.protoeditor.lang.completion;
 import com.intellij.codeInsight.completion.*;
 import com.intellij.codeInsight.lookup.LookupElement;
 import com.intellij.codeInsight.lookup.LookupElementBuilder;
+import com.intellij.openapi.editor.Document;
+import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiErrorElement;
 import com.intellij.psi.util.PsiTreeUtil;
@@ -232,6 +234,27 @@ public class PbCompletionContributor extends CompletionContributor {
   }
 
   private static LookupElement lookupElementWithSpace(String keyword) {
-    return LookupElementBuilder.create(keyword).withInsertHandler(AddSpaceInsertHandler.INSTANCE);
+    boolean needQuotas = "import".equalsIgnoreCase(keyword);
+    return LookupElementBuilder.create(keyword).withInsertHandler(
+            needQuotas ? new PbKeywordInsertHandler() : AddSpaceInsertHandler.INSTANCE);
+  }
+
+  private static class PbKeywordInsertHandler extends BasicInsertHandler<LookupElement> {
+
+    @Override
+    public void handleInsert(@NotNull InsertionContext context, @NotNull LookupElement item) {
+      super.handleInsert(context, item);
+      Editor editor = context.getEditor();
+
+      Document document = editor.getDocument();
+      if (!document.getText().substring(context.getTailOffset()).startsWith(";")) {
+        document.insertString(context.getTailOffset(), ";");
+      }
+
+      int offset = editor.getCaretModel().getOffset();
+      document.insertString(offset, " \"");
+      document.insertString(offset + 2, "\"");
+      editor.getCaretModel().moveToOffset(offset + 2);
+    }
   }
 }
